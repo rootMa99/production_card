@@ -3,7 +3,7 @@ import c from "./NavBar.module.css";
 import imglogo from "../../assets/aptiv-logo.svg";
 import { useDispatch, useSelector } from "react-redux";
 import React from "react";
-import { loginActions } from "../../store/loginSlice";
+import { loginActions } from "../../store/loginSlice"; 
 
 const NavBar = (p) => {
   const { isLoged } = useSelector((s) => s.login);
@@ -34,18 +34,6 @@ const NavBar = (p) => {
                 home
               </NavLink>
             </li>
-            {(isLoged.role === "Supervisor" || isLoged.role === "monitor") && (
-              <li>
-                <NavLink
-                  to="/dashboard"
-                  className={({ isActive }) =>
-                    isActive ? c.activeLink : c.link
-                  }
-                >
-                  Dashboard
-                </NavLink>
-              </li>
-            )}
             <li>
               <button
                 className={c.Btn}
