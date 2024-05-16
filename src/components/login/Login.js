@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import c from "./Login.module.css";
 import { useDispatch } from "react-redux";
-import api from "../../service/api";
+// import api from "../../service/api";
 import { loginActions } from "../../store/loginSlice";
 import NetworkNotify from "../UI/NetworkNotify";
 

@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+
+.linkHolder {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 100000;
+  height: 90vh;
+  cursor: pointer;
+  transition: 0.4s;
+  gap: 3rem;
+}
+
+ li {
+  font-size: 1rem;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: red;
+  text-transform: uppercase;
+}
+
+ a {
+  text-decoration: none;
+  color: #cfcfcf;
+}
+
+.link:hover,
+.link:active,
+ a.activeLink {
+  color: rgb(255, 253, 253);
+  padding-bottom: 0.5rem;
+  border-bottom: #cfcfcf 3px solid;
+}
+
+.linkOne{
+    animation: link 2s ease-out forwards;
+}
+.linktwo{
+    animation: link 3s ease-in-out forwards;
+}
+.linkThree{
+    animation: link 4s ease-in-out forwards;
+}
+.linkFour{
+    animation: link 5s ease-in-out forwards;
+}
+.linkFive{
+    animation: link 6s ease-in-out forwards;
+}
+
+
+.logout{
+    position: absolute;
+    bottom: 0;
+    font-size: larger;
+}
+@keyframes link {
+  0% {
+    opacity: 0;
+    transform: translateY(-20rem);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(0.5rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

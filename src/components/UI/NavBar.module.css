@@ -20,7 +20,7 @@
   width: 7rem;
 }
 .links {
-  margin-right: 2rem;
+  margin-right: 1rem;
 }
 .links ul {
   display: flex;
@@ -38,6 +38,7 @@
   line-height: 20px;
   letter-spacing: 3px;
   text-transform: uppercase;
+  margin: 0;
 }
 .links ul li a {
   text-decoration: none;
@@ -137,6 +138,42 @@
   transform: translate(2px ,2px);
 }
 
+.hamburger {
+  cursor: pointer;
+}
+
+.hamburger input {
+  display: none;
+}
+
+.hamburger svg {
+  height: 3em;
+  transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.line {
+  fill: none;
+  stroke: white;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3;
+  transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+              stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.line-top-bottom {
+  stroke-dasharray: 12 63;
+}
+
+.hamburger input:checked + svg {
+  transform: rotate(-45deg);
+}
+
+.hamburger input:checked + svg .line-top-bottom {
+  stroke-dasharray: 20 300;
+  stroke-dashoffset: -32.42;
+}
+
 @media (width < 600px) {
   .logo {
     margin-left: 10px;
@@ -150,5 +187,7 @@
   .welcome{
     font-size: 8px !important;
   }
-  
+  .links ul li{
+    font-size: 10px;
+  }
 }
