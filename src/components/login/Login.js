@@ -46,16 +46,14 @@ const Login = () => {
     //   console.error(e);
     // }
 
-          dispatch(
-        loginActions.logIn({
-          role: "data.user.role",
-          userName: "data.user.fullname",
-          token: "data.token",
-          config: "data.user.isConfigured",
-        })
-      );
-
-
+    dispatch(
+      loginActions.logIn({
+        role: "teamleader",
+        userName: "data.user.fullname",
+        token: "data.token",
+        config: "data.user.isConfigured",
+      })
+    );
   };
 
   const nameChangeHadler = (e) => {

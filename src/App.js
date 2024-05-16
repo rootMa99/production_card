@@ -4,6 +4,7 @@ import './App.css';
 import NavBar from './components/UI/NavBar';
 import React from 'react';
 import Login from './components/login/Login';
+import TeamLeader from './components/routes/TeamLeader';
 
 function App() {
   const { isLoged } = useSelector((s) => s.login);
@@ -13,7 +14,7 @@ function App() {
         {
           <React.Fragment>
           {!isLoged.login && <Login />}
-          
+          {isLoged.login && isLoged.role==="teamleader" && <TeamLeader /> }
           </React.Fragment>
         }
     </div>
