@@ -9,7 +9,6 @@ const loginS = createSlice({
       userName: "",
       token: "",
     },
-
   },
   reducers: {
     logIn(s, p) {
