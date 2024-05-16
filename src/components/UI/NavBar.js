@@ -1,15 +1,14 @@
 import { NavLink } from "react-router-dom";
 import c from "./NavBar.module.css";
 import imglogo from "../../assets/aptiv-logo.svg";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import React, { useState } from "react";
-import { loginActions } from "../../store/loginSlice";
+
 import List from "./List";
 import BackDrop from "./BackDrop"
 
 const NavBar = (p) => {
   const { isLoged } = useSelector((s) => s.login);
-  const dispatch = useDispatch();
   const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckboxChange = () => {
@@ -22,7 +21,7 @@ const NavBar = (p) => {
     <React.Fragment>
       <div className={c.navBar}>
         <div className={c.logo}>
-          <NavLink to="/home">
+          <NavLink to="/cp">
             <img src={imglogo} alt="logo for aptiv" />
           </NavLink>
         </div>
@@ -53,7 +52,7 @@ const NavBar = (p) => {
         <List click={onClickHandler} />
       )}
       {isChecked && (
-        <BackDrop click={onClickHandler} /> 
+        <BackDrop click={onClickHandler} zindex={10}/> 
       )}
     </React.Fragment>
   );
