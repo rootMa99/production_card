@@ -16,7 +16,7 @@ const List = (p) => {
           to="cp"
           className={({ isActive }) => (isActive ? c.activeLink : c.link)}
         >
-          card production
+          production card
         </NavLink>
       </li>
       <li className={c.linktwo} onClick={onClickHandler}>
