@@ -40,7 +40,7 @@ const PointingList = (p) => {
         </div>
         <div className={c.trainingDi}>
           <div className={c.dataT} style={{ width: "50%" }}>
-            <h3>7.6</h3>
+            <h3>7.67</h3>
           </div>
           <div className={c.dataT} style={{ width: "50%" }}>
             <h3>none</h3>
