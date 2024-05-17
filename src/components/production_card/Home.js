@@ -73,6 +73,7 @@ const customStyles = {
 const Home = (p) => {
   const [today, setToday] = useState(new Date().toISOString().split("T")[0]);
   const [result, setResult] = useState([]);
+  
   return (
     <div className={c.container}>
       <div className={c.inputsContainer}>
