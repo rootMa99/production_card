@@ -72,7 +72,7 @@ const customStyles = {
 
 const Home = (p) => {
   const [today, setToday] = useState(new Date().toISOString().split("T")[0]);
-
+  const [control, setControl] = useState("pbl");
 
   return (
     <div className={c.container}>
@@ -141,9 +141,30 @@ const Home = (p) => {
         <div className={c.line}></div>
         <h4>Pointing</h4>
       </div>
-      
-        <Pointing />
-    
+      <ul className={c.underList}>
+        <li
+          style={
+            control === "pbl"
+              ? { opacity: 1, borderBottom: "2px solid white" }
+              : {}
+          }
+          onClick={(e) => setControl("pbl")}
+        >
+          Pointing by list
+        </li>
+
+        <li
+          style={
+            control === "pbc"
+              ? { opacity: 1, borderBottom: "2px solid white" }
+              : {}
+          }
+          onClick={(e) => setControl("pbc")}
+        >
+          Pointing by category
+        </li>
+      </ul>
+      {control === "pbc" && <Pointing />}
     </div>
   );
 };
