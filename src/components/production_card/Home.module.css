@@ -23,6 +23,7 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: stretch;
+  padding: 16px 0;
 }
 .data {
   width: 8rem;

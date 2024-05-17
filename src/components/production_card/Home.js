@@ -72,8 +72,8 @@ const customStyles = {
 
 const Home = (p) => {
   const [today, setToday] = useState(new Date().toISOString().split("T")[0]);
-  const [result, setResult] = useState([]);
-  
+
+
   return (
     <div className={c.container}>
       <div className={c.inputsContainer}>
@@ -139,11 +139,11 @@ const Home = (p) => {
       </div>
       <div className={c.title2}>
         <div className={c.line}></div>
-        <h4>{result.length>0 ? "result": "pointing"}</h4>
+        <h4>Pointing</h4>
       </div>
-      {
-        result.length===0 && <Pointing />
-      }
+      
+        <Pointing />
+    
     </div>
   );
 };

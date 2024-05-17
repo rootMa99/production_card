@@ -33,6 +33,7 @@
   cursor: pointer;
   color: white;
   text-transform: uppercase;
+  animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 .cardContainer::before {
   width: 40px;
@@ -45,3 +46,15 @@
   left: 15px;
   top: 32px;
 }
+
+@keyframes scale-in-center {
+    0% {
+      transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
