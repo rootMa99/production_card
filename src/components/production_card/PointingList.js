@@ -4,7 +4,7 @@ const PointingList = (p) => {
   return (
     <div className={c.container}>
       <div className={c.trainingH}>
-        <div className={c.trainingDi}>
+        <div className={c.trainingDi} style={{backgroundColor:"#E5E1DA"}}>
           <div className={c.dataT} style={{ width: "33%" }}>
             <h3>mlle</h3>
           </div>
@@ -15,12 +15,12 @@ const PointingList = (p) => {
             <h3>Pointing</h3>
           </div>
         </div>
-        <div className={c.trainingD}>
-          <div className={c.dataT} style={{ width: "50%" }}>
-            <h3>hours</h3>
+        <div className={c.trainingD} style={{backgroundColor:"#E5E1DA"}}>
+          <div className={c.dataT} style={{ width: "50%"}}>
+            <h3 style={{color:"black" }}>hours</h3>
           </div>
-          <div className={c.dataT} style={{ width: "50%" }}>
-            <h3>status</h3>
+          <div className={c.dataT} style={{ width: "50%"}}>
+            <h3 style={{color:"black" }}>status</h3>
           </div>
         </div>
       </div>

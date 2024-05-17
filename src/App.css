@@ -8,7 +8,7 @@
   overflow-y: auto;
 }
 .App::-webkit-scrollbar {
-  width: 4px;
+  width: 1px;
   background-color: #535151;
   border-radius: 14px;
 }
