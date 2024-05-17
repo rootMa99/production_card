@@ -774,6 +774,7 @@ const Home = (p) => {
         </li>
       </ul>
       {control === "pbc" && <Pointing />}
+      {control === "pbl" && <Pointing />}
     </div>
   );
 };
