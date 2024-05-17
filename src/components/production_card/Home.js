@@ -4,6 +4,7 @@ import Select from "react-select";
 import DropdownIndicator from "../UI/DropdownIndicator";
 import "./SelectCSS.css";
 import Pointing from "./Pointing";
+import PointingList from "./PointingList";
 
 const customStyles = {
   control: (provided, state) => ({
@@ -774,7 +775,7 @@ const Home = (p) => {
         </li>
       </ul>
       {control === "pbc" && <Pointing />}
-      {control === "pbl" && <Pointing />}
+      {control === "pbl" && <PointingList data={employeeCrew === null ? [] : employeeCrew.employees} />}
     </div>
   );
 };
