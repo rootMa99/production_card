@@ -96,3 +96,33 @@
     transform: scale(1.2);
     background-color: #fd7d61;
   }
+  
+.title2 {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    margin-top: 1rem;
+  }
+  .title2 h1,
+  .title2 h4 {
+    color: aliceblue;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  .line {
+    width: 35%;
+    height: 2px;
+    background-color: rgb(255, 255, 255);
+    position: relative;
+  }
+  .line::after {
+    content: "";
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid #f84018;
+    border-radius: 50%;
+    position: absolute;
+    right: -20px;
+    top: -8px;
+  }

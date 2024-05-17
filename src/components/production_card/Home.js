@@ -3,6 +3,7 @@ import c from "./Home.module.css";
 import Select from "react-select";
 import DropdownIndicator from "../UI/DropdownIndicator";
 import "./SelectCSS.css";
+import Pointing from "./Pointing";
 
 const customStyles = {
   control: (provided, state) => ({
@@ -28,7 +29,7 @@ const customStyles = {
   }),
   option: (provided, state) => ({
     width: "97%",
-    padding:"2px 0",
+    padding: "2px 0",
     color: state.isFocused ? "#f3f3f3" : "#f33716",
     backgroundColor: state.isFocused && "#474b4d",
     fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -71,6 +72,7 @@ const customStyles = {
 
 const Home = (p) => {
   const [today, setToday] = useState(new Date().toISOString().split("T")[0]);
+  const [result, setResult] = useState([]);
   return (
     <div className={c.container}>
       <div className={c.inputsContainer}>
@@ -134,6 +136,13 @@ const Home = (p) => {
           <span>0</span>
         </div>
       </div>
+      <div className={c.title2}>
+        <div className={c.line}></div>
+        <h4>{result.length>0 ? "result": "pointing"}</h4>
+      </div>
+      {
+        result.length===0 && <Pointing />
+      }
     </div>
   );
 };
