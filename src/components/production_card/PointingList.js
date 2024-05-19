@@ -7,8 +7,8 @@ const customStyles = {
   control: (provided, state) => ({
     ...provided,
     width: "4rem",
-    maxHeight:'1.5rem',
-    minHeight: '10px',
+    maxHeight: "1.5rem",
+    minHeight: "10px",
     fontSize: "8px",
     textTransform: "uppercase",
     borderRadius: "5px",
@@ -154,7 +154,7 @@ const PointingList = (p) => {
               </div>
               {eid === m._id && (
                 <div className={c.pointingEmpl}>
-                  <div className={c.poinHold} >
+                  <div className={c.poinHold}>
                     <span>Pointing</span>
                     <Select
                       components={{ DropdownIndicator }}
@@ -169,7 +169,29 @@ const PointingList = (p) => {
                       placeholder="select shift"
                     />
                   </div>
-                
+                  <div className={c.poinHold}>
+                    <span>duration</span>
+                    <input
+                      type="number"
+                      step={0.1}
+                      placeholder="set duration"
+                    />
+                  </div>
+                  <div className={c.poinHold}>
+                    <span>Status</span>
+                    <Select
+                      components={{ DropdownIndicator }}
+                      options={[
+                        { label: "morning", value: "morning" },
+                        { label: "evening", value: "evening" },
+                        { label: "night", value: "night" },
+                      ]}
+                      id="multiSelect"
+                      inputId="shiftleader1"
+                      styles={customStyles}
+                      placeholder="select shift"
+                    />
+                  </div>
                 </div>
               )}
             </React.Fragment>
