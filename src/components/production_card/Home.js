@@ -783,6 +783,7 @@ const Home = (p) => {
           {control === "pbl" && (
             <PointingList
               data={employeeCrew === null ? [] : employeeCrew.employees}
+              selectst={customStyles}
             />
           )}
         </React.Fragment>
