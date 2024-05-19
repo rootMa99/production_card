@@ -30,6 +30,7 @@
   /* background-color: #f84018; */
   border-radius: 10px;
   border: 1px solid #f84018;
+  padding: 5px 0;
 }
 .data h3 {
   color: #f84018;
@@ -148,6 +149,6 @@
   opacity: 1;
 }
 .noCrewS{
-  color: #fd7d61;
+  color: #c9c9c9;
   text-transform: uppercase;
 }

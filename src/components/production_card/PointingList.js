@@ -7,14 +7,15 @@ const PointingList = (p) => {
   useEffect(() => {
     setDataList(p.data);
   }, [p.data]);
-  console.log(dataList, p.data);
+  // console.log(dataList, p.data);
   const changeHandler = (e) => {
     const value = e.target.value;
+    console.log(value, /^\d*$/.test(value), value.trim() !== "");
     if (/^\d*$/.test(value)) {
       setInputValue(value);
       if (e.target.value.trim() !== "") {
-        setDataList((prev) =>
-          Array.from(prev).filter((obj) =>
+        setDataList(
+          p.data.filter((obj) =>
             String(obj["matricule"]).includes(e.target.value)
           )
         );
@@ -54,30 +55,34 @@ const PointingList = (p) => {
           </div>
         </div>
       </div>
-      <div className={c.wraper} >
-      {dataList.map((m) => (
-        <div className={c.trainingH} key={m._id}>
-          <div className={c.trainingD}>
-            <div className={c.dataT} style={{ width: "33%" }}>
-              <h3>{m.matricule}</h3>
+      <div className={c.wraper}>
+        {dataList.length > 0 ? (
+          dataList.map((m) => (
+            <div className={c.trainingH} key={m._id}>
+              <div className={c.trainingD}>
+                <div className={c.dataT} style={{ width: "33%" }}>
+                  <h3>{m.matricule}</h3>
+                </div>
+                <div className={c.dataT} style={{ width: "33%" }}>
+                  <h3>{m.poste}</h3>
+                </div>
+                <div className={c.dataT} style={{ width: "33%" }}>
+                  <h3>shift</h3>
+                </div>
+              </div>
+              <div className={c.trainingDi}>
+                <div className={c.dataT} style={{ width: "50%" }}>
+                  <h3>7.67</h3>
+                </div>
+                <div className={c.dataT} style={{ width: "50%" }}>
+                  <h3>none</h3>
+                </div>
+              </div>
             </div>
-            <div className={c.dataT} style={{ width: "33%" }}>
-              <h3>{m.poste}</h3>
-            </div>
-            <div className={c.dataT} style={{ width: "33%" }}>
-              <h3>shift</h3>
-            </div>
-          </div>
-          <div className={c.trainingDi}>
-            <div className={c.dataT} style={{ width: "50%" }}>
-              <h3>7.67</h3>
-            </div>
-            <div className={c.dataT} style={{ width: "50%" }}>
-              <h3>none</h3>
-            </div>
-          </div>
-        </div>
-      ))}
+          ))
+        ) : (
+          <h4 className={c.noCrewS}>No employees were found</h4>
+        )}
       </div>
     </div>
   );
