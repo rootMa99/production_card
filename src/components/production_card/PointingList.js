@@ -6,8 +6,8 @@ import DropdownIndicator from "../UI/DropdownIndicator";
 const customStyles = {
   control: (provided, state) => ({
     ...provided,
-    width: "4rem",
-    maxHeight: "1.5rem",
+    minWidth: "4rem",
+
     minHeight: "10px",
     fontSize: "8px",
     textTransform: "uppercase",
@@ -154,8 +154,35 @@ const PointingList = (p) => {
               </div>
               {eid === m._id && (
                 <div className={c.pointingEmpl}>
-                  <div className={c.poinHold}>
+                  <div className={c.poinHold} style={{minWidth:"5rem"}}>
                     <span>Pointing</span>
+                    <Select
+                      components={{ DropdownIndicator }}
+                      options={[
+                        { label: "admin", value: "admin" },
+                        { label: "shift", value: "shift" },
+                        { label: "over time", value: "over time" },
+                        { label: "ma", value: "ma" },
+                        { label: "ctp", value: "ctp" },
+                        { label: "ctn", value: "ctn" },
+                        { label: "cte", value: "cte" },
+                        { label: "ctf", value: "ctf" },
+                        { label: "cr", value: "cr" },
+                        { label: "t", value: "t" },
+                        { label: "tl", value: "tl" },
+                        { label: "retard", value: "retard" },
+                        { label: "other", value: "other" },
+
+                      ]}
+                      id="multiSelect"
+                      inputId="shiftleader1"
+                      styles={customStyles}
+                      placeholder="select shift"
+                      isMulti
+                    />
+                  </div>
+                  <div className={c.poinHold}>
+                    <span>motif</span>
                     <Select
                       components={{ DropdownIndicator }}
                       options={[
