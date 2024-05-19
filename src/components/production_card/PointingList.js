@@ -1,5 +1,72 @@
 import React, { useEffect, useState } from "react";
 import c from "./PointingList.module.css";
+import Select from "react-select";
+import DropdownIndicator from "../UI/DropdownIndicator";
+
+const customStyles = {
+  control: (provided, state) => ({
+    ...provided,
+    width: "4rem",
+
+    fontSize: "10px",
+    textTransform: "uppercase",
+    borderRadius: "5px",
+    fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+                    "Segoe UI Symbol"`,
+    textAlign: "center",
+    outline: "none",
+    border: "1px solid #F84018",
+    backgroundColor: "transparent",
+    boxShadow: "none",
+    margin: "auto",
+    "&:hover": {
+      border: "1px solid #f33716",
+      cursor: "pointer",
+    },
+  }),
+  option: (provided, state) => ({
+    width: "97%",
+    padding: "2px 0",
+    color: state.isFocused ? "#f3f3f3" : "#f33716",
+    backgroundColor: state.isFocused && "#474b4d",
+    fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+                    "Segoe UI Symbol"`,
+    textTransform: "uppercase",
+    outline: "none",
+    textAlign: "center",
+    fontSize: "10px",
+    "&:hover": {
+      cursor: "pointer",
+    },
+  }),
+  input: (provided) => ({
+    ...provided,
+    color: "#f3f3f3",
+  }),
+  singleValue: (p) => ({
+    ...p,
+    color: "#f3f3f3",
+  }),
+  menuList: (provided) => ({
+    maxHeight: "200px",
+    overflowY: "auto",
+    overflowX: "hidden",
+    scrollbarWidth: "thin",
+    msOverflowStyle: "none",
+    "&::-webkit-scrollbar": {
+      width: "5px",
+      backgroundColor: "#535151",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: "#f33716",
+    },
+    "&::-webkit-scrollbar-track": {
+      backgroundColor: "transparent",
+    },
+  }),
+};
 
 const PointingList = (p) => {
   const [dataList, setDataList] = useState(p.data);
@@ -59,7 +126,11 @@ const PointingList = (p) => {
         {dataList.length > 0 ? (
           dataList.map((m) => (
             <React.Fragment>
-              <div className={c.trainingH} key={m._id} onClick={e=>setEid(m._id)}>
+              <div
+                className={c.trainingH}
+                key={m._id}
+                onClick={(e) => (eid === m._id ? setEid("") : setEid(m._id))}
+              >
                 <div className={c.trainingD}>
                   <div className={c.dataT} style={{ width: "33%" }}>
                     <h3>{m.matricule}</h3>
@@ -80,7 +151,70 @@ const PointingList = (p) => {
                   </div>
                 </div>
               </div>
-              {eid === m._id && <div className={c.pointingEmpl}></div>}
+              {eid === m._id && (
+                <div className={c.pointingEmpl}>
+                  <div>
+                    <span>Pointing</span>
+                    <Select
+                      components={{ DropdownIndicator }}
+                      options={[
+                        { label: "morning", value: "morning" },
+                        { label: "evening", value: "evening" },
+                        { label: "night", value: "night" },
+                      ]}
+                      id="multiSelect"
+                      inputId="shiftleader1"
+                      styles={customStyles}
+                      placeholder="select shift"
+                    />
+                  </div>
+                  <div>
+                    <span>Pointing</span>
+                    <Select
+                      components={{ DropdownIndicator }}
+                      options={[
+                        { label: "morning", value: "morning" },
+                        { label: "evening", value: "evening" },
+                        { label: "night", value: "night" },
+                      ]}
+                      id="multiSelect"
+                      inputId="shiftleader1"
+                      styles={customStyles}
+                      placeholder="select shift"
+                    />
+                  </div>
+                  <div>
+                    <span>status</span>
+                    <Select
+                      components={{ DropdownIndicator }}
+                      options={[
+                        { label: "morning", value: "morning" },
+                        { label: "evening", value: "evening" },
+                        { label: "night", value: "night" },
+                      ]}
+                      id="multiSelect"
+                      inputId="shiftleader1"
+                      styles={customStyles}
+                      placeholder="select shift"
+                    />
+                  </div>
+                  <div>
+                    <span>Pointing</span>
+                    <Select
+                      components={{ DropdownIndicator }}
+                      options={[
+                        { label: "morning", value: "morning" },
+                        { label: "evening", value: "evening" },
+                        { label: "night", value: "night" },
+                      ]}
+                      id="multiSelect"
+                      inputId="shiftleader1"
+                      styles={customStyles}
+                      placeholder="select shift"
+                    />
+                  </div>
+                </div>
+              )}
             </React.Fragment>
           ))
         ) : (
