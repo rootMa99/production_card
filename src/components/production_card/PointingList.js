@@ -3,16 +3,34 @@ import c from "./PointingList.module.css";
 
 const PointingList = (p) => {
   const [dataList, setDataList] = useState(p.data);
+  const [inputValue, setInputValue] = useState("");
   useEffect(() => {
     setDataList(p.data);
   }, [p.data]);
   console.log(dataList, p.data);
+  const changeHandler = (e) => {
+    const value = e.target.value;
+    if (/^\d*$/.test(value)) {
+      setInputValue(value);
+      if (e.target.value.trim() !== "") {
+        setDataList((prev) =>
+          Array.from(prev).filter((obj) =>
+            String(obj["matricule"]).includes(e.target.value)
+          )
+        );
+      } else {
+        setDataList(p.data);
+      }
+    }
+  };
   return (
     <div className={c.container}>
       <input
         type="text"
         placeholder="search by matricule"
         className={c.searchmlle}
+        value={inputValue}
+        pattern="[0-9]*"
       />
       <div className={c.trainingH}>
         <div className={c.trainingDi} style={{ backgroundColor: "#E5E1DA" }}>
