@@ -133,6 +133,7 @@
   justify-content: space-evenly;
   list-style: none;
   padding: 0;
+  margin-bottom: 0;
 }
 .underList li {
   font-size: 10px;

@@ -54,6 +54,7 @@ const PointingList = (p) => {
           </div>
         </div>
       </div>
+      <div className={c.wraper} >
       {dataList.map((m) => (
         <div className={c.trainingH} key={m._id}>
           <div className={c.trainingD}>
@@ -77,6 +78,7 @@ const PointingList = (p) => {
           </div>
         </div>
       ))}
+      </div>
     </div>
   );
 };
