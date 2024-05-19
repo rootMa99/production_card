@@ -26,10 +26,11 @@ const PointingList = (p) => {
   return (
     <div className={c.container}>
       <input
-        type="text"
+        type="number"
         placeholder="search by matricule"
         className={c.searchmlle}
         value={inputValue}
+        onChange={changeHandler}
         pattern="[0-9]*"
       />
       <div className={c.trainingH}>
