@@ -7,8 +7,9 @@ const customStyles = {
   control: (provided, state) => ({
     ...provided,
     width: "4rem",
-
-    fontSize: "10px",
+    maxHeight:'1.5rem',
+    minHeight: '10px',
+    fontSize: "8px",
     textTransform: "uppercase",
     borderRadius: "5px",
     fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -47,7 +48,7 @@ const customStyles = {
   }),
   singleValue: (p) => ({
     ...p,
-    color: "#f3f3f3",
+    color: "black",
   }),
   menuList: (provided) => ({
     maxHeight: "200px",
@@ -153,7 +154,7 @@ const PointingList = (p) => {
               </div>
               {eid === m._id && (
                 <div className={c.pointingEmpl}>
-                  <div>
+                  <div className={c.poinHold} >
                     <span>Pointing</span>
                     <Select
                       components={{ DropdownIndicator }}
@@ -168,51 +169,7 @@ const PointingList = (p) => {
                       placeholder="select shift"
                     />
                   </div>
-                  <div>
-                    <span>Pointing</span>
-                    <Select
-                      components={{ DropdownIndicator }}
-                      options={[
-                        { label: "morning", value: "morning" },
-                        { label: "evening", value: "evening" },
-                        { label: "night", value: "night" },
-                      ]}
-                      id="multiSelect"
-                      inputId="shiftleader1"
-                      styles={customStyles}
-                      placeholder="select shift"
-                    />
-                  </div>
-                  <div>
-                    <span>status</span>
-                    <Select
-                      components={{ DropdownIndicator }}
-                      options={[
-                        { label: "morning", value: "morning" },
-                        { label: "evening", value: "evening" },
-                        { label: "night", value: "night" },
-                      ]}
-                      id="multiSelect"
-                      inputId="shiftleader1"
-                      styles={customStyles}
-                      placeholder="select shift"
-                    />
-                  </div>
-                  <div>
-                    <span>Pointing</span>
-                    <Select
-                      components={{ DropdownIndicator }}
-                      options={[
-                        { label: "morning", value: "morning" },
-                        { label: "evening", value: "evening" },
-                        { label: "night", value: "night" },
-                      ]}
-                      id="multiSelect"
-                      inputId="shiftleader1"
-                      styles={customStyles}
-                      placeholder="select shift"
-                    />
-                  </div>
+                
                 </div>
               )}
             </React.Fragment>

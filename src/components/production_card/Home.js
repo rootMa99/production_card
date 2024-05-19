@@ -10,7 +10,6 @@ const customStyles = {
   control: (provided, state) => ({
     ...provided,
     width: "8rem",
-    height: "2px",
     fontSize: "10px",
     textTransform: "uppercase",
     borderRadius: "5px",
