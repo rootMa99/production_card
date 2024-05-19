@@ -147,3 +147,7 @@
 .underList li:hover {
   opacity: 1;
 }
+.noCrewS{
+  color: #fd7d61;
+  text-transform: uppercase;
+}

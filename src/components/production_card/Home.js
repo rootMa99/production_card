@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import c from "./Home.module.css";
 import Select from "react-select";
 import DropdownIndicator from "../UI/DropdownIndicator";
@@ -722,60 +722,71 @@ const Home = (p) => {
           />
         </div>
       </div>
-      <div className={c.title}>
-        <span></span>
-        <h3> head count statistics</h3>
-        <span></span>
-      </div>
-      <div className={c.hcContainer}>
-        <div className={c.data}>
-          <h3>headcount</h3>
-          <span>
-            {employeeCrew === null ? 0 : employeeCrew.employees.length}
-          </span>
-        </div>
-        <div className={c.data}>
-          <h3>actual headcount</h3>
-          <span>78</span>
-        </div>
-        <div className={c.data}>
-          <h3>target</h3>
-          <span>78</span>
-        </div>
-        <div className={c.data}>
-          <h3>gap</h3>
-          <span>0</span>
-        </div>
-      </div>
-      <div className={c.title2}>
-        <div className={c.line}></div>
-        <h4>Pointing</h4>
-      </div>
-      <ul className={c.underList}>
-        <li
-          style={
-            control === "pbl"
-              ? { opacity: 1, borderBottom: "2px solid white" }
-              : {}
-          }
-          onClick={(e) => setControl("pbl")}
-        >
-          Pointing by list
-        </li>
+      {employeeCrew === null ? (
+        <h4 className={c.noCrewS}>Please select crew to proceed</h4>
+      ) : (
+        <React.Fragment>
+          <div className={c.title}>
+            <span></span>
+            <h3> head count statistics</h3>
+            <span></span>
+          </div>
+          <div className={c.hcContainer}>
+            <div className={c.data}>
+              <h3>headcount</h3>
+              <span>
+                {employeeCrew === null ? 0 : employeeCrew.employees.length}
+              </span>
+            </div>
+            <div className={c.data}>
+              <h3>actual headcount</h3>
+              <span>78</span>
+            </div>
+            <div className={c.data}>
+              <h3>target</h3>
+              <span>78</span>
+            </div>
+            <div className={c.data}>
+              <h3>gap</h3>
+              <span>0</span>
+            </div>
+          </div>
+          <div className={c.title2}>
+            <div className={c.line}></div>
+            <h4>Pointing</h4>
+          </div>
 
-        <li
-          style={
-            control === "pbc"
-              ? { opacity: 1, borderBottom: "2px solid white" }
-              : {}
-          }
-          onClick={(e) => setControl("pbc")}
-        >
-          Pointing by category
-        </li>
-      </ul>
-      {control === "pbc" && <Pointing />}
-      {control === "pbl" && <PointingList data={employeeCrew === null ? [] : employeeCrew.employees} />}
+          <ul className={c.underList}>
+            <li
+              style={
+                control === "pbl"
+                  ? { opacity: 1, borderBottom: "2px solid white" }
+                  : {}
+              }
+              onClick={(e) => setControl("pbl")}
+            >
+              Pointing by list
+            </li>
+
+            <li
+              style={
+                control === "pbc"
+                  ? { opacity: 1, borderBottom: "2px solid white" }
+                  : {}
+              }
+              onClick={(e) => setControl("pbc")}
+            >
+              Pointing by category
+            </li>
+          </ul>
+          {control === "pbc" && <Pointing />}
+          {control === "pbl" && (
+            <PointingList
+              data={employeeCrew === null ? [] : employeeCrew.employees}
+            />
+          )}
+        </React.Fragment>
+      )}
     </div>
   );
 };
