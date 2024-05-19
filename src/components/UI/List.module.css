@@ -40,19 +40,19 @@ a.activeLink {
 }
 
 .linkOne {
-  animation: link 2s ease-out forwards;
+  animation: link 1s ease-out forwards;
 }
 .linktwo {
-  animation: link 3s ease-in-out forwards;
+  animation: link 2s ease-in-out forwards;
 }
 .linkThree {
-  animation: link 4s ease-in-out forwards;
+  animation: link 3s ease-in-out forwards;
 }
 .linkFour {
-  animation: link 5s ease-in-out forwards;
+  animation: link 4s ease-in-out forwards;
 }
 .linkFive {
-  animation: link 6s ease-in-out forwards;
+  animation: link 5s ease-in-out forwards;
 }
 
 .logout {
