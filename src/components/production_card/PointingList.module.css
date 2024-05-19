@@ -31,3 +31,14 @@
     font-weight: bold;
     font-size: 10px;
 }
+.searchmlle{
+    text-align: center;
+    color: white;
+    border-radius: 10px;
+    padding: 5px 0;
+    width: 19rem;
+    font-size: 1rem;
+    outline: none;
+    border: 1px solid #f84018;
+    background-color: #00000077;
+}
