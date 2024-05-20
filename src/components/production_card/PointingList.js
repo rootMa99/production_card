@@ -155,7 +155,7 @@ const PointingList = (p) => {
               {eid === m._id && (
                 <div className={c.pointingEmpl}>
                   <div className={c.poinHoldWraper}>
-                    <div className={c.poinHold} style={{ minWidth: "5rem" }}>
+                    <div className={c.poinHold}>
                       <span>Pointing</span>
                       <Select
                         components={{ DropdownIndicator }}
@@ -169,7 +169,7 @@ const PointingList = (p) => {
                         placeholder="select shift"
                       />
                     </div>
-                    <div className={c.poinHold} style={{ minWidth: "5rem" }}>
+                    <div className={c.poinHold}>
                       <span>Pointing exc</span>
                       <Select
                         components={{ DropdownIndicator }}
@@ -242,9 +242,15 @@ const PointingList = (p) => {
                       <Select
                         components={{ DropdownIndicator }}
                         options={[
-                          { label: "morning", value: "morning" },
-                          { label: "evening", value: "evening" },
-                          { label: "night", value: "night" },
+                          { label: "Maladie Long", value: "Maladie Long" },
+                          { label: "Descipline", value: "Descipline" },
+                          { label: "Inapt", value: "Inapt" },
+                          { label: "Inapt Nuit", value: "Inapt Nuit" },
+                          { label: "Inapt 12H", value: "Inapt 12H" },
+                          { label: "Allaitement", value: "Allaitement" },
+                          { label: "MT", value: "MT" },
+                          { label: "Enceinte", value: "Enceinte" },
+                          { label: "New Operator", value: "New Operator" },
                         ]}
                         id="multiSelect"
                         inputId="shiftleader1"

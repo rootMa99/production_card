@@ -78,6 +78,7 @@
   align-items: center;
   padding: 1rem 0;
   flex-direction: column;
+  gap: 10px;
 }
 .poinHoldWraper {
   width: 100%;
@@ -85,8 +86,10 @@
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
+  gap: 10px 0;
 }
 .poinHold {
+  width: 30%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -104,11 +107,12 @@
   border-radius: 4px;
   padding: 4px 0;
   width: 4rem;
-  font-size: 10px;
+  font-size: 8px;
   outline: none;
   border: 1px solid #f84018;
   background-color: transparent;
   height: 1.3rem;
+  text-transform: uppercase;
 }
 
 .submitShi {
@@ -119,7 +123,7 @@
   text-transform: uppercase;
   font-weight: bold;
   margin-left: auto;
-  margin-right: 10px;
+  margin-right: 16px;
   font-size: 12px;
   border-bottom: 3px solid#222222;
 }
@@ -135,7 +139,6 @@
     -webkit-transform-origin: 100% 0;
     transform-origin: 100% 0;
     opacity: 1;
-    height: 0rem;
   }
   100% {
     -webkit-transform: scaleY(1);
@@ -143,7 +146,6 @@
     -webkit-transform-origin: 100% 0;
     transform-origin: 100% 0;
     opacity: 1;
-    min-height: 5rem;
   }
 }
 @keyframes scale-in-ver-top {
@@ -153,7 +155,6 @@
     -webkit-transform-origin: 100% 0;
     transform-origin: 100% 0;
     opacity: 1;
-    height: 0rem;
   }
   100% {
     -webkit-transform: scaleY(1);
@@ -161,6 +162,5 @@
     -webkit-transform-origin: 100% 0;
     transform-origin: 100% 0;
     opacity: 1;
-    min-height: 5rem;
   }
 }
