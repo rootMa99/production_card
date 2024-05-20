@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import c from "./PointingList.module.css";
 import Select from "react-select";
 import DropdownIndicator from "../UI/DropdownIndicator";
+import CreatableSelect from "react-select/creatable";
 
 const customStyles = {
   control: (provided, state) => ({
     ...provided,
     minWidth: "4rem",
-
     minHeight: "10px",
     fontSize: "8px",
     textTransform: "uppercase",
@@ -44,7 +44,8 @@ const customStyles = {
   }),
   input: (provided) => ({
     ...provided,
-    color: "#f3f3f3",
+    color: "black",
+    fontSize: "10px",
   }),
   singleValue: (p) => ({
     ...p,
@@ -161,6 +162,18 @@ const PointingList = (p) => {
                         options={[
                           { label: "admin", value: "admin" },
                           { label: "shift", value: "shift" },
+                        ]}
+                        id="multiSelect"
+                        inputId="shiftleader1"
+                        styles={customStyles}
+                        placeholder="select shift"
+                      />
+                    </div>
+                    <div className={c.poinHold} style={{ minWidth: "5rem" }}>
+                      <span>Pointing exc</span>
+                      <Select
+                        components={{ DropdownIndicator }}
+                        options={[
                           { label: "over time", value: "over time" },
                           { label: "ma", value: "ma" },
                           { label: "ctp", value: "ctp" },
@@ -174,7 +187,7 @@ const PointingList = (p) => {
                         id="multiSelect"
                         inputId="shiftleader1"
                         styles={customStyles}
-                        placeholder="select shift"
+                        placeholder="select exc"
                         isMulti
                       />
                     </div>
@@ -201,17 +214,29 @@ const PointingList = (p) => {
                         id="multiSelect"
                         inputId="shiftleader1"
                         styles={customStyles}
-                        placeholder="select shift"
+                        placeholder="select motif"
                       />
                     </div>
                     <div className={c.poinHold}>
-                    <span>details</span>
-                    <input
-                      type="number"
-                      step={0.1}
-                      placeholder="set duration"
-                    />
-                  </div>
+                      <span>details</span>
+
+                      <CreatableSelect
+                        isClearable
+                        components={{ DropdownIndicator }}
+                        options={[
+                          { label: "exit", value: "exit" },
+                          { label: "backup", value: "backup" },
+                          { label: "fe", value: "fe" },
+                          { label: "night", value: "night" },
+                          { label: "illness", value: "illness" },
+                          { label: "cs", value: "cs" },
+                        ]}
+                        id="multiSelect"
+                        inputId="shiftleader1"
+                        styles={customStyles}
+                        placeholder="select details"
+                      />
+                    </div>
                     <div className={c.poinHold}>
                       <span>Status</span>
                       <Select
