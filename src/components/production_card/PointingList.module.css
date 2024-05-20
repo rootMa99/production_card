@@ -61,11 +61,17 @@
   text-transform: capitalize;
 }
 
-.noCrewS {
+.noCrewS, .sae {
   color: #c9c9c9;
   text-transform: uppercase;
 }
-
+.sae{
+  margin: 0;
+  text-align: left;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  font-size: 10px;
+}
 .pointingEmpl {
   background-color: #c9c9c9;
   width: 100%;
