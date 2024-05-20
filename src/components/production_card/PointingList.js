@@ -217,6 +217,7 @@ const PointingList = (p) => {
                       placeholder="select shift"
                     />
                   </div>
+                  <button className={c.submitShi} >Submit</button>
                 </div>
               )}
             </React.Fragment>

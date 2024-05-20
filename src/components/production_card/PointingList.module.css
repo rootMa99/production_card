@@ -76,6 +76,7 @@
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
+  padding: 1rem 0;
 }
 .poinHold{
     display: flex;
@@ -101,6 +102,24 @@
     background-color: transparent;
     height: 1.3rem;
   }
+
+  .submitShi{
+    color: #222222;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: 10px;
+    font-size: 12px;
+    border-bottom: 3px solid#222222;
+  }
+  .submitShi:active{
+    color: #f84018;
+    border-bottom: 3px solid#f84018;
+  }
+
 
 @-webkit-keyframes scale-in-ver-top {
   0% {
