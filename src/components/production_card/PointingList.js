@@ -7,7 +7,7 @@ import CreatableSelect from "react-select/creatable";
 const customStyles = {
   control: (provided, state) => ({
     ...provided,
-    minWidth: "4rem",
+    minWidth: "6rem",
     minHeight: "10px",
     fontSize: "8px",
     textTransform: "uppercase",
@@ -104,6 +104,35 @@ const PointingList = (p) => {
     }
   };
 
+  const toogle = (e) => {
+    setEid("");
+    setpoin({
+      status: "",
+      pointing: "shift",
+      pointingOptions: [],
+      ctnDuration: 0,
+      otDuration: 0,
+      tDuration: 0,
+      retardDuration: 0,
+      motif: "",
+      details: "",
+    });
+  };
+  const toogleid = (e, t) => {
+    setEid(t);
+    setpoin({
+      status: "",
+      pointing: "shift",
+      pointingOptions: [],
+      ctnDuration: 0,
+      otDuration: 0,
+      tDuration: 0,
+      retardDuration: 0,
+      motif: "",
+      details: "",
+    });
+  };
+
   console.log(poin);
   return (
     <div className={c.container}>
@@ -143,7 +172,7 @@ const PointingList = (p) => {
               <div
                 className={c.trainingH}
                 key={m._id}
-                onClick={(e) => (eid === m._id ? setEid("") : setEid(m._id))}
+                onClick={(e) => (eid === m._id ? toogle() : toogleid(e, m._id))}
               >
                 <div className={c.trainingD}>
                   <div className={c.dataT} style={{ width: "33%" }}>
