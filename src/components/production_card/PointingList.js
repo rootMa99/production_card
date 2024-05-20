@@ -154,70 +154,71 @@ const PointingList = (p) => {
               </div>
               {eid === m._id && (
                 <div className={c.pointingEmpl}>
-                  <div className={c.poinHold} style={{minWidth:"5rem"}}>
-                    <span>Pointing</span>
-                    <Select
-                      components={{ DropdownIndicator }}
-                      options={[
-                        { label: "admin", value: "admin" },
-                        { label: "shift", value: "shift" },
-                        { label: "over time", value: "over time" },
-                        { label: "ma", value: "ma" },
-                        { label: "ctp", value: "ctp" },
-                        { label: "ctn", value: "ctn" },
-                        { label: "cr", value: "cr" },
-                        { label: "t", value: "t" },
-                        { label: "tl", value: "tl" },
-                        { label: "retard", value: "retard" },
-                        { label: "other", value: "other" },
-
-                      ]}
-                      id="multiSelect"
-                      inputId="shiftleader1"
-                      styles={customStyles}
-                      placeholder="select shift"
-                      isMulti
-                    />
+                  <div className={c.poinHoldWraper}>
+                    <div className={c.poinHold} style={{ minWidth: "5rem" }}>
+                      <span>Pointing</span>
+                      <Select
+                        components={{ DropdownIndicator }}
+                        options={[
+                          { label: "admin", value: "admin" },
+                          { label: "shift", value: "shift" },
+                          { label: "over time", value: "over time" },
+                          { label: "ma", value: "ma" },
+                          { label: "ctp", value: "ctp" },
+                          { label: "ctn", value: "ctn" },
+                          { label: "cr", value: "cr" },
+                          { label: "t", value: "t" },
+                          { label: "tl", value: "tl" },
+                          { label: "retard", value: "retard" },
+                          { label: "other", value: "other" },
+                        ]}
+                        id="multiSelect"
+                        inputId="shiftleader1"
+                        styles={customStyles}
+                        placeholder="select shift"
+                        isMulti
+                      />
+                    </div>
+                    <div className={c.poinHold}>
+                      <span>motif</span>
+                      <Select
+                        components={{ DropdownIndicator }}
+                        options={[
+                          { label: "morning", value: "morning" },
+                          { label: "evening", value: "evening" },
+                          { label: "night", value: "night" },
+                        ]}
+                        id="multiSelect"
+                        inputId="shiftleader1"
+                        styles={customStyles}
+                        placeholder="select shift"
+                      />
+                    </div>
+                    <div className={c.poinHold}>
+                      <span>duration</span>
+                      <input
+                        type="number"
+                        step={0.1}
+                        placeholder="set duration"
+                      />
+                    </div>
+                    <div className={c.poinHold}>
+                      <span>Status</span>
+                      <Select
+                        components={{ DropdownIndicator }}
+                        options={[
+                          { label: "morning", value: "morning" },
+                          { label: "evening", value: "evening" },
+                          { label: "night", value: "night" },
+                        ]}
+                        id="multiSelect"
+                        inputId="shiftleader1"
+                        styles={customStyles}
+                        placeholder="select shift"
+                      />
+                    </div>
                   </div>
-                  <div className={c.poinHold}>
-                    <span>motif</span>
-                    <Select
-                      components={{ DropdownIndicator }}
-                      options={[
-                        { label: "morning", value: "morning" },
-                        { label: "evening", value: "evening" },
-                        { label: "night", value: "night" },
-                      ]}
-                      id="multiSelect"
-                      inputId="shiftleader1"
-                      styles={customStyles}
-                      placeholder="select shift"
-                    />
-                  </div>
-                  <div className={c.poinHold}>
-                    <span>duration</span>
-                    <input
-                      type="number"
-                      step={0.1}
-                      placeholder="set duration"
-                    />
-                  </div>
-                  <div className={c.poinHold}>
-                    <span>Status</span>
-                    <Select
-                      components={{ DropdownIndicator }}
-                      options={[
-                        { label: "morning", value: "morning" },
-                        { label: "evening", value: "evening" },
-                        { label: "night", value: "night" },
-                      ]}
-                      id="multiSelect"
-                      inputId="shiftleader1"
-                      styles={customStyles}
-                      placeholder="select shift"
-                    />
-                  </div>
-                  <button className={c.submitShi} >Submit</button>
+                  <button className={c.submitShi}>Submit</button>
                 </div>
               )}
             </React.Fragment>
