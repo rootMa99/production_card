@@ -51,7 +51,7 @@ const customStyles = {
     color: "black",
   }),
   menuList: (provided) => ({
-    maxHeight: "200px",
+    maxHeight: "70px",
     overflowY: "auto",
     overflowX: "hidden",
     scrollbarWidth: "thin",
@@ -76,7 +76,6 @@ const PointingList = (p) => {
   useEffect(() => {
     setDataList(p.data);
   }, [p.data]);
-  // console.log(dataList, p.data);
   const changeHandler = (e) => {
     const value = e.target.value;
     if (/^\d*$/.test(value)) {
@@ -180,13 +179,24 @@ const PointingList = (p) => {
                       />
                     </div>
                     <div className={c.poinHold}>
+                      <span>duration</span>
+                      <input
+                        type="number"
+                        step={0.1}
+                        placeholder="set duration"
+                      />
+                    </div>
+                    <div className={c.poinHold}>
                       <span>motif</span>
                       <Select
                         components={{ DropdownIndicator }}
                         options={[
-                          { label: "morning", value: "morning" },
-                          { label: "evening", value: "evening" },
-                          { label: "night", value: "night" },
+                          { label: "backup", value: "backup" },
+                          { label: "fe", value: "fe" },
+                          { label: "inapt", value: "inapt" },
+                          { label: "planning", value: "planning" },
+                          { label: "rm", value: "rm" },
+                          { label: "others", value: "others" },
                         ]}
                         id="multiSelect"
                         inputId="shiftleader1"
@@ -195,13 +205,13 @@ const PointingList = (p) => {
                       />
                     </div>
                     <div className={c.poinHold}>
-                      <span>duration</span>
-                      <input
-                        type="number"
-                        step={0.1}
-                        placeholder="set duration"
-                      />
-                    </div>
+                    <span>details</span>
+                    <input
+                      type="number"
+                      step={0.1}
+                      placeholder="set duration"
+                    />
+                  </div>
                     <div className={c.poinHold}>
                       <span>Status</span>
                       <Select
