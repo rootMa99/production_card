@@ -165,8 +165,6 @@ const PointingList = (p) => {
                         { label: "ma", value: "ma" },
                         { label: "ctp", value: "ctp" },
                         { label: "ctn", value: "ctn" },
-                        { label: "cte", value: "cte" },
-                        { label: "ctf", value: "ctf" },
                         { label: "cr", value: "cr" },
                         { label: "t", value: "t" },
                         { label: "tl", value: "tl" },

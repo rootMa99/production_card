@@ -27,12 +27,6 @@ const Pointing = (p) => {
       <div className={c.cardContainer} onClick={e=>onClickHandler(e, "ctn")} >
         <div className={c.card}>ctn</div>
       </div>
-      <div className={c.cardContainer} onClick={e=>onClickHandler(e, "cte")} >
-        <div className={c.card}>cte</div>
-      </div>
-      <div className={c.cardContainer} onClick={e=>onClickHandler(e, "ctf")} >
-        <div className={c.card}>ctf</div>
-      </div>
       <div className={c.cardContainer} onClick={e=>onClickHandler(e, "cr")} >
         <div className={c.card}>cr</div>
       </div>
