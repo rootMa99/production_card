@@ -74,6 +74,17 @@ const PointingList = (p) => {
   const [dataList, setDataList] = useState(p.data);
   const [inputValue, setInputValue] = useState("");
   const [eid, setEid] = useState("");
+  const [poin, setpoin] = useState({
+    status: "",
+    pointing: "shift",
+    pointingOptions: [],
+    ctnDuration: 0,
+    otDuration: 0,
+    tDuration: 0,
+    retardDuration: 0,
+    motif: "",
+    details: "",
+  });
   useEffect(() => {
     setDataList(p.data);
   }, [p.data]);
@@ -92,6 +103,8 @@ const PointingList = (p) => {
       }
     }
   };
+
+  console.log(poin)
   return (
     <div className={c.container}>
       <input
@@ -167,6 +180,10 @@ const PointingList = (p) => {
                         inputId="shiftleader1"
                         styles={customStyles}
                         placeholder="select shift"
+                        onChange={(e) =>
+                          setpoin((p) => ({ ...p, pointing: e.value }))
+                        }
+                        value={{ label: poin.pointing, value: poin.pointing }}
                       />
                     </div>
                     <div className={c.poinHold}>
@@ -189,6 +206,10 @@ const PointingList = (p) => {
                         styles={customStyles}
                         placeholder="select exc"
                         isMulti
+                        value={{ label: poin.pointing, value: poin.pointing }}
+                        onChange={(e) =>
+                          setpoin((p) => ({ ...p, pointing: e.value }))
+                        }
                       />
                     </div>
                     <div className={c.poinHold}>
