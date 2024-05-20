@@ -225,8 +225,8 @@ const PointingList = (p) => {
         set all except
       </h4>
       {sae && (
-        <div className={c.pointingEmpl} style={{ marginBottom:"1rem" }}>
-          <div className={c.poinHoldWraper}>
+        <div className={c.pointingEmpl} style={{ marginBottom: "1rem" }}>
+          <div className={c.poinHoldWraper} style={{ flexDirection: "column" }}>
             <div className={c.poinHold}>
               <span>Pointing</span>
               <Select
@@ -237,13 +237,13 @@ const PointingList = (p) => {
                 ]}
                 id="multiSelect"
                 inputId="shiftleader1"
-                styles={customStyles}
+                styles={customStylesEXC}
                 placeholder="select shift"
                 onChange={(e) => setpoin((p) => ({ ...p, pointing: e.value }))}
                 value={{ label: poin.pointing, value: poin.pointing }}
               />
             </div>
-            {(poin.pointing === "shift" || poin.pointing === "admin") && (
+            {poin.pointing === "shift" && (
               <div className={c.poinHold}>
                 <span>Pointing exc</span>
                 <Select
@@ -254,7 +254,7 @@ const PointingList = (p) => {
                   ]}
                   id="multiSelect"
                   inputId="shiftleader1"
-                  styles={customStyles}
+                  styles={customStylesEXC}
                   placeholder="select exc"
                   isMulti
                   value={poin.pointingOptions.map((m) => ({
@@ -271,35 +271,26 @@ const PointingList = (p) => {
               </div>
             )}
             {poin.pointingOptions.includes("ctn") && (
-              <div className={c.poinHold}>
+              <div className={c.poinHold} style={{ width: "90%" }}>
                 <span>ctn duration</span>
                 <input
                   type="number"
                   step={0.1}
                   placeholder="set ctn duration"
+                  style={{ width: "85%" }}
                 />
               </div>
             )}
-            {poin.pointingOptions.includes("retard") && (
-              <div className={c.poinHold}>
-                <span>retard duration</span>
+
+            {poin.pointingOptions.includes("ot") && (
+              <div className={c.poinHold} style={{ width: "90%" }}>
+                <span>ot duration</span>
                 <input
                   type="number"
                   step={0.1}
-                  placeholder="set retard duration"
+                  placeholder="set ot duration"
+                  style={{ width: "85%" }}
                 />
-              </div>
-            )}
-            {poin.pointingOptions.includes("t") && (
-              <div className={c.poinHold}>
-                <span>t duration</span>
-                <input type="number" step={0.1} placeholder="set t duration" />
-              </div>
-            )}
-            {poin.pointingOptions.includes("ot") && (
-              <div className={c.poinHold}>
-                <span>ot duration</span>
-                <input type="number" step={0.1} placeholder="set ot duration" />
               </div>
             )}
             {(poin.pointingOptions.includes("ctn") ||
@@ -319,7 +310,7 @@ const PointingList = (p) => {
                     ]}
                     id="multiSelect"
                     inputId="shiftleader1"
-                    styles={customStyles}
+                    styles={customStylesEXC}
                     placeholder="select motif"
                   />
                 </div>
@@ -338,7 +329,7 @@ const PointingList = (p) => {
                     ]}
                     id="multiSelect"
                     inputId="shiftleader1"
-                    styles={customStyles}
+                    styles={customStylesEXC}
                     placeholder="select details"
                   />
                 </div>
@@ -349,18 +340,21 @@ const PointingList = (p) => {
             <span>Except matricule</span>
             <Select
               components={{ DropdownIndicator }}
-              options={p.data.map(m=>({ label: m.matricule, value: m.matricule }))
-                
-                }
+              options={p.data.map((m) => ({
+                label: m.matricule,
+                value: m.matricule,
+              }))}
               id="multiSelect"
               inputId="shiftleader1"
               styles={customStylesEXC}
               placeholder="select exception"
               isMulti
-             
             />
           </div>
-          <button className={c.submitShi}>Submit</button>
+          <div style={{ width:"fit-content", marginLeft:"auto" }}>
+            <button className={c.submitShi}>Submit</button>
+            <button className={c.submitShi}>cancel</button>
+          </div>
         </div>
       )}
       {!sae && (
