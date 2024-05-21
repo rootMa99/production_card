@@ -14,7 +14,7 @@ function App() {
         {
           <React.Fragment>
           {!isLoged.login && <Login />}
-          {isLoged.login && isLoged.role==="teamleader" && <TeamLeader /> }
+          {isLoged.login && isLoged.role==="Teamleader" && <TeamLeader /> }
           </React.Fragment>
         }
     </div>

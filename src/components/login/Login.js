@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import c from "./Login.module.css";
 import { useDispatch } from "react-redux";
-// import api from "../../service/api";
+import api from "../../service/api";
 import { loginActions } from "../../store/loginSlice";
 import NetworkNotify from "../UI/NetworkNotify";
 
@@ -16,44 +16,44 @@ const Login = () => {
   const ClickHandler = async (e) => {
     e.preventDefault();
 
-    // if (loginCred.username.trim() === "" || loginCred.password.trim() === "") {
-    //   alert("please make sure all field not empty");
-    //   return;
-    // }
-    // try {
-    //   const response = await fetch(`${api}/auth/login/`, {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(loginCred),
-    //   });
-    //   if (!response.ok) {
-    //     throw new Error(response.status);
-    //   }
-    //   const data = await response.json();
-    //   console.log(data);
-    //   dispatch(
-    //     loginActions.logIn({
-    //       role: data.user.role,
-    //       userName: data.user.fullname,
-    //       token: data.token,
-    //       config: data.user.isConfigured,
-    //     })
-    //   );
-    // } catch (e) {
-    //   setErr(true);
-    //   console.error(e);
-    // }
+    if (loginCred.username.trim() === "" || loginCred.password.trim() === "") {
+      alert("please make sure all field not empty");
+      return;
+    }
+    try {
+      const response = await fetch(`${api}/auth/login/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginCred),
+      });
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      const data = await response.json();
+      console.log(data);
+      dispatch(
+        loginActions.logIn({
+          role: data.user.role,
+          userName: data.user.fullname,
+          token: data.token,
+          config: data.user.isConfigured,
+        })
+      );
+    } catch (e) {
+      setErr(true);
+      console.error(e);
+    }
 
-    dispatch(
-      loginActions.logIn({
-        role: "teamleader",
-        userName: "data.user.fullname",
-        token: "data.token",
-        config: "data.user.isConfigured",
-      })
-    );
+    // dispatch(
+    //   loginActions.logIn({
+    //     role: "teamleader",
+    //     userName: "data.user.fullname",
+    //     token: "data.token",
+    //     config: "data.user.isConfigured",
+    //   })
+    // );
   };
 
   const nameChangeHadler = (e) => {

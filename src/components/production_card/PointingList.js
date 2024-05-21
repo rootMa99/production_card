@@ -658,15 +658,15 @@ const PointingList = (p) => {
                         <h3>{m.poste}</h3>
                       </div>
                       <div className={c.dataT} style={{ width: "33%" }}>
-                        <h3>shift</h3>
+                        <h3>{m.pointing === undefined ? "none" : m.pointing}</h3>
                       </div>
                     </div>
                     <div className={c.trainingDi}>
                       <div className={c.dataT} style={{ width: "50%" }}>
-                        <h3>7.67</h3>
+                        <h3>{m.paidHour === undefined ? 0 : m.paidHour}</h3>
                       </div>
                       <div className={c.dataT} style={{ width: "50%" }}>
-                        <h3>none</h3>
+                        <h3>{m.status}</h3>
                       </div>
                     </div>
                   </div>
