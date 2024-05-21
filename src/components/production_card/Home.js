@@ -77,6 +77,7 @@ const Home = (p) => {
   const [shift, setShift] = useState(null);
   const [data, setData] = useState([]);
   const [employeeCrew, setEmplpyeeCrew] = useState(null);
+  const [cr, setCr] = useState("");
   const { isLoged } = useSelector((s) => s.login);
   const callback = useCallback(async () => {
     try {
@@ -104,7 +105,7 @@ const Home = (p) => {
     callback();
   }, [callback]);
 
-  const postMultiEmpl = async (d, m, ph) => {
+  const postSingleEmpl = async (d, m, ph) => {
     if (shift === null) {
       alert("please select shift!");
       return false;
@@ -112,7 +113,7 @@ const Home = (p) => {
     try {
       const body = {
         date: today,
-        crew: employeeCrew,
+        crew: employeeCrew._id.crew,
         shift: shift,
         matricule: m,
         paidHour: ph,
@@ -128,6 +129,7 @@ const Home = (p) => {
         motif: d.motif,
         details: d.details,
       };
+      console.log(body);
       const response = await fetch(`${api}/production-card/pointing-for-one/`, {
         method: "POST",
         headers: {
@@ -140,7 +142,7 @@ const Home = (p) => {
         throw new Error(response.status);
       }
       const da = await response.json();
-      console.log("pfo:", da);
+      console.log("pfo:", da, employeeCrew);
       callback();
       return true;
     } catch (e) {
@@ -148,7 +150,16 @@ const Home = (p) => {
       return false;
     }
   };
-  const postSingleEmpl = (d) => {};
+  const postMultiEmpl = (d) => {};
+
+  useEffect(() => {
+    if (cr.trim() !== "") {
+      setEmplpyeeCrew(...data.filter((f) => f._id.crew === cr));
+    }
+  }, [data, cr]);
+
+  console.log(employeeCrew);
+
   return (
     <div className={c.container}>
       <div className={c.inputsContainer}>
@@ -173,9 +184,7 @@ const Home = (p) => {
             inputId="shiftleader1"
             styles={customStyles}
             placeholder="select crew"
-            onChange={(e) =>
-              setEmplpyeeCrew(...data.filter((f) => f._id.crew === e.value))
-            }
+            onChange={(e) => setCr(e.value)}
           />
           <Select
             components={{ DropdownIndicator }}
@@ -188,6 +197,7 @@ const Home = (p) => {
             inputId="shiftleader1"
             styles={customStyles}
             placeholder="select shift"
+            onChange={(e) => setShift(e.value)}
           />
         </div>
       </div>

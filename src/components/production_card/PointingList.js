@@ -203,20 +203,25 @@ const PointingList = (p) => {
   };
   const toogleid = (e, t) => {
     setEid(t);
+    console.log(
+      dataList.filter((f) => f._id === t),
+      t
+    );
+    const o = dataList.filter((f) => f._id === t)[0];
     setpoin({
-      status: "",
-      pointing: "shift",
-      pointingOptions: [],
-      ctnDuration: 0,
-      otDuration: 0,
-      tDuration: 0,
-      retardDuration: 0,
-      motif: "",
-      details: "",
+      status: o.status === undefined ? "" : o.status,
+      pointing: o.pointing === undefined ? "" : o.pointing,
+      pointingOptions: o.pointingOptions === undefined ? [] : o.pointingOptions,
+      ctnDuration: o.ctn === undefined ? 0 : o.ctn,
+      otDuration: o.ot === undefined ? 0 : o.ot,
+      tDuration: o.t === undefined ? 0 : o.t,
+      retardDuration: o.retard === undefined ? 0 : o.retard,
+      motif: o.motif === undefined ? "" : o.motif,
+      details: o.details === undefined ? "" : o.details,
     });
   };
 
-  const submitSingleData = (smt) => {
+  const submitSingleData = async (smt) => {
     let paidhour;
     if (isFriday()) {
       paidhour =
@@ -234,11 +239,11 @@ const PointingList = (p) => {
         poin.otDuration;
     }
 
-    const f = p.singleEmpl(poin, smt, paidhour);
+    const f = await p.singleEmpl(poin, smt, paidhour);
     if (f) {
       toogle();
     }
-    console.log(poin, smt, paidhour);
+    console.log(poin, smt, paidhour, f);
   };
 
   console.log(poin, dataList, filteredArray);
@@ -717,7 +722,9 @@ const PointingList = (p) => {
                     </div>
                     <div className={c.trainingDi}>
                       <div className={c.dataT} style={{ width: "50%" }}>
-                        <h3>{m.paidHour === undefined ? 0 : m.paidHour}</h3>
+                        <h3>
+                          {m.paidHour === undefined ? 0 : m.paidHour.toFixed(2)}
+                        </h3>
                       </div>
                       <div className={c.dataT} style={{ width: "50%" }}>
                         <h3>{m.status}</h3>
@@ -790,7 +797,6 @@ const PointingList = (p) => {
                             <span>ctn duration</span>
                             <input
                               type="number"
-                              step={0.1}
                               placeholder="set ctn duration"
                               onChange={(e) =>
                                 setpoin((p) => ({
@@ -798,6 +804,7 @@ const PointingList = (p) => {
                                   ctnDuration: +e.target.value / 60,
                                 }))
                               }
+                              value={poin.ctnDuration * 60}
                             />
                           </div>
                         )}
@@ -806,7 +813,6 @@ const PointingList = (p) => {
                             <span>retard duration</span>
                             <input
                               type="number"
-                              step={0.1}
                               placeholder="set retard duration"
                               onChange={(e) =>
                                 setpoin((p) => ({
@@ -814,6 +820,7 @@ const PointingList = (p) => {
                                   retardDuration: +e.target.value / 60,
                                 }))
                               }
+                              value={poin.retardDuration * 60}
                             />
                           </div>
                         )}
@@ -822,7 +829,6 @@ const PointingList = (p) => {
                             <span>t duration</span>
                             <input
                               type="number"
-                              step={0.1}
                               placeholder="set t duration"
                               onChange={(e) =>
                                 setpoin((p) => ({
@@ -830,6 +836,7 @@ const PointingList = (p) => {
                                   tDuration: +e.target.value / 60,
                                 }))
                               }
+                              value={poin.tDuration * 60}
                             />
                           </div>
                         )}
@@ -838,7 +845,6 @@ const PointingList = (p) => {
                             <span>ot duration</span>
                             <input
                               type="number"
-                              step={0.1}
                               placeholder="set ot duration"
                               onChange={(e) =>
                                 setpoin((p) => ({
@@ -846,6 +852,7 @@ const PointingList = (p) => {
                                   otDuration: +e.target.value / 60,
                                 }))
                               }
+                              value={poin.otDuration * 60}
                             />
                           </div>
                         )}
@@ -871,6 +878,10 @@ const PointingList = (p) => {
                                 onChange={(e) =>
                                   setpoin((p) => ({ ...p, motif: e.value }))
                                 }
+                                value={{
+                                  label: poin.motif,
+                                  value: poin.motif,
+                                }}
                               />
                             </div>
                             <div className={c.poinHold}>
@@ -893,6 +904,10 @@ const PointingList = (p) => {
                                 onChange={(e) =>
                                   setpoin((p) => ({ ...p, details: e.value }))
                                 }
+                                value={{
+                                  label: poin.details,
+                                  value: poin.details,
+                                }}
                               />
                             </div>
                           </React.Fragment>
@@ -919,6 +934,10 @@ const PointingList = (p) => {
                             onChange={(e) =>
                               setpoin((p) => ({ ...p, status: e.value }))
                             }
+                            value={{
+                              label: poin.status,
+                              value: poin.status,
+                            }}
                           />
                         </div>
                       </div>
