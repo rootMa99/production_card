@@ -6,4 +6,3 @@ export const isSaturday = () => {
   const t = new Date();
   return t.getDay() === 6;
 };
-
