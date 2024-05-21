@@ -357,245 +357,256 @@ const PointingList = (p) => {
               isMulti
             />
           </div>
-          <div className={c.wraper} style={{ width: "100%" }}>
-            {filteredArray.length > 0 && (
-              <React.Fragment>
-                <div className={c.trainingH}>
-                  <div
-                    className={c.trainingDi}
-                    style={{ backgroundColor: "#E5E1DA" }}
-                  >
-                    <div className={c.dataT} style={{ width: "33%" }}>
-                      <h3>mlle</h3>
-                    </div>
-                    <div className={c.dataT} style={{ width: "33%" }}>
-                      <h3>poste</h3>
-                    </div>
-                    <div className={c.dataT} style={{ width: "33%" }}>
-                      <h3>Pointing</h3>
-                    </div>
+          {filteredArray.length > 0 && (
+            <div style={{ width: "100%" }}>
+              <div className={c.trainingH}>
+                <div
+                  className={c.trainingDi}
+                  style={{ backgroundColor: "#E5E1DA" }}
+                >
+                  <div className={c.dataT} style={{ width: "33%" }}>
+                    <h3>mlle</h3>
                   </div>
-                  <div
-                    className={c.trainingD}
-                    style={{ backgroundColor: "#E5E1DA" }}
-                  >
-                    <div className={c.dataT} style={{ width: "50%" }}>
-                      <h3 style={{ color: "black" }}>hours</h3>
-                    </div>
-                    <div className={c.dataT} style={{ width: "50%" }}>
-                      <h3 style={{ color: "black" }}>status</h3>
-                    </div>
+                  <div className={c.dataT} style={{ width: "33%" }}>
+                    <h3>poste</h3>
+                  </div>
+                  <div className={c.dataT} style={{ width: "33%" }}>
+                    <h3>Pointing</h3>
                   </div>
                 </div>
-                {filteredArray.map((m) => (
-                  <React.Fragment>
-                    <div
-                      className={c.trainingH}
-                      key={m._id}
-                      onClick={(e) =>
-                        eid === m._id ? toogle() : toogleid(e, m._id)
-                      }
-                    >
-                      <div className={c.trainingD}>
-                        <div className={c.dataT} style={{ width: "33%" }}>
-                          <h3>{m.matricule}</h3>
-                        </div>
-                        <div className={c.dataT} style={{ width: "33%" }}>
-                          <h3>{m.poste}</h3>
-                        </div>
-                        <div className={c.dataT} style={{ width: "33%" }}>
-                          <h3>shift</h3>
-                        </div>
-                      </div>
-                      <div className={c.trainingDi}>
-                        <div className={c.dataT} style={{ width: "50%" }}>
-                          <h3>7.67</h3>
-                        </div>
-                        <div className={c.dataT} style={{ width: "50%" }}>
-                          <h3>none</h3>
-                        </div>
-                      </div>
-                    </div>
-                    {eid === m._id && (
-                      <div className={c.pointingEmpl}>
-                        <div className={c.poinHoldWraper}>
-                          <div className={c.poinHold}>
-                            <span>Pointing</span>
-                            <Select
-                              components={{ DropdownIndicator }}
-                              options={[
-                                { label: "shift", value: "shift" },
-                                { label: "admin", value: "admin" },
-                                { label: "ab", value: "ab" },
-                                { label: "ma", value: "ma" },
-                                { label: "tl", value: "tl" },
-                                { label: "ctp", value: "ctp" },
-                              ]}
-                              id="multiSelect"
-                              inputId="shiftleader1"
-                              styles={customStyles}
-                              placeholder="select shift"
-                              onChange={(e) =>
-                                setpoin((p) => ({ ...p, pointing: e.value }))
-                              }
-                              value={{
-                                label: poin.pointing,
-                                value: poin.pointing,
-                              }}
-                            />
+                <div
+                  className={c.trainingD}
+                  style={{ backgroundColor: "#E5E1DA" }}
+                >
+                  <div className={c.dataT} style={{ width: "50%" }}>
+                    <h3 style={{ color: "black" }}>hours</h3>
+                  </div>
+                  <div className={c.dataT} style={{ width: "50%" }}>
+                    <h3 style={{ color: "black" }}>status</h3>
+                  </div>
+                </div>
+              </div>
+              <div className={c.wraper} style={{ width: "100%" }}>
+                <React.Fragment>
+                  {filteredArray.map((m) => (
+                    <React.Fragment>
+                      <div
+                        className={c.trainingH}
+                        key={m._id}
+                        onClick={(e) =>
+                          eid === m._id ? toogle() : toogleid(e, m._id)
+                        }
+                      >
+                        <div className={c.trainingD}>
+                          <div className={c.dataT} style={{ width: "33%" }}>
+                            <h3>{m.matricule}</h3>
                           </div>
-                          {(poin.pointing === "shift" ||
-                            poin.pointing === "admin") && (
+                          <div className={c.dataT} style={{ width: "33%" }}>
+                            <h3>{m.poste}</h3>
+                          </div>
+                          <div className={c.dataT} style={{ width: "33%" }}>
+                            <h3>shift</h3>
+                          </div>
+                        </div>
+                        <div className={c.trainingDi}>
+                          <div className={c.dataT} style={{ width: "50%" }}>
+                            <h3>7.67</h3>
+                          </div>
+                          <div className={c.dataT} style={{ width: "50%" }}>
+                            <h3>none</h3>
+                          </div>
+                        </div>
+                      </div>
+                      {eid === m._id && (
+                        <div className={c.pointingEmpl}>
+                          <div className={c.poinHoldWraper}>
                             <div className={c.poinHold}>
-                              <span>Pointing exc</span>
+                              <span>Pointing</span>
                               <Select
                                 components={{ DropdownIndicator }}
                                 options={[
-                                  { label: "ot", value: "ot" },
-                                  { label: "ctn", value: "ctn" },
-                                  { label: "cr", value: "cr" },
-                                  { label: "t", value: "t" },
-                                  { label: "retard", value: "retard" },
-                                  { label: "other", value: "other" },
+                                  { label: "shift", value: "shift" },
+                                  { label: "admin", value: "admin" },
+                                  { label: "ab", value: "ab" },
+                                  { label: "ma", value: "ma" },
+                                  { label: "tl", value: "tl" },
+                                  { label: "ctp", value: "ctp" },
                                 ]}
                                 id="multiSelect"
                                 inputId="shiftleader1"
                                 styles={customStyles}
-                                placeholder="select exc"
-                                isMulti
-                                value={poin.pointingOptions.map((m) => ({
-                                  label: m,
-                                  value: m,
-                                }))}
+                                placeholder="select shift"
                                 onChange={(e) =>
-                                  setpoin((p) => ({
-                                    ...p,
-                                    pointingOptions: e.map((m) => m.value),
-                                  }))
+                                  setpoin((p) => ({ ...p, pointing: e.value }))
                                 }
+                                value={{
+                                  label: poin.pointing,
+                                  value: poin.pointing,
+                                }}
                               />
                             </div>
-                          )}
-                          {poin.pointingOptions.includes("ctn") && (
-                            <div className={c.poinHold}>
-                              <span>ctn duration</span>
-                              <input
-                                type="number"
-                                step={0.1}
-                                placeholder="set ctn duration"
-                              />
-                            </div>
-                          )}
-                          {poin.pointingOptions.includes("retard") && (
-                            <div className={c.poinHold}>
-                              <span>retard duration</span>
-                              <input
-                                type="number"
-                                step={0.1}
-                                placeholder="set retard duration"
-                              />
-                            </div>
-                          )}
-                          {poin.pointingOptions.includes("t") && (
-                            <div className={c.poinHold}>
-                              <span>t duration</span>
-                              <input
-                                type="number"
-                                step={0.1}
-                                placeholder="set t duration"
-                              />
-                            </div>
-                          )}
-                          {poin.pointingOptions.includes("ot") && (
-                            <div className={c.poinHold}>
-                              <span>ot duration</span>
-                              <input
-                                type="number"
-                                step={0.1}
-                                placeholder="set ot duration"
-                              />
-                            </div>
-                          )}
-                          {(poin.pointingOptions.includes("ctn") ||
-                            poin.pointingOptions.includes("ctp")) && (
-                            <React.Fragment>
+                            {(poin.pointing === "shift" ||
+                              poin.pointing === "admin") && (
                               <div className={c.poinHold}>
-                                <span>motif</span>
+                                <span>Pointing exc</span>
                                 <Select
                                   components={{ DropdownIndicator }}
                                   options={[
-                                    { label: "backup", value: "backup" },
-                                    { label: "fe", value: "fe" },
-                                    { label: "inapt", value: "inapt" },
-                                    { label: "planning", value: "planning" },
-                                    { label: "rm", value: "rm" },
-                                    { label: "others", value: "others" },
+                                    { label: "ot", value: "ot" },
+                                    { label: "ctn", value: "ctn" },
+                                    { label: "cr", value: "cr" },
+                                    { label: "t", value: "t" },
+                                    { label: "retard", value: "retard" },
+                                    { label: "other", value: "other" },
                                   ]}
                                   id="multiSelect"
                                   inputId="shiftleader1"
                                   styles={customStyles}
-                                  placeholder="select motif"
+                                  placeholder="select exc"
+                                  isMulti
+                                  value={poin.pointingOptions.map((m) => ({
+                                    label: m,
+                                    value: m,
+                                  }))}
+                                  onChange={(e) =>
+                                    setpoin((p) => ({
+                                      ...p,
+                                      pointingOptions: e.map((m) => m.value),
+                                    }))
+                                  }
                                 />
                               </div>
+                            )}
+                            {poin.pointingOptions.includes("ctn") && (
                               <div className={c.poinHold}>
-                                <span>details</span>
-                                <CreatableSelect
-                                  isClearable
-                                  components={{ DropdownIndicator }}
-                                  options={[
-                                    { label: "exit", value: "exit" },
-                                    { label: "backup", value: "backup" },
-                                    { label: "fe", value: "fe" },
-                                    { label: "night", value: "night" },
-                                    { label: "illness", value: "illness" },
-                                    { label: "cs", value: "cs" },
-                                  ]}
-                                  id="multiSelect"
-                                  inputId="shiftleader1"
-                                  styles={customStyles}
-                                  placeholder="select details"
+                                <span>ctn duration</span>
+                                <input
+                                  type="number"
+                                  step={0.1}
+                                  placeholder="set ctn duration"
                                 />
                               </div>
-                            </React.Fragment>
-                          )}
-                          <div className={c.poinHold}>
-                            <span>Status</span>
-                            <Select
-                              components={{ DropdownIndicator }}
-                              options={[
-                                {
-                                  label: "Maladie Long",
-                                  value: "Maladie Long",
-                                },
-                                { label: "Descipline", value: "Descipline" },
-                                { label: "Inapt", value: "Inapt" },
-                                { label: "Inapt Nuit", value: "Inapt Nuit" },
-                                { label: "Inapt 12H", value: "Inapt 12H" },
-                                { label: "Allaitement", value: "Allaitement" },
-                                { label: "MT", value: "MT" },
-                                { label: "Enceinte", value: "Enceinte" },
-                                {
-                                  label: "New Operator",
-                                  value: "New Operator",
-                                },
-                              ]}
-                              id="multiSelect"
-                              inputId="shiftleader1"
-                              styles={customStyles}
-                              placeholder="select shift"
-                            />
+                            )}
+                            {poin.pointingOptions.includes("retard") && (
+                              <div className={c.poinHold}>
+                                <span>retard duration</span>
+                                <input
+                                  type="number"
+                                  step={0.1}
+                                  placeholder="set retard duration"
+                                />
+                              </div>
+                            )}
+                            {poin.pointingOptions.includes("t") && (
+                              <div className={c.poinHold}>
+                                <span>t duration</span>
+                                <input
+                                  type="number"
+                                  step={0.1}
+                                  placeholder="set t duration"
+                                />
+                              </div>
+                            )}
+                            {poin.pointingOptions.includes("ot") && (
+                              <div className={c.poinHold}>
+                                <span>ot duration</span>
+                                <input
+                                  type="number"
+                                  step={0.1}
+                                  placeholder="set ot duration"
+                                />
+                              </div>
+                            )}
+                            {(poin.pointingOptions.includes("ctn") ||
+                              poin.pointingOptions.includes("ctp")) && (
+                              <React.Fragment>
+                                <div className={c.poinHold}>
+                                  <span>motif</span>
+                                  <Select
+                                    components={{ DropdownIndicator }}
+                                    options={[
+                                      { label: "backup", value: "backup" },
+                                      { label: "fe", value: "fe" },
+                                      { label: "inapt", value: "inapt" },
+                                      { label: "planning", value: "planning" },
+                                      { label: "rm", value: "rm" },
+                                      { label: "others", value: "others" },
+                                    ]}
+                                    id="multiSelect"
+                                    inputId="shiftleader1"
+                                    styles={customStyles}
+                                    placeholder="select motif"
+                                  />
+                                </div>
+                                <div className={c.poinHold}>
+                                  <span>details</span>
+                                  <CreatableSelect
+                                    isClearable
+                                    components={{ DropdownIndicator }}
+                                    options={[
+                                      { label: "exit", value: "exit" },
+                                      { label: "backup", value: "backup" },
+                                      { label: "fe", value: "fe" },
+                                      { label: "night", value: "night" },
+                                      { label: "illness", value: "illness" },
+                                      { label: "cs", value: "cs" },
+                                    ]}
+                                    id="multiSelect"
+                                    inputId="shiftleader1"
+                                    styles={customStyles}
+                                    placeholder="select details"
+                                  />
+                                </div>
+                              </React.Fragment>
+                            )}
+                            <div className={c.poinHold}>
+                              <span>Status</span>
+                              <Select
+                                components={{ DropdownIndicator }}
+                                options={[
+                                  {
+                                    label: "Maladie Long",
+                                    value: "Maladie Long",
+                                  },
+                                  { label: "Descipline", value: "Descipline" },
+                                  { label: "Inapt", value: "Inapt" },
+                                  { label: "Inapt Nuit", value: "Inapt Nuit" },
+                                  { label: "Inapt 12H", value: "Inapt 12H" },
+                                  {
+                                    label: "Allaitement",
+                                    value: "Allaitement",
+                                  },
+                                  { label: "MT", value: "MT" },
+                                  { label: "Enceinte", value: "Enceinte" },
+                                  {
+                                    label: "New Operator",
+                                    value: "New Operator",
+                                  },
+                                ]}
+                                id="multiSelect"
+                                inputId="shiftleader1"
+                                styles={customStyles}
+                                placeholder="select shift"
+                              />
+                            </div>
                           </div>
+                          <button className={c.submitShi}>Submit</button>
                         </div>
-                        <button className={c.submitShi}>Submit</button>
-                      </div>
-                    )}
-                  </React.Fragment>
-                ))}
-              </React.Fragment>
-            )}
-          </div>
+                      )}
+                    </React.Fragment>
+                  ))}
+                </React.Fragment>
+              </div>
+            </div>
+          )}
           <div style={{ width: "fit-content", marginLeft: "auto" }}>
-            <button className={c.submitShi} onClick={(e) => setSea(false)}>
+            <button
+              className={c.submitShi}
+              onClick={(e) => {
+                setSea(false);
+                setEmpExc([]);
+              }}
+            >
               cancel
             </button>
             <button className={c.submitShi}>Submit</button>
