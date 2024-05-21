@@ -104,8 +104,8 @@ const Home = (p) => {
     callback();
   }, [callback]);
 
-  const postMultiEmpl = async (d, m) => {
-    if(shift===null){
+  const postMultiEmpl = async (d, m, ph) => {
+    if (shift === null) {
       alert("please select shift!");
       return false;
     }
@@ -115,26 +115,18 @@ const Home = (p) => {
         crew: employeeCrew,
         shift: shift,
         matricule: m,
-        paidHour: 7.67,
-        pointing: "shift", // "shift", // "admin", // "ab", // "ma", // "tl", // "ctp",
-        pointingOptions: [
-          "ctn",
-          // "cte",
-          // "ctf",
-          // "cr",
-          // "ot",
-          "t",
-          "retard",
-        ],
-        ctn: 0,
+        paidHour: ph,
+        pointing: d.pointing,
+        pointingOptions: d.pointingOptions,
+        ctn: d.ctnDuration,
         cte: 0,
         ctf: 0,
-        ot: 0,
-        t: 0,
-        retard: 0,
-        status: "",
-        motif: "",
-        details: "",
+        ot: d.otDuration,
+        t: d.tDuration,
+        retard: d.retardDuration,
+        status: d.status,
+        motif: d.motif,
+        details: d.details,
       };
       const response = await fetch(`${api}/production-card/pointing-for-one/`, {
         method: "POST",
@@ -142,15 +134,18 @@ const Home = (p) => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${isLoged.token}`,
         },
+        body: JSON.stringify(body),
       });
       if (!response.ok) {
         throw new Error(response.status);
       }
-      const d = await response.json();
-      console.log("cl1:", d);
-      setData(d);
+      const da = await response.json();
+      console.log("pfo:", da);
+      callback();
+      return true;
     } catch (e) {
       console.error(e);
+      return false;
     }
   };
   const postSingleEmpl = (d) => {};

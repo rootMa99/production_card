@@ -3,6 +3,7 @@ import c from "./PointingList.module.css";
 import Select from "react-select";
 import DropdownIndicator from "../UI/DropdownIndicator";
 import CreatableSelect from "react-select/creatable";
+import { isFriday } from "../hooks/daterelated";
 
 const customStyles = {
   control: (provided, state) => ({
@@ -216,8 +217,28 @@ const PointingList = (p) => {
   };
 
   const submitSingleData = (smt) => {
+    let paidhour;
+    if (isFriday()) {
+      paidhour =
+        7.58 -
+        poin.tDuration -
+        poin.retardDuration -
+        poin.ctnDuration +
+        poin.otDuration;
+    } else {
+      paidhour =
+        7.67 -
+        poin.tDuration -
+        poin.retardDuration -
+        poin.ctnDuration +
+        poin.otDuration;
+    }
 
-    console.log(poin, smt);
+    const f = p.singleEmpl(poin, smt, paidhour);
+    if (f) {
+      toogle();
+    }
+    console.log(poin, smt, paidhour);
   };
 
   console.log(poin, dataList, filteredArray);
@@ -672,7 +693,7 @@ const PointingList = (p) => {
           </div>
           <div className={c.wraper}>
             {dataList.length > 0 ? (
-              dataList.map((m,i) => (
+              dataList.map((m, i) => (
                 <React.Fragment>
                   <div
                     className={c.trainingH}
