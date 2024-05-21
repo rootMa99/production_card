@@ -223,7 +223,6 @@ const PointingList = (p) => {
 
   const submitSingleData = async (smt) => {
     let paidhour;
-
     switch (poin.pointing) {
       case "shift":
         if (isFriday()) {
@@ -242,23 +241,30 @@ const PointingList = (p) => {
             poin.otDuration;
         }
         break;
-        case "admin":
-          if (isSaturday()) {
-            paidhour =
-              4 -
-              poin.tDuration -
-              poin.retardDuration -
-              poin.ctnDuration +
-              poin.otDuration;
-          } else {
-            paidhour =
-              8.17 -
-              poin.tDuration -
-              poin.retardDuration -
-              poin.ctnDuration +
-              poin.otDuration;
-          }
-          break;
+      case "admin":
+        if (isSaturday()) {
+          paidhour =
+            4 -
+            poin.tDuration -
+            poin.retardDuration -
+            poin.ctnDuration +
+            poin.otDuration;
+        } else {
+          paidhour =
+            8.17 -
+            poin.tDuration -
+            poin.retardDuration -
+            poin.ctnDuration +
+            poin.otDuration;
+        }
+        break;
+      case "ab":
+      case "ap":
+      case "ma":
+      case "tl":
+      case "ctp":
+        paidhour = 0;
+        break;
       default:
     }
 
@@ -925,7 +931,10 @@ const PointingList = (p) => {
                                 styles={customStyles}
                                 placeholder="select details"
                                 onChange={(e) =>
-                                  setpoin((p) => ({ ...p, details: e.value }))
+                                  setpoin((p) => ({
+                                    ...p,
+                                    details: e === null ? "" : e.value,
+                                  }))
                                 }
                                 value={{
                                   label: poin.details,
