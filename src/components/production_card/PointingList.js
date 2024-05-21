@@ -3,7 +3,7 @@ import c from "./PointingList.module.css";
 import Select from "react-select";
 import DropdownIndicator from "../UI/DropdownIndicator";
 import CreatableSelect from "react-select/creatable";
-import { isFriday } from "../hooks/daterelated";
+import { isFriday, isSaturday } from "../hooks/daterelated";
 
 const customStyles = {
   control: (provided, state) => ({
@@ -223,20 +223,43 @@ const PointingList = (p) => {
 
   const submitSingleData = async (smt) => {
     let paidhour;
-    if (isFriday()) {
-      paidhour =
-        7.58 -
-        poin.tDuration -
-        poin.retardDuration -
-        poin.ctnDuration +
-        poin.otDuration;
-    } else {
-      paidhour =
-        7.67 -
-        poin.tDuration -
-        poin.retardDuration -
-        poin.ctnDuration +
-        poin.otDuration;
+
+    switch (poin.pointing) {
+      case "shift":
+        if (isFriday()) {
+          paidhour =
+            7.58 -
+            poin.tDuration -
+            poin.retardDuration -
+            poin.ctnDuration +
+            poin.otDuration;
+        } else {
+          paidhour =
+            7.67 -
+            poin.tDuration -
+            poin.retardDuration -
+            poin.ctnDuration +
+            poin.otDuration;
+        }
+        break;
+        case "admin":
+          if (isSaturday()) {
+            paidhour =
+              4 -
+              poin.tDuration -
+              poin.retardDuration -
+              poin.ctnDuration +
+              poin.otDuration;
+          } else {
+            paidhour =
+              8.17 -
+              poin.tDuration -
+              poin.retardDuration -
+              poin.ctnDuration +
+              poin.otDuration;
+          }
+          break;
+      default:
     }
 
     const f = await p.singleEmpl(poin, smt, paidhour);
