@@ -215,6 +215,10 @@ const PointingList = (p) => {
     });
   };
 
+  const submitSingleData = (smt) => {
+    console.log(poin, smt);
+  };
+
   console.log(poin, dataList, filteredArray);
   return (
     <div className={c.container}>
@@ -244,11 +248,13 @@ const PointingList = (p) => {
                 inputId="shiftleader1"
                 styles={customStylesEXC}
                 placeholder="select shift"
-                onChange={(e) => setpoin((p) => ({ ...p, pointing: e.value }))}
-                value={{ label: poin.pointing, value: poin.pointing }}
+                onChange={(e) =>
+                  setSaePoin((p) => ({ ...p, pointing: e.value }))
+                }
+                value={{ label: saePoin.pointing, value: saePoin.pointing }}
               />
             </div>
-            {poin.pointing === "shift" && (
+            {saePoin.pointing === "shift" && (
               <div className={c.poinHold}>
                 <span>Pointing exc</span>
                 <Select
@@ -262,12 +268,12 @@ const PointingList = (p) => {
                   styles={customStylesEXC}
                   placeholder="select exc"
                   isMulti
-                  value={poin.pointingOptions.map((m) => ({
+                  value={saePoin.pointingOptions.map((m) => ({
                     label: m,
                     value: m,
                   }))}
                   onChange={(e) =>
-                    setpoin((p) => ({
+                    setSaePoin((p) => ({
                       ...p,
                       pointingOptions: e.map((m) => m.value),
                     }))
@@ -275,7 +281,7 @@ const PointingList = (p) => {
                 />
               </div>
             )}
-            {poin.pointingOptions.includes("ctn") && (
+            {saePoin.pointingOptions.includes("ctn") && (
               <div className={c.poinHold} style={{ width: "90%" }}>
                 <span>ctn duration</span>
                 <input
@@ -283,11 +289,17 @@ const PointingList = (p) => {
                   step={0.1}
                   placeholder="set ctn duration"
                   style={{ width: "85%" }}
+                  onChange={(e) =>
+                    setSaePoin((p) => ({
+                      ...p,
+                      ctnDuration: +e.target.value,
+                    }))
+                  }
                 />
               </div>
             )}
 
-            {poin.pointingOptions.includes("ot") && (
+            {saePoin.pointingOptions.includes("ot") && (
               <div className={c.poinHold} style={{ width: "90%" }}>
                 <span>ot duration</span>
                 <input
@@ -295,11 +307,17 @@ const PointingList = (p) => {
                   step={0.1}
                   placeholder="set ot duration"
                   style={{ width: "85%" }}
+                  onChange={(e) =>
+                    setSaePoin((p) => ({
+                      ...p,
+                      otDuration: +e.target.value,
+                    }))
+                  }
                 />
               </div>
             )}
-            {(poin.pointingOptions.includes("ctn") ||
-              poin.pointingOptions.includes("ctp")) && (
+            {(saePoin.pointingOptions.includes("ctn") ||
+              saePoin.pointingOptions.includes("ctp")) && (
               <React.Fragment>
                 <div className={c.poinHold}>
                   <span>motif</span>
@@ -317,6 +335,12 @@ const PointingList = (p) => {
                     inputId="shiftleader1"
                     styles={customStylesEXC}
                     placeholder="select motif"
+                    onChange={(e) =>
+                      setSaePoin((p) => ({
+                        ...p,
+                        motif: e.value,
+                      }))
+                    }
                   />
                 </div>
                 <div className={c.poinHold}>
@@ -336,6 +360,12 @@ const PointingList = (p) => {
                     inputId="shiftleader1"
                     styles={customStylesEXC}
                     placeholder="select details"
+                    onChange={(e) =>
+                      setSaePoin((p) => ({
+                        ...p,
+                        details: e.value,
+                      }))
+                    }
                   />
                 </div>
               </React.Fragment>
@@ -641,11 +671,11 @@ const PointingList = (p) => {
           </div>
           <div className={c.wraper}>
             {dataList.length > 0 ? (
-              dataList.map((m) => (
+              dataList.map((m,i) => (
                 <React.Fragment>
                   <div
                     className={c.trainingH}
-                    key={m._id}
+                    key={i}
                     onClick={(e) =>
                       eid === m._id ? toogle() : toogleid(e, m._id)
                     }
@@ -658,7 +688,9 @@ const PointingList = (p) => {
                         <h3>{m.poste}</h3>
                       </div>
                       <div className={c.dataT} style={{ width: "33%" }}>
-                        <h3>{m.pointing === undefined ? "none" : m.pointing}</h3>
+                        <h3>
+                          {m.pointing === undefined ? "none" : m.pointing}
+                        </h3>
                       </div>
                     </div>
                     <div className={c.trainingDi}>
@@ -681,6 +713,7 @@ const PointingList = (p) => {
                               { label: "shift", value: "shift" },
                               { label: "admin", value: "admin" },
                               { label: "ab", value: "ab" },
+                              { label: "ap", value: "ap" },
                               { label: "ma", value: "ma" },
                               { label: "tl", value: "tl" },
                               { label: "ctp", value: "ctp" },
@@ -737,6 +770,12 @@ const PointingList = (p) => {
                               type="number"
                               step={0.1}
                               placeholder="set ctn duration"
+                              onChange={(e) =>
+                                setpoin((p) => ({
+                                  ...p,
+                                  ctnDuration: e.target.value,
+                                }))
+                              }
                             />
                           </div>
                         )}
@@ -747,6 +786,12 @@ const PointingList = (p) => {
                               type="number"
                               step={0.1}
                               placeholder="set retard duration"
+                              onChange={(e) =>
+                                setpoin((p) => ({
+                                  ...p,
+                                  retardDuration: e.target.value,
+                                }))
+                              }
                             />
                           </div>
                         )}
@@ -757,6 +802,12 @@ const PointingList = (p) => {
                               type="number"
                               step={0.1}
                               placeholder="set t duration"
+                              onChange={(e) =>
+                                setpoin((p) => ({
+                                  ...p,
+                                  tDuration: e.target.value,
+                                }))
+                              }
                             />
                           </div>
                         )}
@@ -767,6 +818,12 @@ const PointingList = (p) => {
                               type="number"
                               step={0.1}
                               placeholder="set ot duration"
+                              onChange={(e) =>
+                                setpoin((p) => ({
+                                  ...p,
+                                  otDuration: e.target.value,
+                                }))
+                              }
                             />
                           </div>
                         )}
@@ -789,6 +846,9 @@ const PointingList = (p) => {
                                 inputId="shiftleader1"
                                 styles={customStyles}
                                 placeholder="select motif"
+                                onChange={(e) =>
+                                  setpoin((p) => ({ ...p, motif: e.value }))
+                                }
                               />
                             </div>
                             <div className={c.poinHold}>
@@ -808,6 +868,9 @@ const PointingList = (p) => {
                                 inputId="shiftleader1"
                                 styles={customStyles}
                                 placeholder="select details"
+                                onChange={(e) =>
+                                  setpoin((p) => ({ ...p, details: e.value }))
+                                }
                               />
                             </div>
                           </React.Fragment>
@@ -831,10 +894,18 @@ const PointingList = (p) => {
                             inputId="shiftleader1"
                             styles={customStyles}
                             placeholder="select shift"
+                            onChange={(e) =>
+                              setpoin((p) => ({ ...p, status: e.value }))
+                            }
                           />
                         </div>
                       </div>
-                      <button className={c.submitShi}>Submit</button>
+                      <button
+                        className={c.submitShi}
+                        onClick={(e) => submitSingleData(m.matricule)}
+                      >
+                        Submit
+                      </button>
                     </div>
                   )}
                 </React.Fragment>

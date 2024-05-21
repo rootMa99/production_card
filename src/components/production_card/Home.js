@@ -99,6 +99,13 @@ const Home = (p) => {
   useEffect(() => {
     callback();
   }, [callback]);
+
+  const postMultiEmpl=(d)=>{
+
+  }
+  const postSingleEmpl=(d)=>{
+
+  }
   return (
     <div className={c.container}>
       <div className={c.inputsContainer}>
@@ -203,6 +210,8 @@ const Home = (p) => {
             <PointingList
               data={employeeCrew === null ? [] : employeeCrew.employees}
               selectst={customStyles}
+              singleEmpl={postSingleEmpl}
+              multiEmpl={postMultiEmpl}
             />
           )}
         </React.Fragment>
