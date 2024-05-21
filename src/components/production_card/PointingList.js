@@ -352,8 +352,8 @@ const PointingList = (p) => {
             />
           </div>
           <div style={{ width:"fit-content", marginLeft:"auto" }}>
+          <button className={c.submitShi} onClick={(e) => setSea(false)} >cancel</button>
             <button className={c.submitShi}>Submit</button>
-            <button className={c.submitShi}>cancel</button>
           </div>
         </div>
       )}
