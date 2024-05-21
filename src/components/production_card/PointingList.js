@@ -216,6 +216,7 @@ const PointingList = (p) => {
   };
 
   const submitSingleData = (smt) => {
+
     console.log(poin, smt);
   };
 
@@ -773,7 +774,7 @@ const PointingList = (p) => {
                               onChange={(e) =>
                                 setpoin((p) => ({
                                   ...p,
-                                  ctnDuration: e.target.value,
+                                  ctnDuration: +e.target.value / 60,
                                 }))
                               }
                             />
@@ -789,7 +790,7 @@ const PointingList = (p) => {
                               onChange={(e) =>
                                 setpoin((p) => ({
                                   ...p,
-                                  retardDuration: e.target.value,
+                                  retardDuration: +e.target.value / 60,
                                 }))
                               }
                             />
@@ -805,7 +806,7 @@ const PointingList = (p) => {
                               onChange={(e) =>
                                 setpoin((p) => ({
                                   ...p,
-                                  tDuration: e.target.value,
+                                  tDuration: +e.target.value / 60,
                                 }))
                               }
                             />
@@ -821,7 +822,7 @@ const PointingList = (p) => {
                               onChange={(e) =>
                                 setpoin((p) => ({
                                   ...p,
-                                  otDuration: e.target.value,
+                                  otDuration: +e.target.value / 60,
                                 }))
                               }
                             />

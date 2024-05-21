@@ -74,18 +74,22 @@ const customStyles = {
 const Home = (p) => {
   const [today, setToday] = useState(new Date().toISOString().split("T")[0]);
   const [control, setControl] = useState("pbl");
+  const [shift, setShift] = useState(null);
   const [data, setData] = useState([]);
   const [employeeCrew, setEmplpyeeCrew] = useState(null);
   const { isLoged } = useSelector((s) => s.login);
   const callback = useCallback(async () => {
     try {
-      const response = await fetch(`${api}/employee/by_crew_tlx/?date=${today}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${isLoged.token}`,
-        },
-      });
+      const response = await fetch(
+        `${api}/employee/by_crew_tlx/?date=${today}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${isLoged.token}`,
+          },
+        }
+      );
       if (!response.ok) {
         throw new Error(response.status);
       }
@@ -100,12 +104,56 @@ const Home = (p) => {
     callback();
   }, [callback]);
 
-  const postMultiEmpl=(d)=>{
-
-  }
-  const postSingleEmpl=(d)=>{
-
-  }
+  const postMultiEmpl = async (d, m) => {
+    if(shift===null){
+      alert("please select shift!");
+      return false;
+    }
+    try {
+      const body = {
+        date: today,
+        crew: employeeCrew,
+        shift: shift,
+        matricule: m,
+        paidHour: 7.67,
+        pointing: "shift", // "shift", // "admin", // "ab", // "ma", // "tl", // "ctp",
+        pointingOptions: [
+          "ctn",
+          // "cte",
+          // "ctf",
+          // "cr",
+          // "ot",
+          "t",
+          "retard",
+        ],
+        ctn: 0,
+        cte: 0,
+        ctf: 0,
+        ot: 0,
+        t: 0,
+        retard: 0,
+        status: "",
+        motif: "",
+        details: "",
+      };
+      const response = await fetch(`${api}/production-card/pointing-for-one/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${isLoged.token}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      const d = await response.json();
+      console.log("cl1:", d);
+      setData(d);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+  const postSingleEmpl = (d) => {};
   return (
     <div className={c.container}>
       <div className={c.inputsContainer}>
