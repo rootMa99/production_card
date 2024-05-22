@@ -221,7 +221,7 @@ const Home = (p) => {
           />
         </div>
       </div>
-      {employeeCrew === null ? (
+      {employeeCrew === null || shift === null ? (
         <h4 className={c.noCrewS}>Please select crew to proceed</h4>
       ) : (
         <React.Fragment>

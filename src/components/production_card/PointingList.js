@@ -136,8 +136,6 @@ const customStylesEXC = {
   }),
 };
 
-
-
 const PointingList = (p) => {
   const [dataList, setDataList] = useState(p.data);
   const [inputValue, setInputValue] = useState("");
@@ -516,6 +514,7 @@ const PointingList = (p) => {
                                   { label: "shift", value: "shift" },
                                   { label: "admin", value: "admin" },
                                   { label: "ab", value: "ab" },
+                                  { label: "ap", value: "ap" },
                                   { label: "ma", value: "ma" },
                                   { label: "tl", value: "tl" },
                                   { label: "ctp", value: "ctp" },
@@ -570,8 +569,14 @@ const PointingList = (p) => {
                                 <span>ctn duration</span>
                                 <input
                                   type="number"
-                                  step={0.1}
                                   placeholder="set ctn duration"
+                                  onChange={(e) =>
+                                    setpoin((p) => ({
+                                      ...p,
+                                      ctnDuration: +e.target.value / 60,
+                                    }))
+                                  }
+                                  value={poin.ctnDuration * 60}
                                 />
                               </div>
                             )}
@@ -580,8 +585,14 @@ const PointingList = (p) => {
                                 <span>retard duration</span>
                                 <input
                                   type="number"
-                                  step={0.1}
                                   placeholder="set retard duration"
+                                  onChange={(e) =>
+                                    setpoin((p) => ({
+                                      ...p,
+                                      retardDuration: +e.target.value / 60,
+                                    }))
+                                  }
+                                  value={poin.retardDuration * 60}
                                 />
                               </div>
                             )}
@@ -590,8 +601,14 @@ const PointingList = (p) => {
                                 <span>t duration</span>
                                 <input
                                   type="number"
-                                  step={0.1}
                                   placeholder="set t duration"
+                                  onChange={(e) =>
+                                    setpoin((p) => ({
+                                      ...p,
+                                      tDuration: +e.target.value / 60,
+                                    }))
+                                  }
+                                  value={poin.tDuration * 60}
                                 />
                               </div>
                             )}
@@ -600,8 +617,14 @@ const PointingList = (p) => {
                                 <span>ot duration</span>
                                 <input
                                   type="number"
-                                  step={0.1}
                                   placeholder="set ot duration"
+                                  onChange={(e) =>
+                                    setpoin((p) => ({
+                                      ...p,
+                                      otDuration: +e.target.value / 60,
+                                    }))
+                                  }
+                                  value={poin.otDuration * 60}
                                 />
                               </div>
                             )}
@@ -624,6 +647,13 @@ const PointingList = (p) => {
                                     inputId="shiftleader1"
                                     styles={customStyles}
                                     placeholder="select motif"
+                                    onChange={(e) =>
+                                      setpoin((p) => ({ ...p, motif: e.value }))
+                                    }
+                                    value={{
+                                      label: poin.motif,
+                                      value: poin.motif,
+                                    }}
                                   />
                                 </div>
                                 <div className={c.poinHold}>
@@ -643,6 +673,16 @@ const PointingList = (p) => {
                                     inputId="shiftleader1"
                                     styles={customStyles}
                                     placeholder="select details"
+                                    onChange={(e) =>
+                                      setpoin((p) => ({
+                                        ...p,
+                                        details: e === null ? "" : e.value,
+                                      }))
+                                    }
+                                    value={{
+                                      label: poin.details,
+                                      value: poin.details,
+                                    }}
                                   />
                                 </div>
                               </React.Fragment>
@@ -675,10 +715,22 @@ const PointingList = (p) => {
                                 inputId="shiftleader1"
                                 styles={customStyles}
                                 placeholder="select shift"
+                                onChange={(e) =>
+                                  setpoin((p) => ({ ...p, status: e.value }))
+                                }
+                                value={{
+                                  label: poin.status,
+                                  value: poin.status,
+                                }}
                               />
                             </div>
                           </div>
-                          <button className={c.submitShi}>Submit</button>
+                          <button
+                            className={c.submitShi}
+                            onClick={(e) => submitSingleData(m.matricule)}
+                          >
+                            Submit
+                          </button>
                         </div>
                       )}
                     </React.Fragment>
