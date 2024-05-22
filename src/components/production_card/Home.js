@@ -7,6 +7,7 @@ import Pointing from "./Pointing";
 import PointingList from "./PointingList";
 import { useSelector } from "react-redux";
 import api from "../../service/api";
+import { isFriday } from "../hooks/daterelated";
 const customStyles = {
   control: (provided, state) => ({
     ...provided,
@@ -69,6 +70,18 @@ const customStyles = {
       backgroundColor: "transparent",
     },
   }),
+};
+
+const calculateActualHeadCount = (d) => {
+  let r = 0;
+  d.forEach((e) => {
+    if (isFriday()) {
+      r += e.paidHour === undefined ? 0 / 7.58 : e.paidHour / 7.58;
+    } else {
+      r += e.paidHour === undefined ? 0 / 7.67 : e.paidHour / 7.67;
+    }
+  });
+  return r;
 };
 
 const Home = (p) => {
@@ -219,7 +232,11 @@ const Home = (p) => {
             </div>
             <div className={c.data}>
               <h3>actual headcount</h3>
-              <span>78</span>
+              <span>
+                {calculateActualHeadCount(
+                  employeeCrew === null ? [] : employeeCrew.employees
+                ).toFixed(1)}
+              </span>
             </div>
             <div className={c.data}>
               <h3>target</h3>
