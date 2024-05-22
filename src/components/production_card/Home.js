@@ -8,6 +8,7 @@ import PointingList from "./PointingList";
 import { useSelector } from "react-redux";
 import api from "../../service/api";
 import { isFriday } from "../hooks/daterelated";
+import Output from "./Output";
 const customStyles = {
   control: (provided, state) => ({
     ...provided,
@@ -266,7 +267,7 @@ const Home = (p) => {
         </div>
       </div>
       {employeeCrew === null || shift === null ? (
-        <h4 className={c.noCrewS}>Please select crew to proceed</h4>
+        <h4 className={c.noCrewS}>Please select crew and shift to proceed</h4>
       ) : (
         <React.Fragment>
           <div className={c.title}>
@@ -351,6 +352,11 @@ const Home = (p) => {
               multiEmpl={postMultiEmpl}
             />
           )}
+          <div className={c.title2}>
+            <div className={c.line}></div>
+            <h4>output</h4>
+          </div>
+          <Output />
         </React.Fragment>
       )}
     </div>
