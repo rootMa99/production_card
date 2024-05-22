@@ -164,10 +164,8 @@ const PointingList = (p) => {
     details: "",
   });
   const [empExc, setEmpExc] = useState([]);
-  const filteredArray = dataList.filter((obj) =>
-    empExc.includes(obj.matricule)
-  );
-
+  const filteredArray = p.data.filter((obj) => empExc.includes(obj.matricule));
+  console.log(p.data.filter((obj) => !empExc.includes(obj.matricule)));
   useEffect(() => {
     setDataList(p.data);
   }, [p.data]);
@@ -275,6 +273,30 @@ const PointingList = (p) => {
     console.log(poin, smt, paidhour, f);
   };
 
+  const submitManyData = () => {
+    let paidhour = 0;
+    if (isFriday()) {
+      paidhour =
+        7.58 -
+        poin.tDuration -
+        poin.retardDuration -
+        poin.ctnDuration +
+        poin.otDuration;
+    } else {
+      paidhour =
+        7.67 -
+        poin.tDuration -
+        poin.retardDuration -
+        poin.ctnDuration +
+        poin.otDuration;
+    }
+    p.multiEmpl(
+      saePoin,
+      p.data.filter((obj) => !empExc.includes(obj.matricule)),
+      paidhour
+    );
+  };
+
   console.log(poin, dataList, filteredArray);
   return (
     <div className={c.container}>
@@ -286,7 +308,13 @@ const PointingList = (p) => {
         onChange={changeHandler}
         pattern="[0-9]*"
       />
-      <h4 className={c.sae} onClick={(e) => setSea(!sae)}>
+      <h4
+        className={c.sae}
+        onClick={(e) => {
+          setSea(!sae);
+          setEmpExc([]);
+        }}
+      >
         set all except
       </h4>
       {sae && (
@@ -348,7 +376,7 @@ const PointingList = (p) => {
                   onChange={(e) =>
                     setSaePoin((p) => ({
                       ...p,
-                      ctnDuration: +e.target.value,
+                      ctnDuration: +e.target.value / 60,
                     }))
                   }
                 />
@@ -366,14 +394,14 @@ const PointingList = (p) => {
                   onChange={(e) =>
                     setSaePoin((p) => ({
                       ...p,
-                      otDuration: +e.target.value,
+                      otDuration: +e.target.value / 60,
                     }))
                   }
                 />
               </div>
             )}
             {(saePoin.pointingOptions.includes("ctn") ||
-              saePoin.pointingOptions.includes("ctp")) && (
+              saePoin.pointing.includes("ctp")) && (
               <React.Fragment>
                 <div className={c.poinHold}>
                   <span>motif</span>
@@ -491,15 +519,21 @@ const PointingList = (p) => {
                             <h3>{m.poste}</h3>
                           </div>
                           <div className={c.dataT} style={{ width: "33%" }}>
-                            <h3>shift</h3>
+                            <h3>
+                              {m.pointing === undefined ? "none" : m.pointing}
+                            </h3>
                           </div>
                         </div>
                         <div className={c.trainingDi}>
                           <div className={c.dataT} style={{ width: "50%" }}>
-                            <h3>7.67</h3>
+                            <h3>
+                              {m.paidHour === undefined
+                                ? 0
+                                : m.paidHour.toFixed(2)}
+                            </h3>
                           </div>
                           <div className={c.dataT} style={{ width: "50%" }}>
-                            <h3>none</h3>
+                            <h3>{m.status}</h3>
                           </div>
                         </div>
                       </div>
@@ -692,6 +726,7 @@ const PointingList = (p) => {
                               <Select
                                 components={{ DropdownIndicator }}
                                 options={[
+                                  { label: "none", value: "" },
                                   {
                                     label: "Maladie Long",
                                     value: "Maladie Long",
@@ -749,7 +784,9 @@ const PointingList = (p) => {
             >
               cancel
             </button>
-            <button className={c.submitShi}>Submit</button>
+            <button className={c.submitShi} onClick={submitManyData}>
+              Submit
+            </button>
           </div>
         </div>
       )}
@@ -1003,6 +1040,7 @@ const PointingList = (p) => {
                           <Select
                             components={{ DropdownIndicator }}
                             options={[
+                              { label: "none", value: "" },
                               { label: "Maladie Long", value: "Maladie Long" },
                               { label: "Descipline", value: "Descipline" },
                               { label: "Inapt", value: "Inapt" },

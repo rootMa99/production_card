@@ -170,7 +170,28 @@ const Home = (p) => {
       return false;
     }
   };
-  const postMultiEmpl = (d) => {};
+  const postMultiEmpl = (d, m, ph) => {
+    const ds = m.map((m) => ({
+      date: today,
+      crew: employeeCrew._id.crew,
+      shift: shift,
+      matricule: m.matricule,
+      paidHour: ph,
+      pointing: d.pointing,
+      pointingOptions: d.pointingOptions,
+      ctn: d.ctnDuration,
+      cte: 0,
+      ctf: 0,
+      ot: d.otDuration,
+      t: d.tDuration,
+      retard: d.retardDuration,
+      status: d.status,
+      motif: d.motif,
+      details: d.details,
+    }));
+
+    console.log(ds);
+  };
 
   useEffect(() => {
     if (cr.trim() !== "") {
