@@ -125,6 +125,11 @@ const Output = (p) => {
     }
   };
 
+
+  const getListRef=d=>{
+    
+  }
+
   console.log("tlist", data, od);
   return (
     <div className={c.container}>
@@ -153,19 +158,18 @@ const Output = (p) => {
               />
             </div>
 
-            {
-              <div className={c.poinHold}>
-                <span>Reference</span>
-                <Select
-                  components={{ DropdownIndicator }}
-                  options={[]}
-                  id="multiSelect"
-                  inputId="shiftleader1"
-                  styles={customStyles}
-                  placeholder="select Reference"
-                />
-              </div>
-            }
+            <div className={c.poinHold}>
+              <span>Reference</span>
+              <Select
+                components={{ DropdownIndicator }}
+                options={[]}
+                id="multiSelect"
+                inputId="shiftleader1"
+                styles={customStyles}
+                placeholder="select Reference"
+              />
+            </div>
+
             <div className={c.poinHold}>
               <span>exig</span>
               <input type="number" placeholder="set exig" />
