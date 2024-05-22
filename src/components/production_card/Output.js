@@ -117,21 +117,47 @@ const Output = (p) => {
             <span>Reference</span>
             <Select
               components={{ DropdownIndicator }}
+              options={[]}
+              id="multiSelect"
+              inputId="shiftleader1"
+              styles={customStyles}
+              placeholder="select Reference"
+            />
+          </div>
+          <div className={c.poinHold}>
+            <span>exig</span>
+            <input type="number" placeholder="set exig" />
+          </div>
+          <div className={c.poinHold}>
+            <span>Prod</span>
+            <input type="number" placeholder="set Prod" />
+          </div>
+          <div className={c.poinHold}>
+            <span>CE</span>
+            <input type="number" placeholder="set CE" />
+          </div>
+          <div className={c.poinHold}>
+            <span>EMB</span>
+            <input type="number" placeholder="set EMB" />
+          </div>
+          <div className={c.poinHold}>
+            <span>commantaire</span>
+            <Select
+              components={{ DropdownIndicator }}
               options={[
-                { label: "backup", value: "backup" },
-                { label: "fe", value: "fe" },
-                { label: "inapt", value: "inapt" },
-                { label: "planning", value: "planning" },
-                { label: "rm", value: "rm" },
-                { label: "others", value: "others" },
+                { label: "serie", value: "serie" },
+                { label: "mpr", value: "mpr" },
               ]}
               id="multiSelect"
               inputId="shiftleader1"
               styles={customStyles}
-              placeholder="select motif"
+              placeholder="select commantaire"
             />
           </div>
         </div>
+      </div>
+      <div className={c.btnCn}>
+        <button className={c.submitShi}>Submit</button>
         <button className={c.submitShi}>Submit</button>
       </div>
     </div>

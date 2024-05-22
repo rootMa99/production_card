@@ -1,5 +1,8 @@
 .container{
     padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px 0;
 }
 .pointingEmpl {
     background-color: #c9c9c9;
@@ -15,18 +18,21 @@
     flex-direction: column;
     gap: 10px;
   }
-
+  .btnCn{
+    margin-left: auto;
+    margin-right: 16px;
+    display: flex;
+    gap: 10px;
+  }
   .submitShi {
-    color: #222222;
+    color: #c9c9c9;
     outline: none;
     background-color: transparent;
     border: none;
     text-transform: uppercase;
     font-weight: bold;
-    margin-left: auto;
-    margin-right: 16px;
     font-size: 12px;
-    border-bottom: 3px solid#222222;
+    border-bottom: 3px solid#c9c9c9;
   }
   .submitShi:active {
     color: #f84018;
