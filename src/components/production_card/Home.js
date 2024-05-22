@@ -170,27 +170,47 @@ const Home = (p) => {
       return false;
     }
   };
-  const postMultiEmpl = (d, m, ph) => {
-    const ds = m.map((m) => ({
-      date: today,
-      crew: employeeCrew._id.crew,
-      shift: shift,
-      matricule: m.matricule,
-      paidHour: ph,
-      pointing: d.pointing,
-      pointingOptions: d.pointingOptions,
-      ctn: d.ctnDuration,
-      cte: 0,
-      ctf: 0,
-      ot: d.otDuration,
-      t: d.tDuration,
-      retard: d.retardDuration,
-      status: d.status,
-      motif: d.motif,
-      details: d.details,
-    }));
-
-    console.log(ds);
+  const postMultiEmpl = async (d, m, ph) => {
+    
+    try {
+      const body = m.map((m) => ({
+        date: today,
+        crew: employeeCrew._id.crew,
+        shift: shift,
+        matricule: m.matricule,
+        paidHour: ph,
+        pointing: d.pointing,
+        pointingOptions: d.pointingOptions,
+        ctn: d.ctnDuration,
+        cte: 0,
+        ctf: 0,
+        ot: d.otDuration,
+        t: d.tDuration,
+        retard: d.retardDuration,
+        status: d.status,
+        motif: d.motif,
+        details: d.details,
+      }));
+      console.log(body);
+      const response = await fetch(`${api}/production-card/pointing-for-many/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${isLoged.token}`,
+        },
+        body: JSON.stringify(body),
+      });
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      const da = await response.json();
+      console.log("pfo:", da, employeeCrew);
+      callback();
+      return true;
+    } catch (e) {
+      console.error(e);
+      return false;
+    }
   };
 
   useEffect(() => {

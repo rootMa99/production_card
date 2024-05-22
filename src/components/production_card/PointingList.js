@@ -273,7 +273,7 @@ const PointingList = (p) => {
     console.log(poin, smt, paidhour, f);
   };
 
-  const submitManyData = () => {
+  const submitManyData = async () => {
     let paidhour = 0;
     if (isFriday()) {
       paidhour =
@@ -290,11 +290,27 @@ const PointingList = (p) => {
         poin.ctnDuration +
         poin.otDuration;
     }
-    p.multiEmpl(
+
+    const f = await p.multiEmpl(
       saePoin,
       p.data.filter((obj) => !empExc.includes(obj.matricule)),
       paidhour
     );
+    if (f) {
+      setSea(false);
+      setEmpExc([]);
+      setSaePoin({
+        status: "",
+        pointing: "",
+        pointingOptions: [],
+        ctnDuration: 0,
+        otDuration: 0,
+        tDuration: 0,
+        retardDuration: 0,
+        motif: "",
+        details: "",
+      });
+    }
   };
 
   console.log(poin, dataList, filteredArray);
@@ -780,6 +796,17 @@ const PointingList = (p) => {
               onClick={(e) => {
                 setSea(false);
                 setEmpExc([]);
+                setSaePoin({
+                  status: "",
+                  pointing: "",
+                  pointingOptions: [],
+                  ctnDuration: 0,
+                  otDuration: 0,
+                  tDuration: 0,
+                  retardDuration: 0,
+                  motif: "",
+                  details: "",
+                });
               }}
             >
               cancel
