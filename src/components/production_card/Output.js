@@ -73,6 +73,18 @@ const customStyles = {
 const Output = (p) => {
   const { isLoged } = useSelector((s) => s.login);
   const [data, setData] = useState([]);
+  const [od, setOd] = useState([
+    {
+      id: 0,
+      family: "",
+      ref: "",
+      exig: 0,
+      prod: 0,
+      ce: 0,
+      emb: 0,
+      cmmt: "",
+    },
+  ]);
 
   const callback = useCallback(async () => {
     try {
@@ -97,68 +109,119 @@ const Output = (p) => {
     callback();
   }, [callback]);
 
-  console.log("tlist", data);
+  const onChangeHandler = (e, id, t) => {
+    switch (t) {
+      case "family":
+        const datas = od;
+        const i = od.findIndex((f) => f.id === id);
+        datas[i].family = e.value;
+        setOd(datas);
+        break;
+      case "admin":
+        break;
+      case "ab":
+        break;
+      default:
+    }
+  };
+
+  console.log("tlist", data, od);
   return (
     <div className={c.container}>
       <div className={c.pointingEmpl}>
-        <div className={c.poinHoldWraper}>
-          <div className={c.poinHold}>
-            <span>Family</span>
-            <Select
-              components={{ DropdownIndicator }}
-              options={data.map((m) => ({ label: m.family, value: m.family }))}
-              id="multiSelect"
-              inputId="shiftleader1"
-              styles={customStyles}
-              placeholder="select Family"
-            />
+        {od.map((m) => (
+          <div className={c.poinHoldWraper}>
+            <span
+              className={c.close}
+              onClick={(e) => setOd((p) => p.filter((f) => f.id !== m.id))}
+            >
+              ✖️
+            </span>
+            <div className={c.poinHold}>
+              <span>Family</span>
+              <Select
+                components={{ DropdownIndicator }}
+                options={data.map((m) => ({
+                  label: m.family,
+                  value: m.family,
+                }))}
+                id="multiSelect"
+                inputId="shiftleader1"
+                styles={customStyles}
+                placeholder="select Family"
+                onChange={(e) => onChangeHandler(e, m.id, "family")}
+              />
+            </div>
+
+            {
+              <div className={c.poinHold}>
+                <span>Reference</span>
+                <Select
+                  components={{ DropdownIndicator }}
+                  options={[]}
+                  id="multiSelect"
+                  inputId="shiftleader1"
+                  styles={customStyles}
+                  placeholder="select Reference"
+                />
+              </div>
+            }
+            <div className={c.poinHold}>
+              <span>exig</span>
+              <input type="number" placeholder="set exig" />
+            </div>
+            <div className={c.poinHold}>
+              <span>Prod</span>
+              <input type="number" placeholder="set Prod" />
+            </div>
+            <div className={c.poinHold}>
+              <span>CE</span>
+              <input type="number" placeholder="set CE" />
+            </div>
+            <div className={c.poinHold}>
+              <span>EMB</span>
+              <input type="number" placeholder="set EMB" />
+            </div>
+            <div className={c.poinHold}>
+              <span>commantaire</span>
+              <Select
+                components={{ DropdownIndicator }}
+                options={[
+                  { label: "serie", value: "serie" },
+                  { label: "mpr", value: "mpr" },
+                ]}
+                id="multiSelect"
+                inputId="shiftleader1"
+                styles={customStyles}
+                placeholder="select commantaire"
+              />
+            </div>
           </div>
-          <div className={c.poinHold}>
-            <span>Reference</span>
-            <Select
-              components={{ DropdownIndicator }}
-              options={[]}
-              id="multiSelect"
-              inputId="shiftleader1"
-              styles={customStyles}
-              placeholder="select Reference"
-            />
-          </div>
-          <div className={c.poinHold}>
-            <span>exig</span>
-            <input type="number" placeholder="set exig" />
-          </div>
-          <div className={c.poinHold}>
-            <span>Prod</span>
-            <input type="number" placeholder="set Prod" />
-          </div>
-          <div className={c.poinHold}>
-            <span>CE</span>
-            <input type="number" placeholder="set CE" />
-          </div>
-          <div className={c.poinHold}>
-            <span>EMB</span>
-            <input type="number" placeholder="set EMB" />
-          </div>
-          <div className={c.poinHold}>
-            <span>commantaire</span>
-            <Select
-              components={{ DropdownIndicator }}
-              options={[
-                { label: "serie", value: "serie" },
-                { label: "mpr", value: "mpr" },
-              ]}
-              id="multiSelect"
-              inputId="shiftleader1"
-              styles={customStyles}
-              placeholder="select commantaire"
-            />
-          </div>
+        ))}
+        <div className={c.btnCn}>
+          <button
+            className={c.submitShi}
+            style={{ color: "#f84018" }}
+            onClick={(e) =>
+              setOd((p) => [
+                ...p,
+                {
+                  id: Math.random(),
+                  family: "",
+                  ref: "",
+                  exig: 0,
+                  prod: 0,
+                  ce: 0,
+                  emb: 0,
+                  cmmt: "",
+                },
+              ])
+            }
+          >
+            add
+          </button>
+          <button className={c.submitShi}>Submit</button>
         </div>
-      </div>
-      <div className={c.btnCn}>
-        <button className={c.submitShi}>Submit</button>
-        <button className={c.submitShi}>Submit</button>
       </div>
     </div>
   );
