@@ -83,6 +83,13 @@ const calculateActualHeadCount = (d) => {
   });
   return r;
 };
+const calculateActualPaidHours = (d) => {
+  let r = 0;
+  d.forEach((e) => {
+    r += e.paidHour === undefined ? 0 : e.paidHour;
+  });
+  return r;
+};
 
 const Home = (p) => {
   const [today, setToday] = useState(new Date().toISOString().split("T")[0]);
@@ -239,8 +246,12 @@ const Home = (p) => {
               </span>
             </div>
             <div className={c.data}>
-              <h3>target</h3>
-              <span>78</span>
+              <h3>paid Hours</h3>
+              <span>
+                {calculateActualPaidHours(
+                  employeeCrew === null ? [] : employeeCrew.employees
+                ).toFixed(2)}
+              </span>
             </div>
             <div className={c.data}>
               <h3>gap</h3>
