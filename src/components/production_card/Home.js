@@ -171,7 +171,7 @@ const Home = (p) => {
     }
   };
   const postMultiEmpl = async (d, m, ph) => {
-    console.log("paid hour" ,ph)
+    console.log("paid hour", ph);
     try {
       const body = m.map((m) => ({
         date: today,
@@ -192,14 +192,17 @@ const Home = (p) => {
         details: d.details,
       }));
       console.log(body);
-      const response = await fetch(`${api}/production-card/pointing-for-many/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${isLoged.token}`,
-        },
-        body: JSON.stringify(body),
-      });
+      const response = await fetch(
+        `${api}/production-card/pointing-for-many/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${isLoged.token}`,
+          },
+          body: JSON.stringify(body),
+        }
+      );
       if (!response.ok) {
         throw new Error(response.status);
       }
@@ -268,7 +271,7 @@ const Home = (p) => {
         <React.Fragment>
           <div className={c.title}>
             <span></span>
-            <h3> head count statistics</h3>
+            <h3> statistics</h3>
             <span></span>
           </div>
           <div className={c.hcContainer}>
@@ -295,8 +298,20 @@ const Home = (p) => {
               </span>
             </div>
             <div className={c.data}>
-              <h3>gap</h3>
+              <h3>prod hours</h3>
               <span>0</span>
+            </div>
+            <div className={c.data}>
+              <h3>WSD average</h3>
+              <span>0</span>
+            </div>
+            <div className={c.data}>
+              <h3>EMB</h3>
+              <span>0</span>
+            </div>
+            <div className={c.data}>
+              <h3>Efficiency</h3>
+              <span>0%</span>
             </div>
           </div>
           <div className={c.title2}>
