@@ -171,7 +171,7 @@ const Home = (p) => {
     }
   };
   const postMultiEmpl = async (d, m, ph) => {
-    
+    console.log("paid hour" ,ph)
     try {
       const body = m.map((m) => ({
         date: today,

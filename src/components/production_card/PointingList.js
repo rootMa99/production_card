@@ -274,21 +274,57 @@ const PointingList = (p) => {
   };
 
   const submitManyData = async () => {
+    console.log(
+      saePoin.tDuration,
+      saePoin.retardDuration,
+      saePoin.ctnDuration,
+      saePoin.otDuration
+    );
     let paidhour = 0;
-    if (isFriday()) {
-      paidhour =
-        7.58 -
-        poin.tDuration -
-        poin.retardDuration -
-        poin.ctnDuration +
-        poin.otDuration;
-    } else {
-      paidhour =
-        7.67 -
-        poin.tDuration -
-        poin.retardDuration -
-        poin.ctnDuration +
-        poin.otDuration;
+
+    switch (saePoin.pointing) {
+      case "shift":
+        if (isFriday()) {
+          paidhour =
+            7.58 -
+            saePoin.tDuration -
+            saePoin.retardDuration -
+            saePoin.ctnDuration +
+            saePoin.otDuration;
+        } else {
+          paidhour =
+            7.67 -
+            saePoin.tDuration -
+            saePoin.retardDuration -
+            saePoin.ctnDuration +
+            saePoin.otDuration;
+        }
+        break;
+      case "admin":
+        if (isSaturday()) {
+          paidhour =
+            4 -
+            saePoin.tDuration -
+            saePoin.retardDuration -
+            saePoin.ctnDuration +
+            saePoin.otDuration;
+        } else {
+          paidhour =
+            8.17 -
+            saePoin.tDuration -
+            saePoin.retardDuration -
+            saePoin.ctnDuration +
+            saePoin.otDuration;
+        }
+        break;
+      case "ab":
+      case "ap":
+      case "ma":
+      case "tl":
+      case "ctp":
+        paidhour = 0;
+        break;
+      default:
     }
 
     const f = await p.multiEmpl(
@@ -342,6 +378,7 @@ const PointingList = (p) => {
                 components={{ DropdownIndicator }}
                 options={[
                   { label: "shift", value: "shift" },
+                  { label: "admin", value: "admin" },
                   { label: "ctp", value: "ctp" },
                 ]}
                 id="multiSelect"
