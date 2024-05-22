@@ -391,7 +391,7 @@ const PointingList = (p) => {
                 value={{ label: saePoin.pointing, value: saePoin.pointing }}
               />
             </div>
-            {saePoin.pointing === "shift" && (
+            {(saePoin.pointing === "shift" || saePoin.pointing === "admin") && (
               <div className={c.poinHold}>
                 <span>Pointing exc</span>
                 <Select
