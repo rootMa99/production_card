@@ -77,7 +77,11 @@ const Output = (p) => {
     {
       id: 0,
       family: "",
-      dataref: {},
+      dataref: {
+        leadPrep: 0,
+        cuting: 0,
+        finalAssembly: 0,
+      },
       ref: "",
       exig: 0,
       prod: 0,
@@ -228,7 +232,9 @@ const Output = (p) => {
       return [];
     }
   };
-
+  useEffect(() => {
+    p.prodHour(od);
+  }, [od, p]);
   console.log("tlist", data, od);
   return (
     <div className={c.container}>
@@ -333,6 +339,11 @@ const Output = (p) => {
                   id: Math.random(),
                   family: "",
                   ref: "",
+                  dataref: {
+                    leadPrep: 0,
+                    cuting: 0,
+                    finalAssembly: 0,
+                  },
                   exig: 0,
                   prod: 0,
                   ce: 0,

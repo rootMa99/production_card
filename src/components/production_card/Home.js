@@ -99,6 +99,8 @@ const Home = (p) => {
   const [data, setData] = useState([]);
   const [employeeCrew, setEmplpyeeCrew] = useState(null);
   const [cr, setCr] = useState("");
+  const [ph, setPh] = useState(0);
+  const [emb, setEmb] = useState(0);
   const { isLoged } = useSelector((s) => s.login);
   const callback = useCallback(async () => {
     try {
@@ -224,7 +226,19 @@ const Home = (p) => {
   }, [data, cr]);
 
   console.log(employeeCrew);
-
+  const prodHour = (d) => {
+    let phs = 0;
+    let em = 0;
+    d.forEach((m) => {
+      phs += (m.emb * m.dataref.finalAssembly) / 60;
+      em += m.emb;
+    });
+    setPh(phs);
+    setEmb(em);
+  };
+  const pah = calculateActualPaidHours(
+    employeeCrew === null ? [] : employeeCrew.employees
+  );
   return (
     <div className={c.container}>
       <div className={c.inputsContainer}>
@@ -292,27 +306,23 @@ const Home = (p) => {
             </div>
             <div className={c.data}>
               <h3>paid Hours</h3>
-              <span>
-                {calculateActualPaidHours(
-                  employeeCrew === null ? [] : employeeCrew.employees
-                ).toFixed(2)}
-              </span>
+              <span>{pah.toFixed(2)}</span>
             </div>
             <div className={c.data}>
               <h3>prod hours</h3>
-              <span>0</span>
+              <span>{ph.toFixed(2)}</span>
             </div>
             <div className={c.data}>
               <h3>WSD average</h3>
-              <span>0</span>
+              <span>{emb === 0 ? 0 : ((ph / emb) * 60).toFixed(2)}</span>
             </div>
             <div className={c.data}>
-              <h3>EMB</h3>
-              <span>0</span>
+              <h3>total EMB</h3>
+              <span>{emb} </span>
             </div>
             <div className={c.data}>
               <h3>Efficiency</h3>
-              <span>0%</span>
+              <span>{pah === 0 ? 0 : ((ph / pah) * 100).toFixed(2)}%</span>
             </div>
           </div>
           <div className={c.title2}>
@@ -356,7 +366,7 @@ const Home = (p) => {
             <div className={c.line}></div>
             <h4>output</h4>
           </div>
-          <Output />
+          <Output prodHour={prodHour} />
         </React.Fragment>
       )}
     </div>
