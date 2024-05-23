@@ -77,6 +77,7 @@ const Output = (p) => {
     {
       id: 0,
       family: "",
+      dataref: {},
       ref: "",
       exig: 0,
       prod: 0,
@@ -110,12 +111,9 @@ const Output = (p) => {
   }, [callback]);
 
   const onChangeHandler = (e, id, t) => {
+    const i = od.findIndex((f) => f.id === id);
     switch (t) {
       case "family":
-        console.log("trigger");
-
-        const i = od.findIndex((f) => f.id === id);
-        // setOd((p) => [...p, (p[i].family = e.value)]);
         setOd((p) => {
           return p.map((item, ind) => {
             if (i === ind) {
@@ -128,7 +126,24 @@ const Output = (p) => {
           });
         });
         break;
-      case "admin":
+      case "ref":
+        setOd((p) => {
+          return p.map((item, ind) => {
+            if (i === ind) {
+                const idf = data.findIndex((f) => f.family === od[i].family);
+                let df={};
+                if(idf>-1){
+                    df=data[idf].data.filter(f=>f.reference === e.value)[0]
+                }
+              return {
+                ...item,
+                ref: e.value,
+                dataref: df,
+              };
+            }
+            return item;
+          });
+        });
         break;
       case "ab":
         break;
@@ -137,12 +152,18 @@ const Output = (p) => {
   };
 
   const getListRef = (id) => {
-    console.log(
-      id,
-      od.filter((f) => f.id === id)
-    );
+    const i = od.findIndex((f) => f.id === id);
 
-    return [];
+    if (i > -1) {
+      const idf = data.findIndex((f) => f.family === od[i].family);
+      if (idf === -1) {
+        return [];
+      }
+      console.log(od[i], data[idf], idf);
+      return data[idf].data;
+    } else {
+      return [];
+    }
   };
 
   console.log("tlist", data, od);
@@ -177,11 +198,15 @@ const Output = (p) => {
               <span>Reference</span>
               <Select
                 components={{ DropdownIndicator }}
-                options={getListRef(m.id)}
+                options={getListRef(m.id).map((m) => ({
+                  label: m.reference,
+                  value: m.reference,
+                }))}
                 id="multiSelect"
                 inputId="shiftleader1"
                 styles={customStyles}
                 placeholder="select Reference"
+                onChange={(e) => onChangeHandler(e, m.id, "ref")}
               />
             </div>
 
