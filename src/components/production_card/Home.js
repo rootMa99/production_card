@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import api from "../../service/api";
 import { isFriday } from "../hooks/daterelated";
 import Output from "./Output";
+import NetworkNotify from "../UI/NetworkNotify";
 const customStyles = {
   control: (provided, state) => ({
     ...provided,
@@ -101,6 +102,8 @@ const Home = (p) => {
   const [cr, setCr] = useState("");
   const [ph, setPh] = useState(0);
   const [emb, setEmb] = useState(0);
+  const [err, setErr] = useState(false);
+  const [success, setsuccess] = useState(false);
   const { isLoged } = useSelector((s) => s.login);
   const callback = useCallback(async () => {
     try {
@@ -273,14 +276,36 @@ const Home = (p) => {
       }
       const da = await response.json();
       console.log("pfo:", da);
+      setsuccess(true);
       return true;
     } catch (e) {
       console.error(e);
+      setErr(true);
       return false;
     }
   };
+
+  if (err) {
+    setTimeout(() => {
+      setErr(false);
+    }, 2000);
+  }
+  if (success) {
+    setTimeout(() => {
+      setsuccess(false);
+    }, 2000);
+  }
   return (
     <div className={c.container}>
+      {err && (
+        <NetworkNotify message="We have encountered an error, please try it again!" />
+      )}
+      {success && (
+        <NetworkNotify
+          message="Data has been successfully sent"
+          success={success}
+        />
+      )}
       <div className={c.inputsContainer}>
         <div className={c.inputD}>
           <h3>select date:</h3>

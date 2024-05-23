@@ -883,10 +883,10 @@ const PointingList = (p) => {
           <div className={c.wraper}>
             {dataList.length > 0 ? (
               dataList.map((m, i) => (
-                <React.Fragment>
+                <React.Fragment key={Math.random()}>
                   <div
                     className={c.trainingH}
-                    key={i}
+                    key={Math.random()}
                     onClick={(e) =>
                       eid === m._id ? toogle() : toogleid(e, m._id)
                     }
@@ -916,7 +916,7 @@ const PointingList = (p) => {
                     </div>
                   </div>
                   {eid === m._id && (
-                    <div className={c.pointingEmpl}>
+                    <div className={c.pointingEmpl} key={Math.random()}>
                       <div className={c.poinHoldWraper}>
                         <div className={c.poinHold}>
                           <span>Pointing</span>

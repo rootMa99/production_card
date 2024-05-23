@@ -288,7 +288,7 @@ const Output = (p) => {
     <div className={c.container}>
       <div className={c.pointingEmpl}>
         {od.map((m) => (
-          <div className={c.poinHoldWraper}>
+          <div className={c.poinHoldWraper} key={m.id}>
             <span
               className={c.close}
               onClick={(e) => setOd((p) => p.filter((f) => f.id !== m.id))}
