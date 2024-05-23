@@ -130,11 +130,11 @@ const Output = (p) => {
         setOd((p) => {
           return p.map((item, ind) => {
             if (i === ind) {
-                const idf = data.findIndex((f) => f.family === od[i].family);
-                let df={};
-                if(idf>-1){
-                    df=data[idf].data.filter(f=>f.reference === e.value)[0]
-                }
+              const idf = data.findIndex((f) => f.family === od[i].family);
+              let df = {};
+              if (idf > -1) {
+                df = data[idf].data.filter((f) => f.reference === e.value)[0];
+              }
               return {
                 ...item,
                 ref: e.value,
@@ -144,6 +144,14 @@ const Output = (p) => {
             return item;
           });
         });
+        break;
+      case "exig":
+        break;
+      case "ab":
+        break;
+      case "ab":
+        break;
+      case "ab":
         break;
       case "ab":
         break;
@@ -212,19 +220,35 @@ const Output = (p) => {
 
             <div className={c.poinHold}>
               <span>exig</span>
-              <input type="number" placeholder="set exig" />
+              <input
+                type="number"
+                placeholder="set exig"
+                onChange={(e) => onChangeHandler(e, m.id, "exig")}
+              />
             </div>
             <div className={c.poinHold}>
               <span>Prod</span>
-              <input type="number" placeholder="set Prod" />
+              <input
+                type="number"
+                placeholder="set Prod"
+                onChange={(e) => onChangeHandler(e, m.id, "Prod")}
+              />
             </div>
             <div className={c.poinHold}>
               <span>CE</span>
-              <input type="number" placeholder="set CE" />
+              <input
+                type="number"
+                placeholder="set CE"
+                onChange={(e) => onChangeHandler(e, m.id, "CE")}
+              />
             </div>
             <div className={c.poinHold}>
               <span>EMB</span>
-              <input type="number" placeholder="set EMB" />
+              <input
+                type="number"
+                placeholder="set EMB"
+                onChange={(e) => onChangeHandler(e, m.id, "EMB")}
+              />
             </div>
             <div className={c.poinHold}>
               <span>commantaire</span>
@@ -238,6 +262,7 @@ const Output = (p) => {
                 inputId="shiftleader1"
                 styles={customStyles}
                 placeholder="select commantaire"
+                onChange={(e) => onChangeHandler(e, m.id, "commantaire")}
               />
             </div>
           </div>
