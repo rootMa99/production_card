@@ -352,6 +352,49 @@ const Home = (p) => {
         <React.Fragment>
           <div className={c.title}>
             <span></span>
+            <h3>Crew details</h3>
+            <span></span>
+          </div>
+          <div className={c.hcContainer}>
+            <div className={c.data}>
+              <h3>project</h3>
+              <span>{employeeCrew._id.project}</span>
+            </div>
+            <div className={c.data}>
+              <h3>family</h3>
+              <span>{employeeCrew._id.family}</span>
+            </div>
+            <div className={c.data}>
+              <h3>crew</h3>
+              <span>{employeeCrew._id.crew}</span>
+            </div>
+            <div className={c.data}>
+              <h3>coord mlle</h3>
+              <span>{employeeCrew._id.coordinator}</span>
+            </div>
+            <div className={c.data}>
+              <h3>coord name</h3>
+              <span>{employeeCrew._id.coordinator_fullname}</span>
+            </div>
+            <div className={c.data}>
+              <h3>sl mlle</h3>
+              <span>{employeeCrew._id.shiftleader}</span>
+            </div>
+            <div className={c.data}>
+              <h3>sl name</h3>
+              <span>{employeeCrew._id.shiftleader_fullname}</span>
+            </div>
+            <div className={c.data}>
+              <h3>tl mlle</h3>
+              <span>{employeeCrew._id.teamleader}</span>
+            </div>
+            <div className={c.data}>
+              <h3>tl name</h3>
+              <span>{employeeCrew._id.teamleader_fullname}</span>
+            </div>
+          </div>
+          <div className={c.title}>
+            <span></span>
             <h3> statistics</h3>
             <span></span>
           </div>

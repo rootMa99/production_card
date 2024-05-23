@@ -31,12 +31,15 @@
   border-radius: 10px;
   border: 1px solid #f84018;
   padding: 5px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .data h3 {
   color: #f84018;
   text-transform: uppercase;
   font-size: 10px;
-  font-weight: 100;
+  font-weight: 500;
   margin: 0;
 }
 .data span {
