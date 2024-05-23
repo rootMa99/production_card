@@ -146,14 +146,69 @@ const Output = (p) => {
         });
         break;
       case "exig":
+        setOd((p) => {
+          return p.map((item, ind) => {
+            if (i === ind) {
+              return {
+                ...item,
+                exig: +e.target.value,
+              };
+            }
+            return item;
+          });
+        });
         break;
       case "Prod":
+        setOd((p) => {
+          return p.map((item, ind) => {
+            if (i === ind) {
+              return {
+                ...item,
+                prod: +e.target.value,
+              };
+            }
+            return item;
+          });
+        });
         break;
       case "CE":
+        setOd((p) => {
+          return p.map((item, ind) => {
+            if (i === ind) {
+              return {
+                ...item,
+                ce: +e.target.value,
+              };
+            }
+            return item;
+          });
+        });
         break;
       case "EMB":
+        setOd((p) => {
+          return p.map((item, ind) => {
+            if (i === ind) {
+              return {
+                ...item,
+                emb: +e.target.value,
+              };
+            }
+            return item;
+          });
+        });
         break;
       case "commantaire":
+        setOd((p) => {
+          return p.map((item, ind) => {
+            if (i === ind) {
+              return {
+                ...item,
+                cmmt: e.value,
+              };
+            }
+            return item;
+          });
+        });
         break;
       default:
     }
