@@ -308,6 +308,10 @@ const Output = (p) => {
                 styles={customStyles}
                 placeholder="select Family"
                 onChange={(e) => onChangeHandler(e, m.id, "family")}
+                value={{
+                  label: m.family,
+                  value: m.family,
+                }}
               />
             </div>
 
@@ -324,6 +328,10 @@ const Output = (p) => {
                 styles={customStyles}
                 placeholder="select Reference"
                 onChange={(e) => onChangeHandler(e, m.id, "ref")}
+                value={{
+                  label: m.ref,
+                  value: m.ref,
+                }}
               />
             </div>
 
@@ -333,6 +341,7 @@ const Output = (p) => {
                 type="number"
                 placeholder="set exig"
                 onChange={(e) => onChangeHandler(e, m.id, "exig")}
+                value={m.exig}
               />
             </div>
             <div className={c.poinHold}>
@@ -341,6 +350,7 @@ const Output = (p) => {
                 type="number"
                 placeholder="set Prod"
                 onChange={(e) => onChangeHandler(e, m.id, "Prod")}
+                value={m.prod}
               />
             </div>
             <div className={c.poinHold}>
@@ -349,6 +359,7 @@ const Output = (p) => {
                 type="number"
                 placeholder="set CE"
                 onChange={(e) => onChangeHandler(e, m.id, "CE")}
+                value={m.ce}
               />
             </div>
             <div className={c.poinHold}>
@@ -357,6 +368,7 @@ const Output = (p) => {
                 type="number"
                 placeholder="set EMB"
                 onChange={(e) => onChangeHandler(e, m.id, "EMB")}
+                value={m.emb}
               />
             </div>
             <div className={c.poinHold}>
@@ -372,6 +384,7 @@ const Output = (p) => {
                 styles={customStyles}
                 placeholder="select comment"
                 onChange={(e) => onChangeHandler(e, m.id, "commantaire")}
+                value={{ label: m.cmmt, value: m.cmmt }}
               />
             </div>
           </div>
