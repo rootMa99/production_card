@@ -239,6 +239,9 @@ const Home = (p) => {
   const pah = calculateActualPaidHours(
     employeeCrew === null ? [] : employeeCrew.employees
   );
+  const sendOutput=d=>{
+    
+  }
   return (
     <div className={c.container}>
       <div className={c.inputsContainer}>

@@ -312,7 +312,7 @@ const Output = (p) => {
               />
             </div>
             <div className={c.poinHold}>
-              <span>commantaire</span>
+              <span>comment</span>
               <Select
                 components={{ DropdownIndicator }}
                 options={[
@@ -322,7 +322,7 @@ const Output = (p) => {
                 id="multiSelect"
                 inputId="shiftleader1"
                 styles={customStyles}
-                placeholder="select commantaire"
+                placeholder="select comment"
                 onChange={(e) => onChangeHandler(e, m.id, "commantaire")}
               />
             </div>
