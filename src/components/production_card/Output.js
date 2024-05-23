@@ -112,10 +112,21 @@ const Output = (p) => {
   const onChangeHandler = (e, id, t) => {
     switch (t) {
       case "family":
-        const datas = od;
+        console.log("trigger");
+
         const i = od.findIndex((f) => f.id === id);
-        datas[i].family = e.value;
-        setOd(datas);
+        // setOd((p) => [...p, (p[i].family = e.value)]);
+        setOd((p) => {
+          return p.map((item, ind) => {
+            if (i === ind) {
+              return {
+                ...item,
+                family: e.value,
+              };
+            }
+            return item;
+          });
+        });
         break;
       case "admin":
         break;
@@ -125,10 +136,14 @@ const Output = (p) => {
     }
   };
 
+  const getListRef = (id) => {
+    console.log(
+      id,
+      od.filter((f) => f.id === id)
+    );
 
-  const getListRef=d=>{
-    
-  }
+    return [];
+  };
 
   console.log("tlist", data, od);
   return (
@@ -162,7 +177,7 @@ const Output = (p) => {
               <span>Reference</span>
               <Select
                 components={{ DropdownIndicator }}
-                options={[]}
+                options={getListRef(m.id)}
                 id="multiSelect"
                 inputId="shiftleader1"
                 styles={customStyles}
