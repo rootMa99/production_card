@@ -27,7 +27,8 @@ const NavBar = (p) => {
         </div>
         {isLoged.login && (
           <div className={c.links}>
-            <ul>
+          <ul>
+          <h5>{isLoged.userName}</h5>
               <li>
                 <label className={c.hamburger}>
                   <input

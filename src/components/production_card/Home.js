@@ -388,10 +388,6 @@ const Home = (p) => {
               <h3>tl mlle</h3>
               <span>{employeeCrew._id.teamleader}</span>
             </div>
-            <div className={c.data}>
-              <h3>tl name</h3>
-              <span>{employeeCrew._id.teamleader_fullname}</span>
-            </div>
           </div>
           <div className={c.title}>
             <span></span>
