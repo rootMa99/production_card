@@ -295,6 +295,7 @@ const Home = (p) => {
       setsuccess(false);
     }, 2000);
   }
+
   return (
     <div className={c.container}>
       {err && (

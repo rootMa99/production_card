@@ -165,10 +165,11 @@ const PointingList = (p) => {
   });
   const [empExc, setEmpExc] = useState([]);
   const filteredArray = p.data.filter((obj) => empExc.includes(obj.matricule));
-  console.log(p.data.filter((obj) => !empExc.includes(obj.matricule)));
   useEffect(() => {
+    console.log("solution")
     setDataList(p.data);
   }, [p.data]);
+
   const changeHandler = (e) => {
     const value = e.target.value;
     if (/^\d*$/.test(value)) {
@@ -349,7 +350,41 @@ const PointingList = (p) => {
     }
   };
 
-  console.log(poin, dataList, filteredArray);
+  useEffect(() => {
+    if (!poin.pointingOptions.includes("ctn")) {
+      setpoin((p) => ({
+        ...p,
+        ctnDuration: 0,
+      }));
+    }
+    if (!poin.pointingOptions.includes("ot")) {
+      setpoin((p) => ({
+        ...p,
+        otDuration: 0,
+      }));
+    }
+    if (!poin.pointingOptions.includes("t")) {
+      setpoin((p) => ({
+        ...p,
+        tDuration: 0,
+      }));
+    }
+    if (!poin.pointingOptions.includes("retard")) {
+      setpoin((p) => ({
+        ...p,
+        retardDuration: 0,
+      }));
+    }
+    // if(!poin.pointingOptions.includes("cr")){
+    // }
+    // if(!poin.pointingOptions.includes("other")){
+
+    // }
+  }, [poin.pointingOptions]);
+
+
+
+
   return (
     <div className={c.container}>
       <input
@@ -883,10 +918,10 @@ const PointingList = (p) => {
           <div className={c.wraper}>
             {dataList.length > 0 ? (
               dataList.map((m, i) => (
-                <React.Fragment key={Math.random()}>
+                <React.Fragment >
                   <div
                     className={c.trainingH}
-                    key={Math.random()}
+                    key={i}
                     onClick={(e) =>
                       eid === m._id ? toogle() : toogleid(e, m._id)
                     }
@@ -916,7 +951,7 @@ const PointingList = (p) => {
                     </div>
                   </div>
                   {eid === m._id && (
-                    <div className={c.pointingEmpl} key={Math.random()}>
+                    <div className={c.pointingEmpl} key={i}>
                       <div className={c.poinHoldWraper}>
                         <div className={c.poinHold}>
                           <span>Pointing</span>
