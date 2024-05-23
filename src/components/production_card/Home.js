@@ -438,7 +438,6 @@ const Home = (p) => {
             <div className={c.line}></div>
             <h4>Pointing</h4>
           </div>
-
           <ul className={c.underList}>
             <li
               style={
