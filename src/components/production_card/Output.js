@@ -147,13 +147,13 @@ const Output = (p) => {
         break;
       case "exig":
         break;
-      case "ab":
+      case "Prod":
         break;
-      case "ab":
+      case "CE":
         break;
-      case "ab":
+      case "EMB":
         break;
-      case "ab":
+      case "commantaire":
         break;
       default:
     }
