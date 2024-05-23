@@ -236,6 +236,11 @@ const Output = (p) => {
     p.prodHour(od);
   }, [od, p]);
   console.log("tlist", data, od);
+
+  const submitoutputdata = async () => {
+    await p.sendOutput(od);
+  };
+
   return (
     <div className={c.container}>
       <div className={c.pointingEmpl}>
@@ -355,7 +360,9 @@ const Output = (p) => {
           >
             add
           </button>
-          <button className={c.submitShi}>Submit</button>
+          <button className={c.submitShi} onClick={submitoutputdata}>
+            Submit
+          </button>
         </div>
       </div>
     </div>

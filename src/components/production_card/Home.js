@@ -239,9 +239,46 @@ const Home = (p) => {
   const pah = calculateActualPaidHours(
     employeeCrew === null ? [] : employeeCrew.employees
   );
-  const sendOutput=d=>{
-    
-  }
+  const sendOutput = async (d) => {
+    try {
+      const body = {
+        date: today,
+        crew: employeeCrew._id.crew,
+        shift: shift,
+        output: d.map((m) => ({
+          family: m.family,
+          reference: m.ref,
+          cuting: m.dataref.cuting,
+          leadPrep: m.dataref.leadPrep,
+          finalAssembly: m.dataref.finalAssembly,
+          exigency: m.dataref.exigency,
+          exig: m.exig,
+          prod: m.prod,
+          ce: m.ce,
+          emb: m.emb,
+          comment: m.cmmt,
+        })),
+      };
+      console.log(body);
+      const response = await fetch(`${api}/production-card/output/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${isLoged.token}`,
+        },
+        body: JSON.stringify(body),
+      });
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      const da = await response.json();
+      console.log("pfo:", da);
+      return true;
+    } catch (e) {
+      console.error(e);
+      return false;
+    }
+  };
   return (
     <div className={c.container}>
       <div className={c.inputsContainer}>
@@ -369,7 +406,7 @@ const Home = (p) => {
             <div className={c.line}></div>
             <h4>output</h4>
           </div>
-          <Output prodHour={prodHour} />
+          <Output prodHour={prodHour} sendOutput={sendOutput} />
         </React.Fragment>
       )}
     </div>
