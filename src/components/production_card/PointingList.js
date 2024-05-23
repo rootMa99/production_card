@@ -918,7 +918,7 @@ const PointingList = (p) => {
           <div className={c.wraper}>
             {dataList.length > 0 ? (
               dataList.map((m, i) => (
-                <React.Fragment >
+                <React.Fragment key={m._id}>
                   <div
                     className={c.trainingH}
                     key={i}
@@ -951,7 +951,7 @@ const PointingList = (p) => {
                     </div>
                   </div>
                   {eid === m._id && (
-                    <div className={c.pointingEmpl} key={i}>
+                    <div className={c.pointingEmpl} key={m._id}>
                       <div className={c.poinHoldWraper}>
                         <div className={c.poinHold}>
                           <span>Pointing</span>
