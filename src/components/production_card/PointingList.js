@@ -10,7 +10,7 @@ const customStyles = {
     ...provided,
     minWidth: "6rem",
     minHeight: "10px",
-    fontSize: "8px",
+    fontSize: "10px",
     textTransform: "uppercase",
     borderRadius: "5px",
     fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -29,7 +29,7 @@ const customStyles = {
   }),
   option: (provided, state) => ({
     width: "97%",
-    padding: "2px 0",
+    padding: "10px 0",
     color: state.isFocused ? "#f3f3f3" : "#f33716",
     backgroundColor: state.isFocused && "#474b4d",
     fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -75,7 +75,7 @@ const customStylesEXC = {
     ...provided,
     minWidth: "15rem",
     minHeight: "10px",
-    fontSize: "8px",
+    fontSize: "10px",
     textTransform: "uppercase",
     borderRadius: "5px",
     fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -94,7 +94,7 @@ const customStylesEXC = {
   }),
   option: (provided, state) => ({
     width: "97%",
-    padding: "2px 0",
+    padding: "10px 0",
     color: state.isFocused ? "#f3f3f3" : "#f33716",
     backgroundColor: state.isFocused && "#474b4d",
     fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -166,7 +166,7 @@ const PointingList = (p) => {
   const [empExc, setEmpExc] = useState([]);
   const filteredArray = p.data.filter((obj) => empExc.includes(obj.matricule));
   useEffect(() => {
-    console.log("solution")
+    console.log("solution");
     setDataList(p.data);
   }, [p.data]);
 
@@ -381,9 +381,6 @@ const PointingList = (p) => {
 
     // }
   }, [poin.pointingOptions]);
-
-
-
 
   return (
     <div className={c.container}>
@@ -751,7 +748,7 @@ const PointingList = (p) => {
                               </div>
                             )}
                             {(poin.pointingOptions.includes("ctn") ||
-                              poin.pointingOptions.includes("ctp")) && (
+                              poin.pointing === "ctp") && (
                               <React.Fragment>
                                 <div className={c.poinHold}>
                                   <span>motif</span>
@@ -1076,7 +1073,7 @@ const PointingList = (p) => {
                           </div>
                         )}
                         {(poin.pointingOptions.includes("ctn") ||
-                          poin.pointingOptions.includes("ctp")) && (
+                          poin.pointing === "ctp") && (
                           <React.Fragment>
                             <div className={c.poinHold}>
                               <span>motif</span>

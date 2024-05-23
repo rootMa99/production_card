@@ -33,7 +33,7 @@ const customStyles = {
   }),
   option: (provided, state) => ({
     width: "97%",
-    padding: "2px 0",
+    padding: "10px 0",
     color: state.isFocused ? "#f3f3f3" : "#f33716",
     backgroundColor: state.isFocused && "#474b4d",
     fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -54,6 +54,7 @@ const customStyles = {
   singleValue: (p) => ({
     ...p,
     color: "#f3f3f3",
+   
   }),
   menuList: (provided) => ({
     maxHeight: "200px",
