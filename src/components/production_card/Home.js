@@ -406,7 +406,15 @@ const Home = (p) => {
             <div className={c.line}></div>
             <h4>output</h4>
           </div>
-          <Output prodHour={prodHour} sendOutput={sendOutput} />
+          <Output
+            prodHour={prodHour}
+            sendOutput={sendOutput}
+            datagetou={{
+              date: today,
+              crew: employeeCrew._id.crew,
+              shift: shift,
+            }}
+          />
         </React.Fragment>
       )}
     </div>

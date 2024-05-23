@@ -81,6 +81,7 @@ const Output = (p) => {
         leadPrep: 0,
         cuting: 0,
         finalAssembly: 0,
+        exigency: 0,
       },
       ref: "",
       exig: 0,
@@ -110,9 +111,51 @@ const Output = (p) => {
       console.error(e);
     }
   }, [isLoged.token]);
+  const callOutput = useCallback(async () => {
+    try {
+      const response = await fetch(
+        `${api}/production-card/output?date=${p.datagetou.date}&crew=${p.datagetou.crew}&shift=${p.datagetou.shift}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${isLoged.token}`,
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      const d = await response.json();
+      setOd(
+        d.map((m) => ({
+          id: m._id,
+          family: m.family,
+          dataref: {
+            leadPrep: m.leadPrep,
+            cuting: m.cuting,
+            finalAssembly: m.finalAssembly,
+            exigency: m.exigency,
+          },
+          ref: m.reference,
+          exig: m.exig,
+          prod: m.prod,
+          ce: m.ce,
+          emb: m.emb,
+          cmmt: m.comment,
+        }))
+      );
+      console.log(d);
+    } catch (e) {
+      console.error(e);
+    }
+  }, [isLoged.token, p.datagetou.date, p.datagetou.crew, p.datagetou.shift]);
   useEffect(() => {
     callback();
   }, [callback]);
+  useEffect(() => {
+    callOutput();
+  }, [callOutput]);
 
   const onChangeHandler = (e, id, t) => {
     const i = od.findIndex((f) => f.id === id);
@@ -348,6 +391,7 @@ const Output = (p) => {
                     leadPrep: 0,
                     cuting: 0,
                     finalAssembly: 0,
+                    exigency: 0,
                   },
                   exig: 0,
                   prod: 0,
