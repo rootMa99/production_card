@@ -224,6 +224,30 @@ const Pointing = (p) => {
                 </div>
               </React.Fragment>
             )}
+            {typet.t === "ctn" && (
+              <div className={c.poinHold}>
+                <span>ctn duration</span>
+                <input type="number" placeholder="ctn duration" />
+              </div>
+            )}
+            {typet.t === "cr" && (
+              <div className={c.poinHold}>
+                <span>cr duration</span>
+                <input type="number" placeholder="cr duration" />
+              </div>
+            )}
+            {typet.t === "t" && (
+              <div className={c.poinHold}>
+                <span>Authorisation duration</span>
+                <input type="number" placeholder="t duration" />
+              </div>
+            )}
+            {typet.t === "retard" && (
+              <div className={c.poinHold}>
+                <span>retard duration</span>
+                <input type="number" placeholder="retard duration" />
+              </div>
+            )}
           </div>
           <div className={c.btnCn}>
             <button className={c.submitShi}>cancel</button>
