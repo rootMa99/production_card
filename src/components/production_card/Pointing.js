@@ -3,9 +3,81 @@ import c from "./Pointing.module.css";
 
 const Pointing = (p) => {
   const [pc, setPc] = useState(false);
+  const [typet, setTypet] = useState({
+    t: "",
+    title: "",
+  });
   const onClickHandler = (e, t) => {
     setPc(true);
-    console.log(t);
+    switch (t) {
+      case "ab":
+        setTypet({
+          t: t,
+          title: "ABSENT",
+        });
+        break;
+      case "ad":
+        setTypet({
+          t: t,
+          title: "admin",
+        });
+        break;
+      case "ot":
+        setTypet({
+          t: t,
+          title: "ot",
+        });
+        break;
+      case "ma":
+        setTypet({
+          t: t,
+          title: "maladie",
+        });
+        break;
+      case "ctp":
+        setTypet({
+          t: t,
+          title: "ctp",
+        });
+        break;
+      case "ctn":
+        setTypet({
+          t: t,
+          title: "ctn",
+        });
+        break;
+      case "cr":
+        setTypet({
+          t: t,
+          title: "cr",
+        });
+        break;
+      case "t":
+        setTypet({
+          t: t,
+          title: "autorisation",
+        });
+        break;
+      case "tl":
+        setTypet({
+          t: t,
+          title: "autorisation légal",
+        });
+        break;
+      case "retard":
+        setTypet({
+          t: t,
+          title: "retard",
+        });
+        break;
+      case "other":
+        setTypet({
+          t: t,
+          title: "other",
+        });
+        break;
+      default:
+    }
   };
   console.log(pc);
 
