@@ -224,7 +224,7 @@ const PointingList = (p) => {
     let paidhour;
     switch (poin.pointing) {
       case "shift":
-        if (isFriday()) {
+        if (isFriday(p.today)) {
           paidhour =
             7.58 -
             poin.tDuration -
@@ -241,7 +241,7 @@ const PointingList = (p) => {
         }
         break;
       case "admin":
-        if (isSaturday()) {
+        if (isSaturday(p.today)) {
           paidhour =
             4 -
             poin.tDuration -
@@ -285,7 +285,7 @@ const PointingList = (p) => {
 
     switch (saePoin.pointing) {
       case "shift":
-        if (isFriday()) {
+        if (isFriday(p.today)) {
           paidhour =
             7.58 -
             saePoin.tDuration -
@@ -302,7 +302,7 @@ const PointingList = (p) => {
         }
         break;
       case "admin":
-        if (isSaturday()) {
+        if (isSaturday(p.today)) {
           paidhour =
             4 -
             saePoin.tDuration -

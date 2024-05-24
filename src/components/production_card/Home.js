@@ -74,10 +74,10 @@ const customStyles = {
   }),
 };
 
-const calculateActualHeadCount = (d) => {
+const calculateActualHeadCount = (d,dt) => {
   let r = 0;
   d.forEach((e) => {
-    if (isFriday()) {
+    if (isFriday(dt)) {
       r += e.paidHour === undefined ? 0 / 7.58 : e.paidHour / 7.58;
     } else {
       r += e.paidHour === undefined ? 0 / 7.67 : e.paidHour / 7.67;
@@ -405,7 +405,7 @@ const Home = (p) => {
               <h3>actual headcount</h3>
               <span>
                 {calculateActualHeadCount(
-                  employeeCrew === null ? [] : employeeCrew.employees
+                  employeeCrew === null ? [] : employeeCrew.employees, today
                 ).toFixed(1)}
               </span>
             </div>
@@ -461,6 +461,7 @@ const Home = (p) => {
             <Pointing
               data={employeeCrew === null ? [] : employeeCrew.employees}
               postMultiEmpl={postMultiEmpl}
+              today={today}
             />
           )}
           {control === "pbl" && (
@@ -469,6 +470,7 @@ const Home = (p) => {
               selectst={customStyles}
               singleEmpl={postSingleEmpl}
               multiEmpl={postMultiEmpl}
+              today={today}
             />
           )}
           <div className={c.title2}>

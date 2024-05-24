@@ -227,7 +227,7 @@ const Pointing = (p) => {
 
     switch (saePoin.pointing) {
       case "shift":
-        if (isFriday()) {
+        if (isFriday(p.today)) {
           paidhour =
             7.58 -
             saePoin.tDuration -
@@ -244,7 +244,7 @@ const Pointing = (p) => {
         }
         break;
       case "admin":
-        if (isSaturday()) {
+        if (isSaturday(p.today)) {
           paidhour =
             4 -
             saePoin.tDuration -
@@ -333,6 +333,7 @@ const Pointing = (p) => {
                     inputId="shiftleader1"
                     styles={customStyles}
                     placeholder="select motif"
+                    onChange={(e) => setpoin((p) => ({ ...p, motif: e.value }))}
                   />
                 </div>
                 <div className={c.poinHold}>
@@ -351,6 +352,12 @@ const Pointing = (p) => {
                     id="multiSelect"
                     inputId="shiftleader1"
                     styles={customStyles}
+                    onChange={(e) =>
+                      setpoin((p) => ({
+                        ...p,
+                        details: e === null ? "" : e.value,
+                      }))
+                    }
                     placeholder="select details or enter"
                   />
                 </div>
@@ -359,31 +366,76 @@ const Pointing = (p) => {
             {typet.t === "ctn" && (
               <div className={c.poinHold}>
                 <span>ctn duration</span>
-                <input type="number" placeholder="ctn duration" />
+                <input
+                  type="number"
+                  placeholder="ctn duration"
+                  onChange={(e) =>
+                    setpoin((p) => ({
+                      ...p,
+                      ctnDuration: +e.target.value / 60,
+                    }))
+                  }
+                />
               </div>
             )}
             {typet.t === "cr" && (
               <div className={c.poinHold}>
                 <span>cr duration</span>
-                <input type="number" placeholder="cr duration" />
+                <input
+                  type="number"
+                  placeholder="cr duration"
+                  onChange={(e) =>
+                    setpoin((p) => ({
+                      ...p,
+                      crDuration: +e.target.value / 60,
+                    }))
+                  }
+                />
               </div>
             )}
             {typet.t === "t" && (
               <div className={c.poinHold}>
                 <span>Authorisation duration</span>
-                <input type="number" placeholder="t duration" />
+                <input
+                  type="number"
+                  placeholder="t duration"
+                  onChange={(e) =>
+                    setpoin((p) => ({
+                      ...p,
+                      tDuration: +e.target.value / 60,
+                    }))
+                  }
+                />
               </div>
             )}
             {typet.t === "retard" && (
               <div className={c.poinHold}>
                 <span>retard duration</span>
-                <input type="number" placeholder="retard duration" />
+                <input
+                  type="number"
+                  placeholder="retard duration"
+                  onChange={(e) =>
+                    setpoin((p) => ({
+                      ...p,
+                      retardDuration: +e.target.value / 60,
+                    }))
+                  }
+                />
               </div>
             )}
             {typet.t === "ot" && (
               <div className={c.poinHold}>
                 <span>over time duration</span>
-                <input type="number" placeholder="over time duration" />
+                <input
+                  type="number"
+                  placeholder="over time duration"
+                  onChange={(e) =>
+                    setpoin((p) => ({
+                      ...p,
+                      otDuration: +e.target.value / 60,
+                    }))
+                  }
+                />
               </div>
             )}
           </div>

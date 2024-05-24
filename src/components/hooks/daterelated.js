@@ -1,8 +1,8 @@
-export const isFriday = () => {
-  const t = new Date();
+export const isFriday = (date) => {
+  const t = new Date(date);
   return t.getDay() === 5;
 };
-export const isSaturday = () => {
-  const t = new Date();
+export const isSaturday = (date) => {
+  const t = new Date(date);
   return t.getDay() === 6;
 };
