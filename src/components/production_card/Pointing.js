@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import c from "./Pointing.module.css";
-import api from "../../service/api";
 import Select from "react-select";
 import CreatableSelect from "react-select/creatable";
 import DropdownIndicator from "../UI/DropdownIndicator";
+import { isFriday, isSaturday } from "../hooks/daterelated";
 const customStyles = {
   control: (provided, state) => ({
     ...provided,
@@ -76,7 +76,7 @@ const Pointing = (p) => {
     t: "",
     title: "",
   });
-  const [poin, setpoin] = useState({
+  const [saePoin, setpoin] = useState({
     status: "",
     pointing: "shift",
     pointingOptions: [],
@@ -174,7 +174,77 @@ const Pointing = (p) => {
     }
   };
   console.log(pc, mlles);
-  
+  const onSubmith = async () => {
+    let paidhour = 0;
+
+    switch (saePoin.pointing) {
+      case "shift":
+        if (isFriday()) {
+          paidhour =
+            7.58 -
+            saePoin.tDuration -
+            saePoin.retardDuration -
+            saePoin.ctnDuration +
+            saePoin.otDuration;
+        } else {
+          paidhour =
+            7.67 -
+            saePoin.tDuration -
+            saePoin.retardDuration -
+            saePoin.ctnDuration +
+            saePoin.otDuration;
+        }
+        break;
+      case "admin":
+        if (isSaturday()) {
+          paidhour =
+            4 -
+            saePoin.tDuration -
+            saePoin.retardDuration -
+            saePoin.ctnDuration +
+            saePoin.otDuration;
+        } else {
+          paidhour =
+            8.17 -
+            saePoin.tDuration -
+            saePoin.retardDuration -
+            saePoin.ctnDuration +
+            saePoin.otDuration;
+        }
+        break;
+      case "ab":
+      case "ap":
+      case "ma":
+      case "tl":
+      case "ctp":
+        paidhour = 0;
+        break;
+      default:
+    }
+
+    const f = await p.postMultiEmpl(saePoin, mlles, paidhour);
+    if (f) {
+      setPc(false);
+      setTypet({
+        t: "",
+        title: "",
+      });
+      setpoin({
+        status: "",
+        pointing: "shift",
+        pointingOptions: [],
+        ctnDuration: 0,
+        otDuration: 0,
+        tDuration: 0,
+        retardDuration: 0,
+        crDuration: 0,
+        motif: "",
+        details: "",
+      });
+      setMlles([]);
+    }
+  };
+
   return (
     <div className={c.container}>
       {pc && (
@@ -193,7 +263,7 @@ const Pointing = (p) => {
                 inputId="shiftleader1"
                 styles={customStyles}
                 placeholder="select matricules"
-                onChange={e=>setMlles(e.map((m) => m.value))}
+                onChange={(e) => setMlles(e.map((m) => m.value))}
                 isMulti
               />
             </div>
@@ -295,7 +365,11 @@ const Pointing = (p) => {
             >
               cancel
             </button>
-            <button className={c.submitShi} style={{ color: "#f84018" }}>
+            <button
+              className={c.submitShi}
+              style={{ color: "#f84018" }}
+              onClick={onSubmith}
+            >
               Submit
             </button>
           </div>
