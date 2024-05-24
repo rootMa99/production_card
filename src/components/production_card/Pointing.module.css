@@ -71,6 +71,18 @@
   gap: 10px;
 }
 
+
+.poinHoldWraper {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px 0;
+  padding: 10px 0;
+  position: relative;
+}
+
 .btnCn {
   margin-left: auto;
   margin-right: 16px;
@@ -92,4 +104,26 @@
 .submitShi:active {
   color: #f84018;
   border-bottom: 3px solid#f84018;
+}
+
+.poinHold span {
+  color: #f84018;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+.poinHold input {
+  text-align: center;
+  color: rgb(3, 3, 3);
+  border-radius: 4px;
+  padding: 4px 0;
+  width: 4rem;
+  font-size: 8px;
+  outline: none;
+  border: 1px solid #f84018;
+  background-color: transparent;
+  height: 1.3rem;
+  text-transform: uppercase;
+  text-wrap: wrap;
 }
