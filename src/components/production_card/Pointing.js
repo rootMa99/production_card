@@ -97,66 +97,110 @@ const Pointing = (p) => {
           t: t,
           title: "ABSENT",
         });
+        setpoin((p) => ({
+          ...p,
+          pointing: "ab",
+        }));
         break;
       case "shift":
         setTypet({
           t: t,
           title: "shift",
         });
+        setpoin((p) => ({
+          ...p,
+          pointing: "shift",
+        }));
         break;
       case "ap":
         setTypet({
           t: t,
           title: "mise à pied",
         });
+        setpoin((p) => ({
+          ...p,
+          pointing: "ap",
+        }));
         break;
       case "ad":
         setTypet({
           t: t,
           title: "admin",
         });
+        setpoin((p) => ({
+          ...p,
+          pointing: "admin",
+        }));
         break;
       case "ot":
         setTypet({
           t: t,
           title: "ot",
         });
+        setpoin((p) => ({
+          ...p,
+          pointingOptions: ["ot"],
+        }));
         break;
       case "ma":
         setTypet({
           t: t,
           title: "maladie",
         });
+        setpoin((p) => ({
+          ...p,
+          pointing: "ma",
+        }));
         break;
       case "ctp":
         setTypet({
           t: t,
           title: "ctp",
         });
+        setpoin((p) => ({
+          ...p,
+          pointing: "ctp",
+        }));
         break;
       case "ctn":
         setTypet({
           t: t,
           title: "ctn",
         });
+        setpoin((p) => ({
+          ...p,
+          pointingOptions: ["ctn"],
+        }));
         break;
       case "cr":
         setTypet({
           t: t,
           title: "cr",
         });
+        setpoin((p) => ({
+          ...p,
+          pointingOptions: ["cr"],
+        }));
         break;
       case "t":
         setTypet({
           t: t,
           title: "autorisation",
         });
+        setpoin((p) => ({
+          ...p,
+          pointingOptions: ["t"],
+        }));
         break;
       case "tl":
         setTypet({
           t: t,
           title: "autorisation légal",
         });
+        setpoin((p) => ({
+          ...p,
+          pointing: "tl",
+        }));
         break;
       case "retard":
         setTypet({
@@ -169,6 +213,10 @@ const Pointing = (p) => {
           t: t,
           title: "other",
         });
+        setpoin((p) => ({
+          ...p,
+          pointingOptions: ["retard"],
+        }));
         break;
       default:
     }

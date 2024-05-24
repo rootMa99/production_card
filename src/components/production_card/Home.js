@@ -183,7 +183,7 @@ const Home = (p) => {
         date: today,
         crew: employeeCrew._id.crew,
         shift: shift,
-        matricule: m.matricule,
+        matricule: m.matricule === undefined ? m : m.matricule,
         paidHour: ph,
         pointing: d.pointing,
         pointingOptions: d.pointingOptions,
