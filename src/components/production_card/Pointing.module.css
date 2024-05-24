@@ -57,3 +57,39 @@
     opacity: 1;
   }
 }
+
+
+.pointingEmpl {
+  background-color: #c9c9c9;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1rem 0;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btnCn {
+  margin-left: auto;
+  margin-right: 16px;
+  display: flex;
+  gap: 10px;
+}
+
+.submitShi {
+  color: #111111;
+  outline: none;
+  background-color: transparent;
+  border: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 12px;
+  border-bottom: 3px solid;
+}
+
+.submitShi:active {
+  color: #f84018;
+  border-bottom: 3px solid#f84018;
+}
