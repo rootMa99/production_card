@@ -460,6 +460,7 @@ const Home = (p) => {
           {control === "pbc" && (
             <Pointing
               data={employeeCrew === null ? [] : employeeCrew.employees}
+              postMultiEmpl={postMultiEmpl}
             />
           )}
           {control === "pbl" && (

@@ -173,8 +173,8 @@ const Pointing = (p) => {
       default:
     }
   };
-  console.log(pc);
-
+  console.log(pc, mlles);
+  
   return (
     <div className={c.container}>
       {pc && (
@@ -193,6 +193,7 @@ const Pointing = (p) => {
                 inputId="shiftleader1"
                 styles={customStyles}
                 placeholder="select matricules"
+                onChange={e=>setMlles(e.map((m) => m.value))}
                 isMulti
               />
             </div>
