@@ -149,6 +149,7 @@ const PointingList = (p) => {
     otDuration: 0,
     tDuration: 0,
     retardDuration: 0,
+    crDuration: 0,
     motif: "",
     details: "",
   });
@@ -159,6 +160,7 @@ const PointingList = (p) => {
     ctnDuration: 0,
     otDuration: 0,
     tDuration: 0,
+    crDuration: 0,
     retardDuration: 0,
     motif: "",
     details: "",
@@ -166,7 +168,6 @@ const PointingList = (p) => {
   const [empExc, setEmpExc] = useState([]);
   const filteredArray = p.data.filter((obj) => empExc.includes(obj.matricule));
   useEffect(() => {
-    console.log("solution");
     setDataList(p.data);
   }, [p.data]);
 
@@ -196,6 +197,7 @@ const PointingList = (p) => {
       otDuration: 0,
       tDuration: 0,
       retardDuration: 0,
+      crDuration: 0,
       motif: "",
       details: "",
     });
@@ -214,6 +216,7 @@ const PointingList = (p) => {
       ctnDuration: o.ctn === undefined ? 0 : o.ctn,
       otDuration: o.ot === undefined ? 0 : o.ot,
       tDuration: o.t === undefined ? 0 : o.t,
+      crDuration: o.cr === undefined ? 0 : o.cr,
       retardDuration: o.retard === undefined ? 0 : o.retard,
       motif: o.motif === undefined ? "" : o.motif,
       details: o.details === undefined ? "" : o.details,
@@ -229,14 +232,16 @@ const PointingList = (p) => {
             7.58 -
             poin.tDuration -
             poin.retardDuration -
-            poin.ctnDuration +
+            poin.ctnDuration -
+            poin.crDuration +
             poin.otDuration;
         } else {
           paidhour =
             7.67 -
             poin.tDuration -
             poin.retardDuration -
-            poin.ctnDuration +
+            poin.ctnDuration -
+            poin.crDuration +
             poin.otDuration;
         }
         break;
@@ -246,14 +251,16 @@ const PointingList = (p) => {
             4 -
             poin.tDuration -
             poin.retardDuration -
-            poin.ctnDuration +
+            poin.ctnDuration -
+            poin.crDuration +
             poin.otDuration;
         } else {
           paidhour =
             8.17 -
             poin.tDuration -
             poin.retardDuration -
-            poin.ctnDuration +
+            poin.ctnDuration -
+            poin.crDuration +
             poin.otDuration;
         }
         break;
@@ -290,14 +297,16 @@ const PointingList = (p) => {
             7.58 -
             saePoin.tDuration -
             saePoin.retardDuration -
-            saePoin.ctnDuration +
+            saePoin.ctnDuration -
+            saePoin.crDuration +
             saePoin.otDuration;
         } else {
           paidhour =
             7.67 -
             saePoin.tDuration -
             saePoin.retardDuration -
-            saePoin.ctnDuration +
+            saePoin.ctnDuration -
+            saePoin.crDuration +
             saePoin.otDuration;
         }
         break;
@@ -307,14 +316,16 @@ const PointingList = (p) => {
             4 -
             saePoin.tDuration -
             saePoin.retardDuration -
-            saePoin.ctnDuration +
+            saePoin.ctnDuration -
+            saePoin.crDuration +
             saePoin.otDuration;
         } else {
           paidhour =
             8.17 -
             saePoin.tDuration -
             saePoin.retardDuration -
-            saePoin.ctnDuration +
+            saePoin.ctnDuration -
+            saePoin.crDuration +
             saePoin.otDuration;
         }
         break;
@@ -344,6 +355,7 @@ const PointingList = (p) => {
         otDuration: 0,
         tDuration: 0,
         retardDuration: 0,
+        crDuration: 0,
         motif: "",
         details: "",
       });
@@ -375,8 +387,12 @@ const PointingList = (p) => {
         retardDuration: 0,
       }));
     }
-    // if(!poin.pointingOptions.includes("cr")){
-    // }
+    if (!poin.pointingOptions.includes("cr")) {
+      setpoin((p) => ({
+        ...p,
+        crDuration: 0,
+      }));
+    }
     // if(!poin.pointingOptions.includes("other")){
 
     // }
@@ -418,7 +434,16 @@ const PointingList = (p) => {
                 styles={customStylesEXC}
                 placeholder="select shift"
                 onChange={(e) =>
-                  setSaePoin((p) => ({ ...p, pointing: e.value }))
+                  setSaePoin((p) => ({
+                    ...p,
+                    pointingOptions: [],
+                    ctnDuration: 0,
+                    otDuration: 0,
+                    tDuration: 0,
+                    retardDuration: 0,
+                    crDuration: 0,
+                    pointing: e.value,
+                  }))
                 }
                 value={{ label: saePoin.pointing, value: saePoin.pointing }}
               />
@@ -643,7 +668,16 @@ const PointingList = (p) => {
                                 styles={customStyles}
                                 placeholder="select shift"
                                 onChange={(e) =>
-                                  setpoin((p) => ({ ...p, pointing: e.value }))
+                                  setpoin((p) => ({
+                                    ...p,
+                                    pointingOptions: [],
+                                    ctnDuration: 0,
+                                    otDuration: 0,
+                                    tDuration: 0,
+                                    retardDuration: 0,
+                                    crDuration: 0,
+                                    pointing: e.value,
+                                  }))
                                 }
                                 value={{
                                   label: poin.pointing,
@@ -728,6 +762,22 @@ const PointingList = (p) => {
                                     }))
                                   }
                                   value={poin.tDuration * 60}
+                                />
+                              </div>
+                            )}
+                            {poin.pointingOptions.includes("cr") && (
+                              <div className={c.poinHold}>
+                                <span>cr duration</span>
+                                <input
+                                  type="number"
+                                  placeholder="set cr duration"
+                                  onChange={(e) =>
+                                    setpoin((p) => ({
+                                      ...p,
+                                      crDuration: +e.target.value / 60,
+                                    }))
+                                  }
+                                  value={poin.crDuration * 60}
                                 />
                               </div>
                             )}
@@ -872,6 +922,7 @@ const PointingList = (p) => {
                   ctnDuration: 0,
                   otDuration: 0,
                   tDuration: 0,
+                  crDuration: 0,
                   retardDuration: 0,
                   motif: "",
                   details: "",
@@ -968,7 +1019,16 @@ const PointingList = (p) => {
                             styles={customStyles}
                             placeholder="select shift"
                             onChange={(e) =>
-                              setpoin((p) => ({ ...p, pointing: e.value }))
+                              setpoin((p) => ({
+                                ...p,
+                                pointingOptions: [],
+                                ctnDuration: 0,
+                                otDuration: 0,
+                                tDuration: 0,
+                                retardDuration: 0,
+                                crDuration: 0,
+                                pointing: e.value,
+                              }))
                             }
                             value={{
                               label: poin.pointing,
@@ -1069,6 +1129,22 @@ const PointingList = (p) => {
                                 }))
                               }
                               value={poin.otDuration * 60}
+                            />
+                          </div>
+                        )}
+                        {poin.pointingOptions.includes("cr") && (
+                          <div className={c.poinHold}>
+                            <span>cr duration</span>
+                            <input
+                              type="number"
+                              placeholder="set cr duration"
+                              onChange={(e) =>
+                                setpoin((p) => ({
+                                  ...p,
+                                  crDuration: +e.target.value / 60,
+                                }))
+                              }
+                              value={poin.crDuration * 60}
                             />
                           </div>
                         )}
