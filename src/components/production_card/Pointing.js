@@ -76,6 +76,19 @@ const Pointing = (p) => {
     t: "",
     title: "",
   });
+  const [poin, setpoin] = useState({
+    status: "",
+    pointing: "shift",
+    pointingOptions: [],
+    ctnDuration: 0,
+    otDuration: 0,
+    tDuration: 0,
+    retardDuration: 0,
+    crDuration: 0,
+    motif: "",
+    details: "",
+  });
+  const [mlles, setMlles] = useState([]);
   const onClickHandler = (e, t) => {
     setPc(true);
     switch (t) {
@@ -248,9 +261,39 @@ const Pointing = (p) => {
                 <input type="number" placeholder="retard duration" />
               </div>
             )}
+            {typet.t === "ot" && (
+              <div className={c.poinHold}>
+                <span>over time duration</span>
+                <input type="number" placeholder="over time duration" />
+              </div>
+            )}
           </div>
           <div className={c.btnCn}>
-            <button className={c.submitShi}>cancel</button>
+            <button
+              className={c.submitShi}
+              onClick={(e) => {
+                setPc(false);
+                setTypet({
+                  t: "",
+                  title: "",
+                });
+                setpoin({
+                  status: "",
+                  pointing: "shift",
+                  pointingOptions: [],
+                  ctnDuration: 0,
+                  otDuration: 0,
+                  tDuration: 0,
+                  retardDuration: 0,
+                  crDuration: 0,
+                  motif: "",
+                  details: "",
+                });
+                setMlles([]);
+              }}
+            >
+              cancel
+            </button>
             <button className={c.submitShi} style={{ color: "#f84018" }}>
               Submit
             </button>
