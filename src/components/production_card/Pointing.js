@@ -85,6 +85,18 @@ const Pointing = (p) => {
           title: "ABSENT",
         });
         break;
+      case "shift":
+        setTypet({
+          t: t,
+          title: "shift",
+        });
+        break;
+      case "ap":
+        setTypet({
+          t: t,
+          title: "mise à pied",
+        });
+        break;
       case "ad":
         setTypet({
           t: t,
