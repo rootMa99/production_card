@@ -54,7 +54,6 @@ const customStyles = {
   singleValue: (p) => ({
     ...p,
     color: "#f3f3f3",
-   
   }),
   menuList: (provided) => ({
     maxHeight: "200px",
@@ -458,7 +457,11 @@ const Home = (p) => {
               Pointing by category
             </li>
           </ul>
-          {control === "pbc" && <Pointing />}
+          {control === "pbc" && (
+            <Pointing
+              data={employeeCrew === null ? [] : employeeCrew.employees}
+            />
+          )}
           {control === "pbl" && (
             <PointingList
               data={employeeCrew === null ? [] : employeeCrew.employees}

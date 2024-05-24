@@ -154,17 +154,21 @@ const Pointing = (p) => {
     <div className={c.container}>
       {pc && (
         <div className={c.pointingEmpl}>
-          <h3>{typet.title}</h3>
+          <h3 className={c.tlc}>{typet.title}</h3>
           <div className={c.poinHoldWraper}>
             <div className={c.poinHold}>
               <span>matricules</span>
               <Select
                 components={{ DropdownIndicator }}
-                options={[]}
+                options={p.data.map((m) => ({
+                  label: m.matricule,
+                  value: m.matricule,
+                }))}
                 id="multiSelect"
                 inputId="shiftleader1"
                 styles={customStyles}
                 placeholder="select matricules"
+                isMulti
               />
             </div>
             {(typet.t === "ctn" || typet.t === "ctp") && (
@@ -190,7 +194,7 @@ const Pointing = (p) => {
                 <div className={c.poinHold}>
                   <span>details</span>
                   <CreatableSelect
-                  isClearable
+                    isClearable
                     components={{ DropdownIndicator }}
                     options={[
                       { label: "exit", value: "exit" },
