@@ -662,6 +662,7 @@ const PointingList = (p) => {
                                   { label: "ma", value: "ma" },
                                   { label: "tl", value: "tl" },
                                   { label: "ctp", value: "ctp" },
+                                  { label: "mutation", value: "mutation" },
                                 ]}
                                 id="multiSelect"
                                 inputId="shiftleader1"
@@ -1013,6 +1014,7 @@ const PointingList = (p) => {
                               { label: "ma", value: "ma" },
                               { label: "tl", value: "tl" },
                               { label: "ctp", value: "ctp" },
+                              { label: "mutation", value: "mutation" },
                             ]}
                             id="multiSelect"
                             inputId="shiftleader1"
@@ -1207,6 +1209,30 @@ const PointingList = (p) => {
                             </div>
                           </React.Fragment>
                         )}
+                        {poin.pointing === "mutation" && <div className={c.poinHold}>
+                          <span>targeted crew</span>
+                          <Select
+                            components={{ DropdownIndicator }}
+                            options={[
+                              { label: "k01a", value: "k01a" },
+                              { label: "k01b", value: "k01b" },
+                              { label: "k01c", value: "k01c" },
+                              { label: "k01d", value: "k01d" },
+                              { label: "k01e", value: "k01e" },
+                            ]}
+                            id="multiSelect"
+                            inputId="shiftleader1"
+                            styles={customStyles}
+                            placeholder="select shift"
+                            onChange={(e) =>
+                              setpoin((p) => ({ ...p, status: e.value }))
+                            }
+                            value={{
+                              label: poin.status,
+                              value: poin.status,
+                            }}
+                          />
+                        </div>}
                         <div className={c.poinHold}>
                           <span>Status</span>
                           <Select
