@@ -622,7 +622,7 @@ const PointingList = (p) => {
               <div className={c.wraper} style={{ width: "100%" }}>
                 <React.Fragment>
                   {filteredArray.map((m) => (
-                    <React.Fragment>
+                    <React.Fragment key={m._id}>
                       <div
                         className={c.trainingH}
                         key={m._id}
