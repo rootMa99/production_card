@@ -1354,8 +1354,13 @@ const PointingList = (p) => {
                               <span>mutation type</span>
                               <Select
                                 components={{ DropdownIndicator }}
-                                options={[{ label: "temporel", value: "temporel" },
-                                { label: "definitivment", value: "definitivment" },]}
+                                options={[
+                                  { label: "temporelle", value: "temporelle" },
+                                  {
+                                    label: "Définitivement",
+                                    value: "Définitivement",
+                                  },
+                                ]}
                                 id="multiSelect"
                                 inputId="shiftleader1"
                                 styles={customStyles}
