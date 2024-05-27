@@ -1350,6 +1350,25 @@ const PointingList = (p) => {
                                 />
                               </div>
                             )}
+                            <div className={c.poinHold}>
+                              <span>mutation type</span>
+                              <Select
+                                components={{ DropdownIndicator }}
+                                options={[{ label: "temporel", value: "temporel" },
+                                { label: "definitivment", value: "definitivment" },]}
+                                id="multiSelect"
+                                inputId="shiftleader1"
+                                styles={customStyles}
+                                placeholder="select type"
+                                onChange={(e) =>
+                                  setpoin((p) => ({ ...p, mutType: e.value }))
+                                }
+                                // value={{
+                                //   label: poin.ttl,
+                                //   value: poin.ttl,
+                                // }}
+                              />
+                            </div>
                           </React.Fragment>
                         )}
                         <div className={c.poinHold}>
