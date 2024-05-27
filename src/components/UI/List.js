@@ -24,7 +24,7 @@ const List = (p) => {
           to="/dhc"
           className={({ isActive }) => (isActive ? c.activeLink : c.link)}
         >
-          dh control
+          over time
         </NavLink>
       </li>
       <li

@@ -488,6 +488,7 @@ const Home = (p) => {
               shift: shift,
             }}
           />
+       
         </React.Fragment>
       )}
     </div>
