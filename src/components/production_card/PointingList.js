@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import c from "./PointingList.module.css";
 import Select from "react-select";
 import DropdownIndicator from "../UI/DropdownIndicator";
 import CreatableSelect from "react-select/creatable";
 import { isFriday, isSaturday } from "../hooks/daterelated";
-
+import { useSelector } from "react-redux";
+import api from "../../service/api";
 const customStyles = {
   control: (provided, state) => ({
     ...provided,
@@ -168,6 +169,31 @@ const PointingList = (p) => {
     details: "",
   });
   const [empExc, setEmpExc] = useState([]);
+  const [dataEp, setDataEp] = useState([]);
+  const { isLoged } = useSelector((s) => s.login);
+  const callback = useCallback(async () => {
+    try {
+      const response = await fetch(`${api}/employee/crews-by-tl/`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${isLoged.token}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      const d = await response.json();
+      console.log("tl&crew:", d);
+      setDataEp(d);
+    } catch (e) {
+      console.error(e);
+    }
+  }, [isLoged.token]);
+  useEffect(() => {
+    callback();
+  }, [callback]);
+
   const filteredArray = p.data.filter((obj) => empExc.includes(obj.matricule));
   useEffect(() => {
     setDataList(p.data);
@@ -402,10 +428,16 @@ const PointingList = (p) => {
         crDuration: 0,
       }));
     }
-    // if(!poin.pointingOptions.includes("other")){
-
-    // }
-  }, [poin.pointingOptions]);
+    if (!poin.pointingOptions.includes("other")) {
+    }
+    if (poin.pointing !== "mutation") {
+      setpoin((p) => ({
+        ...p,
+        ttl: "",
+        tCrew: "",
+      }));
+    }
+  }, [poin.pointingOptions, poin.pointing]);
 
   return (
     <div className={c.container}>
@@ -701,13 +733,10 @@ const PointingList = (p) => {
                                   <span>targeted tl</span>
                                   <Select
                                     components={{ DropdownIndicator }}
-                                    options={[
-                                      { label: "k01a", value: "k01a" },
-                                      { label: "k01b", value: "k01b" },
-                                      { label: "k01c", value: "k01c" },
-                                      { label: "k01d", value: "k01d" },
-                                      { label: "k01e", value: "k01e" },
-                                    ]}
+                                    options={dataEp.map((m) => ({
+                                      label: m.tl.fullname,
+                                      value: m.tl.username,
+                                    }))}
                                     id="multiSelect"
                                     inputId="shiftleader1"
                                     styles={customStyles}
@@ -715,36 +744,38 @@ const PointingList = (p) => {
                                     onChange={(e) =>
                                       setpoin((p) => ({ ...p, ttl: e.value }))
                                     }
-                                    value={{
-                                      label: poin.status,
-                                      value: poin.status,
-                                    }}
+                                    // value={{
+                                    //   label: poin.ttl,
+                                    //   value: poin.ttl,
+                                    // }}
                                   />
                                 </div>
-                                <div className={c.poinHold}>
-                                  <span>targeted crew</span>
-                                  <Select
-                                    components={{ DropdownIndicator }}
-                                    options={[
-                                      { label: "k01a", value: "k01a" },
-                                      { label: "k01b", value: "k01b" },
-                                      { label: "k01c", value: "k01c" },
-                                      { label: "k01d", value: "k01d" },
-                                      { label: "k01e", value: "k01e" },
-                                    ]}
-                                    id="multiSelect"
-                                    inputId="shiftleader1"
-                                    styles={customStyles}
-                                    placeholder="select shift"
-                                    onChange={(e) =>
-                                      setpoin((p) => ({ ...p, tCrew: e.value }))
-                                    }
-                                    value={{
-                                      label: poin.status,
-                                      value: poin.status,
-                                    }}
-                                  />
-                                </div>
+                                {poin.ttl.trim() !== "" && (
+                                  <div className={c.poinHold}>
+                                    <span>targeted crew</span>
+                                    <Select
+                                      components={{ DropdownIndicator }}
+                                      options={dataEp
+                                        .filter(
+                                          (f) => f.tl.username === poin.ttl
+                                        )[0]
+                                        .crews.map((m) => ({
+                                          label: m,
+                                          value: m,
+                                        }))}
+                                      id="multiSelect"
+                                      inputId="shiftleader1"
+                                      styles={customStyles}
+                                      placeholder="select shift"
+                                      onChange={(e) =>
+                                        setpoin((p) => ({
+                                          ...p,
+                                          tCrew: e.value,
+                                        }))
+                                      }
+                                    />
+                                  </div>
+                                )}
                               </React.Fragment>
                             )}
                             {(poin.pointing === "shift" ||
@@ -1276,13 +1307,10 @@ const PointingList = (p) => {
                               <span>targeted tl</span>
                               <Select
                                 components={{ DropdownIndicator }}
-                                options={[
-                                  { label: "k01a", value: "k01a" },
-                                  { label: "k01b", value: "k01b" },
-                                  { label: "k01c", value: "k01c" },
-                                  { label: "k01d", value: "k01d" },
-                                  { label: "k01e", value: "k01e" },
-                                ]}
+                                options={dataEp.map((m) => ({
+                                  label: m.tl.fullname,
+                                  value: m.tl.username,
+                                }))}
                                 id="multiSelect"
                                 inputId="shiftleader1"
                                 styles={customStyles}
@@ -1290,36 +1318,38 @@ const PointingList = (p) => {
                                 onChange={(e) =>
                                   setpoin((p) => ({ ...p, ttl: e.value }))
                                 }
-                                value={{
-                                  label: poin.status,
-                                  value: poin.status,
-                                }}
+                                // value={{
+                                //   label: poin.ttl,
+                                //   value: poin.ttl,
+                                // }}
                               />
                             </div>
-                            <div className={c.poinHold}>
-                              <span>targeted crew</span>
-                              <Select
-                                components={{ DropdownIndicator }}
-                                options={[
-                                  { label: "k01a", value: "k01a" },
-                                  { label: "k01b", value: "k01b" },
-                                  { label: "k01c", value: "k01c" },
-                                  { label: "k01d", value: "k01d" },
-                                  { label: "k01e", value: "k01e" },
-                                ]}
-                                id="multiSelect"
-                                inputId="shiftleader1"
-                                styles={customStyles}
-                                placeholder="select shift"
-                                onChange={(e) =>
-                                  setpoin((p) => ({ ...p, tCrew: e.value }))
-                                }
-                                value={{
-                                  label: poin.status,
-                                  value: poin.status,
-                                }}
-                              />
-                            </div>
+                            {poin.ttl.trim() !== "" && (
+                              <div className={c.poinHold}>
+                                <span>targeted crew</span>
+                                <Select
+                                  components={{ DropdownIndicator }}
+                                  options={dataEp
+                                    .filter(
+                                      (f) => f.tl.username === poin.ttl
+                                    )[0]
+                                    .crews.map((m) => ({
+                                      label: m,
+                                      value: m,
+                                    }))}
+                                  id="multiSelect"
+                                  inputId="shiftleader1"
+                                  styles={customStyles}
+                                  placeholder="select shift"
+                                  onChange={(e) =>
+                                    setpoin((p) => ({
+                                      ...p,
+                                      tCrew: e.value,
+                                    }))
+                                  }
+                                />
+                              </div>
+                            )}
                           </React.Fragment>
                         )}
                         <div className={c.poinHold}>
