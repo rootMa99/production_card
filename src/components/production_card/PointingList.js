@@ -150,6 +150,8 @@ const PointingList = (p) => {
     tDuration: 0,
     retardDuration: 0,
     crDuration: 0,
+    ttl: "",
+    tCrew: "",
     motif: "",
     details: "",
   });
@@ -198,6 +200,8 @@ const PointingList = (p) => {
       tDuration: 0,
       retardDuration: 0,
       crDuration: 0,
+      ttl: "",
+      tCrew: "",
       motif: "",
       details: "",
     });
@@ -218,6 +222,9 @@ const PointingList = (p) => {
       tDuration: o.t === undefined ? 0 : o.t,
       crDuration: o.cr === undefined ? 0 : o.cr,
       retardDuration: o.retard === undefined ? 0 : o.retard,
+      //todo: add ttl, and tcrew
+      ttl: "",
+      tCrew: "",
       motif: o.motif === undefined ? "" : o.motif,
       details: o.details === undefined ? "" : o.details,
     });
@@ -688,6 +695,58 @@ const PointingList = (p) => {
                                 }}
                               />
                             </div>
+                            {poin.pointing === "mutation" && (
+                              <React.Fragment>
+                                <div className={c.poinHold}>
+                                  <span>targeted tl</span>
+                                  <Select
+                                    components={{ DropdownIndicator }}
+                                    options={[
+                                      { label: "k01a", value: "k01a" },
+                                      { label: "k01b", value: "k01b" },
+                                      { label: "k01c", value: "k01c" },
+                                      { label: "k01d", value: "k01d" },
+                                      { label: "k01e", value: "k01e" },
+                                    ]}
+                                    id="multiSelect"
+                                    inputId="shiftleader1"
+                                    styles={customStyles}
+                                    placeholder="select shift"
+                                    onChange={(e) =>
+                                      setpoin((p) => ({ ...p, ttl: e.value }))
+                                    }
+                                    value={{
+                                      label: poin.status,
+                                      value: poin.status,
+                                    }}
+                                  />
+                                </div>
+                                <div className={c.poinHold}>
+                                  <span>targeted crew</span>
+                                  <Select
+                                    components={{ DropdownIndicator }}
+                                    options={[
+                                      { label: "k01a", value: "k01a" },
+                                      { label: "k01b", value: "k01b" },
+                                      { label: "k01c", value: "k01c" },
+                                      { label: "k01d", value: "k01d" },
+                                      { label: "k01e", value: "k01e" },
+                                    ]}
+                                    id="multiSelect"
+                                    inputId="shiftleader1"
+                                    styles={customStyles}
+                                    placeholder="select shift"
+                                    onChange={(e) =>
+                                      setpoin((p) => ({ ...p, tCrew: e.value }))
+                                    }
+                                    value={{
+                                      label: poin.status,
+                                      value: poin.status,
+                                    }}
+                                  />
+                                </div>
+                              </React.Fragment>
+                            )}
                             {(poin.pointing === "shift" ||
                               poin.pointing === "admin") && (
                               <div className={c.poinHold}>
@@ -1212,30 +1271,56 @@ const PointingList = (p) => {
                           </React.Fragment>
                         )}
                         {poin.pointing === "mutation" && (
-                          <div className={c.poinHold}>
-                            <span>targeted crew</span>
-                            <Select
-                              components={{ DropdownIndicator }}
-                              options={[
-                                { label: "k01a", value: "k01a" },
-                                { label: "k01b", value: "k01b" },
-                                { label: "k01c", value: "k01c" },
-                                { label: "k01d", value: "k01d" },
-                                { label: "k01e", value: "k01e" },
-                              ]}
-                              id="multiSelect"
-                              inputId="shiftleader1"
-                              styles={customStyles}
-                              placeholder="select shift"
-                              onChange={(e) =>
-                                setpoin((p) => ({ ...p, status: e.value }))
-                              }
-                              value={{
-                                label: poin.status,
-                                value: poin.status,
-                              }}
-                            />
-                          </div>
+                          <React.Fragment>
+                            <div className={c.poinHold}>
+                              <span>targeted tl</span>
+                              <Select
+                                components={{ DropdownIndicator }}
+                                options={[
+                                  { label: "k01a", value: "k01a" },
+                                  { label: "k01b", value: "k01b" },
+                                  { label: "k01c", value: "k01c" },
+                                  { label: "k01d", value: "k01d" },
+                                  { label: "k01e", value: "k01e" },
+                                ]}
+                                id="multiSelect"
+                                inputId="shiftleader1"
+                                styles={customStyles}
+                                placeholder="select shift"
+                                onChange={(e) =>
+                                  setpoin((p) => ({ ...p, ttl: e.value }))
+                                }
+                                value={{
+                                  label: poin.status,
+                                  value: poin.status,
+                                }}
+                              />
+                            </div>
+                            <div className={c.poinHold}>
+                              <span>targeted crew</span>
+                              <Select
+                                components={{ DropdownIndicator }}
+                                options={[
+                                  { label: "k01a", value: "k01a" },
+                                  { label: "k01b", value: "k01b" },
+                                  { label: "k01c", value: "k01c" },
+                                  { label: "k01d", value: "k01d" },
+                                  { label: "k01e", value: "k01e" },
+                                ]}
+                                id="multiSelect"
+                                inputId="shiftleader1"
+                                styles={customStyles}
+                                placeholder="select shift"
+                                onChange={(e) =>
+                                  setpoin((p) => ({ ...p, tCrew: e.value }))
+                                }
+                                value={{
+                                  label: poin.status,
+                                  value: poin.status,
+                                }}
+                              />
+                            </div>
+                          </React.Fragment>
                         )}
                         <div className={c.poinHold}>
                           <span>Status</span>
