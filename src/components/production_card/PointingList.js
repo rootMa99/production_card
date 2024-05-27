@@ -153,6 +153,7 @@ const PointingList = (p) => {
     crDuration: 0,
     ttl: "",
     tCrew: "",
+    mutType: "",
     motif: "",
     details: "",
   });
@@ -228,6 +229,7 @@ const PointingList = (p) => {
       crDuration: 0,
       ttl: "",
       tCrew: "",
+      mutType: "",
       motif: "",
       details: "",
     });
@@ -251,6 +253,7 @@ const PointingList = (p) => {
       //todo: add ttl, and tcrew
       ttl: "",
       tCrew: "",
+      mutType: "",
       motif: o.motif === undefined ? "" : o.motif,
       details: o.details === undefined ? "" : o.details,
     });
@@ -776,6 +779,36 @@ const PointingList = (p) => {
                                     />
                                   </div>
                                 )}
+                                <div className={c.poinHold}>
+                                  <span>mutation type</span>
+                                  <Select
+                                    components={{ DropdownIndicator }}
+                                    options={[
+                                      {
+                                        label: "temporelle",
+                                        value: "temporelle",
+                                      },
+                                      {
+                                        label: "Définitivement",
+                                        value: "Définitivement",
+                                      },
+                                    ]}
+                                    id="multiSelect"
+                                    inputId="shiftleader1"
+                                    styles={customStyles}
+                                    placeholder="select type"
+                                    onChange={(e) =>
+                                      setpoin((p) => ({
+                                        ...p,
+                                        mutType: e.value,
+                                      }))
+                                    }
+                                    // value={{
+                                    //   label: poin.ttl,
+                                    //   value: poin.ttl,
+                                    // }}
+                                  />
+                                </div>
                               </React.Fragment>
                             )}
                             {(poin.pointing === "shift" ||
