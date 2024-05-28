@@ -1,13 +1,10 @@
 import c from "./Home.module.css";
 
-
-const Home=p=>{
-
-
-    return(
+const HomeOt=p=>{
+    return (
         <div className={c.container}>
         </div>
     )
 }
 
-export default Home;
+export default HomeOt;
