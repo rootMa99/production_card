@@ -74,7 +74,7 @@ const customStyles = {
   }),
 };
 
-const calculateActualHeadCount = (d,dt) => {
+const calculateActualHeadCount = (d, dt) => {
   let r = 0;
   d.forEach((e) => {
     if (isFriday(dt)) {
@@ -150,11 +150,16 @@ const Home = (p) => {
         ctf: 0,
         ot: d.otDuration,
         t: d.tDuration,
-        cr:d.crDuration,
+        cr: d.crDuration,
         retard: d.retardDuration,
         status: d.status,
         motif: d.motif,
         details: d.details,
+        to: {
+          teamleader: d.ttl,
+          crew: d.tCrew,
+          isDefinitely: d.mutType === "temporelle" ? false : true,
+        },
       };
       console.log(body);
       const response = await fetch(`${api}/production-card/pointing-for-one/`, {
@@ -192,7 +197,7 @@ const Home = (p) => {
         cte: 0,
         ctf: 0,
         ot: d.otDuration,
-        cr:d.crDuration,
+        cr: d.crDuration,
         t: d.tDuration,
         retard: d.retardDuration,
         status: d.status,
@@ -407,7 +412,8 @@ const Home = (p) => {
               <h3>actual headcount</h3>
               <span>
                 {calculateActualHeadCount(
-                  employeeCrew === null ? [] : employeeCrew.employees, today
+                  employeeCrew === null ? [] : employeeCrew.employees,
+                  today
                 ).toFixed(1)}
               </span>
             </div>
@@ -488,7 +494,6 @@ const Home = (p) => {
               shift: shift,
             }}
           />
-       
         </React.Fragment>
       )}
     </div>
