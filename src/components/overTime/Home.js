@@ -1,9 +1,11 @@
+import c from "./Home.module.css";
+
 
 const Home=p=>{
 
 
     return(
-        <div className=""></div>
+        <div className={c.container}></div>
     )
 }
 
