@@ -425,10 +425,10 @@ const Pointing = (p) => {
             )}
             {typet.t === "ot" && (
               <div className={c.poinHold}>
-                <span>over time duration</span>
+                <span>overtime duration</span>
                 <input
                   type="number"
-                  placeholder="over time duration"
+                  placeholder="overtime duration"
                   onChange={(e) =>
                     setpoin((p) => ({
                       ...p,
@@ -505,7 +505,7 @@ const Pointing = (p) => {
             className={c.cardContainer}
             onClick={(e) => onClickHandler(e, "ot")}
           >
-            <div className={c.card}>over time</div>
+            <div className={c.card}>overtime</div>
           </div>
           <div
             className={c.cardContainer}

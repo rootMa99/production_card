@@ -24,7 +24,7 @@ const List = (p) => {
           to="/dhc"
           className={({ isActive }) => (isActive ? c.activeLink : c.link)}
         >
-          over time
+          overtime
         </NavLink>
       </li>
       <li
