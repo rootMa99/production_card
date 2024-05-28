@@ -1,6 +1,10 @@
 import c from "./Home.module.css";
 
-const HomeOt=p=>{
+const HomeOt=()=>{
+
+    
+
+
     return (
         <div className={c.container}>
         </div>
