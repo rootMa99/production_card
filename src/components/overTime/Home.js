@@ -5,7 +5,8 @@ const Home=p=>{
 
 
     return(
-        <div className={c.container}></div>
+        <div className={c.container}>
+        </div>
     )
 }
 
