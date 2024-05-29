@@ -292,7 +292,6 @@ const Pointing = (p) => {
       setMlles([]);
     }
   };
-  
 
   return (
     <div className={c.container}>
