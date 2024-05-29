@@ -1,4 +1,8 @@
 import c from "./Home.module.css";
+import Select from "react-select";
+import CreatableSelect from "react-select/creatable";
+import DropdownIndicator from "../UI/DropdownIndicator";
+
 
 const customStyles = {
     control: (provided, state) => ({
