@@ -9,7 +9,7 @@ const customStyles = {
     minWidth: "20rem",
     minHeight: "15px",
     fontSize: "10px",
-    fontWeight:"bold",
+    fontWeight: "bold",
     textTransform: "uppercase",
     borderRadius: "5px",
     fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -100,6 +100,10 @@ const HomeOt = () => {
             styles={customStyles}
             placeholder="select category"
           />
+        </div>
+        <div className={c.poinHold}>
+          <span>category</span>
+          <input type="date" />
         </div>
       </div>
     </div>
