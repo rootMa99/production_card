@@ -27,20 +27,24 @@
   right: -20px;
   top: -8px;
 }
-
+.poinForm {
+  margin-top: 1rem;
+  width: 100%;
+}
 .poinHold {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 5px;
 }
 
 .poinHold span {
   color: #f84018;
   text-transform: uppercase;
   font-weight: bold;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .poinHold input {

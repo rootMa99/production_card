@@ -76,17 +76,19 @@ const HomeOt = () => {
         <div className={c.line}></div>
         <h4>output</h4>
       </div>
-      <div className={c.poinHold}>
-        <span>matricules</span>
-        <CreatableSelect
-          components={{ DropdownIndicator }}
-          options={[]}
-          id="multiSelect"
-          inputId="shiftleader1"
-          styles={customStyles}
-          placeholder="select matricules"
-          isMulti
-        />
+      <div className={c.poinForm}>
+        <div className={c.poinHold}>
+          <span>matricules</span>
+          <CreatableSelect
+            components={{ DropdownIndicator }}
+            options={[]}
+            id="multiSelect"
+            inputId="shiftleader1"
+            styles={customStyles}
+            placeholder="select matricules"
+            isMulti
+          />
+        </div>
       </div>
     </div>
   );
