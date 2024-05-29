@@ -105,6 +105,10 @@ const HomeOt = () => {
           <span>category</span>
           <input type="date" />
         </div>
+        <div className={c.poinHold}>
+          <span>start</span>
+          <input type="time" />
+        </div>
       </div>
     </div>
   );

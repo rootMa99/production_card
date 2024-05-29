@@ -85,3 +85,24 @@
   transform: scale(1.2);
   background-color: #fd7d61;
 }
+.poinHold input[type="time"] {
+  color: #b4b3b3;
+  padding: 5px 0.5rem;
+  height: 1.5rem;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.poinHold input[type="time"]::-webkit-calendar-picker-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-left: 5px;
+  cursor: pointer;
+  background-color: #f84018;
+  padding: 5px;
+}
+.poinHold input[type="time"]::-webkit-calendar-picker-indicator:hover {
+  transform: scale(1.2);
+  background-color: #fd7d61;
+}
