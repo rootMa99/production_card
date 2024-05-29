@@ -91,14 +91,14 @@ const HomeOt = () => {
           />
         </div>
         <div className={c.poinHold}>
-          <span>matricules</span>
+          <span>category</span>
           <Select
             components={{ DropdownIndicator }}
             options={[]}
             id="multiSelect"
             inputId="shiftleader1"
             styles={customStyles}
-            placeholder="select matricules"
+            placeholder="select category"
           />
         </div>
       </div>
