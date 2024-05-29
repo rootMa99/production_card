@@ -1,0 +1,59 @@
+.title2 {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+.title2 h1,
+.title2 h4 {
+  color: aliceblue;
+  margin: 0;
+  text-transform: uppercase;
+}
+.line {
+  width: 35%;
+  height: 2px;
+  background-color: rgb(255, 255, 255);
+  position: relative;
+}
+.line::after {
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid #f84018;
+  border-radius: 50%;
+  position: absolute;
+  right: -20px;
+  top: -8px;
+}
+
+.poinHold {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.poinHold span {
+  color: #f84018;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+.poinHold input {
+  text-align: center;
+  color: rgb(3, 3, 3);
+  border-radius: 4px;
+  padding: 4px 0;
+  width: 15rem;
+  font-size: 8px;
+  outline: none;
+  border: 1px solid #f84018;
+  background-color: transparent;
+  height: 1.3rem;
+  text-transform: uppercase;
+  text-wrap: wrap;
+}
