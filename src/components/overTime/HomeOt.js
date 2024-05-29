@@ -2,6 +2,7 @@ import c from "./Home.module.css";
 import Select from "react-select";
 import CreatableSelect from "react-select/creatable";
 import DropdownIndicator from "../UI/DropdownIndicator";
+import { useEffect, useState } from "react";
 
 const customStyles = {
   control: (provided, state) => ({
@@ -89,7 +90,15 @@ const calculateHours=(startTimeStr, endTimeStr)=> {
 }
 
 const HomeOt = () => {
-    const 
+    const [hours, setHours]=useState({
+        start:"",
+        end:""
+    })
+    useEffect(()=>{
+        if(hours.end.trim()!=="" && hours.start.trim()!==""){
+            console.log(calculateHours(hours.start, hours.end))
+        }
+    },[hours.end, hours.start])
   return (
     <div className={c.container}>
       <div className={c.title2}>
@@ -126,11 +135,11 @@ const HomeOt = () => {
         </div>
         <div className={c.poinHold}>
           <span>start</span>
-          <input type="time"  onChange={e=>console.log(e.target.value)}/>
+          <input type="time"  onChange={e=>setHours(p=>({...p, start:e.target.value}))}/>
         </div>
         <div className={c.poinHold}>
           <span>end</span>
-          <input type="time"  onChange={e=>console.log(e.target.value)}/>
+          <input type="time"  onChange={e=>setHours(p=>({...p, end:e.target.value}))}/>
         </div>
       </div>
     </div>
