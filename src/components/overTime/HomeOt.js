@@ -73,7 +73,19 @@ const customStyles = {
 
 const HomeOt = () => {
   return <div className={c.container}>
-  
+  <div className={c.poinHold}>
+              <span>matricules</span>
+              <Select
+                components={{ DropdownIndicator }}
+                options={[]}
+                id="multiSelect"
+                inputId="shiftleader1"
+                styles={customStyles}
+                placeholder="select matricules"
+                
+                isMulti
+              />
+            </div>
   </div>;
 };
 
