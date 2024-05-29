@@ -1,14 +1,15 @@
 import c from "./Home.module.css";
-// import Select from "react-select";
+import Select from "react-select";
 import CreatableSelect from "react-select/creatable";
 import DropdownIndicator from "../UI/DropdownIndicator";
 
 const customStyles = {
   control: (provided, state) => ({
     ...provided,
-    minWidth: "15rem",
-    minHeight: "10px",
-    fontSize: "8px",
+    minWidth: "20rem",
+    minHeight: "15px",
+    fontSize: "10px",
+    fontWeight:"bold",
     textTransform: "uppercase",
     borderRadius: "5px",
     fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -74,7 +75,7 @@ const HomeOt = () => {
     <div className={c.container}>
       <div className={c.title2}>
         <div className={c.line}></div>
-        <h4>output</h4>
+        <h4>overTime</h4>
       </div>
       <div className={c.poinForm}>
         <div className={c.poinHold}>
@@ -87,6 +88,17 @@ const HomeOt = () => {
             styles={customStyles}
             placeholder="select matricules"
             isMulti
+          />
+        </div>
+        <div className={c.poinHold}>
+          <span>matricules</span>
+          <Select
+            components={{ DropdownIndicator }}
+            options={[]}
+            id="multiSelect"
+            inputId="shiftleader1"
+            styles={customStyles}
+            placeholder="select matricules"
           />
         </div>
       </div>
