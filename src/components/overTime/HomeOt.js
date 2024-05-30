@@ -161,7 +161,7 @@ const HomeOt = () => {
         </div>
         <h4 className={c.copenh}>Overtime hours are for:</h4>
         <div className={c.task}>
-          <input id={"m._id"} type="checkbox" checked={true} />
+          <input id={"m._id"} type="checkbox" checked={true} hidden/>
           <label
             htmlFor={"m._id"}
             style={
@@ -174,7 +174,7 @@ const HomeOt = () => {
           </label>
         </div>
         <div className={c.task}>
-          <input id={"m._id"} type="checkbox" checked={true} />
+          <input id={"m._id"} type="checkbox" checked={true} hidden/>
           <label
             htmlFor={"m._id"}
             style={
@@ -183,11 +183,11 @@ const HomeOt = () => {
                 : { color: "aliceblue", fontWeight: "normal" }
             }
           >
-            recuperation
+            25%
           </label>
         </div>
         <div className={c.task}>
-          <input id={"m._id"} type="checkbox" checked={true} />
+          <input id={"m._id"} type="checkbox" checked={true} hidden/>
           <label
             htmlFor={"m._id"}
             style={
@@ -196,11 +196,11 @@ const HomeOt = () => {
                 : { color: "aliceblue", fontWeight: "normal" }
             }
           >
-            recuperation
+            50%
           </label>
         </div>
         <div className={c.task}>
-          <input id={"m._id"} type="checkbox" checked={true} />
+          <input id={"m._id"} type="checkbox" checked={true} hidden/>
           <label
             htmlFor={"m._id"}
             style={
@@ -209,20 +209,7 @@ const HomeOt = () => {
                 : { color: "aliceblue", fontWeight: "normal" }
             }
           >
-            recuperation
-          </label>
-        </div>
-        <div className={c.task}>
-          <input id={"m._id"} type="checkbox" checked={true} />
-          <label
-            htmlFor={"m._id"}
-            style={
-              true
-                ? { color: "#f33716", fontWeight: 700 }
-                : { color: "aliceblue", fontWeight: "normal" }
-            }
-          >
-            recuperation
+            100%
           </label>
         </div>
       </div>
