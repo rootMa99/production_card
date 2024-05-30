@@ -209,6 +209,18 @@ const HomeOt = () => {
             25%
           </label>
         </div>
+        {ovf.includes(25) && (
+            <div className={c.pointingEmpl} style={{ marginBottom: "1rem" }}>
+              <div className={c.poinHold}>
+                <span>Number of hours</span>
+                <input
+                  type="number"
+                  placeholder="enter Number of hours"
+                  min={0}
+                />
+              </div>
+            </div>
+          )}
         <div className={c.task}>
           <input
             id={"m._id50"}
@@ -228,6 +240,18 @@ const HomeOt = () => {
             50%
           </label>
         </div>
+        {ovf.includes(50) && (
+            <div className={c.pointingEmpl} style={{ marginBottom: "1rem" }}>
+              <div className={c.poinHold}>
+                <span>Number of hours</span>
+                <input
+                  type="number"
+                  placeholder="enter Number of hours"
+                  min={0}
+                />
+              </div>
+            </div>
+          )}
         <div className={c.task}>
           <input
             id={"m._id100"}
@@ -248,10 +272,16 @@ const HomeOt = () => {
           </label>
         </div>
         {ovf.includes(100) && (
-          <div
-            className={c.pointingEmpl}
-            style={{ marginBottom: "1rem" }}
-          ></div>
+          <div className={c.pointingEmpl} style={{ marginBottom: "1rem" }}>
+            <div className={c.poinHold}>
+              <span>Number of hours</span>
+              <input
+                type="number"
+                placeholder="enter Number of hours"
+                min={0}
+              />
+            </div>
+          </div>
         )}
       </div>
     </div>
