@@ -147,6 +147,10 @@ const HomeOt = () => {
           <span>end</span>
           <input type="time"  onChange={e=>setHours(p=>({...p, end:e.target.value}))}/>
         </div>
+        <div className={c.poinHold}>
+          <span>motif</span>
+          <input type="text" />
+        </div>
       </div>
     </div>
   );
