@@ -149,7 +149,7 @@ const HomeOt = () => {
         </div>
         <div className={c.poinHold}>
           <span>motif</span>
-          <input type="text" />
+          <input type="text" placeholder="enter motif"/>
         </div>
       </div>
     </div>
