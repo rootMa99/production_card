@@ -50,7 +50,8 @@
   font-size: 12px;
 }
 
-.poinHold input, .poinHold input[type="text"] {
+.poinHold input,
+.poinHold input[type="text"] {
   text-align: center;
   color: rgb(3, 3, 3);
   border-radius: 4px;
@@ -64,8 +65,9 @@
   text-transform: uppercase;
   text-wrap: wrap;
 }
-.poinHold input[type="text"]{
-    
+.poinHold input[type="text"] {
+  width: 20rem;
+  height: 1.5rem;
 }
 .poinHold input[type="date"] {
   color: #b4b3b3;
