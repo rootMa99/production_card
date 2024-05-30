@@ -69,6 +69,7 @@
   width: 20rem;
   height: 1.5rem;
   font-weight: bold;
+  color: #fff;
 }
 .poinHold input[type="date"] {
   color: #b4b3b3;
