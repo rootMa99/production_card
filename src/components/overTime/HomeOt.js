@@ -173,6 +173,58 @@ const HomeOt = () => {
             recuperation
           </label>
         </div>
+        <div className={c.task}>
+          <input id={"m._id"} type="checkbox" checked={true} />
+          <label
+            htmlFor={"m._id"}
+            style={
+              true
+                ? { color: "#f33716", fontWeight: 700 }
+                : { color: "aliceblue", fontWeight: "normal" }
+            }
+          >
+            recuperation
+          </label>
+        </div>
+        <div className={c.task}>
+          <input id={"m._id"} type="checkbox" checked={true} />
+          <label
+            htmlFor={"m._id"}
+            style={
+              true
+                ? { color: "#f33716", fontWeight: 700 }
+                : { color: "aliceblue", fontWeight: "normal" }
+            }
+          >
+            recuperation
+          </label>
+        </div>
+        <div className={c.task}>
+          <input id={"m._id"} type="checkbox" checked={true} />
+          <label
+            htmlFor={"m._id"}
+            style={
+              true
+                ? { color: "#f33716", fontWeight: 700 }
+                : { color: "aliceblue", fontWeight: "normal" }
+            }
+          >
+            recuperation
+          </label>
+        </div>
+        <div className={c.task}>
+          <input id={"m._id"} type="checkbox" checked={true} />
+          <label
+            htmlFor={"m._id"}
+            style={
+              true
+                ? { color: "#f33716", fontWeight: 700 }
+                : { color: "aliceblue", fontWeight: "normal" }
+            }
+          >
+            recuperation
+          </label>
+        </div>
       </div>
     </div>
   );
