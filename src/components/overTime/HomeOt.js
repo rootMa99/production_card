@@ -2,8 +2,10 @@ import c from "./Home.module.css";
 import Select from "react-select";
 import CreatableSelect from "react-select/creatable";
 import DropdownIndicator from "../UI/DropdownIndicator";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { calculateHours } from "../hooks/daterelated";
+import { useSelector } from "react-redux";
+import api from "../../service/api";
 
 const customStyles = {
   control: (provided, state) => ({
@@ -12,6 +14,7 @@ const customStyles = {
     minHeight: "15px",
     fontSize: "10px",
     fontWeight: "bold",
+
     textTransform: "uppercase",
     borderRadius: "5px",
     fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -46,12 +49,12 @@ const customStyles = {
   }),
   input: (provided) => ({
     ...provided,
-    color: "black",
+    color:"#fff",
     fontSize: "10px",
   }),
   singleValue: (p) => ({
     ...p,
-    color: "black",
+    color:"#fff",
   }),
   menuList: (provided) => ({
     maxHeight: "70px",
@@ -71,7 +74,11 @@ const customStyles = {
     },
   }),
 };
-
+const extractEmpl = (d) => {
+  const rd = [];
+  d.map((m) => rd.push(...m.employees));
+  return rd;
+};
 
 const HomeOt = () => {
   const [hours, setHours] = useState({
@@ -79,6 +86,37 @@ const HomeOt = () => {
     end: "",
   });
   const [ovf, setOvf] = useState([]);
+  const [data, setData] = useState([]);
+  const { isLoged } = useSelector((s) => s.login);
+
+  const callback = useCallback(async () => {
+    try {
+      const response = await fetch(
+        `${api}/employee/by_crew_tlx/?date=${
+          new Date().toISOString().split("T")[0]
+        }`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${isLoged.token}`,
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      const d = await response.json();
+      console.log("cl1:", d);
+      setData(d);
+    } catch (e) {
+      console.error(e);
+    }
+  }, [isLoged.token]);
+  useEffect(() => {
+    callback();
+  }, [callback]);
+
   useEffect(() => {
     if (hours.end.trim() !== "" && hours.start.trim() !== "") {
       console.log(calculateHours(hours.start, hours.end));
@@ -94,6 +132,8 @@ const HomeOt = () => {
     }
   };
 
+//   console.log(extractEmpl(data));
+
   return (
     <div className={c.container}>
       <div className={c.title2}>
@@ -105,7 +145,10 @@ const HomeOt = () => {
           <span>matricules</span>
           <CreatableSelect
             components={{ DropdownIndicator }}
-            options={[]}
+            options={extractEmpl(data).map((m) => ({
+              label: m.matricule,
+              value: m.matricule,
+            }))}
             id="multiSelect"
             inputId="shiftleader1"
             styles={customStyles}
@@ -195,17 +238,17 @@ const HomeOt = () => {
           </label>
         </div>
         {ovf.includes(25) && (
-            <div className={c.pointingEmpl}>
-              <div className={c.poinHold}>
-                <span>Number of hours</span>
-                <input
-                  type="number"
-                  placeholder="enter Number of hours"
-                  min={0}
-                />
-              </div>
+          <div className={c.pointingEmpl}>
+            <div className={c.poinHold}>
+              <span>Number of hours</span>
+              <input
+                type="number"
+                placeholder="enter Number of hours"
+                min={0}
+              />
             </div>
-          )}
+          </div>
+        )}
         <div className={c.task}>
           <input
             id={"m._id50"}
@@ -226,17 +269,17 @@ const HomeOt = () => {
           </label>
         </div>
         {ovf.includes(50) && (
-            <div className={c.pointingEmpl}>
-              <div className={c.poinHold}>
-                <span>Number of hours</span>
-                <input
-                  type="number"
-                  placeholder="enter Number of hours"
-                  min={0}
-                />
-              </div>
+          <div className={c.pointingEmpl}>
+            <div className={c.poinHold}>
+              <span>Number of hours</span>
+              <input
+                type="number"
+                placeholder="enter Number of hours"
+                min={0}
+              />
             </div>
-          )}
+          </div>
+        )}
         <div className={c.task}>
           <input
             id={"m._id100"}
