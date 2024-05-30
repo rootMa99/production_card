@@ -93,11 +93,22 @@ const HomeOt = () => {
     start: "",
     end: "",
   });
+  const [ovf, setOvf] = useState([]);
   useEffect(() => {
     if (hours.end.trim() !== "" && hours.start.trim() !== "") {
       console.log(calculateHours(hours.start, hours.end));
     }
   }, [hours.end, hours.start]);
+
+  const onchangeHandlercb = (e, i) => {
+    if (e.target.checked) {
+      setOvf((p) => [...p, i]);
+    }
+    if (!e.target.checked) {
+      setOvf((p) => p.filter((f) => f !== i));
+    }
+  };
+
   return (
     <div className={c.container}>
       <div className={c.title2}>
@@ -161,24 +172,36 @@ const HomeOt = () => {
         </div>
         <h4 className={c.copenh}>Overtime hours are for:</h4>
         <div className={c.task}>
-          <input id={"m._id"} type="checkbox" checked={true} hidden/>
+          <input
+            id={"m._id"}
+            type="checkbox"
+            checked={ovf.includes("recovery")}
+            hidden
+            onChange={(e) => onchangeHandlercb(e, "recovery")}
+          />
           <label
             htmlFor={"m._id"}
             style={
-              true
+              ovf.includes("recovery")
                 ? { color: "#f33716", fontWeight: 700 }
                 : { color: "aliceblue", fontWeight: "normal" }
             }
           >
-            recuperation
+            Recovery
           </label>
         </div>
         <div className={c.task}>
-          <input id={"m._id"} type="checkbox" checked={true} hidden/>
+          <input
+            id={"m._id25"}
+            type="checkbox"
+            checked={ovf.includes(25)}
+            hidden
+            onChange={(e) => onchangeHandlercb(e, 25)}
+          />
           <label
-            htmlFor={"m._id"}
+            htmlFor={"m._id25"}
             style={
-              true
+              ovf.includes(25)
                 ? { color: "#f33716", fontWeight: 700 }
                 : { color: "aliceblue", fontWeight: "normal" }
             }
@@ -187,11 +210,17 @@ const HomeOt = () => {
           </label>
         </div>
         <div className={c.task}>
-          <input id={"m._id"} type="checkbox" checked={true} hidden/>
+          <input
+            id={"m._id50"}
+            type="checkbox"
+            checked={ovf.includes(50)}
+            hidden
+            onChange={(e) => onchangeHandlercb(e, 50)}
+          />
           <label
-            htmlFor={"m._id"}
+            htmlFor={"m._id50"}
             style={
-              true
+              ovf.includes(50)
                 ? { color: "#f33716", fontWeight: 700 }
                 : { color: "aliceblue", fontWeight: "normal" }
             }
@@ -200,11 +229,17 @@ const HomeOt = () => {
           </label>
         </div>
         <div className={c.task}>
-          <input id={"m._id"} type="checkbox" checked={true} hidden/>
+          <input
+            id={"m._id100"}
+            type="checkbox"
+            checked={ovf.includes(100)}
+            hidden
+            onChange={(e) => onchangeHandlercb(e, 100)}
+          />
           <label
-            htmlFor={"m._id"}
+            htmlFor={"m._id100"}
             style={
-              true
+              ovf.includes(100)
                 ? { color: "#f33716", fontWeight: 700 }
                 : { color: "aliceblue", fontWeight: "normal" }
             }
@@ -212,6 +247,12 @@ const HomeOt = () => {
             100%
           </label>
         </div>
+        {ovf.includes(100) && (
+          <div
+            className={c.pointingEmpl}
+            style={{ marginBottom: "1rem" }}
+          ></div>
+        )}
       </div>
     </div>
   );
