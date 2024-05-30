@@ -71,34 +71,33 @@ const customStyles = {
   }),
 };
 
-const calculateHours=(startTimeStr, endTimeStr)=> {
-    
-    const startTimeParts = startTimeStr.split(":");
-    const startHours = parseInt(startTimeParts[0], 10);
-    const startMinutes = parseInt(startTimeParts[1], 10);
-    const endTimeParts = endTimeStr.split(":");
-    const endHours = parseInt(endTimeParts[0], 10);
-    const endMinutes = parseInt(endTimeParts[1], 10);
-    const startTime = new Date();
-    startTime.setHours(startHours, startMinutes, 0);
-    const endTime = new Date();
-    endTime.setHours(endHours, endMinutes, 0);
-    const timeDifference = endTime.getTime() - startTime.getTime();
-    const hoursDifference = timeDifference / (1000 * 60 * 60);
+const calculateHours = (startTimeStr, endTimeStr) => {
+  const startTimeParts = startTimeStr.split(":");
+  const startHours = parseInt(startTimeParts[0], 10);
+  const startMinutes = parseInt(startTimeParts[1], 10);
+  const endTimeParts = endTimeStr.split(":");
+  const endHours = parseInt(endTimeParts[0], 10);
+  const endMinutes = parseInt(endTimeParts[1], 10);
+  const startTime = new Date();
+  startTime.setHours(startHours, startMinutes, 0);
+  const endTime = new Date();
+  endTime.setHours(endHours, endMinutes, 0);
+  const timeDifference = endTime.getTime() - startTime.getTime();
+  const hoursDifference = timeDifference / (1000 * 60 * 60);
 
-    return hoursDifference;
-}
+  return hoursDifference;
+};
 
 const HomeOt = () => {
-    const [hours, setHours]=useState({
-        start:"",
-        end:""
-    })
-    useEffect(()=>{
-        if(hours.end.trim()!=="" && hours.start.trim()!==""){
-            console.log(calculateHours(hours.start, hours.end))
-        }
-    },[hours.end, hours.start])
+  const [hours, setHours] = useState({
+    start: "",
+    end: "",
+  });
+  useEffect(() => {
+    if (hours.end.trim() !== "" && hours.start.trim() !== "") {
+      console.log(calculateHours(hours.start, hours.end));
+    }
+  }, [hours.end, hours.start]);
   return (
     <div className={c.container}>
       <div className={c.title2}>
@@ -122,13 +121,16 @@ const HomeOt = () => {
           <span>category</span>
           <Select
             components={{ DropdownIndicator }}
-            options={[{
+            options={[
+              {
                 label: "dh",
                 value: "dh",
-              }, {
+              },
+              {
                 label: "ih",
                 value: "ih",
-              }]}
+              },
+            ]}
             id="multiSelect"
             inputId="shiftleader1"
             styles={customStyles}
@@ -141,17 +143,36 @@ const HomeOt = () => {
         </div>
         <div className={c.poinHold}>
           <span>start</span>
-          <input type="time"  onChange={e=>setHours(p=>({...p, start:e.target.value}))}/>
+          <input
+            type="time"
+            onChange={(e) => setHours((p) => ({ ...p, start: e.target.value }))}
+          />
         </div>
         <div className={c.poinHold}>
           <span>end</span>
-          <input type="time"  onChange={e=>setHours(p=>({...p, end:e.target.value}))}/>
+          <input
+            type="time"
+            onChange={(e) => setHours((p) => ({ ...p, end: e.target.value }))}
+          />
         </div>
         <div className={c.poinHold}>
           <span>motif</span>
-          <input type="text" placeholder="enter motif"/>
+          <input type="text" placeholder="enter motif" />
         </div>
         <h4 className={c.copenh}>Overtime hours are for:</h4>
+        <div className={c.task}>
+          <input id={"m._id"} type="checkbox" checked={true} />
+          <label
+            htmlFor={"m._id"}
+            style={
+              true
+                ? { color: "#f33716", fontWeight: 700 }
+                : { color: "aliceblue", fontWeight: "normal" }
+            }
+          >
+            recuperation
+          </label>
+        </div>
       </div>
     </div>
   );

@@ -121,3 +121,24 @@
     border-bottom: 2px solid #f84018;
     padding: 10px;
 }
+
+.task {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .task input[type="checkbox"],
+  .task label {
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+  .task label:hover {
+    color: #f33716 !important;
+  }
+  .task label {
+    width: 100%;
+  }
+  .task:hover {
+    transform: scale(1.03);
+  }
