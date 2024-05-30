@@ -151,6 +151,7 @@ const HomeOt = () => {
           <span>motif</span>
           <input type="text" placeholder="enter motif"/>
         </div>
+        <h4 className={c.copenh}>Overtime hours are for:</h4>
       </div>
     </div>
   );
