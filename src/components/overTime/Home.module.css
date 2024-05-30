@@ -113,6 +113,10 @@
   background-color: #fd7d61;
 }
 .copenh{
-    color: #f84018;
+    color: #bdbdbd;
     text-transform: capitalize;
+    margin: 0 auto;
+    width: fit-content;
+    border-bottom: 2px solid #f84018;
+    padding: 10px;
 }
