@@ -122,7 +122,13 @@ const HomeOt = () => {
           <span>category</span>
           <Select
             components={{ DropdownIndicator }}
-            options={[]}
+            options={[{
+                label: "dh",
+                value: "dh",
+              }, {
+                label: "ih",
+                value: "ih",
+              }]}
             id="multiSelect"
             inputId="shiftleader1"
             styles={customStyles}
