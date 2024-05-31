@@ -132,7 +132,7 @@ const Home = (p) => {
     callback();
   }, [callback]);
   const callbackmu = useCallback(async () => {
-    if(employeeCrew!==null){
+    if (employeeCrew !== null) {
       try {
         const response = await fetch(
           `${api}/employee/transfer/?date=${today}&teamleader=${isLoged.mtll}&crew=${employeeCrew._id.crew}`,
@@ -154,8 +154,7 @@ const Home = (p) => {
         console.error(e);
       }
     }
-    
-  }, [isLoged.token,isLoged.mtll, today, employeeCrew]);
+  }, [isLoged.token, isLoged.mtll, today, employeeCrew]);
   useEffect(() => {
     callbackmu();
   }, [callbackmu]);
