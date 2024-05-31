@@ -7,6 +7,7 @@ const loginS = createSlice({
       login: false,
       role: "",
       userName: "",
+      mtll:"",
       token: "",
     },
   },
@@ -15,7 +16,9 @@ const loginS = createSlice({
       s.isLoged.login = true;
       s.isLoged.role = p.payload.role;
       s.isLoged.userName = p.payload.userName;
-      s.isLoged.token = p.payload.token;
+      s.isLoged.mtll = p.payload.mtll;
+      s.isLoged.token = p.payload.token;;
+
     },
     logout(s, p) {
       s.isLoged = {

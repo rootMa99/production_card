@@ -37,6 +37,7 @@ const Login = () => {
         loginActions.logIn({
           role: data.user.role,
           userName: data.user.fullname,
+          mtll: data.user.userName===undefined? "": data.user.userName,
           token: data.token,
           config: data.user.isConfigured,
         })

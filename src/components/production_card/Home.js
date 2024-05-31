@@ -98,6 +98,7 @@ const Home = (p) => {
   const [control, setControl] = useState("pbl");
   const [shift, setShift] = useState(null);
   const [data, setData] = useState([]);
+  const [datam, setDatam] = useState([]);
   const [employeeCrew, setEmplpyeeCrew] = useState(null);
   const [cr, setCr] = useState("");
   const [ph, setPh] = useState(0);
