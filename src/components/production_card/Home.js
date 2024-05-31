@@ -483,9 +483,9 @@ const Home = (p) => {
           )}
 
           <div className={c.title2}>
-          <div className={c.line}></div>
-          <h4>PROVISIONAL mutation</h4>
-        </div>
+            <div className={c.line}></div>
+            <h4>PROVISIONAL mutation</h4>
+          </div>
 
           <div className={c.title2}>
             <div className={c.line}></div>
