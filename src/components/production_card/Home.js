@@ -131,6 +131,34 @@ const Home = (p) => {
   useEffect(() => {
     callback();
   }, [callback]);
+  const callbackmu = useCallback(async () => {
+    if(employeeCrew!==null){
+      try {
+        const response = await fetch(
+          `${api}/employee/transfer/?date=${today}&teamleader=${isLoged.mtll}&crew=${employeeCrew._id.crew}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${isLoged.token}`,
+            },
+          }
+        );
+        if (!response.ok) {
+          throw new Error(response.status);
+        }
+        const d = await response.json();
+        console.log("cl1m:", d);
+        setDatam(d);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    
+  }, [isLoged.token,isLoged.mtll, today, employeeCrew]);
+  useEffect(() => {
+    callbackmu();
+  }, [callbackmu]);
 
   const postSingleEmpl = async (d, m, ph) => {
     if (shift === null) {
