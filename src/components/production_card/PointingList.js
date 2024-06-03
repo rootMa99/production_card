@@ -444,23 +444,27 @@ const PointingList = (p) => {
 
   return (
     <div className={c.container}>
-      <input
-        type="number"
-        placeholder="search by matricule"
-        className={c.searchmlle}
-        value={inputValue}
-        onChange={changeHandler}
-        pattern="[0-9]*"
-      />
-      <h4
-        className={c.sae}
-        onClick={(e) => {
-          setSea(!sae);
-          setEmpExc([]);
-        }}
-      >
-        set all except
-      </h4>
+      {!p.pm && (
+        <React.Fragment>
+          <input
+            type="number"
+            placeholder="search by matricule"
+            className={c.searchmlle}
+            value={inputValue}
+            onChange={changeHandler}
+            pattern="[0-9]*"
+          />
+          <h4
+            className={c.sae}
+            onClick={(e) => {
+              setSea(!sae);
+              setEmpExc([]);
+            }}
+          >
+            set all except
+          </h4>
+        </React.Fragment>
+      )}
       {sae && (
         <div className={c.pointingEmpl} style={{ marginBottom: "1rem" }}>
           <div className={c.poinHoldWraper} style={{ flexDirection: "column" }}>

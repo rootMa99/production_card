@@ -524,6 +524,7 @@ const Home = (p) => {
               singleEmpl={postSingleEmpl}
               multiEmpl={postMultiEmpl}
               today={today}
+              pm={true}
             />
           <div className={c.title2}>
             <div className={c.line}></div>
