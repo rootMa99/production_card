@@ -133,7 +133,7 @@ const Home = (p) => {
   }, [callback]);
   const callbackmu = useCallback(async () => {
     if (employeeCrew !== null) {
-      console.log(isLoged.mtll, employeeCrew._id.crew)
+      console.log(isLoged.mtll, employeeCrew._id.crew);
       try {
         const response = await fetch(
           `${api}/employee/transfer/?date=${today}&teamleader=${isLoged.mtll}&crew=${employeeCrew._id.crew}`,
