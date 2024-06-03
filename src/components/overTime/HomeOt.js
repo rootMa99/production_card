@@ -49,12 +49,12 @@ const customStyles = {
   }),
   input: (provided) => ({
     ...provided,
-    color:"#fff",
+    color: "#fff",
     fontSize: "10px",
   }),
   singleValue: (p) => ({
     ...p,
-    color:"#fff",
+    color: "#fff",
   }),
   menuList: (provided) => ({
     maxHeight: "70px",
@@ -132,7 +132,7 @@ const HomeOt = () => {
     }
   };
 
-//   console.log(extractEmpl(data));
+  //   console.log(extractEmpl(data));
 
   return (
     <div className={c.container}>
