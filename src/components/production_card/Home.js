@@ -276,7 +276,7 @@ const Home = (p) => {
     setEmb(em);
   };
   const pah = calculateActualPaidHours(
-    employeeCrew === null ? [] : employeeCrew.employees
+    datam.length===0? employeeCrew === null ? [] : employeeCrew.employees : employeeCrew === null ? [...datam] : [...employeeCrew.employees, ...datam]
   );
   const sendOutput = async (d) => {
     try {
@@ -440,8 +440,11 @@ const Home = (p) => {
             <div className={c.data}>
               <h3>actual headcount</h3>
               <span>
-                {calculateActualHeadCount(
+                {datam.length===0 ? calculateActualHeadCount(
                   employeeCrew === null ? [] : employeeCrew.employees,
+                  today
+                ).toFixed(1) : calculateActualHeadCount(
+                  employeeCrew === null ? [...datam] : [...employeeCrew.employees, ...datam],
                   today
                 ).toFixed(1)}
               </span>
