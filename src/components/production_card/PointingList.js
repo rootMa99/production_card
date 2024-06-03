@@ -747,7 +747,7 @@ const PointingList = (p) => {
                                     id="multiSelect"
                                     inputId="shiftleader1"
                                     styles={customStyles}
-                                    placeholder="select shift"
+                                    placeholder="select teamleader"
                                     onChange={(e) =>
                                       setpoin((p) => ({ ...p, ttl: e.value }))
                                     }
@@ -773,7 +773,7 @@ const PointingList = (p) => {
                                       id="multiSelect"
                                       inputId="shiftleader1"
                                       styles={customStyles}
-                                      placeholder="select shift"
+                                      placeholder="select crew"
                                       onChange={(e) =>
                                         setpoin((p) => ({
                                           ...p,
@@ -1351,7 +1351,7 @@ const PointingList = (p) => {
                                 id="multiSelect"
                                 inputId="shiftleader1"
                                 styles={customStyles}
-                                placeholder="select shift"
+                                placeholder="select teamleader"
                                 onChange={(e) =>
                                   setpoin((p) => ({ ...p, ttl: e.value }))
                                 }
@@ -1377,7 +1377,7 @@ const PointingList = (p) => {
                                   id="multiSelect"
                                   inputId="shiftleader1"
                                   styles={customStyles}
-                                  placeholder="select shift"
+                                  placeholder="select crew"
                                   onChange={(e) =>
                                     setpoin((p) => ({
                                       ...p,
