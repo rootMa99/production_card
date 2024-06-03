@@ -1355,10 +1355,6 @@ const PointingList = (p) => {
                                 onChange={(e) =>
                                   setpoin((p) => ({ ...p, ttl: e.value }))
                                 }
-                                // value={{
-                                //   label: poin.ttl,
-                                //   value: poin.ttl,
-                                // }}
                               />
                             </div>
                             {poin.ttl.trim() !== "" && (
@@ -1405,10 +1401,6 @@ const PointingList = (p) => {
                                 onChange={(e) =>
                                   setpoin((p) => ({ ...p, mutType: e.value }))
                                 }
-                                // value={{
-                                //   label: poin.ttl,
-                                //   value: poin.ttl,
-                                // }}
                               />
                             </div>
                           </React.Fragment>
