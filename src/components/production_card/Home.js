@@ -515,7 +515,13 @@ const Home = (p) => {
             <div className={c.line}></div>
             <h4>PROVISIONAL mutation</h4>
           </div>
-
+          <PointingList
+              data={datam}
+              selectst={customStyles}
+              singleEmpl={postSingleEmpl}
+              multiEmpl={postMultiEmpl}
+              today={today}
+            />
           <div className={c.title2}>
             <div className={c.line}></div>
             <h4>output</h4>
