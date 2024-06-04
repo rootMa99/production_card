@@ -156,7 +156,14 @@ const PointingList = (p) => {
     mutType: "",
     motif: "",
     details: "",
-    tom: [],
+    tom: [
+      {
+        id: Math.random(),
+        teamleader: "",
+        crew: "",
+        paidHour: 0,
+      },
+    ],
   });
   const [saePoin, setSaePoin] = useState({
     status: "",
@@ -233,6 +240,14 @@ const PointingList = (p) => {
       mutType: "",
       motif: "",
       details: "",
+      tom: [
+        {
+          id: Math.random(),
+          teamleader: "",
+          crew: "",
+          paidHour: 0,
+        },
+      ],
     });
   };
   const toogleid = (e, t) => {
@@ -257,6 +272,14 @@ const PointingList = (p) => {
       mutType: "",
       motif: o.motif === undefined ? "" : o.motif,
       details: o.details === undefined ? "" : o.details,
+      tom: [
+        {
+          id: Math.random(),
+          teamleader: "",
+          crew: "",
+          paidHour: 0,
+        },
+      ],
     });
   };
 
@@ -1408,7 +1431,13 @@ const PointingList = (p) => {
                           </React.Fragment>
                         )}
                         {poin.pointingOptions.includes("mutation") && (
-                          <React.Fragment></React.Fragment>
+                          <div className={c.mutexpx}>
+                          {poin.tom.map(m=><div key={m.id}>
+                            
+                            
+                            </div>)}
+
+                          </div>
                         )}
                         <div className={c.poinHold}>
                           <span>Status</span>
