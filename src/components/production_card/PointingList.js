@@ -156,6 +156,7 @@ const PointingList = (p) => {
     mutType: "",
     motif: "",
     details: "",
+    tom:[]
   });
   const [saePoin, setSaePoin] = useState({
     status: "",
@@ -847,11 +848,7 @@ const PointingList = (p) => {
                                 />
                               </div>
                             )}
-                            {
-                              poin.pointingOptions.includes("mutation") && <React.Fragment>
-                              <h4>her</h4>
-                              </React.Fragment>
-                            }
+
                             {poin.pointingOptions.includes("ctn") && (
                               <div className={c.poinHold}>
                                 <span>ctn duration</span>
