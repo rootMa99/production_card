@@ -148,7 +148,7 @@ const Home = (p) => {
         if (!response.ok) {
           throw new Error(response.status);
         }
-        const d = await response.json();
+        const d = await response.json(); 
         console.log("cl1m:", d);
         setDatam(d);
       } catch (e) {
