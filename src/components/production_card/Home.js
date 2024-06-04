@@ -160,7 +160,7 @@ const Home = (p) => {
     callbackmu();
   }, [callbackmu]);
 
-  const postSingleEmpl = async (d, m, ph) => {
+  const postSingleEmpl = async (d, m, ph, mmd) => {
     if (shift === null) {
       alert("please select shift!");
       return false;
@@ -189,6 +189,7 @@ const Home = (p) => {
           crew: d.tCrew,
           isDefinitely: d.mutType === "temporelle" ? false : true,
         },
+        toMany: mmd !== undefined ? mmd : [],
       };
       console.log(body);
       const response = await fetch(`${api}/production-card/pointing-for-one/`, {
@@ -276,7 +277,13 @@ const Home = (p) => {
     setEmb(em);
   };
   const pah = calculateActualPaidHours(
-    datam.length===0? employeeCrew === null ? [] : employeeCrew.employees : employeeCrew === null ? [...datam] : [...employeeCrew.employees, ...datam]
+    datam.length === 0
+      ? employeeCrew === null
+        ? []
+        : employeeCrew.employees
+      : employeeCrew === null
+      ? [...datam]
+      : [...employeeCrew.employees, ...datam]
   );
   const sendOutput = async (d) => {
     try {
@@ -440,13 +447,17 @@ const Home = (p) => {
             <div className={c.data}>
               <h3>actual headcount</h3>
               <span>
-                {datam.length===0 ? calculateActualHeadCount(
-                  employeeCrew === null ? [] : employeeCrew.employees,
-                  today
-                ).toFixed(1) : calculateActualHeadCount(
-                  employeeCrew === null ? [...datam] : [...employeeCrew.employees, ...datam],
-                  today
-                ).toFixed(1)}
+                {datam.length === 0
+                  ? calculateActualHeadCount(
+                      employeeCrew === null ? [] : employeeCrew.employees,
+                      today
+                    ).toFixed(1)
+                  : calculateActualHeadCount(
+                      employeeCrew === null
+                        ? [...datam]
+                        : [...employeeCrew.employees, ...datam],
+                      today
+                    ).toFixed(1)}
               </span>
             </div>
             <div className={c.data}>
@@ -514,18 +525,18 @@ const Home = (p) => {
             />
           )}
 
-          <div className={c.title2} style={{marginBottom:"1rem"}}>
+          <div className={c.title2} style={{ marginBottom: "1rem" }}>
             <div className={c.line}></div>
             <h4>PROVISIONAL mutation</h4>
           </div>
           <PointingList
-              data={datam}
-              selectst={customStyles}
-              singleEmpl={postSingleEmpl}
-              multiEmpl={postMultiEmpl}
-              today={today}
-              pm={true}
-            />
+            data={datam}
+            selectst={customStyles}
+            singleEmpl={postSingleEmpl}
+            multiEmpl={postMultiEmpl}
+            today={today}
+            pm={true}
+          />
           <div className={c.title2}>
             <div className={c.line}></div>
             <h4>output</h4>

@@ -345,7 +345,7 @@ const PointingList = (p) => {
       default:
     }
 
-    const f = await p.singleEmpl(poin, smt, paidhour);
+    const f = await p.singleEmpl(poin, smt, paidhour, tom);
     if (f) {
       toogle();
     }
