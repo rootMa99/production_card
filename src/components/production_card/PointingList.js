@@ -267,6 +267,12 @@ const PointingList = (p) => {
     });
   };
 
+  const durt = (d) => {
+    let dh = 0;
+    d.map((m) => (dh += m.paidHour));
+    return dh;
+  };
+
   const submitSingleData = async (smt) => {
     let paidhour;
     switch (poin.pointing) {
@@ -277,6 +283,7 @@ const PointingList = (p) => {
             poin.tDuration -
             poin.retardDuration -
             poin.ctnDuration -
+            durt(tom) -
             poin.crDuration +
             poin.otDuration;
         } else {
@@ -285,6 +292,7 @@ const PointingList = (p) => {
             poin.tDuration -
             poin.retardDuration -
             poin.ctnDuration -
+            durt(tom) -
             poin.crDuration +
             poin.otDuration;
         }
@@ -296,6 +304,7 @@ const PointingList = (p) => {
             poin.tDuration -
             poin.retardDuration -
             poin.ctnDuration -
+            durt(tom) -
             poin.crDuration +
             poin.otDuration;
         } else {
@@ -304,6 +313,7 @@ const PointingList = (p) => {
             poin.tDuration -
             poin.retardDuration -
             poin.ctnDuration -
+            durt(tom) -
             poin.crDuration +
             poin.otDuration;
         }
@@ -1512,7 +1522,6 @@ const PointingList = (p) => {
                                             });
                                           });
                                         }}
-                                        value={poin.crDuration * 60}
                                       />
                                     </div>
                                   </React.Fragment>
