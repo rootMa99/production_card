@@ -61,11 +61,12 @@
   text-transform: capitalize;
 }
 
-.noCrewS, .sae {
+.noCrewS,
+.sae {
   color: #c9c9c9;
   text-transform: uppercase;
 }
-.sae{
+.sae {
   width: fit-content;
   margin: 0;
   text-align: left;
@@ -173,7 +174,14 @@
   }
 }
 
-
-.mutexpx{
-  
+.mutexpx {
+  width: 100%;
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  padding: 10px 0;
+}
+.tomwrap {
+  display: flex;
+  justify-content: space-around;
 }
