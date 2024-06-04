@@ -241,6 +241,14 @@ const PointingList = (p) => {
       motif: "",
       details: "",
     });
+    setTom([
+      {
+        id: Math.random(),
+        teamleader: "",
+        crew: "",
+        paidHour: 0,
+      },
+    ]);
   };
   const toogleid = (e, t) => {
     setEid(t);
@@ -265,6 +273,14 @@ const PointingList = (p) => {
       motif: o.motif === undefined ? "" : o.motif,
       details: o.details === undefined ? "" : o.details,
     });
+    setTom([
+      {
+        id: Math.random(),
+        teamleader: "",
+        crew: "",
+        paidHour: 0,
+      },
+    ]);
   };
 
   const durt = (d) => {
