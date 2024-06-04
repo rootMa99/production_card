@@ -847,6 +847,9 @@ const PointingList = (p) => {
                                 />
                               </div>
                             )}
+                            {
+                              poin.pointingOptions.includes("other") && <h2>nmi</h2>
+                            }
                             {poin.pointingOptions.includes("ctn") && (
                               <div className={c.poinHold}>
                                 <span>ctn duration</span>
