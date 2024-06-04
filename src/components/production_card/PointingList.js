@@ -431,7 +431,7 @@ const PointingList = (p) => {
         crDuration: 0,
       }));
     }
-    if (!poin.pointingOptions.includes("other")) {
+    if (!poin.pointingOptions.includes("mutation")) {
     }
     if (poin.pointing !== "mutation") {
       setpoin((p) => ({
@@ -827,7 +827,7 @@ const PointingList = (p) => {
                                     { label: "cr", value: "cr" },
                                     { label: "t", value: "t" },
                                     { label: "retard", value: "retard" },
-                                    { label: "other", value: "other" },
+                                    { label: "mutation", value: "mutation" },
                                   ]}
                                   id="multiSelect"
                                   inputId="shiftleader1"
@@ -848,7 +848,9 @@ const PointingList = (p) => {
                               </div>
                             )}
                             {
-                              poin.pointingOptions.includes("other") && <h2>nmi</h2>
+                              poin.pointingOptions.includes("mutation") && <React.Fragment>
+                              <h4>her</h4>
+                              </React.Fragment>
                             }
                             {poin.pointingOptions.includes("ctn") && (
                               <div className={c.poinHold}>
@@ -1182,7 +1184,7 @@ const PointingList = (p) => {
                                 { label: "cr", value: "cr" },
                                 { label: "t", value: "t" },
                                 { label: "retard", value: "retard" },
-                                { label: "other", value: "other" },
+                                { label: "mutation", value: "mutation" },
                               ]}
                               id="multiSelect"
                               inputId="shiftleader1"
