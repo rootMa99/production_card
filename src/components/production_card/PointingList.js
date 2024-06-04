@@ -1533,7 +1533,7 @@ const PointingList = (p) => {
                                 ])
                               }
                             >
-                              add
+                              add new teamleader
                             </h5>
                           </div>
                         )}
