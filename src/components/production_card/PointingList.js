@@ -1128,10 +1128,21 @@ const PointingList = (p) => {
               </div>
             </div>
             <div className={c.trainingD} style={{ backgroundColor: "#E5E1DA" }}>
-              <div className={c.dataT} style={{ width: "50%" }}>
+              {p.pm && (
+                <div className={c.dataT} style={{ width: "33%" }}>
+                  <h3>from</h3>
+                </div>
+              )}
+              <div
+                className={c.dataT}
+                style={p.pm ? { width: "33%" } : { width: "50%" }}
+              >
                 <h3 style={{ color: "black" }}>hours</h3>
               </div>
-              <div className={c.dataT} style={{ width: "50%" }}>
+              <div
+                className={c.dataT}
+                style={p.pm ? { width: "33%" } : { width: "50%" }}
+              >
                 <h3 style={{ color: "black" }}>status</h3>
               </div>
             </div>
@@ -1161,12 +1172,27 @@ const PointingList = (p) => {
                       </div>
                     </div>
                     <div className={c.trainingDi}>
-                      <div className={c.dataT} style={{ width: "50%" }}>
+                      {p.pm && (
+                        <div className={c.dataT} style={{ width: "33%" }}>
+                          <h3>{m.from.teamleader}</h3>
+                        </div>
+                      )}
+                      <div
+                        className={c.dataT}
+                        style={p.pm ? { width: "33%" } : { width: "50%" }}
+                      >
                         <h3>
-                          {m.paidHour === undefined ? 0 : m.paidHour.toFixed(2)}
+                          {p.pm
+                            ? (m.to.paidHour).toFixed(2)
+                            : m.paidHour === undefined
+                            ? 0
+                            : m.paidHour.toFixed(2)}
                         </h3>
                       </div>
-                      <div className={c.dataT} style={{ width: "50%" }}>
+                      <div
+                        className={c.dataT}
+                        style={p.pm ? { width: "33%" } : { width: "50%" }}
+                      >
                         <h3>{m.status}</h3>
                       </div>
                     </div>
