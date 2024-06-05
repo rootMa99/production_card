@@ -1765,8 +1765,10 @@ const PointingList = (p) => {
                         </div>
                         <div className={c.pointData}>
                           <h5>committed by</h5>
-                          <span className={c.pointDs}>matricule:</span>
-                          <span className={c.pointDst}>{m.requestedBy}</span>
+                          <div className={c.pointdr}>
+                            <span className={c.pointDs}>matricule:</span>
+                            <span className={c.pointDst}>{m.requestedBy}</span>
+                          </div>
                         </div>
                       </div>
                     ))}

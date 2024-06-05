@@ -213,3 +213,12 @@
   text-transform: uppercase;
   font-weight: bold;
 }
+.pointdr {
+  width: 45%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.pointDst{
+  font-weight: 500;
+}
