@@ -1027,7 +1027,122 @@ const PointingList = (p) => {
                                     }}
                                   />
                                 </div>
+                                
                               </React.Fragment>
+                            )}
+                            {poin.pointingOptions.includes("mutation") && (
+                              <div className={c.mutexpx}>
+                                {tom.map((m) => (
+                                  <div className={c.tomwrap} key={m.id}>
+                                    <div className={c.poinHold}>
+                                      <span>targeted tl</span>
+                                      <Select
+                                        components={{ DropdownIndicator }}
+                                        options={dataEp.map((m) => ({
+                                          label: m.tl.fullname,
+                                          value: m.tl.username,
+                                        }))}
+                                        id="multiSelect"
+                                        inputId="shiftleader1"
+                                        styles={customStyles}
+                                        placeholder="select teamleader"
+                                        onChange={(e) => {
+                                          setTom((p) => {
+                                            return p.map((item, ind) => {
+                                              if (changetlm(m.id) === ind) {
+                                                return {
+                                                  ...item,
+                                                  teamleader: e.value,
+                                                };
+                                              }
+                                              return item;
+                                            });
+                                          });
+                                        }}
+                                        // value={{
+                                        //   label: poin.ttl,
+                                        //   value: poin.ttl,
+                                        // }}
+                                      />
+                                    </div>
+                                    {tom[changetlm(m.id)].teamleader.trim() !==
+                                      "" && (
+                                      <React.Fragment>
+                                        <div className={c.poinHold}>
+                                          <span>targeted crew</span>
+                                          <Select
+                                            components={{ DropdownIndicator }}
+                                            options={dataEp
+                                              .filter(
+                                                (f) =>
+                                                  f.tl.username ===
+                                                  tom[changetlm(m.id)].teamleader
+                                              )[0]
+                                              .crews.map((m) => ({
+                                                label: m,
+                                                value: m,
+                                              }))}
+                                            id="multiSelect"
+                                            inputId="shiftleader1"
+                                            styles={customStyles}
+                                            placeholder="select crew"
+                                            onChange={(e) => {
+                                              setTom((p) => {
+                                                return p.map((item, ind) => {
+                                                  if (changetlm(m.id) === ind) {
+                                                    return {
+                                                      ...item,
+                                                      crew: e.value,
+                                                    };
+                                                  }
+                                                  return item;
+                                                });
+                                              });
+                                            }}
+                                          />
+                                        </div>
+                                        <div className={c.poinHold}>
+                                          <span>duration</span>
+                                          <input
+                                            type="number"
+                                            placeholder="set duration"
+                                            onChange={(e) => {
+                                              setTom((p) => {
+                                                return p.map((item, ind) => {
+                                                  if (changetlm(m.id) === ind) {
+                                                    return {
+                                                      ...item,
+                                                      paidHour:
+                                                        +e.target.value / 60,
+                                                    };
+                                                  }
+                                                  return item;
+                                                });
+                                              });
+                                            }}
+                                          />
+                                        </div>
+                                      </React.Fragment>
+                                    )}
+                                  </div>
+                                ))}
+                                <h5
+                                  className={c.addnewinputs}
+                                  onClick={(e) =>
+                                    setTom((p) => [
+                                      ...p,
+                                      {
+                                        id: Math.random(),
+                                        teamleader: "",
+                                        crew: "",
+                                        paidHour: 0,
+                                      },
+                                    ])
+                                  }
+                                >
+                                  add new teamleader
+                                </h5>
+                              </div>
                             )}
                             <div className={c.poinHold}>
                               <span>Status</span>
