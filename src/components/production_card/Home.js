@@ -527,7 +527,7 @@ const Home = (p) => {
 
           <div className={c.title2} style={{ marginBottom: "1rem" }}>
             <div className={c.line}></div>
-            <h4>PROVISIONAL mutation</h4>
+            <h4>Temporary Mutation</h4>
           </div>
           <PointingList
             data={datam}
