@@ -1183,7 +1183,9 @@ const PointingList = (p) => {
                       >
                         <h3>
                           {p.pm
-                            ? (m.to.paidHour).toFixed(2)
+                            ? m.to.paidHour === null
+                              ? 0
+                              : m.to.paidHour.toFixed(2)
                             : m.paidHour === undefined
                             ? 0
                             : m.paidHour.toFixed(2)}

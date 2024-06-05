@@ -265,7 +265,7 @@ const Home = (p) => {
     }
   }, [data, cr]);
 
-  console.log(employeeCrew);
+  console.log("crews hc", employeeCrew, datam);
   const prodHour = (d) => {
     let phs = 0;
     let em = 0;
