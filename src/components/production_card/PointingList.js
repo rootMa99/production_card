@@ -1751,13 +1751,13 @@ const PointingList = (p) => {
                         <div className={c.pointData}>
                           <h5>From</h5>
                           <div className={c.pointDsWrap}>
-                            <div style={{width:"45%"}}>
+                            <div className={c.pointdr}>
                               <span className={c.pointDs}>teamleader:</span>
                               <span className={c.pointDst}>
                                 {m.from.teamleader}
                               </span>
                             </div>
-                            <div style={{width:"45%"}}>
+                            <div className={c.pointdr}>
                               <span className={c.pointDs}>crew:</span>
                               <span className={c.pointDst}> {m.from.crew}</span>
                             </div>
