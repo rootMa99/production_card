@@ -124,7 +124,8 @@
   text-wrap: wrap;
 }
 
-.submitShi, .addnewinputs {
+.submitShi,
+.addnewinputs {
   color: #222222;
   outline: none;
   background-color: transparent;
@@ -140,11 +141,11 @@
   color: #f84018;
   border-bottom: 3px solid#f84018;
 }
-.addnewinputs{
-  margin:  0;
+.addnewinputs {
+  margin: 0;
   margin-left: auto;
   margin-right: 16px;
-  color: #006B63;
+  color: #006b63;
   border-bottom: 3px solid;
 }
 @-webkit-keyframes scale-in-ver-top {
@@ -192,3 +193,18 @@
   justify-content: space-around;
 }
 
+.pointData h5 {
+  margin: 0;
+  padding: 10px;
+  color: #f84018;
+  text-transform: uppercase;
+}
+.pointData {
+  width: 100%;
+}
+.pointDsWrap {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

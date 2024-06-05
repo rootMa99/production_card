@@ -1308,435 +1308,468 @@ const PointingList = (p) => {
                       </div>
                     </div>
                   </div>
-                  {eid === m._id && 
-                    !m.isPaidHour&& (<div className={c.pointingEmpl} key={m._id}>
-                      <div className={c.poinHoldWraper}>
-                        <div className={c.poinHold}>
-                          <span>Pointing</span>
-                          <Select
-                            components={{ DropdownIndicator }}
-                            options={[
-                              { label: "shift", value: "shift" },
-                              { label: "admin", value: "admin" },
-                              { label: "ab", value: "ab" },
-                              { label: "ap", value: "ap" },
-                              { label: "ma", value: "ma" },
-                              { label: "tl", value: "tl" },
-                              { label: "ctp", value: "ctp" },
-                              { label: "mutation", value: "mutation" },
-                            ]}
-                            id="multiSelect"
-                            inputId="shiftleader1"
-                            styles={customStyles}
-                            placeholder="select shift"
-                            onChange={(e) =>
-                              setpoin((p) => ({
-                                ...p,
-                                pointingOptions: [],
-                                ctnDuration: 0,
-                                otDuration: 0,
-                                tDuration: 0,
-                                retardDuration: 0,
-                                crDuration: 0,
-                                pointing: e.value,
-                              }))
-                            }
-                            value={{
-                              label: poin.pointing,
-                              value: poin.pointing,
-                            }}
-                          />
-                        </div>
-                        {(poin.pointing === "shift" ||
-                          poin.pointing === "admin") && (
+                  {eid === m._id &&
+                    (!m.isPaidHour ? (
+                      <div className={c.pointingEmpl} key={m._id}>
+                        <div className={c.poinHoldWraper}>
                           <div className={c.poinHold}>
-                            <span>Pointing exc</span>
+                            <span>Pointing</span>
                             <Select
                               components={{ DropdownIndicator }}
                               options={[
-                                { label: "ot", value: "ot" },
-                                { label: "ctn", value: "ctn" },
-                                { label: "cr", value: "cr" },
-                                { label: "t", value: "t" },
-                                { label: "retard", value: "retard" },
+                                { label: "shift", value: "shift" },
+                                { label: "admin", value: "admin" },
+                                { label: "ab", value: "ab" },
+                                { label: "ap", value: "ap" },
+                                { label: "ma", value: "ma" },
+                                { label: "tl", value: "tl" },
+                                { label: "ctp", value: "ctp" },
                                 { label: "mutation", value: "mutation" },
                               ]}
                               id="multiSelect"
                               inputId="shiftleader1"
                               styles={customStyles}
-                              placeholder="select exc"
-                              isMulti
-                              value={poin.pointingOptions.map((m) => ({
-                                label: m,
-                                value: m,
-                              }))}
+                              placeholder="select shift"
                               onChange={(e) =>
                                 setpoin((p) => ({
                                   ...p,
-                                  pointingOptions: e.map((m) => m.value),
+                                  pointingOptions: [],
+                                  ctnDuration: 0,
+                                  otDuration: 0,
+                                  tDuration: 0,
+                                  retardDuration: 0,
+                                  crDuration: 0,
+                                  pointing: e.value,
                                 }))
                               }
+                              value={{
+                                label: poin.pointing,
+                                value: poin.pointing,
+                              }}
                             />
                           </div>
-                        )}
-                        {poin.pointingOptions.includes("ctn") && (
-                          <div className={c.poinHold}>
-                            <span>ctn duration</span>
-                            <input
-                              type="number"
-                              placeholder="set ctn duration"
-                              onChange={(e) =>
-                                setpoin((p) => ({
-                                  ...p,
-                                  ctnDuration: +e.target.value / 60,
-                                }))
-                              }
-                              value={poin.ctnDuration * 60}
-                            />
-                          </div>
-                        )}
-                        {poin.pointingOptions.includes("retard") && (
-                          <div className={c.poinHold}>
-                            <span>retard duration</span>
-                            <input
-                              type="number"
-                              placeholder="set retard duration"
-                              onChange={(e) =>
-                                setpoin((p) => ({
-                                  ...p,
-                                  retardDuration: +e.target.value / 60,
-                                }))
-                              }
-                              value={poin.retardDuration * 60}
-                            />
-                          </div>
-                        )}
-                        {poin.pointingOptions.includes("t") && (
-                          <div className={c.poinHold}>
-                            <span>t duration</span>
-                            <input
-                              type="number"
-                              placeholder="set t duration"
-                              onChange={(e) =>
-                                setpoin((p) => ({
-                                  ...p,
-                                  tDuration: +e.target.value / 60,
-                                }))
-                              }
-                              value={poin.tDuration * 60}
-                            />
-                          </div>
-                        )}
-                        {poin.pointingOptions.includes("ot") && (
-                          <div className={c.poinHold}>
-                            <span>ot duration</span>
-                            <input
-                              type="number"
-                              placeholder="set ot duration"
-                              onChange={(e) =>
-                                setpoin((p) => ({
-                                  ...p,
-                                  otDuration: +e.target.value / 60,
-                                }))
-                              }
-                              value={poin.otDuration * 60}
-                            />
-                          </div>
-                        )}
-                        {poin.pointingOptions.includes("cr") && (
-                          <div className={c.poinHold}>
-                            <span>cr duration</span>
-                            <input
-                              type="number"
-                              placeholder="set cr duration"
-                              onChange={(e) =>
-                                setpoin((p) => ({
-                                  ...p,
-                                  crDuration: +e.target.value / 60,
-                                }))
-                              }
-                              value={poin.crDuration * 60}
-                            />
-                          </div>
-                        )}
-                        {(poin.pointingOptions.includes("ctn") ||
-                          poin.pointing === "ctp") && (
-                          <React.Fragment>
+                          {(poin.pointing === "shift" ||
+                            poin.pointing === "admin") && (
                             <div className={c.poinHold}>
-                              <span>motif</span>
+                              <span>Pointing exc</span>
                               <Select
                                 components={{ DropdownIndicator }}
                                 options={[
-                                  { label: "backup", value: "backup" },
-                                  { label: "fe", value: "fe" },
-                                  { label: "inapt", value: "inapt" },
-                                  { label: "planning", value: "planning" },
-                                  { label: "rm", value: "rm" },
-                                  { label: "others", value: "others" },
+                                  { label: "ot", value: "ot" },
+                                  { label: "ctn", value: "ctn" },
+                                  { label: "cr", value: "cr" },
+                                  { label: "t", value: "t" },
+                                  { label: "retard", value: "retard" },
+                                  { label: "mutation", value: "mutation" },
                                 ]}
                                 id="multiSelect"
                                 inputId="shiftleader1"
                                 styles={customStyles}
-                                placeholder="select motif"
-                                onChange={(e) =>
-                                  setpoin((p) => ({ ...p, motif: e.value }))
-                                }
-                                value={{
-                                  label: poin.motif,
-                                  value: poin.motif,
-                                }}
-                              />
-                            </div>
-                            <div className={c.poinHold}>
-                              <span>details</span>
-                              <CreatableSelect
-                                isClearable
-                                components={{ DropdownIndicator }}
-                                options={[
-                                  { label: "exit", value: "exit" },
-                                  { label: "backup", value: "backup" },
-                                  { label: "fe", value: "fe" },
-                                  { label: "night", value: "night" },
-                                  { label: "illness", value: "illness" },
-                                  { label: "cs", value: "cs" },
-                                ]}
-                                id="multiSelect"
-                                inputId="shiftleader1"
-                                styles={customStyles}
-                                placeholder="select details"
+                                placeholder="select exc"
+                                isMulti
+                                value={poin.pointingOptions.map((m) => ({
+                                  label: m,
+                                  value: m,
+                                }))}
                                 onChange={(e) =>
                                   setpoin((p) => ({
                                     ...p,
-                                    details: e === null ? "" : e.value,
+                                    pointingOptions: e.map((m) => m.value),
                                   }))
                                 }
-                                value={{
-                                  label: poin.details,
-                                  value: poin.details,
-                                }}
                               />
                             </div>
-                          </React.Fragment>
-                        )}
-                        {poin.pointing === "mutation" && (
-                          <React.Fragment>
+                          )}
+                          {poin.pointingOptions.includes("ctn") && (
                             <div className={c.poinHold}>
-                              <span>targeted tl</span>
-                              <Select
-                                components={{ DropdownIndicator }}
-                                options={dataEp.map((m) => ({
-                                  label: m.tl.fullname,
-                                  value: m.tl.username,
-                                }))}
-                                id="multiSelect"
-                                inputId="shiftleader1"
-                                styles={customStyles}
-                                placeholder="select teamleader"
+                              <span>ctn duration</span>
+                              <input
+                                type="number"
+                                placeholder="set ctn duration"
                                 onChange={(e) =>
-                                  setpoin((p) => ({ ...p, ttl: e.value }))
+                                  setpoin((p) => ({
+                                    ...p,
+                                    ctnDuration: +e.target.value / 60,
+                                  }))
                                 }
+                                value={poin.ctnDuration * 60}
                               />
                             </div>
-                            {poin.ttl.trim() !== "" && (
+                          )}
+                          {poin.pointingOptions.includes("retard") && (
+                            <div className={c.poinHold}>
+                              <span>retard duration</span>
+                              <input
+                                type="number"
+                                placeholder="set retard duration"
+                                onChange={(e) =>
+                                  setpoin((p) => ({
+                                    ...p,
+                                    retardDuration: +e.target.value / 60,
+                                  }))
+                                }
+                                value={poin.retardDuration * 60}
+                              />
+                            </div>
+                          )}
+                          {poin.pointingOptions.includes("t") && (
+                            <div className={c.poinHold}>
+                              <span>t duration</span>
+                              <input
+                                type="number"
+                                placeholder="set t duration"
+                                onChange={(e) =>
+                                  setpoin((p) => ({
+                                    ...p,
+                                    tDuration: +e.target.value / 60,
+                                  }))
+                                }
+                                value={poin.tDuration * 60}
+                              />
+                            </div>
+                          )}
+                          {poin.pointingOptions.includes("ot") && (
+                            <div className={c.poinHold}>
+                              <span>ot duration</span>
+                              <input
+                                type="number"
+                                placeholder="set ot duration"
+                                onChange={(e) =>
+                                  setpoin((p) => ({
+                                    ...p,
+                                    otDuration: +e.target.value / 60,
+                                  }))
+                                }
+                                value={poin.otDuration * 60}
+                              />
+                            </div>
+                          )}
+                          {poin.pointingOptions.includes("cr") && (
+                            <div className={c.poinHold}>
+                              <span>cr duration</span>
+                              <input
+                                type="number"
+                                placeholder="set cr duration"
+                                onChange={(e) =>
+                                  setpoin((p) => ({
+                                    ...p,
+                                    crDuration: +e.target.value / 60,
+                                  }))
+                                }
+                                value={poin.crDuration * 60}
+                              />
+                            </div>
+                          )}
+                          {(poin.pointingOptions.includes("ctn") ||
+                            poin.pointing === "ctp") && (
+                            <React.Fragment>
                               <div className={c.poinHold}>
-                                <span>targeted crew</span>
+                                <span>motif</span>
                                 <Select
                                   components={{ DropdownIndicator }}
-                                  options={dataEp
-                                    .filter(
-                                      (f) => f.tl.username === poin.ttl
-                                    )[0]
-                                    .crews.map((m) => ({
-                                      label: m,
-                                      value: m,
-                                    }))}
+                                  options={[
+                                    { label: "backup", value: "backup" },
+                                    { label: "fe", value: "fe" },
+                                    { label: "inapt", value: "inapt" },
+                                    { label: "planning", value: "planning" },
+                                    { label: "rm", value: "rm" },
+                                    { label: "others", value: "others" },
+                                  ]}
                                   id="multiSelect"
                                   inputId="shiftleader1"
                                   styles={customStyles}
-                                  placeholder="select crew"
+                                  placeholder="select motif"
+                                  onChange={(e) =>
+                                    setpoin((p) => ({ ...p, motif: e.value }))
+                                  }
+                                  value={{
+                                    label: poin.motif,
+                                    value: poin.motif,
+                                  }}
+                                />
+                              </div>
+                              <div className={c.poinHold}>
+                                <span>details</span>
+                                <CreatableSelect
+                                  isClearable
+                                  components={{ DropdownIndicator }}
+                                  options={[
+                                    { label: "exit", value: "exit" },
+                                    { label: "backup", value: "backup" },
+                                    { label: "fe", value: "fe" },
+                                    { label: "night", value: "night" },
+                                    { label: "illness", value: "illness" },
+                                    { label: "cs", value: "cs" },
+                                  ]}
+                                  id="multiSelect"
+                                  inputId="shiftleader1"
+                                  styles={customStyles}
+                                  placeholder="select details"
                                   onChange={(e) =>
                                     setpoin((p) => ({
                                       ...p,
-                                      tCrew: e.value,
+                                      details: e === null ? "" : e.value,
                                     }))
+                                  }
+                                  value={{
+                                    label: poin.details,
+                                    value: poin.details,
+                                  }}
+                                />
+                              </div>
+                            </React.Fragment>
+                          )}
+                          {poin.pointing === "mutation" && (
+                            <React.Fragment>
+                              <div className={c.poinHold}>
+                                <span>targeted tl</span>
+                                <Select
+                                  components={{ DropdownIndicator }}
+                                  options={dataEp.map((m) => ({
+                                    label: m.tl.fullname,
+                                    value: m.tl.username,
+                                  }))}
+                                  id="multiSelect"
+                                  inputId="shiftleader1"
+                                  styles={customStyles}
+                                  placeholder="select teamleader"
+                                  onChange={(e) =>
+                                    setpoin((p) => ({ ...p, ttl: e.value }))
                                   }
                                 />
                               </div>
-                            )}
-                            <div className={c.poinHold}>
-                              <span>mutation type</span>
-                              <Select
-                                components={{ DropdownIndicator }}
-                                options={[
-                                  { label: "temporelle", value: "temporelle" },
-                                  {
-                                    label: "Définitivement",
-                                    value: "Définitivement",
-                                  },
-                                ]}
-                                id="multiSelect"
-                                inputId="shiftleader1"
-                                styles={customStyles}
-                                placeholder="select type"
-                                onChange={(e) =>
-                                  setpoin((p) => ({ ...p, mutType: e.value }))
-                                }
-                              />
-                            </div>
-                          </React.Fragment>
-                        )}
-                        {poin.pointingOptions.includes("mutation") && (
-                          <div className={c.mutexpx}>
-                            {tom.map((m) => (
-                              <div className={c.tomwrap} key={m.id}>
+                              {poin.ttl.trim() !== "" && (
                                 <div className={c.poinHold}>
-                                  <span>targeted tl</span>
+                                  <span>targeted crew</span>
                                   <Select
                                     components={{ DropdownIndicator }}
-                                    options={dataEp.map((m) => ({
-                                      label: m.tl.fullname,
-                                      value: m.tl.username,
-                                    }))}
+                                    options={dataEp
+                                      .filter(
+                                        (f) => f.tl.username === poin.ttl
+                                      )[0]
+                                      .crews.map((m) => ({
+                                        label: m,
+                                        value: m,
+                                      }))}
                                     id="multiSelect"
                                     inputId="shiftleader1"
                                     styles={customStyles}
-                                    placeholder="select teamleader"
-                                    onChange={(e) => {
-                                      setTom((p) => {
-                                        return p.map((item, ind) => {
-                                          if (changetlm(m.id) === ind) {
-                                            return {
-                                              ...item,
-                                              teamleader: e.value,
-                                            };
-                                          }
-                                          return item;
-                                        });
-                                      });
-                                    }}
-                                    // value={{
-                                    //   label: poin.ttl,
-                                    //   value: poin.ttl,
-                                    // }}
+                                    placeholder="select crew"
+                                    onChange={(e) =>
+                                      setpoin((p) => ({
+                                        ...p,
+                                        tCrew: e.value,
+                                      }))
+                                    }
                                   />
                                 </div>
-                                {tom[changetlm(m.id)].teamleader.trim() !==
-                                  "" && (
-                                  <React.Fragment>
-                                    <div className={c.poinHold}>
-                                      <span>targeted crew</span>
-                                      <Select
-                                        components={{ DropdownIndicator }}
-                                        options={dataEp
-                                          .filter(
-                                            (f) =>
-                                              f.tl.username ===
-                                              tom[changetlm(m.id)].teamleader
-                                          )[0]
-                                          .crews.map((m) => ({
-                                            label: m,
-                                            value: m,
-                                          }))}
-                                        id="multiSelect"
-                                        inputId="shiftleader1"
-                                        styles={customStyles}
-                                        placeholder="select crew"
-                                        onChange={(e) => {
-                                          setTom((p) => {
-                                            return p.map((item, ind) => {
-                                              if (changetlm(m.id) === ind) {
-                                                return {
-                                                  ...item,
-                                                  crew: e.value,
-                                                };
-                                              }
-                                              return item;
-                                            });
-                                          });
-                                        }}
-                                      />
-                                    </div>
-                                    <div className={c.poinHold}>
-                                      <span>duration</span>
-                                      <input
-                                        type="number"
-                                        placeholder="set duration"
-                                        onChange={(e) => {
-                                          setTom((p) => {
-                                            return p.map((item, ind) => {
-                                              if (changetlm(m.id) === ind) {
-                                                return {
-                                                  ...item,
-                                                  paidHour:
-                                                    +e.target.value / 60,
-                                                };
-                                              }
-                                              return item;
-                                            });
-                                          });
-                                        }}
-                                      />
-                                    </div>
-                                  </React.Fragment>
-                                )}
+                              )}
+                              <div className={c.poinHold}>
+                                <span>mutation type</span>
+                                <Select
+                                  components={{ DropdownIndicator }}
+                                  options={[
+                                    {
+                                      label: "temporelle",
+                                      value: "temporelle",
+                                    },
+                                    {
+                                      label: "Définitivement",
+                                      value: "Définitivement",
+                                    },
+                                  ]}
+                                  id="multiSelect"
+                                  inputId="shiftleader1"
+                                  styles={customStyles}
+                                  placeholder="select type"
+                                  onChange={(e) =>
+                                    setpoin((p) => ({ ...p, mutType: e.value }))
+                                  }
+                                />
                               </div>
-                            ))}
-                            <h5
-                              className={c.addnewinputs}
-                              onClick={(e) =>
-                                setTom((p) => [
-                                  ...p,
-                                  {
-                                    id: Math.random(),
-                                    teamleader: "",
-                                    crew: "",
-                                    paidHour: 0,
-                                  },
-                                ])
+                            </React.Fragment>
+                          )}
+                          {poin.pointingOptions.includes("mutation") && (
+                            <div className={c.mutexpx}>
+                              {tom.map((m) => (
+                                <div className={c.tomwrap} key={m.id}>
+                                  <div className={c.poinHold}>
+                                    <span>targeted tl</span>
+                                    <Select
+                                      components={{ DropdownIndicator }}
+                                      options={dataEp.map((m) => ({
+                                        label: m.tl.fullname,
+                                        value: m.tl.username,
+                                      }))}
+                                      id="multiSelect"
+                                      inputId="shiftleader1"
+                                      styles={customStyles}
+                                      placeholder="select teamleader"
+                                      onChange={(e) => {
+                                        setTom((p) => {
+                                          return p.map((item, ind) => {
+                                            if (changetlm(m.id) === ind) {
+                                              return {
+                                                ...item,
+                                                teamleader: e.value,
+                                              };
+                                            }
+                                            return item;
+                                          });
+                                        });
+                                      }}
+                                      // value={{
+                                      //   label: poin.ttl,
+                                      //   value: poin.ttl,
+                                      // }}
+                                    />
+                                  </div>
+                                  {tom[changetlm(m.id)].teamleader.trim() !==
+                                    "" && (
+                                    <React.Fragment>
+                                      <div className={c.poinHold}>
+                                        <span>targeted crew</span>
+                                        <Select
+                                          components={{ DropdownIndicator }}
+                                          options={dataEp
+                                            .filter(
+                                              (f) =>
+                                                f.tl.username ===
+                                                tom[changetlm(m.id)].teamleader
+                                            )[0]
+                                            .crews.map((m) => ({
+                                              label: m,
+                                              value: m,
+                                            }))}
+                                          id="multiSelect"
+                                          inputId="shiftleader1"
+                                          styles={customStyles}
+                                          placeholder="select crew"
+                                          onChange={(e) => {
+                                            setTom((p) => {
+                                              return p.map((item, ind) => {
+                                                if (changetlm(m.id) === ind) {
+                                                  return {
+                                                    ...item,
+                                                    crew: e.value,
+                                                  };
+                                                }
+                                                return item;
+                                              });
+                                            });
+                                          }}
+                                        />
+                                      </div>
+                                      <div className={c.poinHold}>
+                                        <span>duration</span>
+                                        <input
+                                          type="number"
+                                          placeholder="set duration"
+                                          onChange={(e) => {
+                                            setTom((p) => {
+                                              return p.map((item, ind) => {
+                                                if (changetlm(m.id) === ind) {
+                                                  return {
+                                                    ...item,
+                                                    paidHour:
+                                                      +e.target.value / 60,
+                                                  };
+                                                }
+                                                return item;
+                                              });
+                                            });
+                                          }}
+                                        />
+                                      </div>
+                                    </React.Fragment>
+                                  )}
+                                </div>
+                              ))}
+                              <h5
+                                className={c.addnewinputs}
+                                onClick={(e) =>
+                                  setTom((p) => [
+                                    ...p,
+                                    {
+                                      id: Math.random(),
+                                      teamleader: "",
+                                      crew: "",
+                                      paidHour: 0,
+                                    },
+                                  ])
+                                }
+                              >
+                                add new teamleader
+                              </h5>
+                            </div>
+                          )}
+                          <div className={c.poinHold}>
+                            <span>Status</span>
+                            <Select
+                              components={{ DropdownIndicator }}
+                              options={[
+                                { label: "none", value: "" },
+                                {
+                                  label: "Maladie Long",
+                                  value: "Maladie Long",
+                                },
+                                { label: "Descipline", value: "Descipline" },
+                                { label: "Inapt", value: "Inapt" },
+                                { label: "Inapt Nuit", value: "Inapt Nuit" },
+                                { label: "Inapt 12H", value: "Inapt 12H" },
+                                { label: "Allaitement", value: "Allaitement" },
+                                { label: "MT", value: "MT" },
+                                { label: "Enceinte", value: "Enceinte" },
+                                {
+                                  label: "New Operator",
+                                  value: "New Operator",
+                                },
+                              ]}
+                              id="multiSelect"
+                              inputId="shiftleader1"
+                              styles={customStyles}
+                              placeholder="select shift"
+                              onChange={(e) =>
+                                setpoin((p) => ({ ...p, status: e.value }))
                               }
-                            >
-                              add new teamleader
-                            </h5>
+                              value={{
+                                label: poin.status,
+                                value: poin.status,
+                              }}
+                            />
                           </div>
-                        )}
-                        <div className={c.poinHold}>
-                          <span>Status</span>
-                          <Select
-                            components={{ DropdownIndicator }}
-                            options={[
-                              { label: "none", value: "" },
-                              { label: "Maladie Long", value: "Maladie Long" },
-                              { label: "Descipline", value: "Descipline" },
-                              { label: "Inapt", value: "Inapt" },
-                              { label: "Inapt Nuit", value: "Inapt Nuit" },
-                              { label: "Inapt 12H", value: "Inapt 12H" },
-                              { label: "Allaitement", value: "Allaitement" },
-                              { label: "MT", value: "MT" },
-                              { label: "Enceinte", value: "Enceinte" },
-                              { label: "New Operator", value: "New Operator" },
-                            ]}
-                            id="multiSelect"
-                            inputId="shiftleader1"
-                            styles={customStyles}
-                            placeholder="select shift"
-                            onChange={(e) =>
-                              setpoin((p) => ({ ...p, status: e.value }))
-                            }
-                            value={{
-                              label: poin.status,
-                              value: poin.status,
-                            }}
-                          />
+                        </div>
+                        <button
+                          className={c.submitShi}
+                          onClick={(e) => submitSingleData(m.matricule)}
+                        >
+                          Submit
+                        </button>
+                      </div>
+                    ) : (
+                      <div className={c.pointingEmpl} key={m._id}>
+                        <div className={c.pointData}>
+                          <h5>From</h5>
+                          <div className={c.pointDsWrap}>
+                            <div style={{width:"45%"}}>
+                              <span className={c.pointDs}>teamleader:</span>
+                              <span className={c.pointDst}>
+                                {m.from.teamleader}
+                              </span>
+                            </div>
+                            <div style={{width:"45%"}}>
+                              <span className={c.pointDs}>crew:</span>
+                              <span className={c.pointDst}> {m.from.crew}</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div className={c.pointData}>
+                          <h5>committed by</h5>
+                          <span className={c.pointDs}>matricule:</span>
+                          <span className={c.pointDst}>{m.requestedBy}</span>
                         </div>
                       </div>
-                      <button
-                        className={c.submitShi}
-                        onClick={(e) => submitSingleData(m.matricule)}
-                      >
-                        Submit
-                      </button>
-                    </div>)
-                  }
+                    ))}
                 </React.Fragment>
               ))
             ) : (
