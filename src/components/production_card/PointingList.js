@@ -1027,7 +1027,6 @@ const PointingList = (p) => {
                                     }}
                                   />
                                 </div>
-                                
                               </React.Fragment>
                             )}
                             {poin.pointingOptions.includes("mutation") && (
@@ -1076,7 +1075,8 @@ const PointingList = (p) => {
                                               .filter(
                                                 (f) =>
                                                   f.tl.username ===
-                                                  tom[changetlm(m.id)].teamleader
+                                                  tom[changetlm(m.id)]
+                                                    .teamleader
                                               )[0]
                                               .crews.map((m) => ({
                                                 label: m,
@@ -1297,13 +1297,7 @@ const PointingList = (p) => {
                         style={p.pm ? { width: "33%" } : { width: "50%" }}
                       >
                         <h3>
-                          {p.pm
-                            ? m.to.paidHour === null
-                              ? 0
-                              : m.to.paidHour.toFixed(2)
-                            : m.paidHour === undefined
-                            ? 0
-                            : m.paidHour.toFixed(2)}
+                          {m.paidHour === undefined ? 0 : m.paidHour.toFixed(2)}
                         </h3>
                       </div>
                       <div
