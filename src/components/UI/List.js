@@ -27,6 +27,14 @@ const List = (p) => {
           overtime
         </NavLink>
       </li>
+      <li className={c.linktwo} onClick={onClickHandler}>
+        <NavLink
+          to="/mth"
+          className={({ isActive }) => (isActive ? c.activeLink : c.link)}
+        >
+          mutation history
+        </NavLink>
+      </li>
       <li
         className={`${c.linktwo} ${c.logout}`}
         onClick={() => {

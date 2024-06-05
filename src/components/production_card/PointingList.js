@@ -1308,8 +1308,8 @@ const PointingList = (p) => {
                       </div>
                     </div>
                   </div>
-                  {eid === m._id && (
-                    <div className={c.pointingEmpl} key={m._id}>
+                  {eid === m._id && 
+                    !m.isPaidHour&& (<div className={c.pointingEmpl} key={m._id}>
                       <div className={c.poinHoldWraper}>
                         <div className={c.poinHold}>
                           <span>Pointing</span>
@@ -1735,8 +1735,8 @@ const PointingList = (p) => {
                       >
                         Submit
                       </button>
-                    </div>
-                  )}
+                    </div>)
+                  }
                 </React.Fragment>
               ))
             ) : (
