@@ -549,12 +549,7 @@ const Pointing = (p) => {
           >
             <div className={c.card}>retard</div>
           </div>
-          <div
-            className={c.cardContainer}
-            onClick={(e) => onClickHandler(e, "other")}
-          >
-            <div className={c.card}>other</div>
-          </div>
+          
         </React.Fragment>
       )}
     </div>
