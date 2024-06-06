@@ -65,18 +65,18 @@ const MutHistory = (p) => {
         </div>
         <div className={c.trainingDi}>
           <div className={c.dataT} style={{ width: "50%" }}>
-            <h3>mlle</h3>
+            <h3>tl src</h3>
           </div>
           <div className={c.dataT} style={{ width: "50%" }}>
-            <h3>crew</h3>
+            <h3>crew src</h3>
           </div>
         </div>
         <div className={c.trainingD}>
           <div className={c.dataT} style={{ width: "50%" }}>
-            <h3>tl</h3>
+            <h3>tl des</h3>
           </div>
           <div className={c.dataT} style={{ width: "50%" }}>
-            <h3>crew</h3>
+            <h3>crew des</h3>
           </div>
         </div>
         <div className={c.dater} style={{ width: "20%"}}>
