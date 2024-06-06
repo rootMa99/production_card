@@ -92,10 +92,12 @@
 .aidVcon {
   width: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 13px;
 }
 .aidV {
   display: flex;
-  margin: auto;
   align-items: center;
   width: fit-content;
   gap: 0.5rem;
