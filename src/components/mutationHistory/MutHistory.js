@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 const MutHistory = (p) => {
   const { isLoged } = useSelector((s) => s.login);
   const [data, setData] = useState([]);
-  console.log(isLoged.mtll);
   const callbackmu = useCallback(async () => {
     try {
       const response = await fetch(
@@ -80,6 +79,11 @@ const MutHistory = (p) => {
             <h3>crew</h3>
           </div>
         </div>
+        <div className={c.dater} style={{ width: "20%" }}>
+          <div className={c.dataT}>
+            <h3 style={{ color: "#FFA211" }}>mut type</h3>
+          </div>
+        </div>
       </div>
       <div className={c.wraper}>
         {data.length > 0 ? (
@@ -117,6 +121,13 @@ const MutHistory = (p) => {
                   <h3>{m.to.crew}</h3>
                 </div>
               </div>
+              <div className={c.dater} style={{ width: "20%" }}>
+                <div className={c.dataT}>
+                  <h3 style={{ color: "#FFA211" }}>
+                    {m.to.isDefinitely ? "prv*" : " defv**"}
+                  </h3>
+                </div>
+              </div>
             </div>
           ))
         ) : (
@@ -124,6 +135,18 @@ const MutHistory = (p) => {
             No mutations have been recorded in the history.{" "}
           </h4>
         )}
+      </div>
+      <div className={c.aidVcon}>
+        <div className={c.aidV}>
+          <h3>
+            <mark>prv*</mark> = provisoire
+          </h3>
+        </div>
+        <div className={c.aidV}>
+          <h3>
+            <mark>defv**</mark> = définitive
+          </h3>
+        </div>
       </div>
     </div>
   );
