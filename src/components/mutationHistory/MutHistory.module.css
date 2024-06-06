@@ -71,11 +71,11 @@
   color: #f84018;
 }
 .wraper {
-  max-height: 80%;
+  max-height: 72vh;
   overflow: auto;
 }
 .wraper::-webkit-scrollbar {
-  width: 4px;
+  width: 0.5px;
   background-color: #535151;
   border-radius: 14px;
 }
