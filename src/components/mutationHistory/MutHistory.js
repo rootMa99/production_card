@@ -5,15 +5,19 @@ import { useSelector } from "react-redux";
 const MutHistory = (p) => {
   const { isLoged } = useSelector((s) => s.login);
   const [data, setData] = useState([]);
+  console.log(isLoged.mtll);
   const callbackmu = useCallback(async () => {
     try {
-      const response = await fetch(`${api}/employee/transfer`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${isLoged.token}`,
-        },
-      });
+      const response = await fetch(
+        `${api}/employee/transfer/?teamleader=${isLoged.mtll}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${isLoged.token}`,
+          },
+        }
+      );
       if (!response.ok) {
         throw new Error(response.status);
       }
@@ -23,7 +27,7 @@ const MutHistory = (p) => {
     } catch (e) {
       console.error(e);
     }
-  }, [isLoged.token]);
+  }, [isLoged.token, isLoged.mtll]);
   useEffect(() => {
     callbackmu();
   }, [callbackmu]);
@@ -32,6 +36,16 @@ const MutHistory = (p) => {
       <div className={c.title2}>
         <div className={c.line}></div>
         <h4>Mutation history</h4>
+      </div>
+      <div className={c.aidVcon}>
+        <div className={c.aidV}>
+          <span style={{ backgroundColor: "#929d96" }}></span>
+          <h3 style={{ color: "#929d96" }}>from</h3>
+        </div>
+        <div className={c.aidV}>
+          <span style={{ backgroundColor: "#e5e1da" }}></span>
+          <h3 style={{ color: "#e5e1da" }}>To</h3>
+        </div>
       </div>
       <div className={c.trainingH}>
         <div className={c.dater}>
@@ -42,7 +56,10 @@ const MutHistory = (p) => {
             <h3 style={{ color: "#E5E1DA" }}>cmt by</h3>
           </div>
         </div>
-        <div className={c.dater} style={{ backgroundColor: "#383942", width: "20%" }}>
+        <div
+          className={c.dater}
+          style={{ backgroundColor: "#383942", width: "20%" }}
+        >
           <div className={c.dataT}>
             <h3>employee</h3>
           </div>
@@ -76,7 +93,10 @@ const MutHistory = (p) => {
                   <h3 style={{ color: "#E5E1DA" }}>{m.requestedBy}</h3>
                 </div>
               </div>
-              <div className={c.dater} style={{ backgroundColor: "#383942" , width: "20%"}}>
+              <div
+                className={c.dater}
+                style={{ backgroundColor: "#383942", width: "20%" }}
+              >
                 <div className={c.dataT}>
                   <h3>{m.matricule}</h3>
                 </div>
@@ -100,7 +120,9 @@ const MutHistory = (p) => {
             </div>
           ))
         ) : (
-          <h3>no</h3>
+          <h4 className={c.noCrewS}>
+            No mutations have been recorded in the history.{" "}
+          </h4>
         )}
       </div>
     </div>
