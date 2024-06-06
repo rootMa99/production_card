@@ -36,10 +36,15 @@ const MutHistory = (p) => {
       <div className={c.trainingH}>
         <div className={c.dater}>
           <div className={c.dataT} style={{ width: "60%" }}>
-            <h3>date</h3>
+            <h3 style={{ color: "#E5E1DA" }}>date</h3>
           </div>
           <div className={c.dataT} style={{ width: "40%" }}>
-            <h3>cmt by</h3>
+            <h3 style={{ color: "#E5E1DA" }}>cmt by</h3>
+          </div>
+        </div>
+        <div className={c.dater} style={{ backgroundColor: "#383942", width: "20%" }}>
+          <div className={c.dataT}>
+            <h3>employee</h3>
           </div>
         </div>
         <div className={c.trainingDi}>
@@ -52,7 +57,7 @@ const MutHistory = (p) => {
         </div>
         <div className={c.trainingD}>
           <div className={c.dataT} style={{ width: "50%" }}>
-            <h3>teamleader</h3>
+            <h3>tl</h3>
           </div>
           <div className={c.dataT} style={{ width: "50%" }}>
             <h3>crew</h3>
@@ -65,10 +70,15 @@ const MutHistory = (p) => {
             <div className={c.trainingH} key={m._id} style={{ margin: 0 }}>
               <div className={c.dater}>
                 <div className={c.dataT} style={{ width: "60%" }}>
-                  <h3>{m.date.split("T")[0]}</h3>
+                  <h3 style={{ color: "#E5E1DA" }}>{m.date.split("T")[0]}</h3>
                 </div>
                 <div className={c.dataT} style={{ width: "40%" }}>
-                  <h3>{m.requestedBy}</h3>
+                  <h3 style={{ color: "#E5E1DA" }}>{m.requestedBy}</h3>
+                </div>
+              </div>
+              <div className={c.dater} style={{ backgroundColor: "#383942" , width: "20%"}}>
+                <div className={c.dataT}>
+                  <h3>{m.matricule}</h3>
                 </div>
               </div>
               <div className={c.trainingDi}>
