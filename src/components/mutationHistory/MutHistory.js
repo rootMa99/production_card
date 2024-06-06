@@ -79,7 +79,7 @@ const MutHistory = (p) => {
             <h3>crew des</h3>
           </div>
         </div>
-        <div className={c.dater} style={{ width: "20%"}}>
+        <div className={c.dater} style={{ width: "20%" }}>
           <div className={c.dataT}>
             <h3 style={{ color: "#FFA211" }}>mut type</h3>
           </div>
