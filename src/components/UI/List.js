@@ -1,8 +1,10 @@
 import { NavLink } from "react-router-dom";
 import c from "./List.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginActions } from "../../store/loginSlice";
+import React from "react";
 const List = (p) => {
+  const { isLoged } = useSelector((s) => s.login);
   const dispatch = useDispatch();
 
   const onClickHandler = (e) => {
@@ -11,30 +13,35 @@ const List = (p) => {
 
   return (
     <ul className={c.linkHolder} onClick={onClickHandler}>
-      <li className={c.linkOne} onClick={onClickHandler}>
-        <NavLink
-          to="cp"
-          className={({ isActive }) => (isActive ? c.activeLink : c.link)}
-        >
-          production card
-        </NavLink>
-      </li>
-      <li className={c.linktwo} onClick={onClickHandler}>
-        <NavLink
-          to="/dhc"
-          className={({ isActive }) => (isActive ? c.activeLink : c.link)}
-        >
-          overtime
-        </NavLink>
-      </li>
-      <li className={c.linktwo} onClick={onClickHandler}>
-        <NavLink
-          to="/mth"
-          className={({ isActive }) => (isActive ? c.activeLink : c.link)}
-        >
-          mutation history
-        </NavLink>
-      </li>
+      {isLoged.role === "Teamleader" && (
+        <React.Fragment>
+          <li className={c.linkOne} onClick={onClickHandler}>
+            <NavLink
+              to="cp"
+              className={({ isActive }) => (isActive ? c.activeLink : c.link)}
+            >
+              production card
+            </NavLink>
+          </li>
+          <li className={c.linktwo} onClick={onClickHandler}>
+            <NavLink
+              to="/dhc"
+              className={({ isActive }) => (isActive ? c.activeLink : c.link)}
+            >
+              overtime
+            </NavLink>
+          </li>
+          <li className={c.linktwo} onClick={onClickHandler}>
+            <NavLink
+              to="/mth"
+              className={({ isActive }) => (isActive ? c.activeLink : c.link)}
+            >
+              mutation history
+            </NavLink>
+          </li>
+        </React.Fragment>
+      )}
+
       <li
         className={`${c.linktwo} ${c.logout}`}
         onClick={() => {
