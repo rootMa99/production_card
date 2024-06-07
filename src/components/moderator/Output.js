@@ -13,16 +13,13 @@ const Output = (p) => {
             <h3 style={{ color: "#E5E1DA" }}>date</h3>
           </div>
         </div>
-        <div
-          className={c.dater}
-          style={{ backgroundColor: "#383942", width: "50%" }}
-        >
+        <div className={c.trainingD}>
           <div className={c.dataT}>
-            <h3>crew</h3>
+            <h3>tl des</h3>
           </div>
         </div>
         <div className={c.trainingDi}>
-          <div className={c.dataT} style={{ width: "50%" }}>
+          <div className={c.dataT}>
             <h3>tl src</h3>
           </div>
         </div>

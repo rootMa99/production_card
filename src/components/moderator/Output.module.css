@@ -30,7 +30,7 @@
 
 .trainingH {
   display: flex;
-  width: 80%;
+  width: 90%;
   justify-content: space-around;
   cursor: pointer;
   margin: auto;
@@ -54,6 +54,7 @@
   background-color: #929d96;
 }
 .trainingDi .dataT h3,
+.trainingD .dataT h3,
 .dater .dataT h3 {
   /* color: #f84018; */
   text-transform: uppercase;
@@ -62,11 +63,6 @@
 }
 .trainingD {
   background-color: #e5e1da;
-}
-.trainingD .dataT h3 {
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 10px;
 }
 
 .dater .dataT h3 {
