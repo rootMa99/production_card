@@ -40,7 +40,7 @@ const Output = (p) => {
     <div className={c.container}>
       <div className={c.title2}>
         <div className={c.line}></div>
-        <h4>output</h4>
+        <h4 style={{ fontSize:"22px" }}>output</h4>
       </div>
       <div className={c.trainingH}>
         <div className={c.dater}>
@@ -48,20 +48,20 @@ const Output = (p) => {
             <h3 style={{ color: "#E5E1DA" }}>date</h3>
           </div>
         </div>
-        <div className={c.trainingD}>
+        <div className={c.trainingD} style={{backgroundColor:"#929d96"}}>
           <div className={c.dataT}>
             <h3>crew</h3>
           </div>
         </div>
-        <div className={c.trainingDi}>
+        <div className={c.trainingDi} style={{backgroundColor:"#e5e1da"}}>
           <div className={c.dataT}>
             <h3>total emb qte</h3>
           </div>
         </div>
       </div>
       <div className={c.wraper}>
-        {data.map((m) => (
-          <div className={c.trainingH} style={{ marginTop: 0 }}>
+        {data.map((m, i) => (
+          <div className={c.trainingH} key={i} style={{ marginTop: 0 }}>
             <div className={c.dater}>
               <div className={c.dataT}>
                 <h3 style={{ color: "#E5E1DA" }}>{m.date.split("T")[0]}</h3>
