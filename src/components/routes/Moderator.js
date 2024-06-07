@@ -1,8 +1,6 @@
 import { Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router";
 
-
-
 const Moderator = (p) => {
   return (
     <Suspense>

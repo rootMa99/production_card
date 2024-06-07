@@ -41,7 +41,18 @@ const List = (p) => {
           </li>
         </React.Fragment>
       )}
-
+      {isLoged.role === "Moderator" && (
+        <React.Fragment>
+          <li className={c.linktwo} onClick={onClickHandler}>
+            <NavLink
+              to="/abstloo"
+              className={({ isActive }) => (isActive ? c.activeLink : c.link)}
+            >
+              data Abs & tlo & output
+            </NavLink>
+          </li>
+        </React.Fragment>
+      )}
       <li
         className={`${c.linktwo} ${c.logout}`}
         onClick={() => {
