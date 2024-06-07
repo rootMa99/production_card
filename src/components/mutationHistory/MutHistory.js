@@ -87,9 +87,7 @@ const MutHistory = (p) => {
       </div>
       <div className={c.wraper}>
         {data.length > 0 ? (
-          data
-            .sort((e, i) => {return e.date - i.date})
-            .map((m) => (
+          data.map((m) => (
               <div className={c.trainingH} key={m._id} style={{ margin: 0 }}>
                 <div className={c.dater}>
                   <div className={c.dataT} style={{ width: "60%" }}>
