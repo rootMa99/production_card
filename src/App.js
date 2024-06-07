@@ -5,6 +5,7 @@ import NavBar from './components/UI/NavBar';
 import React from 'react';
 import Login from './components/login/Login';
 import TeamLeader from './components/routes/TeamLeader';
+import Moderator from './components/routes/Moderator';
 
 function App() {
   const { isLoged } = useSelector((s) => s.login);
@@ -15,6 +16,7 @@ function App() {
           <React.Fragment>
           {!isLoged.login && <Login />}
           {isLoged.login && isLoged.role==="Teamleader" && <TeamLeader /> }
+          {isLoged.login && isLoged.role==="Moderator" && <Moderator /> }
           </React.Fragment>
         }
     </div>
