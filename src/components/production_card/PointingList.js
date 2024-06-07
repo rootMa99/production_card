@@ -339,6 +339,8 @@ const PointingList = (p) => {
       case "ma":
       case "tl":
       case "ctp":
+      case "cr":
+      case "t":
       case "mutation":
         paidhour = 0;
         break;
@@ -752,6 +754,8 @@ const PointingList = (p) => {
                                   { label: "ma", value: "ma" },
                                   { label: "tl", value: "tl" },
                                   { label: "ctp", value: "ctp" },
+                                  { label: "cr", value: "cr" },
+                                  { label: "t", value: "t" },
                                   { label: "mutation", value: "mutation" },
                                 ]}
                                 id="multiSelect"
@@ -1324,6 +1328,8 @@ const PointingList = (p) => {
                                 { label: "ma", value: "ma" },
                                 { label: "tl", value: "tl" },
                                 { label: "ctp", value: "ctp" },
+                                { label: "cr", value: "cr" },
+                                { label: "t", value: "t" },
                                 { label: "mutation", value: "mutation" },
                               ]}
                               id="multiSelect"
