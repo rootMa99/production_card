@@ -1,6 +1,7 @@
+import c from "./Output.module.css"
 
-
-const output=p=>{
+const Output=p=>{
 
 }
 
+export default Output;
