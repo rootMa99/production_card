@@ -69,7 +69,7 @@
   color: #f84018;
 }
 .wraper {
-  max-height: 72vh;
+  max-height: 50vh;
   overflow: auto;
 }
 .wraper::-webkit-scrollbar {
