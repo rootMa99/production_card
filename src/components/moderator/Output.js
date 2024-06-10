@@ -108,10 +108,10 @@ const Output = (p) => {
                   {
                     dataOutp.output.map(m=><li className={c.lisb}>
                         <span>{m.family}</span>
-                        <span>{m.reference}</span>
+                        <span style={{color:"#006B63", fontWeight:"800"}}> {m.reference}</span>
                         <span>{m.prod}</span>
                         <span>{m.ce}</span>
-                        <span>{m.emb}</span>
+                        <span style={{color:"#CF3335", fontWeight:"800"}}>{m.emb}</span>
                       </li>)
                   }
                 </ul>: <h4 className={c.quatro}>no output found</h4>}
