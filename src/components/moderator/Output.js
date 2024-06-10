@@ -13,6 +13,7 @@ const tq = (d) => {
 const Output = (p) => {
   const { isLoged } = useSelector((s) => s.login);
   const [data, setData] = useState([]);
+  const [oid, setOid] = useState(null);
   const callbackmu = useCallback(async () => {
     try {
       const response = await fetch(`${api}/production-card/output-data`, {
@@ -60,8 +61,13 @@ const Output = (p) => {
         </div>
       </div>
       <div className={c.wraper}>
-        {data.map((m, i) => (
-          <div className={c.trainingH} key={i} style={{ marginTop: 0 }}>
+        {data.map((m) => (
+          <div
+            className={c.trainingH}
+            key={m._id}
+            style={{ marginTop: 0 }}
+            onClick={(e) => setOid(m._id)}
+          >
             <div className={c.dater}>
               <div className={c.dataT}>
                 <h3 style={{ color: "#E5E1DA" }}>{m.date.split("T")[0]}</h3>
