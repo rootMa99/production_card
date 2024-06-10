@@ -83,24 +83,18 @@ const Output = (p) => {
 
     if (data.length > 0) {
       const columns = [
-        "matricule",
-        "prenom",
-        "nom",
-        "categorie",
-        "categorie de formation",
-        "formation",
-        "durée par heure",
-        "date de début",
-        "date de fin",
-        "préstataire",
-        "modalité",
-        "formatteur",
-        "eva",
+        "date",
+        "crew",
+        "family",
+        "reference",
+        "ce",
+        "prod",
+        "emb",
       ];
       worksheet.columns = columns.map((column) => ({
         header: column,
         key: column,
-        width: column === "formation" ? 50 : 25,
+        width: 25,
         height: 15,
         filterButton: true,
       }));
@@ -117,21 +111,15 @@ const Output = (p) => {
         }
       });
 
-      data.forEach((obj, index) => {
+      extractData(data).forEach((e, index) => {
         const row = {
-          matricule: obj.es.matricule,
-          prenom: obj.es.prenom,
-          nom: obj.es.nom,
-          categorie: obj.es.category,
-          "categorie de formation": obj.trainingType,
-          formation: obj.trainingTitle,
-          "durée par heure": obj.dph.toFixed(2),
-          "date de début": obj.ddb,
-          "date de fin": obj.ddf,
-          préstataire: obj.prestataire,
-          modalité: obj.modalite,
-          formatteur: obj.formatteur,
-          eva: obj.eva,
+          date: e.date,
+          crew: e.crew,
+          family: e.family,
+          reference: e.reference,
+          ce: e.ce,
+          prod: e.prod,
+          emb: e.emb,
         };
 
         const worksheetRow = worksheet.addRow(row);
@@ -140,13 +128,13 @@ const Output = (p) => {
             cell.fill = {
               type: "pattern",
               pattern: "solid",
-              fgColor: { argb: "D3D3D3" }, // Light gray color for even rows
+              fgColor: { argb: "D3D3D3" },
             };
           });
         }
 
         worksheetRow.eachCell({ includeEmpty: true }, function (cell) {
-          cell.font = { color: { argb: "000000" } }; // Black font color
+          cell.font = { color: { argb: "000000" } };
         });
         worksheet.eachRow((row, rowNumber) => {
           row.eachCell((cell) => {
@@ -163,7 +151,7 @@ const Output = (p) => {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = "plan de formation.xlsx";
+      a.download = "output.xlsx";
       a.click();
       URL.revokeObjectURL(url);
     });
