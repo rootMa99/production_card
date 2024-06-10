@@ -45,6 +45,14 @@ const List = (p) => {
         <React.Fragment>
           <li className={c.linktwo} onClick={onClickHandler}>
             <NavLink
+              to="/home"
+              className={({ isActive }) => (isActive ? c.activeLink : c.link)}
+            >
+              home
+            </NavLink>
+          </li>
+          <li className={c.linktwo} onClick={onClickHandler}>
+            <NavLink
               to="/abstloo"
               className={({ isActive }) => (isActive ? c.activeLink : c.link)}
             >
