@@ -37,6 +37,12 @@ const Output = (p) => {
     callbackmu();
   }, [callbackmu]);
   console.log(data, oid);
+  const toogle = (e) => {
+    setOid("");
+  };
+  const toogleid = (e, t) => {
+    setOid(t);
+  };
   return (
     <div className={c.container}>
       <div className={c.title2}>
@@ -67,7 +73,7 @@ const Output = (p) => {
               className={c.trainingH}
               key={m._id}
               style={{ marginTop: 0 }}
-              onClick={(e) => setOid(m._id)}
+              onClick={(e) => (oid === m._id ? toogle() : toogleid(e, m._id))}
             >
               <div className={c.dater}>
                 <div className={c.dataT}>
@@ -85,6 +91,11 @@ const Output = (p) => {
                 </div>
               </div>
             </div>
+            {oid === m._id && (
+              <div className={c.plusData}>
+                <h1>data</h1>
+              </div>
+            )}
           </React.Fragment>
         ))}
       </div>
