@@ -145,7 +145,7 @@ const Output = (p) => {
         <div className={c.line}></div>
         <h4 style={{ fontSize: "22px" }}>output</h4>
       </div>
-      
+
       <div className={c.trainingH}>
         <div className={c.dater}>
           <div className={c.dataT}>
@@ -164,7 +164,7 @@ const Output = (p) => {
         </div>
       </div>
       <div className={c.wraper}>
-        {data.map((m) => (
+        {data.map((m, i) => (
           <React.Fragment>
             <div
               className={c.trainingH}
@@ -199,11 +199,10 @@ const Output = (p) => {
                       <span>ce</span>
                       <span>emb</span>
                     </li>
-                    {dataOutp.output.map((m) => (
-                      <li className={c.lisb}>
+                    {dataOutp.output.map((m, i) => (
+                      <li className={c.lisb} key={i}>
                         <span>{m.family}</span>
                         <span style={{ color: "#006B63", fontWeight: "800" }}>
-                          {" "}
                           {m.reference}
                         </span>
                         <span>{m.prod}</span>
@@ -224,7 +223,7 @@ const Output = (p) => {
       </div>
       <div className={c.btnhelperholder}>
         <button className={c.button} type="button" onClick={generateExcel}>
-          <span className={c["button__text"]}>Download</span>
+          <span className={c["button__text"]}>Download output as excel</span>
           <span className={c["button__icon"]}>
             <svg
               xmlns="http://www.w3.org/2000/svg"

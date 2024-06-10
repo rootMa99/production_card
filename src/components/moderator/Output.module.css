@@ -176,7 +176,7 @@
 }
 .button {
   position: relative;
-  width: 150px;
+  width: 300px;
   height: 40px;
   cursor: pointer;
   display: flex;
@@ -191,7 +191,9 @@
 .button__text {
   transition: all 0.3s;
 }
-
+.button__text{
+    text-transform: uppercase;
+}
 .button .button__text {
   transform: translateX(22px);
   color: #fff;
@@ -200,13 +202,13 @@
 
 .button .button__icon {
   position: absolute;
-  transform: translateX(109px);
   height: 100%;
   width: 39px;
   background-color: #929D96;
   display: flex;
   align-items: center;
   justify-content: center;
+  right: 0;
 }
 
 .button .svg {
@@ -223,7 +225,7 @@
 }
 
 .button:hover .button__icon {
-  width: 148px;
+  width: 280px;
   transform: translateX(0);
 }
 
