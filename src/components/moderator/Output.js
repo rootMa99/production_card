@@ -105,6 +105,15 @@ const Output = (p) => {
                     <span>ce</span>
                     <span>emb</span>
                   </li>
+                  {
+                    dataOutp!==null&&dataOutp.output.map(m=><li className={c.lisb}>
+                        <span>{m.family}</span>
+                        <span>{m.reference}</span>
+                        <span>{m.prod}</span>
+                        <span>{m.ce}</span>
+                        <span>{m.emb}</span>
+                      </li>)
+                  }
                 </ul>
               </div>
             )}

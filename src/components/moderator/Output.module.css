@@ -93,9 +93,30 @@
   margin-top: 0;
   margin-bottom: 0;
 }
-.unList{
-    
+.unList {
+  margin: 0;
+  padding: 16px;
 }
-.lis{
-    
+.lis,
+.lisb {
+  margin: 0;
+  list-style: none;
+  padding: 5px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.lis span,
+.lisb span {
+  width: 20%;
+}
+.lis span {
+  padding: 8px;
+  border-bottom: 3px solid #f84018;
+}
+.lisb span {
+  padding: 8px;
+  color: #383942;
+  font-size: medium;
+  font-weight: bold;
 }
