@@ -3,13 +3,13 @@ import c from "./Output.module.css";
 import { useCallback, useEffect, useState } from "react";
 import api from "../../service/api";
 
-const tq=d=>{
-    let t=0;
-    d.forEach(e => {
-        t+=e.emb
-    });
-    return t;
-}
+const tq = (d) => {
+  let t = 0;
+  d.forEach((e) => {
+    t += e.emb;
+  });
+  return t;
+};
 const Output = (p) => {
   const { isLoged } = useSelector((s) => s.login);
   const [data, setData] = useState([]);
@@ -40,7 +40,7 @@ const Output = (p) => {
     <div className={c.container}>
       <div className={c.title2}>
         <div className={c.line}></div>
-        <h4 style={{ fontSize:"22px" }}>output</h4>
+        <h4 style={{ fontSize: "22px" }}>output</h4>
       </div>
       <div className={c.trainingH}>
         <div className={c.dater}>
@@ -48,12 +48,12 @@ const Output = (p) => {
             <h3 style={{ color: "#E5E1DA" }}>date</h3>
           </div>
         </div>
-        <div className={c.trainingD} style={{backgroundColor:"#929d96"}}>
+        <div className={c.trainingD} style={{ backgroundColor: "#929d96" }}>
           <div className={c.dataT}>
             <h3>crew</h3>
           </div>
         </div>
-        <div className={c.trainingDi} style={{backgroundColor:"#e5e1da"}}>
+        <div className={c.trainingDi} style={{ backgroundColor: "#e5e1da" }}>
           <div className={c.dataT}>
             <h3>total emb qte</h3>
           </div>
