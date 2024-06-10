@@ -3,6 +3,7 @@ import c from "./Abs.module.css";
 import api from "../../service/api";
 import { useCallback, useEffect, useState } from "react";
 import Chart from "./Chart";
+import * as ExcelJS from "exceljs";
 
 const getTotals = (d) => {
   const rd = [];
@@ -89,6 +90,97 @@ const Abs = (p) => {
     callbackmu();
   }, [callbackmu]);
   console.log(getTotals(data), getDataTrated(data, "coordinator"));
+
+  const generateExcel = () => {
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet("DATA ABS");
+
+    if (data.length > 0) {
+      const columns = [
+        "Project",
+        "Coordinator",
+        "Shift Leader",
+        "Team Leader",
+        "Family",
+        "Equipe",
+        "Workstation",
+        "Wk#",
+        "Absent To",
+        "MONTH",
+        "Mle",
+        "Reason",
+      ];
+      worksheet.columns = columns.map((column) => ({
+        header: column,
+        key: column,
+        width: 25,
+        height: 15,
+        filterButton: true,
+      }));
+      worksheet.eachRow({ includeEmpty: false }, function (row, rowNumber) {
+        if (rowNumber === 1) {
+          row.eachCell({ includeEmpty: true }, function (cell) {
+            cell.fill = {
+              type: "pattern",
+              pattern: "solid",
+              fgColor: { argb: "FFA211" },
+            };
+            cell.font = { bold: true };
+          });
+        }
+      });
+
+      data.forEach((e, index) => {
+        const row = {
+          Project: e.project,
+          Coordinator: e.coordinator,
+          "Shift Leader": e.shiftleader,
+          "Team Leader": e.teamleader,
+          Family: e.family,
+          Equipe: e.crew,
+          Workstation: e.poste,
+          "Wk#": e.wk,
+          "Absent To": e.date,
+          MONTH: e.month,
+          Mle: e.matricule,
+          Reason: e.reason,
+        };
+
+        const worksheetRow = worksheet.addRow(row);
+        if (index % 2 === 0) {
+          worksheetRow.eachCell({ includeEmpty: true }, function (cell) {
+            cell.fill = {
+              type: "pattern",
+              pattern: "solid",
+              fgColor: { argb: "D3D3D3" },
+            };
+          });
+        }
+
+        worksheetRow.eachCell({ includeEmpty: true }, function (cell) {
+          cell.font = { color: { argb: "000000" } };
+        });
+        worksheet.eachRow((row, rowNumber) => {
+          row.eachCell((cell) => {
+            cell.alignment = { horizontal: "center", vertical: "center" };
+          });
+        });
+      });
+    }
+
+    workbook.xlsx.writeBuffer().then((buffer) => {
+      const blob = new Blob([buffer], {
+        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "DATA ABS.xlsx";
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  };
+
   return (
     <div className={c.container}>
       <div className={c.title2}>
@@ -97,13 +189,20 @@ const Abs = (p) => {
       </div>
       <div className={c.charth}>
         <Chart title="abs by reason" data={getTotals(data)} />
+        <Chart title="abs by family" data={getDataTrated(data, "family")} />
+        <Chart title="abs by project" data={getDataTrated(data, "project")} />
         <Chart
           title="abs by coordinator"
           data={getDataTrated(data, "coordinator")}
         />
-        <Chart title="abs by crew" data={getDataTrated(data, "crew")} />
-        <Chart title="abs by family" data={getDataTrated(data, "family")} />
-        <Chart title="abs by project" data={getDataTrated(data, "project")} />
+        <Chart
+          title="abs by shiftleader"
+          data={getDataTrated(data, "shiftleader")}
+        />
+        <Chart
+          title="abs by teamleader"
+          data={getDataTrated(data, "teamleader")}
+        />
       </div>
       <div className={c.trainingH}>
         <div className={c.dater} style={{ width: "33.33%" }}>
@@ -210,6 +309,25 @@ const Abs = (p) => {
             </div>
           ))
         )}
+      </div>
+
+      <div className={c.btnhelperholder}>
+        <button className={c.button} type="button" onClick={generateExcel}>
+          <span className={c["button__text"]}>Download Absent. as excel</span>
+          <span className={c["button__icon"]}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 35 35"
+              id="bdd05811-e15d-428c-bb53-8661459f9307"
+              data-name="Layer 2"
+              className={c.svg}
+            >
+              <path d="M17.5,22.131a1.249,1.249,0,0,1-1.25-1.25V2.187a1.25,1.25,0,0,1,2.5,0V20.881A1.25,1.25,0,0,1,17.5,22.131Z"></path>
+              <path d="M17.5,22.693a3.189,3.189,0,0,1-2.262-.936L8.487,15.006a1.249,1.249,0,0,1,1.767-1.767l6.751,6.751a.7.7,0,0,0,.99,0l6.751-6.751a1.25,1.25,0,0,1,1.768,1.767l-6.752,6.751A3.191,3.191,0,0,1,17.5,22.693Z"></path>
+              <path d="M31.436,34.063H3.564A3.318,3.318,0,0,1,.25,30.749V22.011a1.25,1.25,0,0,1,2.5,0v8.738a.815.815,0,0,0,.814.814H31.436a.815.815,0,0,0,.814-.814V22.011a1.25,1.25,0,1,1,2.5,0v8.738A3.318,3.318,0,0,1,31.436,34.063Z"></path>
+            </svg>
+          </span>
+        </button>
       </div>
     </div>
   );
