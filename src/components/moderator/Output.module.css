@@ -73,7 +73,7 @@
   overflow: auto;
 }
 .wraper::-webkit-scrollbar {
-  width: 0.5px;
+  width: 2px;
   background-color: #535151;
   border-radius: 14px;
 }

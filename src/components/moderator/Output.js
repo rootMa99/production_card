@@ -14,6 +14,7 @@ const Output = (p) => {
   const { isLoged } = useSelector((s) => s.login);
   const [data, setData] = useState([]);
   const [oid, setOid] = useState(null);
+  const [dataOutp, setDataOutp] = useState(null);
   const callbackmu = useCallback(async () => {
     try {
       const response = await fetch(`${api}/production-card/output-data`, {
@@ -38,10 +39,13 @@ const Output = (p) => {
   }, [callbackmu]);
   console.log(data, oid);
   const toogle = (e) => {
-    setOid("");
+    setOid(null);
   };
   const toogleid = (e, t) => {
     setOid(t);
+    const o = data.filter((f) => f._id === t);
+    console.log(o[0]);
+    setDataOutp(o[0]);
   };
   return (
     <div className={c.container}>
