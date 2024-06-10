@@ -10,6 +10,35 @@ const tq = (d) => {
   });
   return t;
 };
+const extractData = (d) => {
+  const rd = [];
+  d.forEach((e) => {
+    if (e.output.length === 0) {
+      rd.push({
+        date: e.date.split("T")[0],
+        crew: e.crew,
+        family: "",
+        reference: "",
+        ce: 0,
+        prod: 0,
+        emb: 0,
+      });
+    } else {
+      e.output.map((m) =>
+        rd.push({
+          date: e.date.split("T")[0],
+          crew: e.crew,
+          family: m.family,
+          reference: m.reference,
+          ce: m.ce,
+          prod: m.prod,
+          emb: m.emb,
+        })
+      );
+    }
+  });
+  return rd;
+};
 const Output = (p) => {
   const { isLoged } = useSelector((s) => s.login);
   const [data, setData] = useState([]);
@@ -52,7 +81,7 @@ const Output = (p) => {
     const workbook = new ExcelJS.Workbook();
     const worksheet = workbook.addWorksheet("output");
 
-    if (p.data.length > 0) {
+    if (data.length > 0) {
       const columns = [
         "matricule",
         "prenom",
@@ -88,7 +117,7 @@ const Output = (p) => {
         }
       });
 
-      p.data.forEach((obj, index) => {
+      data.forEach((obj, index) => {
         const row = {
           matricule: obj.es.matricule,
           prenom: obj.es.prenom,
@@ -139,6 +168,7 @@ const Output = (p) => {
       URL.revokeObjectURL(url);
     });
   };
+  console.log("data exp", extractData(data));
   return (
     <div className={c.container}>
       <div className={c.title2}>
