@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import c from "./Output.module.css";
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import api from "../../service/api";
 
 const tq = (d) => {
@@ -36,7 +36,7 @@ const Output = (p) => {
   useEffect(() => {
     callbackmu();
   }, [callbackmu]);
-  console.log(data);
+  console.log(data, oid);
   return (
     <div className={c.container}>
       <div className={c.title2}>
@@ -62,28 +62,30 @@ const Output = (p) => {
       </div>
       <div className={c.wraper}>
         {data.map((m) => (
-          <div
-            className={c.trainingH}
-            key={m._id}
-            style={{ marginTop: 0 }}
-            onClick={(e) => setOid(m._id)}
-          >
-            <div className={c.dater}>
-              <div className={c.dataT}>
-                <h3 style={{ color: "#E5E1DA" }}>{m.date.split("T")[0]}</h3>
+          <React.Fragment>
+            <div
+              className={c.trainingH}
+              key={m._id}
+              style={{ marginTop: 0 }}
+              onClick={(e) => setOid(m._id)}
+            >
+              <div className={c.dater}>
+                <div className={c.dataT}>
+                  <h3 style={{ color: "#E5E1DA" }}>{m.date.split("T")[0]}</h3>
+                </div>
+              </div>
+              <div className={c.trainingD}>
+                <div className={c.dataT}>
+                  <h3>{m.crew}</h3>
+                </div>
+              </div>
+              <div className={c.trainingDi}>
+                <div className={c.dataT}>
+                  <h3>{tq(m.output)}</h3>
+                </div>
               </div>
             </div>
-            <div className={c.trainingD}>
-              <div className={c.dataT}>
-                <h3>{m.crew}</h3>
-              </div>
-            </div>
-            <div className={c.trainingDi}>
-              <div className={c.dataT}>
-                <h3>{tq(m.output)}</h3>
-              </div>
-            </div>
-          </div>
+          </React.Fragment>
         ))}
       </div>
     </div>
