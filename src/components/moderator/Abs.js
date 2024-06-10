@@ -2,6 +2,66 @@ import { useSelector } from "react-redux";
 import c from "./Abs.module.css";
 import api from "../../service/api";
 import { useCallback, useEffect, useState } from "react";
+import Chart from "./Chart";
+
+const getTotals = (d) => {
+  const rd = [];
+  d.forEach((e) => {
+    if (rd.length === 0) {
+      rd.push({
+        name: e.reason,
+        nb: 1,
+      });
+    } else {
+      const i = rd.findIndex((f) => f.name === e.reason);
+      if (i !== -1) {
+        rd[i].nb++;
+      } else {
+        rd.push({
+          name: e.reason,
+          nb: 1,
+        });
+      }
+    }
+  });
+  try {
+    rd.sort((a, b) => {
+      return b.nb - a.nb;
+    });
+    return rd;
+  } catch (e) {
+    return rd;
+  }
+};
+const getDataTrated = (d, t) => {
+  const rd = [];
+  d.forEach((e) => {
+    if (rd.length === 0) {
+      rd.push({
+        name: e[t],
+        nb: 1,
+      });
+    } else {
+      const i = rd.findIndex((f) => f.name === e[t]);
+      if (i !== -1) {
+        rd[i].nb++;
+      } else {
+        rd.push({
+          name: e[t],
+          nb: 1,
+        });
+      }
+    }
+  });
+  try {
+    rd.sort((a, b) => {
+      return b.nb - a.nb;
+    });
+    return rd;
+  } catch (e) {
+    return rd;
+  }
+};
 const Abs = (p) => {
   const { isLoged } = useSelector((s) => s.login);
   const [data, setData] = useState([]);
@@ -28,13 +88,23 @@ const Abs = (p) => {
   useEffect(() => {
     callbackmu();
   }, [callbackmu]);
+  console.log(getTotals(data), getDataTrated(data, "coordinator"));
   return (
     <div className={c.container}>
       <div className={c.title2}>
         <div className={c.line}></div>
         <h4 style={{ fontSize: "22px" }}>Absenteeism</h4>
       </div>
-
+      <div className={c.charth}>
+        <Chart title="abs by reason" data={getTotals(data)} />
+        <Chart
+          title="abs by coordinator"
+          data={getDataTrated(data, "coordinator")}
+        />
+        <Chart title="abs by crew" data={getDataTrated(data, "crew")} />
+        <Chart title="abs by family" data={getDataTrated(data, "family")} />
+        <Chart title="abs by project" data={getDataTrated(data, "project")} />
+      </div>
       <div className={c.trainingH}>
         <div className={c.dater} style={{ width: "33.33%" }}>
           <div className={c.dataT} style={{ width: "33.33%" }}>
@@ -47,10 +117,7 @@ const Abs = (p) => {
             <h3 style={{ color: "#E5E1DA" }}>month</h3>
           </div>
         </div>
-        <div
-          className={c.trainingD}
-          style={{ width: "33.33%" }}
-        >
+        <div className={c.trainingD} style={{ width: "33.33%" }}>
           <div className={c.dataT} style={{ width: "25%" }}>
             <h3>matricule</h3>
           </div>
@@ -84,7 +151,7 @@ const Abs = (p) => {
       </div>
       <div className={c.wraper}>
         {data.length === 0 ? (
-          <h1>no found</h1>
+          <h4 className={c.noCrewS}>no found</h4>
         ) : (
           data.map((m) => (
             <div className={c.trainingH} style={{ marginTop: 0 }}>
@@ -104,7 +171,9 @@ const Abs = (p) => {
                 style={{ backgroundColor: "#929d96", width: "33.33%" }}
               >
                 <div className={c.dataT} style={{ width: "25%" }}>
-                  <h3 style={{ color:"#CF3335", fontWeight:800 }}>{m.matricule}</h3>
+                  <h3 style={{ color: "#CF3335", fontWeight: 800 }}>
+                    {m.matricule}
+                  </h3>
                 </div>
                 <div className={c.dataT} style={{ width: "25%" }}>
                   <h3>{m.teamleader}</h3>
@@ -133,7 +202,9 @@ const Abs = (p) => {
                   <h3>{m.project}</h3>
                 </div>
                 <div className={c.dataT} style={{ width: "20%" }}>
-                  <h3 style={{ color:"#CF3335", fontWeight:800 }}>{m.reason}</h3>
+                  <h3 style={{ color: "#CF3335", fontWeight: 800 }}>
+                    {m.reason}
+                  </h3>
                 </div>
               </div>
             </div>
