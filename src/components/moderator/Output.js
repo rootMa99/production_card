@@ -97,7 +97,15 @@ const Output = (p) => {
             </div>
             {oid === m._id && (
               <div className={c.plusData}>
-                <h1>data</h1>
+                <ul className={c.unList}>
+                  <li className={c.lis}>
+                    <span>family</span>
+                    <span>reference</span>
+                    <span>prod</span>
+                    <span>ce</span>
+                    <span>emb</span>
+                  </li>
+                </ul>
               </div>
             )}
           </React.Fragment>
