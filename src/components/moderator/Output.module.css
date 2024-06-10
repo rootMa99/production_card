@@ -92,6 +92,8 @@
   margin: auto;
   margin-top: 0;
   margin-bottom: 0;
+  -webkit-animation: scale-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: scale-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 .unList {
   margin: 0;
@@ -112,11 +114,53 @@
 }
 .lis span {
   padding: 8px;
-  border-bottom: 3px solid #f84018;
+  color: #929d96;
+  border-bottom: 3px solid #929d96;
+  font-weight: bolder;
 }
 .lisb span {
   padding: 8px;
   color: #383942;
   font-size: medium;
   font-weight: bold;
+}
+.quatro {
+  margin: 0;
+  font-size: large;
+  text-transform: uppercase;
+  padding: 16px;
+  color: #cf3335;
+}
+
+@-webkit-keyframes scale-in-top {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    -webkit-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+    opacity: 1;
+  }
+}
+@keyframes scale-in-top {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    -webkit-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+    opacity: 1;
+  }
 }

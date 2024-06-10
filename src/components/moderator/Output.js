@@ -97,7 +97,7 @@ const Output = (p) => {
             </div>
             {oid === m._id && (
               <div className={c.plusData}>
-                <ul className={c.unList}>
+                {dataOutp.output.length>0?  <ul className={c.unList}>
                   <li className={c.lis}>
                     <span>family</span>
                     <span>reference</span>
@@ -106,7 +106,7 @@ const Output = (p) => {
                     <span>emb</span>
                   </li>
                   {
-                    dataOutp!==null&&dataOutp.output.map(m=><li className={c.lisb}>
+                    dataOutp.output.map(m=><li className={c.lisb}>
                         <span>{m.family}</span>
                         <span>{m.reference}</span>
                         <span>{m.prod}</span>
@@ -114,7 +114,7 @@ const Output = (p) => {
                         <span>{m.emb}</span>
                       </li>)
                   }
-                </ul>
+                </ul>: <h4 className={c.quatro}>no output found</h4>}
               </div>
             )}
           </React.Fragment>
