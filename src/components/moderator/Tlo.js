@@ -90,7 +90,7 @@ const Tlo = (p) => {
   }, [callbackmu]);
   const generateExcel = () => {
     const workbook = new ExcelJS.Workbook();
-    const worksheet = workbook.addWorksheet("DATA ABS");
+    const worksheet = workbook.addWorksheet("DATA TLO");
 
     if (data.length > 0) {
       const columns = [
@@ -174,7 +174,7 @@ const Tlo = (p) => {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = "DATA ABS.xlsx";
+      a.download = "DATA TLO.xlsx";
       a.click();
       URL.revokeObjectURL(url);
     });
