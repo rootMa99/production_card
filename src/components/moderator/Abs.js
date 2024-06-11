@@ -69,7 +69,7 @@ const Abs = (p) => {
 
   const callbackmu = useCallback(async () => {
     try {
-      const response = await fetch(`${api}/production-card/ab-data`, {
+      const response = await fetch(`${api}/production-card/ab-data?from=${p.date.from}&to=${p.date.to}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -85,7 +85,7 @@ const Abs = (p) => {
     } catch (e) {
       console.error(e);
     }
-  }, [isLoged.token]);
+  }, [isLoged.token, p.date]);
   useEffect(() => {
     callbackmu();
   }, [callbackmu]);
@@ -250,7 +250,7 @@ const Abs = (p) => {
       </div>
       <div className={c.wraper}>
         {data.length === 0 ? (
-          <h4 className={c.noCrewS}>no found</h4>
+          <h4 className={c.noCrewS}>no abs data HAS BEEN FOUND</h4>
         ) : (
           data.map((m) => (
             <div className={c.trainingH} style={{ marginTop: 0 }}>

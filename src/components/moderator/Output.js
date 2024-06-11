@@ -46,13 +46,16 @@ const Output = (p) => {
   const [dataOutp, setDataOutp] = useState(null);
   const callbackmu = useCallback(async () => {
     try {
-      const response = await fetch(`${api}/production-card/output-data`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${isLoged.token}`,
-        },
-      });
+      const response = await fetch(
+        `${api}/production-card/output-data?from=${p.date.from}&to=${p.date.to}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${isLoged.token}`,
+          },
+        }
+      );
       if (!response.ok) {
         throw new Error(response.status);
       }
@@ -62,7 +65,7 @@ const Output = (p) => {
     } catch (e) {
       console.error(e);
     }
-  }, [isLoged.token]);
+  }, [isLoged.token, p.date]);
   useEffect(() => {
     callbackmu();
   }, [callbackmu]);
@@ -182,62 +185,66 @@ const Output = (p) => {
         </div>
       </div>
       <div className={c.wraper}>
-        {data.map((m, i) => (
-          <React.Fragment>
-            <div
-              className={c.trainingH}
-              key={m._id}
-              style={{ marginTop: 0 }}
-              onClick={(e) => (oid === m._id ? toogle() : toogleid(e, m._id))}
-            >
-              <div className={c.dater}>
-                <div className={c.dataT}>
-                  <h3 style={{ color: "#E5E1DA" }}>{m.date.split("T")[0]}</h3>
+        {data.length === 0 ? (
+          <h4 className={c.noCrewS}>NO OUTPUT data HAS BEEN FOUND</h4>
+        ) : (
+          data.map((m, i) => (
+            <React.Fragment>
+              <div
+                className={c.trainingH}
+                key={m._id}
+                style={{ marginTop: 0 }}
+                onClick={(e) => (oid === m._id ? toogle() : toogleid(e, m._id))}
+              >
+                <div className={c.dater}>
+                  <div className={c.dataT}>
+                    <h3 style={{ color: "#E5E1DA" }}>{m.date.split("T")[0]}</h3>
+                  </div>
+                </div>
+                <div className={c.trainingD}>
+                  <div className={c.dataT}>
+                    <h3>{m.crew}</h3>
+                  </div>
+                </div>
+                <div className={c.trainingDi}>
+                  <div className={c.dataT}>
+                    <h3>{tq(m.output)}</h3>
+                  </div>
                 </div>
               </div>
-              <div className={c.trainingD}>
-                <div className={c.dataT}>
-                  <h3>{m.crew}</h3>
-                </div>
-              </div>
-              <div className={c.trainingDi}>
-                <div className={c.dataT}>
-                  <h3>{tq(m.output)}</h3>
-                </div>
-              </div>
-            </div>
-            {oid === m._id && (
-              <div className={c.plusData}>
-                {dataOutp.output.length > 0 ? (
-                  <ul className={c.unList}>
-                    <li className={c.lis}>
-                      <span>family</span>
-                      <span>reference</span>
-                      <span>prod</span>
-                      <span>ce</span>
-                      <span>emb</span>
-                    </li>
-                    {dataOutp.output.map((m, i) => (
-                      <li className={c.lisb} key={i}>
-                        <span>{m.family}</span>
-                        <span style={{ color: "#006B63", fontWeight: "800" }}>
-                          {m.reference}
-                        </span>
-                        <span>{m.prod}</span>
-                        <span>{m.ce}</span>
-                        <span style={{ color: "#CF3335", fontWeight: "800" }}>
-                          {m.emb}
-                        </span>
+              {oid === m._id && (
+                <div className={c.plusData}>
+                  {dataOutp.output.length > 0 ? (
+                    <ul className={c.unList}>
+                      <li className={c.lis}>
+                        <span>family</span>
+                        <span>reference</span>
+                        <span>prod</span>
+                        <span>ce</span>
+                        <span>emb</span>
                       </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <h4 className={c.quatro}>NO OUTPUT HAS BEEN FOUND</h4>
-                )}
-              </div>
-            )}
-          </React.Fragment>
-        ))}
+                      {dataOutp.output.map((m, i) => (
+                        <li className={c.lisb} key={i}>
+                          <span>{m.family}</span>
+                          <span style={{ color: "#006B63", fontWeight: "800" }}>
+                            {m.reference}
+                          </span>
+                          <span>{m.prod}</span>
+                          <span>{m.ce}</span>
+                          <span style={{ color: "#CF3335", fontWeight: "800" }}>
+                            {m.emb}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <h4 className={c.quatro}>NO OUTPUT HAS BEEN FOUND</h4>
+                  )}
+                </div>
+              )}
+            </React.Fragment>
+          ))
+        )}
       </div>
       <div className={c.btnhelperholder}>
         <button className={c.button} type="button" onClick={generateExcel}>

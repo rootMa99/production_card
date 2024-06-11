@@ -68,7 +68,7 @@ const Tlo = (p) => {
 
   const callbackmu = useCallback(async () => {
     try {
-      const response = await fetch(`${api}/production-card/tlo-data`, {
+      const response = await fetch(`${api}/production-card/tlo-data?from=${p.date.from}&to=${p.date.to}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -84,7 +84,7 @@ const Tlo = (p) => {
     } catch (e) {
       console.error(e);
     }
-  }, [isLoged.token]);
+  }, [isLoged.token, p.date]);
   useEffect(() => {
     callbackmu();
   }, [callbackmu]);
@@ -251,7 +251,7 @@ const Tlo = (p) => {
       </div>
       <div className={c.wraper}>
         {data.length === 0 ? (
-          <h4 className={c.noCrewS}>no found</h4>
+          <h4 className={c.noCrewS}>no tlo data HAS BEEN FOUND</h4>
         ) : (
           data.map((m) => (
             <div className={c.trainingH} style={{ marginTop: 0 }}>

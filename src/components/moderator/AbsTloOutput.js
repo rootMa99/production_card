@@ -5,7 +5,10 @@ import Abs from "./Abs";
 import Tlo from "./Tlo";
 
 const AbsTloOutput = (p) => {
-  const [today, setToday] = useState(new Date().toISOString().split("T")[0]);
+  const [date, setDate] = useState({
+    from: new Date().toISOString().split("T")[0],
+    to: new Date().toISOString().split("T")[0],
+  });
   return (
     <div className={c.container}>
       <div className={c.inputHolder}>
@@ -13,8 +16,13 @@ const AbsTloOutput = (p) => {
           <h3>start date:</h3>
           <input
             type="date"
-            value={today}
-            onChange={(e) => setToday(e.target.value)}
+            value={date.from}
+            onChange={(e) =>
+              setDate((p) => ({
+                ...p,
+                from: e.target.value,
+              }))
+            }
             max={new Date().toISOString().split("T")[0]}
             pattern="yyyy-mm-dd"
           />
@@ -23,16 +31,21 @@ const AbsTloOutput = (p) => {
           <h3>end date:</h3>
           <input
             type="date"
-            value={today}
-            onChange={(e) => setToday(e.target.value)}
+            value={date.to}
+            onChange={(e) =>
+              setDate((p) => ({
+                ...p,
+                to: e.target.value,
+              }))
+            }
             max={new Date().toISOString().split("T")[0]}
             pattern="yyyy-mm-dd"
           />
         </div>
       </div>
-      <Tlo />
-      <Abs />
-      <Output />
+      <Tlo date={date} />
+      <Abs date={date} />
+      <Output date={date} />
     </div>
   );
 };
