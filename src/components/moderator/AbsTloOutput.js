@@ -2,6 +2,7 @@ import { useState } from "react";
 import c from "./AbsTloOutput.module.css";
 import Output from "./Output";
 import Abs from "./Abs";
+import Tlo from "./Tlo";
 
 const AbsTloOutput = (p) => {
   const [today, setToday] = useState(new Date().toISOString().split("T")[0]);
@@ -29,6 +30,7 @@ const AbsTloOutput = (p) => {
           />
         </div>
       </div>
+      <Tlo />
       <Abs />
       <Output />
     </div>
