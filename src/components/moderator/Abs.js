@@ -168,76 +168,77 @@ const Abs = (p) => {
       : data;
   fd =
     filData.matricule.length > 0
-      ? data.filter((obj) => {
+      ? fd.filter((obj) => {
           return filData.matricule.some(
             (filterObj) => filterObj.value === obj.matricule
           );
         })
-      : data;
+      : fd;
   fd =
     filData.project.length > 0
-      ? data.filter((obj) => {
+      ? fd.filter((obj) => {
           return filData.project.some(
             (filterObj) => filterObj.value === obj.project
           );
         })
-      : data;
+      : fd;
   fd =
     filData.reason.length > 0
-      ? data.filter((obj) => {
+      ? fd.filter((obj) => {
           return filData.reason.some(
             (filterObj) => filterObj.value === obj.reason
           );
         })
-      : data;
+      : fd;
   fd =
     filData.family.length > 0
-      ? data.filter((obj) => {
+      ? fd.filter((obj) => {
           return filData.family.some(
             (filterObj) => filterObj.value === obj.family
           );
         })
-      : data;
+      : fd;
   fd =
     filData.month.length > 0
-      ? data.filter((obj) => {
+      ? fd.filter((obj) => {
           return filData.month.some(
             (filterObj) => filterObj.value === obj.month
           );
         })
-      : data;
+      : fd;
   fd =
     filData.tl.length > 0
-      ? data.filter((obj) => {
-          return filData.teamleader.some(
+      ? fd.filter((obj) => {
+          return filData.tl.some(
             (filterObj) => filterObj.value === obj.teamleader
           );
         })
-      : data;
+      : fd;
   fd =
     filData.sl.length > 0
-      ? data.filter((obj) => {
-          return filData.shiftleader.some(
+      ? fd.filter((obj) => {
+          return filData.sl.some(
             (filterObj) => filterObj.value === obj.shiftleader
           );
         })
-      : data;
+      : fd;
   fd =
     filData.coord.length > 0
-      ? data.filter((obj) => {
-          return filData.coordinator.some(
+      ? fd.filter((obj) => {
+          return filData.coord.some(
             (filterObj) => filterObj.value === obj.coordinator
           );
         })
-      : data;
+      : fd;
   fd =
     filData.reason.length > 0
-      ? data.filter((obj) => {
+      ? fd.filter((obj) => {
           return filData.reason.some(
             (filterObj) => filterObj.value === obj.reason
           );
         })
-      : data;
+      : fd;
+
   const handleSelectChange = (e, t) => {
     switch (t) {
       case "matricule":
@@ -605,10 +606,10 @@ const Abs = (p) => {
         </div>
       </div>
       <div className={c.wraper}>
-        {data.length === 0 ? (
+        {fd.length === 0 ? (
           <h4 className={c.noCrewS}>no abs data HAS BEEN FOUND</h4>
         ) : (
-          data.map((m) => (
+          fd.map((m) => (
             <div className={c.trainingH} style={{ marginTop: 0 }}>
               <div className={c.dater} style={{ width: "33.33%" }}>
                 <div className={c.dataT} style={{ width: "33.33%" }}>
