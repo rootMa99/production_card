@@ -1,10 +1,10 @@
-.inputHolder{
-    position: fixed;
-    right: 10px;
-    top: 4rem;
-    z-index: 1;
-    display: flex;
-    gap: 16px;
+.inputHolder {
+  position: fixed;
+  right: 10px;
+  top: 4rem;
+  z-index: 1;
+  display: flex;
+  gap: 16px;
 }
 
 .inputD {
@@ -26,7 +26,7 @@
   font-weight: bold;
   width: 10rem;
   text-align: center;
-  padding: 10px;
+  padding: 5px;
 }
 .inputD input:focus,
 .inputD input:hover {
@@ -39,6 +39,7 @@
   text-align: left;
   text-transform: uppercase;
   color: #f84018;
+  margin: 0;
 }
 .inputD input[type="date"]::-webkit-calendar-picker-indicator {
   width: 20px;
