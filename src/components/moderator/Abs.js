@@ -160,6 +160,116 @@ const Abs = (p) => {
     project: [],
     reason: [],
   });
+  let fd =
+    filData.crew.length > 0
+      ? data.filter((obj) => {
+          return filData.crew.some((filterObj) => filterObj.value === obj.crew);
+        })
+      : data;
+  fd =
+    filData.matricule.length > 0
+      ? data.filter((obj) => {
+          return filData.matricule.some(
+            (filterObj) => filterObj.value === obj.matricule
+          );
+        })
+      : data;
+  fd =
+    filData.project.length > 0
+      ? data.filter((obj) => {
+          return filData.project.some(
+            (filterObj) => filterObj.value === obj.project
+          );
+        })
+      : data;
+  fd =
+    filData.reason.length > 0
+      ? data.filter((obj) => {
+          return filData.reason.some(
+            (filterObj) => filterObj.value === obj.reason
+          );
+        })
+      : data;
+  fd =
+    filData.family.length > 0
+      ? data.filter((obj) => {
+          return filData.family.some(
+            (filterObj) => filterObj.value === obj.family
+          );
+        })
+      : data;
+  fd =
+    filData.month.length > 0
+      ? data.filter((obj) => {
+          return filData.month.some(
+            (filterObj) => filterObj.value === obj.month
+          );
+        })
+      : data;
+  fd =
+    filData.tl.length > 0
+      ? data.filter((obj) => {
+          return filData.teamleader.some(
+            (filterObj) => filterObj.value === obj.teamleader
+          );
+        })
+      : data;
+  fd =
+    filData.sl.length > 0
+      ? data.filter((obj) => {
+          return filData.shiftleader.some(
+            (filterObj) => filterObj.value === obj.shiftleader
+          );
+        })
+      : data;
+  fd =
+    filData.coord.length > 0
+      ? data.filter((obj) => {
+          return filData.coordinator.some(
+            (filterObj) => filterObj.value === obj.coordinator
+          );
+        })
+      : data;
+  fd =
+    filData.reason.length > 0
+      ? data.filter((obj) => {
+          return filData.reason.some(
+            (filterObj) => filterObj.value === obj.reason
+          );
+        })
+      : data;
+  const handleSelectChange = (e, t) => {
+    switch (t) {
+      case "matricule":
+        setFilData((p) => ({ ...p, matricule: e }));
+        break;
+      case "crew":
+        setFilData((p) => ({ ...p, crew: e }));
+        break;
+      case "project":
+        setFilData((p) => ({ ...p, project: e }));
+        break;
+      case "reason":
+        setFilData((p) => ({ ...p, reason: e }));
+        break;
+      case "family":
+        setFilData((p) => ({ ...p, family: e }));
+        break;
+      case "month":
+        setFilData((p) => ({ ...p, month: e }));
+        break;
+      case "tl":
+        setFilData((p) => ({ ...p, tl: e }));
+        break;
+      case "sl":
+        setFilData((p) => ({ ...p, sl: e }));
+        break;
+      case "coord":
+        setFilData((p) => ({ ...p, coord: e }));
+        break;
+      default:
+    }
+  };
   const callbackmu = useCallback(async () => {
     try {
       const response = await fetch(
@@ -316,8 +426,8 @@ const Abs = (p) => {
             id="multiSelect"
             inputId="shiftleader1"
             styles={customStyles}
-            placeholder="select Family"
-            // onChange={(e) => onChangeHandler(e, m.id, "family")}
+            placeholder="select matricule"
+            onChange={(e) => handleSelectChange(e, "matricule")}
             isMulti
           />
         </div>
@@ -333,7 +443,7 @@ const Abs = (p) => {
             inputId="shiftleader1"
             styles={customStyles}
             placeholder="select Family"
-            // onChange={(e) => onChangeHandler(e, m.id, "family")}
+            onChange={(e) => handleSelectChange(e, "family")}
             isMulti
           />
         </div>
@@ -348,8 +458,8 @@ const Abs = (p) => {
             id="multiSelect"
             inputId="shiftleader1"
             styles={customStyles}
-            placeholder="select Family"
-            // onChange={(e) => onChangeHandler(e, m.id, "family")}
+            placeholder="select month"
+            onChange={(e) => handleSelectChange(e, "month")}
             isMulti
           />
         </div>
@@ -364,8 +474,8 @@ const Abs = (p) => {
             id="multiSelect"
             inputId="shiftleader1"
             styles={customStyles}
-            placeholder="select Family"
-            // onChange={(e) => onChangeHandler(e, m.id, "family")}
+            placeholder="select teamleader"
+            onChange={(e) => handleSelectChange(e, "tl")}
             isMulti
           />
         </div>
@@ -380,8 +490,8 @@ const Abs = (p) => {
             id="multiSelect"
             inputId="shiftleader1"
             styles={customStyles}
-            placeholder="select Family"
-            // onChange={(e) => onChangeHandler(e, m.id, "family")}
+            placeholder="select shiftleader"
+            onChange={(e) => handleSelectChange(e, "sl")}
             isMulti
           />
         </div>
@@ -396,8 +506,8 @@ const Abs = (p) => {
             id="multiSelect"
             inputId="shiftleader1"
             styles={customStyles}
-            placeholder="select Family"
-            // onChange={(e) => onChangeHandler(e, m.id, "family")}
+            placeholder="select coordinator"
+            onChange={(e) => handleSelectChange(e, "coord")}
             isMulti
           />
         </div>
@@ -412,8 +522,8 @@ const Abs = (p) => {
             id="multiSelect"
             inputId="shiftleader1"
             styles={customStyles}
-            placeholder="select Family"
-            // onChange={(e) => onChangeHandler(e, m.id, "family")}
+            placeholder="select crew"
+            onChange={(e) => handleSelectChange(e, "crew")}
             isMulti
           />
         </div>
@@ -428,8 +538,8 @@ const Abs = (p) => {
             id="multiSelect"
             inputId="shiftleader1"
             styles={customStyles}
-            placeholder="select Family"
-            // onChange={(e) => onChangeHandler(e, m.id, "family")}
+            placeholder="select project"
+            onChange={(e) => handleSelectChange(e, "project")}
             isMulti
           />
         </div>
@@ -444,8 +554,8 @@ const Abs = (p) => {
             id="multiSelect"
             inputId="shiftleader1"
             styles={customStyles}
-            placeholder="select Family"
-            // onChange={(e) => onChangeHandler(e, m.id, "family")}
+            placeholder="select reason"
+            onChange={(e) => handleSelectChange(e, "reason")}
             isMulti
           />
         </div>

@@ -189,19 +189,19 @@ const Tlo = (p) => {
         <h4 style={{ fontSize: "22px" }}>tlo</h4>
       </div>
       <div className={c.charth}>
-        <Chart title="abs by reason" data={getTotals(data)} />
-        <Chart title="abs by family" data={getDataTrated(data, "family")} />
-        <Chart title="abs by project" data={getDataTrated(data, "project")} />
+        <Chart title="tlo by reason" data={getTotals(data)} />
+        <Chart title="tlo by family" data={getDataTrated(data, "family")} />
+        <Chart title="tlo by project" data={getDataTrated(data, "project")} />
         <Chart
-          title="abs by coordinator"
+          title="tlo by coordinator"
           data={getDataTrated(data, "coordinator")}
         />
         <Chart
-          title="abs by shiftleader"
+          title="tlo by shiftleader"
           data={getDataTrated(data, "shiftleader")}
         />
         <Chart
-          title="abs by teamleader"
+          title="tlo by teamleader"
           data={getDataTrated(data, "teamleader")}
         />
       </div>
