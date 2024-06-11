@@ -4,6 +4,75 @@ import api from "../../service/api";
 import { useCallback, useEffect, useState } from "react";
 import Chart from "./Chart";
 import * as ExcelJS from "exceljs";
+import Select from "react-select";
+import DropdownIndicator from "..//UI/DropdownIndicator";
+const customStyles = {
+  control: (provided, state) => ({
+    ...provided,
+    minWidth: "10rem",
+    minHeight: "20px",
+    padding: "8px 0",
+    fontSize: "15px",
+    textTransform: "uppercase",
+    borderRadius: "5px",
+    fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                      "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+                      "Segoe UI Symbol"`,
+    textAlign: "center",
+    outline: "none",
+    border: "1px solid #F84018",
+    backgroundColor: "transparent",
+    boxShadow: "none",
+    margin: "auto",
+    "&:hover": {
+      border: "1px solid #f33716",
+      cursor: "pointer",
+    },
+  }),
+  option: (provided, state) => ({
+    width: "100%",
+    padding: "10px 0",
+    color: state.isFocused ? "#f3f3f3" : "#f33716",
+    backgroundColor: state.isFocused && "#474b4d",
+    fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                      "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+                      "Segoe UI Symbol"`,
+    textTransform: "uppercase",
+    outline: "none",
+    textAlign: "center",
+    fontSize: "15px",
+    "&:hover": {
+      cursor: "pointer",
+    },
+  }),
+  input: (provided) => ({
+    ...provided,
+    color: "#fff",
+    fontSize: "15px",
+    textAlign: "center",
+  }),
+  singleValue: (p) => ({
+    ...p,
+    color: "#fff",
+  }),
+  menuList: (provided) => ({
+    maxHeight: "150px",
+    overflowY: "auto",
+    overflowX: "hidden",
+    scrollbarWidth: "thin",
+    msOverflowStyle: "none",
+    "&::-webkit-scrollbar": {
+      width: "5px",
+      backgroundColor: "#535151",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: "#f33716",
+    },
+    "&::-webkit-scrollbar-track": {
+      backgroundColor: "transparent",
+    },
+  }),
+};
 
 const getTotals = (d) => {
   const rd = [];
@@ -63,19 +132,36 @@ const getDataTrated = (d, t) => {
     return rd;
   }
 };
+const dataList=(d, t)=>{
+    const rd=[];
+    d.forEach(m=>{
+        if(rd.length===0){
+            rd.push(m[t])
+        }else{
+            const i = rd.findIndex((f) => f === m[t]);
+            if(i===-1){
+                rd.push(m[t])
+            }
+        }
+    })
+    return rd;
+}
 const Abs = (p) => {
   const { isLoged } = useSelector((s) => s.login);
   const [data, setData] = useState([]);
 
   const callbackmu = useCallback(async () => {
     try {
-      const response = await fetch(`${api}/production-card/ab-data?from=${p.date.from}&to=${p.date.to}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${isLoged.token}`,
-        },
-      });
+      const response = await fetch(
+        `${api}/production-card/ab-data?from=${p.date.from}&to=${p.date.to}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${isLoged.token}`,
+          },
+        }
+      );
       if (!response.ok) {
         throw new Error(response.status);
       }
@@ -89,7 +175,7 @@ const Abs = (p) => {
   useEffect(() => {
     callbackmu();
   }, [callbackmu]);
-  console.log(getTotals(data), getDataTrated(data, "coordinator"));
+  console.log(getTotals(data), getDataTrated(data, "coordinator"), dataList(data, "family"));
 
   const generateExcel = () => {
     const workbook = new ExcelJS.Workbook();
@@ -203,6 +289,152 @@ const Abs = (p) => {
           title="abs by teamleader"
           data={getDataTrated(data, "teamleader")}
         />
+      </div>
+      <div className={c.filterArrea}>
+        <div className={c.poinHold}>
+          <span>matricule</span>
+          <Select
+            components={{ DropdownIndicator }}
+            options={dataList(data, "matricule").map((m) => ({
+              label: m,
+              value: m,
+            }))}
+            id="multiSelect"
+            inputId="shiftleader1"
+            styles={customStyles}
+            placeholder="select Family"
+            // onChange={(e) => onChangeHandler(e, m.id, "family")}
+            isMulti
+          />
+        </div>
+        <div className={c.poinHold}>
+          <span>Family</span>
+          <Select
+            components={{ DropdownIndicator }}
+            options={dataList(data, "family").map((m) => ({
+              label: m,
+              value: m,
+            }))}
+            id="multiSelect"
+            inputId="shiftleader1"
+            styles={customStyles}
+            placeholder="select Family"
+            // onChange={(e) => onChangeHandler(e, m.id, "family")}
+            isMulti
+          />
+        </div>
+        <div className={c.poinHold}>
+          <span>month</span>
+          <Select
+            components={{ DropdownIndicator }}
+            options={dataList(data, "month").map((m) => ({
+              label: m,
+              value: m,
+            }))}
+            id="multiSelect"
+            inputId="shiftleader1"
+            styles={customStyles}
+            placeholder="select Family"
+            // onChange={(e) => onChangeHandler(e, m.id, "family")}
+            isMulti
+          />
+        </div>
+        <div className={c.poinHold}>
+          <span>teamleader</span>
+          <Select
+            components={{ DropdownIndicator }}
+            options={dataList(data, "teamleader").map((m) => ({
+              label: m,
+              value: m,
+            }))}
+            id="multiSelect"
+            inputId="shiftleader1"
+            styles={customStyles}
+            placeholder="select Family"
+            // onChange={(e) => onChangeHandler(e, m.id, "family")}
+            isMulti
+          />
+        </div>
+        <div className={c.poinHold}>
+          <span>shiftleader</span>
+          <Select
+            components={{ DropdownIndicator }}
+            options={dataList(data, "shiftleader").map((m) => ({
+              label: m,
+              value: m,
+            }))}
+            id="multiSelect"
+            inputId="shiftleader1"
+            styles={customStyles}
+            placeholder="select Family"
+            // onChange={(e) => onChangeHandler(e, m.id, "family")}
+            isMulti
+          />
+        </div>
+        <div className={c.poinHold}>
+          <span>coordinator</span>
+          <Select
+            components={{ DropdownIndicator }}
+            options={dataList(data, "coordinator").map((m) => ({
+              label: m,
+              value: m,
+            }))}
+            id="multiSelect"
+            inputId="shiftleader1"
+            styles={customStyles}
+            placeholder="select Family"
+            // onChange={(e) => onChangeHandler(e, m.id, "family")}
+            isMulti
+          />
+        </div>
+        <div className={c.poinHold}>
+          <span>crew</span>
+          <Select
+            components={{ DropdownIndicator }}
+            options={dataList(data, "crew").map((m) => ({
+              label: m,
+              value: m,
+            }))}
+            id="multiSelect"
+            inputId="shiftleader1"
+            styles={customStyles}
+            placeholder="select Family"
+            // onChange={(e) => onChangeHandler(e, m.id, "family")}
+            isMulti
+          />
+        </div>
+        <div className={c.poinHold}>
+          <span>project</span>
+          <Select
+            components={{ DropdownIndicator }}
+            options={dataList(data, "project").map((m) => ({
+              label: m,
+              value: m,
+            }))}
+            id="multiSelect"
+            inputId="shiftleader1"
+            styles={customStyles}
+            placeholder="select Family"
+            // onChange={(e) => onChangeHandler(e, m.id, "family")}
+            isMulti
+          />
+        </div>
+        <div className={c.poinHold}>
+          <span>reason</span>
+          <Select
+            components={{ DropdownIndicator }}
+            options={dataList(data, "reason").map((m) => ({
+              label: m,
+              value: m,
+            }))}
+            id="multiSelect"
+            inputId="shiftleader1"
+            styles={customStyles}
+            placeholder="select Family"
+            // onChange={(e) => onChangeHandler(e, m.id, "family")}
+            isMulti
+          />
+        </div>
       </div>
       <div className={c.trainingH}>
         <div className={c.dater} style={{ width: "33.33%" }}>

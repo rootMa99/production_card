@@ -168,3 +168,26 @@
 .button:active {
   border: 1px solid #f84018;
 }
+
+.poinHold {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.poinHold span {
+  color: #f84018;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.filterArrea {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  align-items: center;
+  gap: 0 20px;
+}
