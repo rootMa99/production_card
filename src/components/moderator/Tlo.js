@@ -68,13 +68,16 @@ const Tlo = (p) => {
 
   const callbackmu = useCallback(async () => {
     try {
-      const response = await fetch(`${api}/production-card/tlo-data?from=${p.date.from}&to=${p.date.to}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${isLoged.token}`,
-        },
-      });
+      const response = await fetch(
+        `${api}/production-card/tlo-data?from=${p.date.from}&to=${p.date.to}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${isLoged.token}`,
+          },
+        }
+      );
       if (!response.ok) {
         throw new Error(response.status);
       }
@@ -215,36 +218,42 @@ const Tlo = (p) => {
           </div>
         </div>
         <div className={c.trainingD} style={{ width: "33.33%" }}>
-          <div className={c.dataT} style={{ width: "20%" }}>
+          <div className={c.dataT} style={{ width: "16.66%" }}>
             <h3>matricule</h3>
           </div>
-          <div className={c.dataT} style={{ width: "20%" }}>
+          <div className={c.dataT} style={{ width: "16.66%" }}>
             <h3>tl</h3>
           </div>
-          <div className={c.dataT} style={{ width: "20%" }}>
+          <div className={c.dataT} style={{ width: "16.66%" }}>
             <h3>sl</h3>
           </div>
-          <div className={c.dataT} style={{ width: "20%" }}>
+          <div className={c.dataT} style={{ width: "16.66%" }}>
             <h3>coord</h3>
           </div>
-          <div className={c.dataT} style={{ width: "20%" }}>
+          <div className={c.dataT} style={{ width: "16.66%" }}>
             <h3>poste</h3>
+          </div>
+          <div className={c.dataT} style={{ width: "16.66%" }}>
+            <h3>crew</h3>
           </div>
         </div>
         <div className={c.trainingDi} style={{ width: "33.33%" }}>
-          <div className={c.dataT} style={{ width: "20%" }}>
-            <h3>crew</h3>
-          </div>
-          <div className={c.dataT} style={{ width: "20%" }}>
+          <div className={c.dataT} style={{ width: "16.66%" }}>
             <h3>family</h3>
           </div>
-          <div className={c.dataT} style={{ width: "20%" }}>
+          <div className={c.dataT} style={{ width: "16.66%" }}>
             <h3>project</h3>
           </div>
-          <div className={c.dataT} style={{ width: "20%" }}>
+          <div className={c.dataT} style={{ width: "16.66%" }}>
             <h3>reason</h3>
           </div>
-          <div className={c.dataT} style={{ width: "20%" }}>
+          <div className={c.dataT} style={{ width: "16.66%" }}>
+            <h3>motif</h3>
+          </div>
+          <div className={c.dataT} style={{ width: "16.66%" }}>
+            <h3>details</h3>
+          </div>
+          <div className={c.dataT} style={{ width: "16.66%" }}>
             <h3>hours</h3>
           </div>
         </div>
@@ -270,43 +279,53 @@ const Tlo = (p) => {
                 className={c.trainingD}
                 style={{ backgroundColor: "#929d96", width: "33.33%" }}
               >
-                <div className={c.dataT} style={{ width: "20%" }}>
+                <div className={c.dataT} style={{ width: "16.66%" }}>
                   <h3 style={{ color: "#CF3335", fontWeight: 800 }}>
                     {m.matricule}
                   </h3>
                 </div>
-                <div className={c.dataT} style={{ width: "20%" }}>
+                <div className={c.dataT} style={{ width: "16.66%" }}>
                   <h3>{m.teamleader}</h3>
                 </div>
-                <div className={c.dataT} style={{ width: "20%" }}>
+                <div className={c.dataT} style={{ width: "16.66%" }}>
                   <h3>{m.shiftleader}</h3>
                 </div>
-                <div className={c.dataT} style={{ width: "20%" }}>
+                <div className={c.dataT} style={{ width: "16.66%" }}>
                   <h3>{m.coordinator}</h3>
                 </div>
-                <div className={c.dataT} style={{ width: "20%" }}>
+                <div className={c.dataT} style={{ width: "16.66%" }}>
                   <h3>{m.poste}</h3>
+                </div>
+                <div className={c.dataT} style={{ width: "16.66%" }}>
+                  <h3>{m.crew}</h3>
                 </div>
               </div>
               <div
                 className={c.trainingDi}
                 style={{ backgroundColor: "#e5e1da", width: "33.33%" }}
               >
-                <div className={c.dataT} style={{ width: "20%" }}>
-                  <h3>{m.crew}</h3>
-                </div>
-                <div className={c.dataT} style={{ width: "20%" }}>
+                <div className={c.dataT} style={{ width: "16.66%" }}>
                   <h3>{m.family}</h3>
                 </div>
-                <div className={c.dataT} style={{ width: "20%" }}>
+                <div className={c.dataT} style={{ width: "16.66%" }}>
                   <h3>{m.project}</h3>
                 </div>
-                <div className={c.dataT} style={{ width: "20%" }}>
+                <div className={c.dataT} style={{ width: "16.66%" }}>
                   <h3 style={{ color: "#CF3335", fontWeight: 800 }}>
                     {m.reason}
                   </h3>
                 </div>
-                <div className={c.dataT} style={{ width: "20%" }}>
+                <div className={c.dataT} style={{ width: "16.66%" }}>
+                  <h3 style={{ color: "#CF3335", fontWeight: 800 }}>
+                    {m.motif}
+                  </h3>
+                </div>
+                <div className={c.dataT} style={{ width: "16.66%" }}>
+                  <h3 style={{ color: "#CF3335", fontWeight: 800 }}>
+                    {m.details}
+                  </h3>
+                </div>
+                <div className={c.dataT} style={{ width: "16.66%" }}>
                   <h3 style={{ color: "#CF3335", fontWeight: 800 }}>
                     {m.hours}
                   </h3>

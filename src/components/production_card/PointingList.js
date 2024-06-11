@@ -334,6 +334,16 @@ const PointingList = (p) => {
             poin.otDuration;
         }
         break;
+      case "ot":
+        paidhour =
+          0 -
+          poin.tDuration -
+          poin.retardDuration -
+          poin.ctnDuration -
+          durt(tom) -
+          poin.crDuration +
+          poin.otDuration;
+        break;
       case "ab":
       case "ap":
       case "ma":
@@ -342,6 +352,11 @@ const PointingList = (p) => {
       case "cr":
       case "t":
       case "mutation":
+      case "mt":
+      case "di":
+      case "dn":
+      case "te":
+      case "at":
         paidhour = 0;
         break;
       default:
@@ -356,6 +371,7 @@ const PointingList = (p) => {
 
   const submitManyData = async () => {
     console.log(
+      saePoin.pointing,
       saePoin.tDuration,
       saePoin.retardDuration,
       saePoin.ctnDuration,
@@ -402,12 +418,30 @@ const PointingList = (p) => {
             saePoin.otDuration;
         }
         break;
+      case "ot":
+        paidhour =
+          0 -
+          saePoin.tDuration -
+          saePoin.retardDuration -
+          saePoin.ctnDuration -
+          durt(tom) -
+          saePoin.crDuration +
+          saePoin.otDuration;
+        console.log("ot", paidhour);
+        break;
       case "ab":
       case "ap":
       case "ma":
       case "tl":
       case "ctp":
+      case "cr":
+      case "t":
       case "mutation":
+      case "mt":
+      case "di":
+      case "dn":
+      case "te":
+      case "at":
         paidhour = 0;
         break;
       default:
@@ -418,6 +452,7 @@ const PointingList = (p) => {
       p.data.filter((obj) => !empExc.includes(obj.matricule)),
       paidhour
     );
+    console.log("data test", paidhour, f);
     if (f) {
       setSea(false);
       setEmpExc([]);
@@ -520,6 +555,7 @@ const PointingList = (p) => {
                   { label: "shift", value: "shift" },
                   { label: "admin", value: "admin" },
                   { label: "ctp", value: "ctp" },
+                  { label: "ot", value: "ot" },
                 ]}
                 id="multiSelect"
                 inputId="shiftleader1"
@@ -585,7 +621,8 @@ const PointingList = (p) => {
               </div>
             )}
 
-            {saePoin.pointingOptions.includes("ot") && (
+            {(saePoin.pointingOptions.includes("ot") ||
+              saePoin.pointing === "ot") && (
               <div className={c.poinHold} style={{ width: "90%" }}>
                 <span>ot duration</span>
                 <input
@@ -752,10 +789,15 @@ const PointingList = (p) => {
                                   { label: "ab", value: "ab" },
                                   { label: "ap", value: "ap" },
                                   { label: "ma", value: "ma" },
+                                  { label: "mt", value: "mt" },
                                   { label: "tl", value: "tl" },
-                                  { label: "ctp", value: "ctp" },
-                                  { label: "cr", value: "cr" },
                                   { label: "t", value: "t" },
+                                  { label: "ctp", value: "ctp" },
+                                  { label: "di", value: "di" },
+                                  { label: "dn", value: "dn" },
+                                  { label: "te", value: "te" },
+                                  { label: "at", value: "at" },
+                                  { label: "cr", value: "cr" },
                                   { label: "mutation", value: "mutation" },
                                 ]}
                                 id="multiSelect"
@@ -1326,10 +1368,15 @@ const PointingList = (p) => {
                                 { label: "ab", value: "ab" },
                                 { label: "ap", value: "ap" },
                                 { label: "ma", value: "ma" },
+                                { label: "mt", value: "mt" },
                                 { label: "tl", value: "tl" },
-                                { label: "ctp", value: "ctp" },
-                                { label: "cr", value: "cr" },
                                 { label: "t", value: "t" },
+                                { label: "ctp", value: "ctp" },
+                                { label: "di", value: "di" },
+                                { label: "dn", value: "dn" },
+                                { label: "te", value: "te" },
+                                { label: "at", value: "at" },
+                                { label: "cr", value: "cr" },
                                 { label: "mutation", value: "mutation" },
                               ]}
                               id="multiSelect"
@@ -1434,7 +1481,8 @@ const PointingList = (p) => {
                               />
                             </div>
                           )}
-                          {poin.pointingOptions.includes("ot") && (
+                          {(poin.pointingOptions.includes("ot") ||
+                            poin.pointing === "ot") && (
                             <div className={c.poinHold}>
                               <span>ot duration</span>
                               <input

@@ -132,24 +132,34 @@ const getDataTrated = (d, t) => {
     return rd;
   }
 };
-const dataList=(d, t)=>{
-    const rd=[];
-    d.forEach(m=>{
-        if(rd.length===0){
-            rd.push(m[t])
-        }else{
-            const i = rd.findIndex((f) => f === m[t]);
-            if(i===-1){
-                rd.push(m[t])
-            }
-        }
-    })
-    return rd;
-}
+const dataList = (d, t) => {
+  const rd = [];
+  d.forEach((m) => {
+    if (rd.length === 0) {
+      rd.push(m[t]);
+    } else {
+      const i = rd.findIndex((f) => f === m[t]);
+      if (i === -1) {
+        rd.push(m[t]);
+      }
+    }
+  });
+  return rd;
+};
 const Abs = (p) => {
   const { isLoged } = useSelector((s) => s.login);
   const [data, setData] = useState([]);
-
+  const [filData, setFilData] = useState({
+    matricule: [],
+    family: [],
+    month: [],
+    tl: [],
+    sl: [],
+    coord: [],
+    crew: [],
+    project: [],
+    reason: [],
+  });
   const callbackmu = useCallback(async () => {
     try {
       const response = await fetch(
@@ -175,7 +185,11 @@ const Abs = (p) => {
   useEffect(() => {
     callbackmu();
   }, [callbackmu]);
-  console.log(getTotals(data), getDataTrated(data, "coordinator"), dataList(data, "family"));
+  console.log(
+    getTotals(data),
+    getDataTrated(data, "coordinator"),
+    dataList(data, "family")
+  );
 
   const generateExcel = () => {
     const workbook = new ExcelJS.Workbook();
