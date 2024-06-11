@@ -102,11 +102,11 @@ const Tlo = (p) => {
         "Equipe",
         "Workstation",
         "Wk#",
-        "Absent To",
-        "MONTH",
+        "TLO To",
         "Mle",
         "Reason",
         "hours",
+        "MONTH",
       ];
       worksheet.columns = columns.map((column) => ({
         header: column,
@@ -138,11 +138,11 @@ const Tlo = (p) => {
           Equipe: e.crew,
           Workstation: e.poste,
           "Wk#": e.wk,
-          "Absent To": e.date,
-          MONTH: e.month,
+          "TLO To": e.date,
           Mle: e.matricule,
           Reason: e.reason,
           hours: e.hours,
+          MONTH: e.month,
         };
 
         const worksheetRow = worksheet.addRow(row);
