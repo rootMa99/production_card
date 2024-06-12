@@ -8,7 +8,9 @@ const MutHistory = (p) => {
   const callbackmu = useCallback(async () => {
     try {
       const response = await fetch(
-        `${api}/employee/transfer/?teamleader=${isLoged.mtll}`,
+        p.type === "admin"
+          ? `${api}/employee/transfer`
+          : `${api}/employee/transfer/?teamleader=${isLoged.mtll}`,
         {
           method: "GET",
           headers: {
@@ -26,7 +28,7 @@ const MutHistory = (p) => {
     } catch (e) {
       console.error(e);
     }
-  }, [isLoged.token, isLoged.mtll]);
+  }, [isLoged.token, isLoged.mtll, p.type]);
   useEffect(() => {
     callbackmu();
   }, [callbackmu]);
@@ -49,10 +51,26 @@ const MutHistory = (p) => {
       <div className={c.trainingH}>
         <div className={c.dater}>
           <div className={c.dataT} style={{ width: "60%" }}>
-            <h3 style={{ color: "#E5E1DA" }}>date</h3>
+            <h3
+              style={
+                p.type === "admin"
+                  ? { color: "#E5E1DA", fontSize: "15px" }
+                  : { color: "#E5E1DA" }
+              }
+            >
+              date
+            </h3>
           </div>
           <div className={c.dataT} style={{ width: "40%" }}>
-            <h3 style={{ color: "#E5E1DA" }}>cmt by</h3>
+            <h3
+              style={
+                p.type === "admin"
+                  ? { color: "#E5E1DA", fontSize: "15px" }
+                  : { color: "#E5E1DA" }
+              }
+            >
+              cmt by
+            </h3>
           </div>
         </div>
         <div
@@ -60,28 +78,46 @@ const MutHistory = (p) => {
           style={{ backgroundColor: "#383942", width: "20%" }}
         >
           <div className={c.dataT}>
-            <h3>employee</h3>
+            <h3 style={p.type === "admin" ? { fontSize: "15px" } : {}}>
+              employee
+            </h3>
           </div>
         </div>
         <div className={c.trainingDi}>
           <div className={c.dataT} style={{ width: "50%" }}>
-            <h3>tl src</h3>
+            <h3 style={p.type === "admin" ? { fontSize: "15px" } : {}}>
+              tl src
+            </h3>
           </div>
           <div className={c.dataT} style={{ width: "50%" }}>
-            <h3>crew src</h3>
+            <h3 style={p.type === "admin" ? { fontSize: "15px" } : {}}>
+              crew src
+            </h3>
           </div>
         </div>
         <div className={c.trainingD}>
           <div className={c.dataT} style={{ width: "50%" }}>
-            <h3>tl des</h3>
+            <h3 style={p.type === "admin" ? { fontSize: "15px" } : {}}>
+              tl des
+            </h3>
           </div>
           <div className={c.dataT} style={{ width: "50%" }}>
-            <h3>crew des</h3>
+            <h3 style={p.type === "admin" ? { fontSize: "15px" } : {}}>
+              crew des
+            </h3>
           </div>
         </div>
         <div className={c.dater} style={{ width: "20%" }}>
           <div className={c.dataT}>
-            <h3 style={{ color: "#FFA211" }}>mut type</h3>
+            <h3
+              style={
+                p.type === "admin"
+                  ? { color: "#FFA211", fontSize: "15px" }
+                  : { color: "#FFA211" }
+              }
+            >
+              mut type
+            </h3>
           </div>
         </div>
       </div>
