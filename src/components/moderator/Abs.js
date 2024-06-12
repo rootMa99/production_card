@@ -562,7 +562,7 @@ const Abs = (p) => {
         </div>
       </div>
       <div className={c.trainingH}>
-        <div className={c.dater} style={{ width: "33.33%" }}>
+        <div className={c.dater} style={{ width: "20%" }}>
           <div className={c.dataT} style={{ width: "33.33%" }}>
             <h3 style={{ color: "#E5E1DA" }}>date</h3>
           </div>
@@ -573,21 +573,21 @@ const Abs = (p) => {
             <h3 style={{ color: "#E5E1DA" }}>month</h3>
           </div>
         </div>
-        <div className={c.trainingD} style={{ width: "33.33%" }}>
-          <div className={c.dataT} style={{ width: "25%" }}>
-            <h3>matricule</h3>
+        <div className={c.trainingD} style={{ width: "50%" }}>
+          <div className={c.dataT} style={{ width: "10%" }}>
+            <h3>mle</h3>
           </div>
-          <div className={c.dataT} style={{ width: "25%" }}>
+          <div className={c.dataT} style={{ width: "30%" }}>
             <h3>tl</h3>
           </div>
-          <div className={c.dataT} style={{ width: "25%" }}>
+          <div className={c.dataT} style={{ width: "30%" }}>
             <h3>sl</h3>
           </div>
-          <div className={c.dataT} style={{ width: "25%" }}>
+          <div className={c.dataT} style={{ width: "30%" }}>
             <h3>coord</h3>
           </div>
         </div>
-        <div className={c.trainingDi} style={{ width: "33.33%" }}>
+        <div className={c.trainingDi} style={{ width: "30%" }}>
           <div className={c.dataT} style={{ width: "20%" }}>
             <h3>poste</h3>
           </div>
@@ -611,7 +611,7 @@ const Abs = (p) => {
         ) : (
           fd.map((m) => (
             <div className={c.trainingH} style={{ marginTop: 0 }}>
-              <div className={c.dater} style={{ width: "33.33%" }}>
+              <div className={c.dater} style={{ width: "20%" }}>
                 <div className={c.dataT} style={{ width: "33.33%" }}>
                   <h3 style={{ color: "#E5E1DA" }}>{m.date}</h3>
                 </div>
@@ -624,26 +624,26 @@ const Abs = (p) => {
               </div>
               <div
                 className={c.trainingD}
-                style={{ backgroundColor: "#929d96", width: "33.33%" }}
+                style={{ backgroundColor: "#929d96", width: "50%" }}
               >
-                <div className={c.dataT} style={{ width: "25%" }}>
+                <div className={c.dataT} style={{ width: "10%" }}>
                   <h3 style={{ color: "#CF3335", fontWeight: 800 }}>
                     {m.matricule}
                   </h3>
                 </div>
-                <div className={c.dataT} style={{ width: "25%" }}>
+                <div className={c.dataT} style={{ width: "30%" }}>
                   <h3>{m.teamleader}</h3>
                 </div>
-                <div className={c.dataT} style={{ width: "25%" }}>
+                <div className={c.dataT} style={{ width: "30%" }}>
                   <h3>{m.shiftleader}</h3>
                 </div>
-                <div className={c.dataT} style={{ width: "25%" }}>
+                <div className={c.dataT} style={{ width: "30%" }}>
                   <h3>{m.coordinator}</h3>
                 </div>
               </div>
               <div
                 className={c.trainingDi}
-                style={{ backgroundColor: "#e5e1da", width: "33.33%" }}
+                style={{ backgroundColor: "#e5e1da", width: "30%" }}
               >
                 <div className={c.dataT} style={{ width: "20%" }}>
                   <h3>{m.poste}</h3>

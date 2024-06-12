@@ -202,6 +202,8 @@ const Tlo = (p) => {
         "TLO To",
         "Mle",
         "Reason",
+        "Motif",
+        "Detail",
         "hours",
         "MONTH",
       ];
@@ -238,6 +240,8 @@ const Tlo = (p) => {
           "TLO To": e.date,
           Mle: e.matricule,
           Reason: e.reason,
+          Motif: e.motif,
+          Detail: e.details,
           hours: e.hours,
           MONTH: e.month,
         };
@@ -420,10 +424,7 @@ const Tlo = (p) => {
           title="tlo by teamleader"
           data={getDataTrated(data, "teamleader")}
         />
-        <Chart
-          title="tlo by motif"
-          data={getDataTrated(data, "motif")}
-        />
+        <Chart title="tlo by motif" data={getDataTrated(data, "motif")} />
       </div>
       <div className={c.filterArrea}>
         <div className={c.poinHold}>
@@ -588,7 +589,7 @@ const Tlo = (p) => {
         </div>
       </div>
       <div className={c.trainingH}>
-        <div className={c.dater} style={{ width: "33.33%" }}>
+        <div className={c.dater} style={{ width: "20%" }}>
           <div className={c.dataT} style={{ width: "33.33%" }}>
             <h3 style={{ color: "#E5E1DA" }}>date</h3>
           </div>
@@ -599,27 +600,27 @@ const Tlo = (p) => {
             <h3 style={{ color: "#E5E1DA" }}>month</h3>
           </div>
         </div>
-        <div className={c.trainingD} style={{ width: "33.33%" }}>
-          <div className={c.dataT} style={{ width: "16.66%" }}>
-            <h3>matricule</h3>
+        <div className={c.trainingD} style={{ width: "50%" }}>
+          <div className={c.dataT} style={{ width: "10%" }}>
+            <h3>mle</h3>
           </div>
-          <div className={c.dataT} style={{ width: "16.66%" }}>
+          <div className={c.dataT} style={{ width: "20%" }}>
             <h3>tl</h3>
           </div>
-          <div className={c.dataT} style={{ width: "16.66%" }}>
+          <div className={c.dataT} style={{ width: "20%" }}>
             <h3>sl</h3>
           </div>
-          <div className={c.dataT} style={{ width: "16.66%" }}>
+          <div className={c.dataT} style={{ width: "20%" }}>
             <h3>coord</h3>
           </div>
-          <div className={c.dataT} style={{ width: "16.66%" }}>
+          <div className={c.dataT} style={{ width: "20%" }}>
             <h3>poste</h3>
           </div>
-          <div className={c.dataT} style={{ width: "16.66%" }}>
+          <div className={c.dataT} style={{ width: "10%" }}>
             <h3>crew</h3>
           </div>
         </div>
-        <div className={c.trainingDi} style={{ width: "33.33%" }}>
+        <div className={c.trainingDi} style={{ width: "30%" }}>
           <div className={c.dataT} style={{ width: "16.66%" }}>
             <h3>family</h3>
           </div>
@@ -646,7 +647,7 @@ const Tlo = (p) => {
         ) : (
           fd.map((m) => (
             <div className={c.trainingH} style={{ marginTop: 0 }}>
-              <div className={c.dater} style={{ width: "33.33%" }}>
+              <div className={c.dater} style={{ width: "20%" }}>
                 <div className={c.dataT} style={{ width: "33.33%" }}>
                   <h3 style={{ color: "#E5E1DA" }}>{m.date}</h3>
                 </div>
@@ -659,32 +660,32 @@ const Tlo = (p) => {
               </div>
               <div
                 className={c.trainingD}
-                style={{ backgroundColor: "#929d96", width: "33.33%" }}
+                style={{ backgroundColor: "#929d96", width: "50%" }}
               >
-                <div className={c.dataT} style={{ width: "16.66%" }}>
+                <div className={c.dataT} style={{ width: "10%" }}>
                   <h3 style={{ color: "#CF3335", fontWeight: 800 }}>
                     {m.matricule}
                   </h3>
                 </div>
-                <div className={c.dataT} style={{ width: "16.66%" }}>
+                <div className={c.dataT} style={{ width: "20%" }}>
                   <h3>{m.teamleader}</h3>
                 </div>
-                <div className={c.dataT} style={{ width: "16.66%" }}>
+                <div className={c.dataT} style={{ width: "20%" }}>
                   <h3>{m.shiftleader}</h3>
                 </div>
-                <div className={c.dataT} style={{ width: "16.66%" }}>
+                <div className={c.dataT} style={{ width: "20%" }}>
                   <h3>{m.coordinator}</h3>
                 </div>
-                <div className={c.dataT} style={{ width: "16.66%" }}>
+                <div className={c.dataT} style={{ width: "20%" }}>
                   <h3>{m.poste}</h3>
                 </div>
-                <div className={c.dataT} style={{ width: "16.66%" }}>
+                <div className={c.dataT} style={{ width: "10%" }}>
                   <h3>{m.crew}</h3>
                 </div>
               </div>
               <div
                 className={c.trainingDi}
-                style={{ backgroundColor: "#e5e1da", width: "33.33%" }}
+                style={{ backgroundColor: "#e5e1da", width: "30%" }}
               >
                 <div className={c.dataT} style={{ width: "16.66%" }}>
                   <h3>{m.family}</h3>
