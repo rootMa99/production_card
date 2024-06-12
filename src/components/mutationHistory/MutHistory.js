@@ -32,10 +32,18 @@ const MutHistory = (p) => {
   useEffect(() => {
     callbackmu();
   }, [callbackmu]);
+
+  const clickHn=(e, i)=>{
+
+  }
+
   return (
     <div className={c.container}>
       <div className={c.title2}>
-        <div className={c.line}></div>
+        <div
+          className={c.line}
+          style={p.type === "admin" ? { width: "45%" } : {}}
+        ></div>
         <h4>Mutation history</h4>
       </div>
       <div className={c.aidVcon}>
@@ -119,12 +127,23 @@ const MutHistory = (p) => {
               mut type
             </h3>
           </div>
+          <div className={c.dataT}>
+            <h3
+              style={
+                p.type === "admin"
+                  ? { color: "#FFA211", fontSize: "15px" }
+                  : { color: "#FFA211" }
+              }
+            >
+              refused
+            </h3>
+          </div>
         </div>
       </div>
       <div className={c.wraper}>
         {data.length > 0 ? (
           data.map((m) => (
-            <div className={c.trainingH} key={m._id} style={{ margin: 0 }}>
+            <div className={c.trainingH} key={m._id} style={{ margin: 0 }} onClick={e=>""}>
               <div className={c.dater}>
                 <div className={c.dataT} style={{ width: "60%" }}>
                   <h3
@@ -195,12 +214,27 @@ const MutHistory = (p) => {
                     {m.to.isDefinitely ? "prv*" : " defv**"}
                   </h3>
                 </div>
+                <div className={c.dataT}>
+                  <h3
+                    style={
+                      p.type === "admin"
+                        ? m.isRefused
+                          ? { color: "#CF3335", fontSize: "13px" }
+                          : { color: "#006B63", fontSize: "13px" }
+                        : m.isRefused
+                        ? { color: "#CF3335" }
+                        : { color: "#006B63" }
+                    }
+                  >
+                    {m.isRefused ? "yes" : "no"}
+                  </h3>
+                </div>
               </div>
             </div>
           ))
         ) : (
           <h4 className={c.noCrewS}>
-            No mutations have been recorded in the history.{" "}
+            No mutations have been recorded in the history.
           </h4>
         )}
       </div>
