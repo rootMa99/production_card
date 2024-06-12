@@ -609,10 +609,10 @@ const Tlo = (p) => {
         </div>
       </div>
       <div className={c.wraper}>
-        {data.length === 0 ? (
+        {fd.length === 0 ? (
           <h4 className={c.noCrewS}>no tlo data HAS BEEN FOUND</h4>
         ) : (
-          data.map((m) => (
+          fd.map((m) => (
             <div className={c.trainingH} style={{ marginTop: 0 }}>
               <div className={c.dater} style={{ width: "33.33%" }}>
                 <div className={c.dataT} style={{ width: "33.33%" }}>
