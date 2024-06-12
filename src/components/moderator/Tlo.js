@@ -131,10 +131,34 @@ const getDataTrated = (d, t) => {
     return rd;
   }
 };
+const dataList = (d, t) => {
+  const rd = [];
+  d.forEach((m) => {
+    if (rd.length === 0) {
+      rd.push(m[t]);
+    } else {
+      const i = rd.findIndex((f) => f === m[t]);
+      if (i === -1) {
+        rd.push(m[t]);
+      }
+    }
+  });
+  return rd;
+};
 const Tlo = (p) => {
   const { isLoged } = useSelector((s) => s.login);
   const [data, setData] = useState([]);
-
+  const [filData, setFilData] = useState({
+    matricule: [],
+    family: [],
+    month: [],
+    tl: [],
+    sl: [],
+    coord: [],
+    crew: [],
+    project: [],
+    reason: [],
+  });
   const callbackmu = useCallback(async () => {
     try {
       const response = await fetch(
@@ -250,6 +274,117 @@ const Tlo = (p) => {
       a.click();
       URL.revokeObjectURL(url);
     });
+  };
+  let fd =
+    filData.crew.length > 0
+      ? data.filter((obj) => {
+          return filData.crew.some((filterObj) => filterObj.value === obj.crew);
+        })
+      : data;
+  fd =
+    filData.matricule.length > 0
+      ? fd.filter((obj) => {
+          return filData.matricule.some(
+            (filterObj) => filterObj.value === obj.matricule
+          );
+        })
+      : fd;
+  fd =
+    filData.project.length > 0
+      ? fd.filter((obj) => {
+          return filData.project.some(
+            (filterObj) => filterObj.value === obj.project
+          );
+        })
+      : fd;
+  fd =
+    filData.reason.length > 0
+      ? fd.filter((obj) => {
+          return filData.reason.some(
+            (filterObj) => filterObj.value === obj.reason
+          );
+        })
+      : fd;
+  fd =
+    filData.family.length > 0
+      ? fd.filter((obj) => {
+          return filData.family.some(
+            (filterObj) => filterObj.value === obj.family
+          );
+        })
+      : fd;
+  fd =
+    filData.month.length > 0
+      ? fd.filter((obj) => {
+          return filData.month.some(
+            (filterObj) => filterObj.value === obj.month
+          );
+        })
+      : fd;
+  fd =
+    filData.tl.length > 0
+      ? fd.filter((obj) => {
+          return filData.tl.some(
+            (filterObj) => filterObj.value === obj.teamleader
+          );
+        })
+      : fd;
+  fd =
+    filData.sl.length > 0
+      ? fd.filter((obj) => {
+          return filData.sl.some(
+            (filterObj) => filterObj.value === obj.shiftleader
+          );
+        })
+      : fd;
+  fd =
+    filData.coord.length > 0
+      ? fd.filter((obj) => {
+          return filData.coord.some(
+            (filterObj) => filterObj.value === obj.coordinator
+          );
+        })
+      : fd;
+  fd =
+    filData.reason.length > 0
+      ? fd.filter((obj) => {
+          return filData.reason.some(
+            (filterObj) => filterObj.value === obj.reason
+          );
+        })
+      : fd;
+
+  const handleSelectChange = (e, t) => {
+    switch (t) {
+      case "matricule":
+        setFilData((p) => ({ ...p, matricule: e }));
+        break;
+      case "crew":
+        setFilData((p) => ({ ...p, crew: e }));
+        break;
+      case "project":
+        setFilData((p) => ({ ...p, project: e }));
+        break;
+      case "reason":
+        setFilData((p) => ({ ...p, reason: e }));
+        break;
+      case "family":
+        setFilData((p) => ({ ...p, family: e }));
+        break;
+      case "month":
+        setFilData((p) => ({ ...p, month: e }));
+        break;
+      case "tl":
+        setFilData((p) => ({ ...p, tl: e }));
+        break;
+      case "sl":
+        setFilData((p) => ({ ...p, sl: e }));
+        break;
+      case "coord":
+        setFilData((p) => ({ ...p, coord: e }));
+        break;
+      default:
+    }
   };
   return (
     <div className={c.container}>
