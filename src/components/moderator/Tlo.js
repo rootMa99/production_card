@@ -158,6 +158,7 @@ const Tlo = (p) => {
     crew: [],
     project: [],
     reason: [],
+    motif: [],
   });
   const callbackmu = useCallback(async () => {
     try {
@@ -353,6 +354,14 @@ const Tlo = (p) => {
           );
         })
       : fd;
+  fd =
+    filData.motif.length > 0
+      ? fd.filter((obj) => {
+          return filData.motif.some(
+            (filterObj) => filterObj.value === obj.motif
+          );
+        })
+      : fd;
 
   const handleSelectChange = (e, t) => {
     switch (t) {
@@ -382,6 +391,9 @@ const Tlo = (p) => {
         break;
       case "coord":
         setFilData((p) => ({ ...p, coord: e }));
+        break;
+      case "motif":
+        setFilData((p) => ({ ...p, motif: e }));
         break;
       default:
     }
@@ -551,6 +563,22 @@ const Tlo = (p) => {
             styles={customStyles}
             placeholder="select reason"
             onChange={(e) => handleSelectChange(e, "reason")}
+            isMulti
+          />
+        </div>
+        <div className={c.poinHold}>
+          <span>motif</span>
+          <Select
+            components={{ DropdownIndicator }}
+            options={dataList(data, "motif").map((m) => ({
+              label: m,
+              value: m,
+            }))}
+            id="multiSelect"
+            inputId="shiftleader1"
+            styles={customStyles}
+            placeholder="select reason"
+            onChange={(e) => handleSelectChange(e, "motif")}
             isMulti
           />
         </div>
