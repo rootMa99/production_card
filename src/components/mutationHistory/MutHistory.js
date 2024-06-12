@@ -39,6 +39,13 @@ const MutHistory = (p) => {
       const c = window.confirm("do you want to cancel this mutation?");
     }
   };
+  const toogle = (e) => {
+    setCm(null);
+  };
+  const toogleid = (e, t) => {
+    setCm(t);
+  };
+
 
   return (
     <div className={c.container}>
@@ -151,7 +158,7 @@ const MutHistory = (p) => {
                 className={c.trainingH}
                 key={m._id}
                 style={{ margin: 0 }}
-                onClick={(e) => clickHn(e, m._id)}
+                onClick={e=> cm === m._id ? toogle() : toogleid(e, m._id)}
               >
                 <div className={c.dater}>
                   <div className={c.dataT} style={{ width: "60%" }}>
@@ -241,7 +248,10 @@ const MutHistory = (p) => {
                 </div>
               </div>
               {cm === m._id && p.type === "admin" && (
-                <div className={c.plusData}></div>
+                <div className={c.plusData}>
+                <p>do you want to cancel this mutation?</p>
+                <h2>{m.isRefused ? "yes" : "no"}</h2>
+                </div>
               )}
             </React.Fragment>
           ))
