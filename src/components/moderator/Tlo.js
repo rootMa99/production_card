@@ -420,6 +420,10 @@ const Tlo = (p) => {
           title="tlo by teamleader"
           data={getDataTrated(data, "teamleader")}
         />
+        <Chart
+          title="tlo by motif"
+          data={getDataTrated(data, "motif")}
+        />
       </div>
       <div className={c.filterArrea}>
         <div className={c.poinHold}>
