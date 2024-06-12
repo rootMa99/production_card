@@ -1,10 +1,11 @@
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import c from "./MutHistory.module.css";
 import api from "../../service/api";
 import { useSelector } from "react-redux";
 const MutHistory = (p) => {
   const { isLoged } = useSelector((s) => s.login);
   const [data, setData] = useState([]);
+  const [cm, setCm] = useState(null);
   const callbackmu = useCallback(async () => {
     try {
       const response = await fetch(
@@ -33,9 +34,11 @@ const MutHistory = (p) => {
     callbackmu();
   }, [callbackmu]);
 
-  const clickHn=(e, i)=>{
-
-  }
+  const clickHn = (e, i) => {
+    if (p.type === "admin") {
+      const c = window.confirm("do you want to cancel this mutation?");
+    }
+  };
 
   return (
     <div className={c.container}>
@@ -143,94 +146,104 @@ const MutHistory = (p) => {
       <div className={c.wraper}>
         {data.length > 0 ? (
           data.map((m) => (
-            <div className={c.trainingH} key={m._id} style={{ margin: 0 }} onClick={e=>""}>
-              <div className={c.dater}>
-                <div className={c.dataT} style={{ width: "60%" }}>
-                  <h3
-                    style={
-                      p.type === "admin"
-                        ? { color: "#E5E1DA", fontSize: "13px" }
-                        : { color: "#E5E1DA" }
-                    }
-                  >
-                    {m.date.split("T")[0]}
-                  </h3>
-                </div>
-                <div className={c.dataT} style={{ width: "40%" }}>
-                  <h3
-                    style={
-                      p.type === "admin"
-                        ? { color: "#E5E1DA", fontSize: "13px" }
-                        : { color: "#E5E1DA" }
-                    }
-                  >
-                    {m.requestedBy}
-                  </h3>
-                </div>
-              </div>
+            <React.Fragment>
               <div
-                className={c.dater}
-                style={{ backgroundColor: "#383942", width: "20%" }}
+                className={c.trainingH}
+                key={m._id}
+                style={{ margin: 0 }}
+                onClick={(e) => clickHn(e, m._id)}
               >
-                <div className={c.dataT}>
-                  <h3 style={p.type === "admin" ? { fontSize: "13px" } : {}}>
-                    {m.matricule}
-                  </h3>
+                <div className={c.dater}>
+                  <div className={c.dataT} style={{ width: "60%" }}>
+                    <h3
+                      style={
+                        p.type === "admin"
+                          ? { color: "#E5E1DA", fontSize: "13px" }
+                          : { color: "#E5E1DA" }
+                      }
+                    >
+                      {m.date.split("T")[0]}
+                    </h3>
+                  </div>
+                  <div className={c.dataT} style={{ width: "40%" }}>
+                    <h3
+                      style={
+                        p.type === "admin"
+                          ? { color: "#E5E1DA", fontSize: "13px" }
+                          : { color: "#E5E1DA" }
+                      }
+                    >
+                      {m.requestedBy}
+                    </h3>
+                  </div>
+                </div>
+                <div
+                  className={c.dater}
+                  style={{ backgroundColor: "#383942", width: "20%" }}
+                >
+                  <div className={c.dataT}>
+                    <h3 style={p.type === "admin" ? { fontSize: "13px" } : {}}>
+                      {m.matricule}
+                    </h3>
+                  </div>
+                </div>
+                <div className={c.trainingDi}>
+                  <div className={c.dataT} style={{ width: "50%" }}>
+                    <h3 style={p.type === "admin" ? { fontSize: "13px" } : {}}>
+                      {m.from.teamleader}
+                    </h3>
+                  </div>
+                  <div className={c.dataT} style={{ width: "50%" }}>
+                    <h3 style={p.type === "admin" ? { fontSize: "13px" } : {}}>
+                      {m.from.crew}
+                    </h3>
+                  </div>
+                </div>
+                <div className={c.trainingD}>
+                  <div className={c.dataT} style={{ width: "50%" }}>
+                    <h3 style={p.type === "admin" ? { fontSize: "13px" } : {}}>
+                      {m.to.teamleader}
+                    </h3>
+                  </div>
+                  <div className={c.dataT} style={{ width: "50%" }}>
+                    <h3 style={p.type === "admin" ? { fontSize: "13px" } : {}}>
+                      {m.to.crew}
+                    </h3>
+                  </div>
+                </div>
+                <div className={c.dater} style={{ width: "20%" }}>
+                  <div className={c.dataT}>
+                    <h3
+                      style={
+                        p.type === "admin"
+                          ? { color: "#FFA211", fontSize: "13px" }
+                          : { color: "#FFA211" }
+                      }
+                    >
+                      {m.to.isDefinitely ? "prv*" : " defv**"}
+                    </h3>
+                  </div>
+                  <div className={c.dataT}>
+                    <h3
+                      style={
+                        p.type === "admin"
+                          ? m.isRefused
+                            ? { color: "#CF3335", fontSize: "13px" }
+                            : { color: "#006B63", fontSize: "13px" }
+                          : m.isRefused
+                          ? { color: "#CF3335" }
+                          : { color: "#006B63" }
+                      }
+                    >
+                      {m.isRefused ? "yes" : "no"}
+                    </h3>
+                  </div>
                 </div>
               </div>
-              <div className={c.trainingDi}>
-                <div className={c.dataT} style={{ width: "50%" }}>
-                  <h3 style={p.type === "admin" ? { fontSize: "13px" } : {}}>
-                    {m.from.teamleader}
-                  </h3>
-                </div>
-                <div className={c.dataT} style={{ width: "50%" }}>
-                  <h3 style={p.type === "admin" ? { fontSize: "13px" } : {}}>
-                    {m.from.crew}
-                  </h3>
-                </div>
-              </div>
-              <div className={c.trainingD}>
-                <div className={c.dataT} style={{ width: "50%" }}>
-                  <h3 style={p.type === "admin" ? { fontSize: "13px" } : {}}>
-                    {m.to.teamleader}
-                  </h3>
-                </div>
-                <div className={c.dataT} style={{ width: "50%" }}>
-                  <h3 style={p.type === "admin" ? { fontSize: "13px" } : {}}>
-                    {m.to.crew}
-                  </h3>
-                </div>
-              </div>
-              <div className={c.dater} style={{ width: "20%" }}>
-                <div className={c.dataT}>
-                  <h3
-                    style={
-                      p.type === "admin"
-                        ? { color: "#FFA211", fontSize: "13px" }
-                        : { color: "#FFA211" }
-                    }
-                  >
-                    {m.to.isDefinitely ? "prv*" : " defv**"}
-                  </h3>
-                </div>
-                <div className={c.dataT}>
-                  <h3
-                    style={
-                      p.type === "admin"
-                        ? m.isRefused
-                          ? { color: "#CF3335", fontSize: "13px" }
-                          : { color: "#006B63", fontSize: "13px" }
-                        : m.isRefused
-                        ? { color: "#CF3335" }
-                        : { color: "#006B63" }
-                    }
-                  >
-                    {m.isRefused ? "yes" : "no"}
-                  </h3>
-                </div>
-              </div>
-            </div>
+              {cm === m._id && p.type === "admin" && (
+                <div className={c.plusData}></div>
+              )}
+            </React.Fragment>
           ))
         ) : (
           <h4 className={c.noCrewS}>
