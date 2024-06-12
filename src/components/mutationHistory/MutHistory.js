@@ -250,7 +250,7 @@ const MutHistory = (p) => {
               {cm === m._id && p.type === "admin" && (
                 <div className={c.plusData}>
                 <p>do you want to cancel this mutation?</p>
-                <h2>{m.isRefused ? "yes" : "no"}</h2>
+                <h2>{m.isRefused ? "confirm" : "cancel"}</h2>
                 </div>
               )}
             </React.Fragment>
