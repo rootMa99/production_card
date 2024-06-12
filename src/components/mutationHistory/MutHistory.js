@@ -51,12 +51,12 @@ const MutHistory = (p) => {
         if (!response.ok) {
           throw new Error(response.status);
         }
-        const d = await response.json();
-        console.log("cl1m:", d);
+        // const d = await response.json();
         callbackmu();
         toogle();
+        setsuccess(true);
       } catch (e) {
-        console.error(e);
+        setErr(true);
       }
     }
   };
