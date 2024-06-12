@@ -577,7 +577,7 @@ const Tlo = (p) => {
             id="multiSelect"
             inputId="shiftleader1"
             styles={customStyles}
-            placeholder="select reason"
+            placeholder="select motif"
             onChange={(e) => handleSelectChange(e, "motif")}
             isMulti
           />
