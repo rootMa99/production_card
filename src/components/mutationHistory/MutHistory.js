@@ -36,7 +36,6 @@ const MutHistory = (p) => {
 
   const clickHn = (e, i) => {
     if (p.type === "admin") {
-      const c = window.confirm("do you want to cancel this mutation?");
     }
   };
   const toogle = (e) => {
@@ -45,7 +44,6 @@ const MutHistory = (p) => {
   const toogleid = (e, t) => {
     setCm(t);
   };
-
 
   return (
     <div className={c.container}>
@@ -116,12 +114,12 @@ const MutHistory = (p) => {
         <div className={c.trainingD}>
           <div className={c.dataT} style={{ width: "50%" }}>
             <h3 style={p.type === "admin" ? { fontSize: "15px" } : {}}>
-              tl des
+              tl desti.
             </h3>
           </div>
           <div className={c.dataT} style={{ width: "50%" }}>
             <h3 style={p.type === "admin" ? { fontSize: "15px" } : {}}>
-              crew des
+              crew desti.
             </h3>
           </div>
         </div>
@@ -158,7 +156,7 @@ const MutHistory = (p) => {
                 className={c.trainingH}
                 key={m._id}
                 style={{ margin: 0 }}
-                onClick={e=> cm === m._id ? toogle() : toogleid(e, m._id)}
+                onClick={(e) => (cm === m._id ? toogle() : toogleid(e, m._id))}
               >
                 <div className={c.dater}>
                   <div className={c.dataT} style={{ width: "60%" }}>
@@ -249,8 +247,8 @@ const MutHistory = (p) => {
               </div>
               {cm === m._id && p.type === "admin" && (
                 <div className={c.plusData}>
-                <p>do you want to cancel this mutation?</p>
-                <h2>{m.isRefused ? "confirm" : "cancel"}</h2>
+                  <p>do you want to cancel this mutation?</p>
+                  <h2>{m.isRefused ? "confirm" : "cancel"}</h2>
                 </div>
               )}
             </React.Fragment>
