@@ -2,10 +2,13 @@ import React, { useCallback, useEffect, useState } from "react";
 import c from "./MutHistory.module.css";
 import api from "../../service/api";
 import { useSelector } from "react-redux";
+import NetworkNotify from "../UI/NetworkNotify";
 const MutHistory = (p) => {
   const { isLoged } = useSelector((s) => s.login);
   const [data, setData] = useState([]);
   const [cm, setCm] = useState(null);
+  const [err, setErr] = useState(false);
+  const [success, setsuccess] = useState(false);
   const callbackmu = useCallback(async () => {
     try {
       const response = await fetch(
@@ -34,8 +37,27 @@ const MutHistory = (p) => {
     callbackmu();
   }, [callbackmu]);
 
-  const clickHn = (e, i) => {
+  const clickHn = async (e, i, t) => {
     if (p.type === "admin") {
+      try {
+        const response = await fetch(`${api}/transfer/update/${i}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${isLoged.token}`,
+          },
+          body: JSON.stringify({ isRefused: t }),
+        });
+        if (!response.ok) {
+          throw new Error(response.status);
+        }
+        const d = await response.json();
+        console.log("cl1m:", d);
+        callbackmu();
+        toogle();
+      } catch (e) {
+        console.error(e);
+      }
     }
   };
   const toogle = (e) => {
@@ -44,9 +66,27 @@ const MutHistory = (p) => {
   const toogleid = (e, t) => {
     setCm(t);
   };
-
+  if (err) {
+    setTimeout(() => {
+      setErr(false);
+    }, 2000);
+  }
+  if (success) {
+    setTimeout(() => {
+      setsuccess(false);
+    }, 2000);
+  }
   return (
     <div className={c.container}>
+      {err && (
+        <NetworkNotify message="We have encountered an error, please try it again!" />
+      )}
+      {success && (
+        <NetworkNotify
+          message="Data has been successfully sent"
+          success={success}
+        />
+      )}
       <div className={c.title2}>
         <div
           className={c.line}
@@ -248,7 +288,13 @@ const MutHistory = (p) => {
               {cm === m._id && p.type === "admin" && (
                 <div className={c.plusData}>
                   <p>do you want to cancel this mutation?</p>
-                  <h2>{m.isRefused ? "confirm" : "cancel"}</h2>
+                  <h2
+                    onClick={(e) =>
+                      clickHn(e, m._id, m.isRefused ? false : true)
+                    }
+                  >
+                    {m.isRefused ? "confirm" : "cancel"}
+                  </h2>
                 </div>
               )}
             </React.Fragment>
