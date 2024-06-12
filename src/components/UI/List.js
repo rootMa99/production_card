@@ -59,6 +59,14 @@ const List = (p) => {
               data Abs & tlo & output
             </NavLink>
           </li>
+          <li className={c.linktwo} onClick={onClickHandler}>
+            <NavLink
+              to="/mh"
+              className={({ isActive }) => (isActive ? c.activeLink : c.link)}
+            >
+              Mutation history
+            </NavLink>
+          </li>
         </React.Fragment>
       )}
       <li
