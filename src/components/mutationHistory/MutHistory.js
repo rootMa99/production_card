@@ -183,7 +183,7 @@ const MutHistory = (p) => {
                   : { color: "#FFA211" }
               }
             >
-              refused
+              ref
             </h3>
           </div>
         </div>
@@ -314,6 +314,11 @@ const MutHistory = (p) => {
         <div className={c.aidV}>
           <h3>
             <mark>defv**</mark> = définitive
+          </h3>
+        </div>
+        <div className={c.aidV}>
+          <h3>
+            <mark>ref**</mark> = refused
           </h3>
         </div>
       </div>
