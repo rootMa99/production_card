@@ -287,7 +287,10 @@ const MutHistory = (p) => {
               </div>
               {cm === m._id && p.type === "admin" && (
                 <div className={c.plusData}>
-                  <p>do you want to {m.isRefused ? "confirm" : "refuse"} this mutation?</p>
+                  <p>
+                    do you want to {m.isRefused ? "confirm" : "refuse"} this
+                    mutation?
+                  </p>
                   <h2
                     onClick={(e) =>
                       clickHn(e, m._id, m.isRefused ? false : true)
