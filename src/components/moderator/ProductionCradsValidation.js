@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import c from "./ProductionCradsValidation.module.css";
 import { useSelector } from "react-redux";
 import api from "../../service/api";
-
+import nof from "../../assets/nocards.svg";
 const getEmpl = (d) => {
   let r = 0;
   d.map((m) => (r += m.paidHour));
@@ -57,7 +57,14 @@ const ProductionCradsValidation = (p) => {
       </div>
       <div className={c.cardsContainer}>
         {data.length === 0 ? (
-          <h2>no card was found</h2>
+          <div>
+            <img
+              className={c.noImag}
+              src={nof}
+              alt="no production card has been found"
+            />
+            <h4 className={c.noCrewS}>NO production card HAS BEEN FOUND!</h4>
+          </div>
         ) : (
           data.map((m) => (
             <div className={c.card} key={m._id}>
@@ -82,8 +89,18 @@ const ProductionCradsValidation = (p) => {
                   className={c.para}
                   style={
                     m.isValid
-                      ? { margin: "auto", fontWeight: "900", textTransform: "uppercase", color: "#006B63" }
-                      : { margin: "auto", fontWeight: "900", textTransform: "uppercase", color:"#f3090b" }
+                      ? {
+                          margin: "auto",
+                          fontWeight: "900",
+                          textTransform: "uppercase",
+                          color: "#006B63",
+                        }
+                      : {
+                          margin: "auto",
+                          fontWeight: "900",
+                          textTransform: "uppercase",
+                          color: "#f3090b",
+                        }
                   }
                 >
                   {m.isValid ? "validate" : "not validate"}
