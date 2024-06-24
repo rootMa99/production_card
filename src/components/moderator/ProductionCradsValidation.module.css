@@ -136,13 +136,25 @@
 }
 
 .content .para {
+  border-bottom: 2.5px solid;
+}
+.content .para,
+.contina {
   z-index: 1;
   opacity: 0.8;
   font-size: 18px;
   transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
   margin: 0;
   font-weight: 500;
-  border-bottom: 2.5px solid;
+}
+
+.contina {
+  font-weight: 400;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: uppercase;
 }
 
 .card::before {
@@ -152,7 +164,7 @@
   width: 160%;
   border-radius: inherit;
   background: #f84018;
-  background: linear-gradient(to right, #CF3335, #f84018);
+  background: linear-gradient(to right, #cf3335, #f84018);
   transform-origin: center;
   animation: moving 4.8s linear infinite paused;
   transition: all 0.88s cubic-bezier(0.23, 1, 0.32, 1);
@@ -165,7 +177,8 @@
 }
 
 .card:hover .content .heading,
-.card:hover .content .para {
+.card:hover .content .para,
+.card:hover .content .contina {
   color: #000000;
 }
 

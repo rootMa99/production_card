@@ -2,6 +2,14 @@ import { useCallback, useEffect, useState } from "react";
 import c from "./ProductionCradsValidation.module.css";
 import { useSelector } from "react-redux";
 import api from "../../service/api";
+
+const getEmpl = (d) => {
+  let r = 0;
+  d.map((m) => (r += m.paidHour));
+
+  return r / 7.67;
+};
+
 const ProductionCradsValidation = (p) => {
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
   const { isLoged } = useSelector((s) => s.login);
@@ -55,10 +63,21 @@ const ProductionCradsValidation = (p) => {
             <div className={c.card} key={m._id}>
               <div className={c.content}>
                 <p className={c.heading}>{m.crew}</p>
-                <p className={c.para}>
-                  {`${m.family} / ${m.project}`}
-                </p>
-               
+                <p className={c.para}>{`${m.family} / ${m.project}`}</p>
+                <div className={c.contina}>
+                  <span>teamleader:</span>
+                  <span style={{ fontWeight: "bold" }}>{m.teamleader}</span>
+                </div>
+                <div className={c.contina}>
+                  <span>shift:</span>
+                  <span style={{ fontWeight: "bold" }}>{m.shift}</span>
+                </div>
+                <div className={c.contina}>
+                  <span>shift:</span>
+                  <span style={{ fontWeight: "bold" }}>
+                    {`${getEmpl(m.employees).toFixed(2)}/${m.employees.length}`}
+                  </span>
+                </div>
               </div>
             </div>
           ))
