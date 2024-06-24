@@ -206,24 +206,22 @@
 /* filter select */
 
 .filterArrea {
-    width: 90%;
-    display: flex;
-    justify-content: center;
-    margin: auto;
-    align-items: center;
-    gap: 0 20px;
-    z-index: 3;
-  }
-  
-
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  align-items: center;
+  gap: 0 20px;
+  z-index: 3;
+}
 
 /* other style */
 .noCrewS {
-    color: #c9c9c9;
-    text-transform: uppercase;
-    font-size: 25px;
-  }
+  color: #c9c9c9;
+  text-transform: uppercase;
+  font-size: 25px;
+}
 
-  .noImag{
-    width: 25rem;
-  }
+.noImag {
+  width: 25rem;
+}
