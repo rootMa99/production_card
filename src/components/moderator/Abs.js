@@ -609,8 +609,8 @@ const Abs = (p) => {
         {fd.length === 0 ? (
           <h4 className={c.noCrewS}>no abs data HAS BEEN FOUND</h4>
         ) : (
-          fd.map((m) => (
-            <div className={c.trainingH} style={{ marginTop: 0 }}>
+          fd.map((m, i) => (
+            <div className={c.trainingH} style={{ marginTop: 0 }} key={i}>
               <div className={c.dater} style={{ width: "20%" }}>
                 <div className={c.dataT} style={{ width: "33.33%" }}>
                   <h3 style={{ color: "#E5E1DA" }}>{m.date}</h3>
