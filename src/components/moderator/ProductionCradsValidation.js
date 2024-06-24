@@ -6,78 +6,78 @@ import nof from "../../assets/nocards.svg";
 import Select from "react-select";
 import DropdownIndicator from "..//UI/DropdownIndicator";
 const customStyles = {
-    control: (provided, state) => ({
-      ...provided,
-      minWidth: "10rem",
-      minHeight: "20px",
-      padding: "8px 0",
-      fontSize: "15px",
-      textTransform: "uppercase",
-      borderRadius: "5px",
-      fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  control: (provided, state) => ({
+    ...provided,
+    minWidth: "15rem",
+    minHeight: "20px",
+    padding: "8px 0",
+    fontSize: "15px",
+    textTransform: "uppercase",
+    borderRadius: "5px",
+    fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
                           "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
                           "Segoe UI Symbol"`,
-      textAlign: "center",
-      outline: "none",
-      border: "1px solid #F84018",
+    textAlign: "center",
+    outline: "none",
+    border: "1px solid #F84018",
+    backgroundColor: "transparent",
+    boxShadow: "none",
+    margin: "auto",
+    "&:hover": {
+      border: "1px solid #f33716",
+      cursor: "pointer",
+    },
+  }),
+  option: (provided, state) => ({
+    width: "100%",
+    padding: "10px 0",
+    color: state.isFocused ? "#f3f3f3" : "#f33716",
+    backgroundColor: state.isFocused && "#F84018",
+    fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                          "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+                          "Segoe UI Symbol"`,
+    textTransform: "uppercase",
+    outline: "none",
+    textAlign: "center",
+    fontSize: "15px",
+    "&:hover": {
+      cursor: "pointer",
+    },
+  }),
+  input: (provided) => ({
+    ...provided,
+    color: "#fff",
+    fontSize: "15px",
+    textAlign: "center",
+  }),
+  singleValue: (p) => ({
+    ...p,
+    color: "#fff",
+  }),
+  menu: (provided) => ({
+    ...provided,
+    zIndex: 4,
+  }),
+  menuList: (provided) => ({
+    maxHeight: "150px",
+    overflowY: "auto",
+    overflowX: "hidden",
+    scrollbarWidth: "thin",
+    msOverflowStyle: "none",
+    zIndex: 3,
+    "&::-webkit-scrollbar": {
+      width: "5px",
+      backgroundColor: "#535151",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: "#f33716",
+    },
+    "&::-webkit-scrollbar-track": {
       backgroundColor: "transparent",
-      boxShadow: "none",
-      margin: "auto",
-      "&:hover": {
-        border: "1px solid #f33716",
-        cursor: "pointer",
-      },
-    }),
-    option: (provided, state) => ({
-      width: "100%",
-      padding: "10px 0",
-      color: state.isFocused ? "#f3f3f3" : "#f33716",
-      backgroundColor: state.isFocused && "#F84018",
-      fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-                          "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-                          "Segoe UI Symbol"`,
-      textTransform: "uppercase",
-      outline: "none",
-      textAlign: "center",
-      fontSize: "15px",
-      "&:hover": {
-        cursor: "pointer",
-      },
-    }),
-    input: (provided) => ({
-      ...provided,
-      color: "#fff",
-      fontSize: "15px",
-      textAlign: "center",
-    }),
-    singleValue: (p) => ({
-      ...p,
-      color: "#fff",
-    }),
-    menu: (provided) => ({
-      ...provided,
-      zIndex: 4, 
-    }),
-    menuList: (provided) => ({
-      maxHeight: "150px",
-      overflowY: "auto",
-      overflowX: "hidden",
-      scrollbarWidth: "thin",
-      msOverflowStyle: "none",
-      zIndex: 3,
-      "&::-webkit-scrollbar": {
-        width: "5px",
-        backgroundColor: "#535151",
-      },
-      "&::-webkit-scrollbar-thumb": {
-        backgroundColor: "#f33716",
-      },
-      "&::-webkit-scrollbar-track": {
-        backgroundColor: "transparent",
-      },
-    }),
-  };
-  
+    },
+  }),
+};
+
 const getEmpl = (d) => {
   let r = 0;
   d.map((m) => (r += m.paidHour));
@@ -139,23 +139,14 @@ const ProductionCradsValidation = (p) => {
   //filter part of code
   const handleSelectChange = (e, t) => {
     switch (t) {
-      case "matricule":
-        setFilData((p) => ({ ...p, matricule: e }));
-        break;
       case "crew":
         setFilData((p) => ({ ...p, crew: e }));
         break;
       case "project":
         setFilData((p) => ({ ...p, project: e }));
         break;
-      case "reason":
-        setFilData((p) => ({ ...p, reason: e }));
-        break;
       case "family":
         setFilData((p) => ({ ...p, family: e }));
-        break;
-      case "month":
-        setFilData((p) => ({ ...p, month: e }));
         break;
       case "tl":
         setFilData((p) => ({ ...p, tl: e }));
@@ -346,7 +337,7 @@ const ProductionCradsValidation = (p) => {
             <h4 className={c.noCrewS}>NO production card HAS BEEN FOUND!</h4>
           </div>
         ) : (
-            fd.map((m) => (
+          fd.map((m) => (
             <div className={c.card} key={m._id}>
               <div className={c.content}>
                 <p className={c.heading}>{m.crew}</p>
