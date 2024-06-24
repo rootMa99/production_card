@@ -15,8 +15,8 @@ const customStyles = {
       textTransform: "uppercase",
       borderRadius: "5px",
       fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-                        "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-                        "Segoe UI Symbol"`,
+                          "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+                          "Segoe UI Symbol"`,
       textAlign: "center",
       outline: "none",
       border: "1px solid #F84018",
@@ -32,10 +32,10 @@ const customStyles = {
       width: "100%",
       padding: "10px 0",
       color: state.isFocused ? "#f3f3f3" : "#f33716",
-      backgroundColor: state.isFocused && "#474b4d",
+      backgroundColor: state.isFocused && "#F84018",
       fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-                        "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-                        "Segoe UI Symbol"`,
+                          "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+                          "Segoe UI Symbol"`,
       textTransform: "uppercase",
       outline: "none",
       textAlign: "center",
@@ -54,12 +54,17 @@ const customStyles = {
       ...p,
       color: "#fff",
     }),
+    menu: (provided) => ({
+      ...provided,
+      zIndex: 4, 
+    }),
     menuList: (provided) => ({
       maxHeight: "150px",
       overflowY: "auto",
       overflowX: "hidden",
       scrollbarWidth: "thin",
       msOverflowStyle: "none",
+      zIndex: 3,
       "&::-webkit-scrollbar": {
         width: "5px",
         backgroundColor: "#535151",
@@ -72,6 +77,7 @@ const customStyles = {
       },
     }),
   };
+  
 const getEmpl = (d) => {
   let r = 0;
   d.map((m) => (r += m.paidHour));
@@ -79,19 +85,19 @@ const getEmpl = (d) => {
   return r / 7.67;
 };
 const dataList = (d, t) => {
-    const rd = [];
-    d.forEach((m) => {
-      if (rd.length === 0) {
+  const rd = [];
+  d.forEach((m) => {
+    if (rd.length === 0) {
+      rd.push(m[t]);
+    } else {
+      const i = rd.findIndex((f) => f === m[t]);
+      if (i === -1) {
         rd.push(m[t]);
-      } else {
-        const i = rd.findIndex((f) => f === m[t]);
-        if (i === -1) {
-          rd.push(m[t]);
-        }
       }
-    });
-    return rd;
-  };
+    }
+  });
+  return rd;
+};
 const ProductionCradsValidation = (p) => {
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
   const { isLoged } = useSelector((s) => s.login);
@@ -104,6 +110,7 @@ const ProductionCradsValidation = (p) => {
     crew: [],
     project: [],
   });
+  //http req part
   const callbackmu = useCallback(async () => {
     try {
       const response = await fetch(`${api}/production-card/?date=${date}`, {
@@ -127,7 +134,9 @@ const ProductionCradsValidation = (p) => {
     callbackmu();
   }, [callbackmu]);
   console.log(data);
-  
+  //end http req part
+
+  //filter part of code
   const handleSelectChange = (e, t) => {
     switch (t) {
       case "matricule":
@@ -160,6 +169,56 @@ const ProductionCradsValidation = (p) => {
       default:
     }
   };
+  let fd =
+    filData.crew.length > 0
+      ? data.filter((obj) => {
+          return filData.crew.some((filterObj) => filterObj.value === obj.crew);
+        })
+      : data;
+
+  fd =
+    filData.project.length > 0
+      ? fd.filter((obj) => {
+          return filData.project.some(
+            (filterObj) => filterObj.value === obj.project
+          );
+        })
+      : fd;
+
+  fd =
+    filData.family.length > 0
+      ? fd.filter((obj) => {
+          return filData.family.some(
+            (filterObj) => filterObj.value === obj.family
+          );
+        })
+      : fd;
+
+  fd =
+    filData.tl.length > 0
+      ? fd.filter((obj) => {
+          return filData.tl.some(
+            (filterObj) => filterObj.value === obj.teamleader
+          );
+        })
+      : fd;
+  fd =
+    filData.sl.length > 0
+      ? fd.filter((obj) => {
+          return filData.sl.some(
+            (filterObj) => filterObj.value === obj.shiftleader
+          );
+        })
+      : fd;
+  fd =
+    filData.coord.length > 0
+      ? fd.filter((obj) => {
+          return filData.coord.some(
+            (filterObj) => filterObj.value === obj.coordinator
+          );
+        })
+      : fd;
+  //end filter part
   return (
     <div className={c.container}>
       <div className={c.inputHolder}>
@@ -179,107 +238,105 @@ const ProductionCradsValidation = (p) => {
         <h4 style={{ fontSize: "25px" }}>Production cards</h4>
       </div>
       <div className={c.filterArrea}>
-     
-      <div className={c.poinHold}>
-        <span>Family</span>
-        <Select
-          components={{ DropdownIndicator }}
-          options={dataList(data, "family").map((m) => ({
-            label: m,
-            value: m,
-          }))}
-          id="multiSelect"
-          inputId="shiftleader1"
-          styles={customStyles}
-          placeholder="select Family"
-          onChange={(e) => handleSelectChange(e, "family")}
-          isMulti
-        />
+        <div className={c.poinHold}>
+          <span>Family</span>
+          <Select
+            components={{ DropdownIndicator }}
+            options={dataList(data, "family").map((m) => ({
+              label: m,
+              value: m,
+            }))}
+            id="multiSelect"
+            inputId="shiftleader1"
+            styles={customStyles}
+            placeholder="select Family"
+            onChange={(e) => handleSelectChange(e, "family")}
+            isMulti
+          />
+        </div>
+        <div className={c.poinHold}>
+          <span>teamleader</span>
+          <Select
+            components={{ DropdownIndicator }}
+            options={dataList(data, "teamleader").map((m) => ({
+              label: m,
+              value: m,
+            }))}
+            id="multiSelect"
+            inputId="shiftleader1"
+            styles={customStyles}
+            placeholder="select teamleader"
+            onChange={(e) => handleSelectChange(e, "tl")}
+            isMulti
+          />
+        </div>
+        <div className={c.poinHold}>
+          <span>shiftleader</span>
+          <Select
+            components={{ DropdownIndicator }}
+            options={dataList(data, "shiftleader").map((m) => ({
+              label: m,
+              value: m,
+            }))}
+            id="multiSelect"
+            inputId="shiftleader1"
+            styles={customStyles}
+            placeholder="select shiftleader"
+            onChange={(e) => handleSelectChange(e, "sl")}
+            isMulti
+          />
+        </div>
+        <div className={c.poinHold}>
+          <span>coordinator</span>
+          <Select
+            components={{ DropdownIndicator }}
+            options={dataList(data, "coordinator").map((m) => ({
+              label: m,
+              value: m,
+            }))}
+            id="multiSelect"
+            inputId="shiftleader1"
+            styles={customStyles}
+            placeholder="select coordinator"
+            onChange={(e) => handleSelectChange(e, "coord")}
+            isMulti
+          />
+        </div>
+        <div className={c.poinHold}>
+          <span>crew</span>
+          <Select
+            components={{ DropdownIndicator }}
+            options={dataList(data, "crew").map((m) => ({
+              label: m,
+              value: m,
+            }))}
+            id="multiSelect"
+            inputId="shiftleader1"
+            styles={customStyles}
+            placeholder="select crew"
+            onChange={(e) => handleSelectChange(e, "crew")}
+            isMulti
+          />
+        </div>
+        <div className={c.poinHold}>
+          <span>project</span>
+          <Select
+            components={{ DropdownIndicator }}
+            options={dataList(data, "project").map((m) => ({
+              label: m,
+              value: m,
+            }))}
+            id="multiSelect"
+            inputId="shiftleader1"
+            styles={customStyles}
+            placeholder="select project"
+            onChange={(e) => handleSelectChange(e, "project")}
+            isMulti
+          />
+        </div>
       </div>
-      <div className={c.poinHold}>
-        <span>teamleader</span>
-        <Select
-          components={{ DropdownIndicator }}
-          options={dataList(data, "teamleader").map((m) => ({
-            label: m,
-            value: m,
-          }))}
-          id="multiSelect"
-          inputId="shiftleader1"
-          styles={customStyles}
-          placeholder="select teamleader"
-          onChange={(e) => handleSelectChange(e, "tl")}
-          isMulti
-        />
-      </div>
-      <div className={c.poinHold}>
-        <span>shiftleader</span>
-        <Select
-          components={{ DropdownIndicator }}
-          options={dataList(data, "shiftleader").map((m) => ({
-            label: m,
-            value: m,
-          }))}
-          id="multiSelect"
-          inputId="shiftleader1"
-          styles={customStyles}
-          placeholder="select shiftleader"
-          onChange={(e) => handleSelectChange(e, "sl")}
-          isMulti
-        />
-      </div>
-      <div className={c.poinHold}>
-        <span>coordinator</span>
-        <Select
-          components={{ DropdownIndicator }}
-          options={dataList(data, "coordinator").map((m) => ({
-            label: m,
-            value: m,
-          }))}
-          id="multiSelect"
-          inputId="shiftleader1"
-          styles={customStyles}
-          placeholder="select coordinator"
-          onChange={(e) => handleSelectChange(e, "coord")}
-          isMulti
-        />
-      </div>
-      <div className={c.poinHold}>
-        <span>crew</span>
-        <Select
-          components={{ DropdownIndicator }}
-          options={dataList(data, "crew").map((m) => ({
-            label: m,
-            value: m,
-          }))}
-          id="multiSelect"
-          inputId="shiftleader1"
-          styles={customStyles}
-          placeholder="select crew"
-          onChange={(e) => handleSelectChange(e, "crew")}
-          isMulti
-        />
-      </div>
-      <div className={c.poinHold}>
-        <span>project</span>
-        <Select
-          components={{ DropdownIndicator }}
-          options={dataList(data, "project").map((m) => ({
-            label: m,
-            value: m,
-          }))}
-          id="multiSelect"
-          inputId="shiftleader1"
-          styles={customStyles}
-          placeholder="select project"
-          onChange={(e) => handleSelectChange(e, "project")}
-          isMulti
-        />
-      </div>
-      
-    </div>
       <div className={c.cardsContainer}>
-        {data.length === 0 ? (
+        {fd.length === 0 ? (
           <div>
             <img
               className={c.noImag}
@@ -289,7 +346,7 @@ const ProductionCradsValidation = (p) => {
             <h4 className={c.noCrewS}>NO production card HAS BEEN FOUND!</h4>
           </div>
         ) : (
-          data.map((m) => (
+            fd.map((m) => (
             <div className={c.card} key={m._id}>
               <div className={c.content}>
                 <p className={c.heading}>{m.crew}</p>

@@ -212,6 +212,7 @@
     margin: auto;
     align-items: center;
     gap: 0 20px;
+    z-index: 3;
   }
   
 
