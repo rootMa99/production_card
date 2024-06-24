@@ -61,6 +61,14 @@ const List = (p) => {
           </li>
           <li className={c.linktwo} onClick={onClickHandler}>
             <NavLink
+              to="/pcv"
+              className={({ isActive }) => (isActive ? c.activeLink : c.link)}
+            >
+            Production Cards Validation
+            </NavLink>
+          </li>
+          <li className={c.linktwo} onClick={onClickHandler}>
+            <NavLink
               to="/mh"
               className={({ isActive }) => (isActive ? c.activeLink : c.link)}
             >
