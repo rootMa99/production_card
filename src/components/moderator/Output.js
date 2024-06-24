@@ -189,10 +189,10 @@ const Output = (p) => {
           <h4 className={c.noCrewS}>NO OUTPUT data HAS BEEN FOUND</h4>
         ) : (
           data.map((m, i) => (
-            <React.Fragment>
+            <React.Fragment key={m._id}>
               <div
                 className={c.trainingH}
-                key={m._id}
+                
                 style={{ marginTop: 0 }}
                 onClick={(e) => (oid === m._id ? toogle() : toogleid(e, m._id))}
               >
@@ -215,7 +215,7 @@ const Output = (p) => {
               {oid === m._id && (
                 <div className={c.plusData}>
                   {dataOutp.output.length > 0 ? (
-                    <ul className={c.unList} key={i+1}>
+                    <ul className={c.unList}>
                       <li className={c.lis}>
                         <span>family</span>
                         <span>reference</span>
@@ -223,8 +223,8 @@ const Output = (p) => {
                         <span>ce</span>
                         <span>emb</span>
                       </li>
-                      {dataOutp.output.map((m, i) => (
-                        <li className={c.lisb} key={i}>
+                      {dataOutp.output.map((m, is) => (
+                        <li className={c.lisb} key={`${is}`}>
                           <span>{m.family}</span>
                           <span style={{ color: "#006B63", fontWeight: "800" }}>
                             {m.reference}
