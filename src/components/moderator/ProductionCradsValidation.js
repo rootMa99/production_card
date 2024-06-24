@@ -73,11 +73,21 @@ const ProductionCradsValidation = (p) => {
                   <span style={{ fontWeight: "bold" }}>{m.shift}</span>
                 </div>
                 <div className={c.contina}>
-                  <span>shift:</span>
+                  <span>head count:</span>
                   <span style={{ fontWeight: "bold" }}>
-                    {`${getEmpl(m.employees).toFixed(2)}/${m.employees.length}`}
+                    {`${getEmpl(m.employees).toFixed(1)}/${m.employees.length}`}
                   </span>
                 </div>
+                <p
+                  className={c.para}
+                  style={
+                    m.isValid
+                      ? { margin: "auto", fontWeight: "bolder" }
+                      : { margin: "auto", fontWeight: "bolder" }
+                  }
+                >
+                  {m.isValid ? "validate" : "not validate"}
+                </p>
               </div>
             </div>
           ))
