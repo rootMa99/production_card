@@ -3,6 +3,7 @@ import c from "./ProductionCradsValidation.module.css";
 import { useSelector } from "react-redux";
 import api from "../../service/api";
 import nof from "../../assets/nocards.svg";
+import ls from "../../assets/icons8-list-100.png"
 import Select from "react-select";
 import DropdownIndicator from "..//UI/DropdownIndicator";
 const customStyles = {
@@ -325,6 +326,9 @@ const ProductionCradsValidation = (p) => {
             isMulti
           />
         </div>
+      </div>
+      <div className={c.imgContainer}>
+      <img src={ls} alt="list" />
       </div>
       <div className={c.cardsContainer}>
         {fd.length === 0 ? (

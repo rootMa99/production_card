@@ -65,7 +65,7 @@
   outline: none;
   /* border-color: #f84018; */
   border-color: transparent;
-  /* cursor: pointer; */
+  cursor: pointer;
 }
 .inputD h3 {
   text-align: left;
@@ -214,8 +214,8 @@
   gap: 0 20px;
   z-index: 3;
 }
-
-/* other style */
+/*end filter select */
+/* no found style */
 .noCrewS {
   color: #c9c9c9;
   text-transform: uppercase;
@@ -224,4 +224,18 @@
 
 .noImag {
   width: 25rem;
+}
+/*end no found style */
+
+.imgContainer{
+    position: absolute;
+    right: 3rem;
+}
+
+.imgContainer img{
+    width: 2rem;
+    cursor: pointer;
+}
+.imgContainer img:hover{
+    
 }
