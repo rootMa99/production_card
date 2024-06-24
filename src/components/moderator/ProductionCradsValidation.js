@@ -3,17 +3,107 @@ import c from "./ProductionCradsValidation.module.css";
 import { useSelector } from "react-redux";
 import api from "../../service/api";
 import nof from "../../assets/nocards.svg";
+import Select from "react-select";
+import DropdownIndicator from "..//UI/DropdownIndicator";
+const customStyles = {
+    control: (provided, state) => ({
+      ...provided,
+      minWidth: "10rem",
+      minHeight: "20px",
+      padding: "8px 0",
+      fontSize: "15px",
+      textTransform: "uppercase",
+      borderRadius: "5px",
+      fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                        "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+                        "Segoe UI Symbol"`,
+      textAlign: "center",
+      outline: "none",
+      border: "1px solid #F84018",
+      backgroundColor: "transparent",
+      boxShadow: "none",
+      margin: "auto",
+      "&:hover": {
+        border: "1px solid #f33716",
+        cursor: "pointer",
+      },
+    }),
+    option: (provided, state) => ({
+      width: "100%",
+      padding: "10px 0",
+      color: state.isFocused ? "#f3f3f3" : "#f33716",
+      backgroundColor: state.isFocused && "#474b4d",
+      fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                        "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+                        "Segoe UI Symbol"`,
+      textTransform: "uppercase",
+      outline: "none",
+      textAlign: "center",
+      fontSize: "15px",
+      "&:hover": {
+        cursor: "pointer",
+      },
+    }),
+    input: (provided) => ({
+      ...provided,
+      color: "#fff",
+      fontSize: "15px",
+      textAlign: "center",
+    }),
+    singleValue: (p) => ({
+      ...p,
+      color: "#fff",
+    }),
+    menuList: (provided) => ({
+      maxHeight: "150px",
+      overflowY: "auto",
+      overflowX: "hidden",
+      scrollbarWidth: "thin",
+      msOverflowStyle: "none",
+      "&::-webkit-scrollbar": {
+        width: "5px",
+        backgroundColor: "#535151",
+      },
+      "&::-webkit-scrollbar-thumb": {
+        backgroundColor: "#f33716",
+      },
+      "&::-webkit-scrollbar-track": {
+        backgroundColor: "transparent",
+      },
+    }),
+  };
 const getEmpl = (d) => {
   let r = 0;
   d.map((m) => (r += m.paidHour));
 
   return r / 7.67;
 };
-
+const dataList = (d, t) => {
+    const rd = [];
+    d.forEach((m) => {
+      if (rd.length === 0) {
+        rd.push(m[t]);
+      } else {
+        const i = rd.findIndex((f) => f === m[t]);
+        if (i === -1) {
+          rd.push(m[t]);
+        }
+      }
+    });
+    return rd;
+  };
 const ProductionCradsValidation = (p) => {
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
   const { isLoged } = useSelector((s) => s.login);
   const [data, setData] = useState([]);
+  const [filData, setFilData] = useState({
+    family: [],
+    tl: [],
+    sl: [],
+    coord: [],
+    crew: [],
+    project: [],
+  });
   const callbackmu = useCallback(async () => {
     try {
       const response = await fetch(`${api}/production-card/?date=${date}`, {
@@ -37,6 +127,39 @@ const ProductionCradsValidation = (p) => {
     callbackmu();
   }, [callbackmu]);
   console.log(data);
+  
+  const handleSelectChange = (e, t) => {
+    switch (t) {
+      case "matricule":
+        setFilData((p) => ({ ...p, matricule: e }));
+        break;
+      case "crew":
+        setFilData((p) => ({ ...p, crew: e }));
+        break;
+      case "project":
+        setFilData((p) => ({ ...p, project: e }));
+        break;
+      case "reason":
+        setFilData((p) => ({ ...p, reason: e }));
+        break;
+      case "family":
+        setFilData((p) => ({ ...p, family: e }));
+        break;
+      case "month":
+        setFilData((p) => ({ ...p, month: e }));
+        break;
+      case "tl":
+        setFilData((p) => ({ ...p, tl: e }));
+        break;
+      case "sl":
+        setFilData((p) => ({ ...p, sl: e }));
+        break;
+      case "coord":
+        setFilData((p) => ({ ...p, coord: e }));
+        break;
+      default:
+    }
+  };
   return (
     <div className={c.container}>
       <div className={c.inputHolder}>
@@ -55,6 +178,106 @@ const ProductionCradsValidation = (p) => {
         <div className={c.line}></div>
         <h4 style={{ fontSize: "25px" }}>Production cards</h4>
       </div>
+      <div className={c.filterArrea}>
+     
+      <div className={c.poinHold}>
+        <span>Family</span>
+        <Select
+          components={{ DropdownIndicator }}
+          options={dataList(data, "family").map((m) => ({
+            label: m,
+            value: m,
+          }))}
+          id="multiSelect"
+          inputId="shiftleader1"
+          styles={customStyles}
+          placeholder="select Family"
+          onChange={(e) => handleSelectChange(e, "family")}
+          isMulti
+        />
+      </div>
+      <div className={c.poinHold}>
+        <span>teamleader</span>
+        <Select
+          components={{ DropdownIndicator }}
+          options={dataList(data, "teamleader").map((m) => ({
+            label: m,
+            value: m,
+          }))}
+          id="multiSelect"
+          inputId="shiftleader1"
+          styles={customStyles}
+          placeholder="select teamleader"
+          onChange={(e) => handleSelectChange(e, "tl")}
+          isMulti
+        />
+      </div>
+      <div className={c.poinHold}>
+        <span>shiftleader</span>
+        <Select
+          components={{ DropdownIndicator }}
+          options={dataList(data, "shiftleader").map((m) => ({
+            label: m,
+            value: m,
+          }))}
+          id="multiSelect"
+          inputId="shiftleader1"
+          styles={customStyles}
+          placeholder="select shiftleader"
+          onChange={(e) => handleSelectChange(e, "sl")}
+          isMulti
+        />
+      </div>
+      <div className={c.poinHold}>
+        <span>coordinator</span>
+        <Select
+          components={{ DropdownIndicator }}
+          options={dataList(data, "coordinator").map((m) => ({
+            label: m,
+            value: m,
+          }))}
+          id="multiSelect"
+          inputId="shiftleader1"
+          styles={customStyles}
+          placeholder="select coordinator"
+          onChange={(e) => handleSelectChange(e, "coord")}
+          isMulti
+        />
+      </div>
+      <div className={c.poinHold}>
+        <span>crew</span>
+        <Select
+          components={{ DropdownIndicator }}
+          options={dataList(data, "crew").map((m) => ({
+            label: m,
+            value: m,
+          }))}
+          id="multiSelect"
+          inputId="shiftleader1"
+          styles={customStyles}
+          placeholder="select crew"
+          onChange={(e) => handleSelectChange(e, "crew")}
+          isMulti
+        />
+      </div>
+      <div className={c.poinHold}>
+        <span>project</span>
+        <Select
+          components={{ DropdownIndicator }}
+          options={dataList(data, "project").map((m) => ({
+            label: m,
+            value: m,
+          }))}
+          id="multiSelect"
+          inputId="shiftleader1"
+          styles={customStyles}
+          placeholder="select project"
+          onChange={(e) => handleSelectChange(e, "project")}
+          isMulti
+        />
+      </div>
+      
+    </div>
       <div className={c.cardsContainer}>
         {data.length === 0 ? (
           <div>

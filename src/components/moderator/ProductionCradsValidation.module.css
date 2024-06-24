@@ -203,6 +203,18 @@
   }
 }
 
+/* filter select */
+
+.filterArrea {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    align-items: center;
+    gap: 0 20px;
+  }
+  
+
 
 /* other style */
 .noCrewS {
