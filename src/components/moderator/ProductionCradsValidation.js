@@ -82,8 +82,8 @@ const ProductionCradsValidation = (p) => {
                   className={c.para}
                   style={
                     m.isValid
-                      ? { margin: "auto", fontWeight: "bolder" }
-                      : { margin: "auto", fontWeight: "bolder" }
+                      ? { margin: "auto", fontWeight: "900", textTransform: "uppercase", color: "#006B63" }
+                      : { margin: "auto", fontWeight: "900", textTransform: "uppercase", color:"#f3090b" }
                   }
                 >
                   {m.isValid ? "validate" : "not validate"}

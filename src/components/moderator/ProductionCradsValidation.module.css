@@ -164,7 +164,7 @@
   width: 160%;
   border-radius: inherit;
   background: #f84018;
-  background: linear-gradient(to right, #cf3335, #f84018);
+  background: linear-gradient(to right, #000000, #7a1d00);
   transform-origin: center;
   animation: moving 4.8s linear infinite paused;
   transition: all 0.88s cubic-bezier(0.23, 1, 0.32, 1);
