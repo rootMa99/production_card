@@ -215,7 +215,7 @@ const Output = (p) => {
               {oid === m._id && (
                 <div className={c.plusData}>
                   {dataOutp.output.length > 0 ? (
-                    <ul className={c.unList}>
+                    <ul className={c.unList} key={i+1}>
                       <li className={c.lis}>
                         <span>family</span>
                         <span>reference</span>
