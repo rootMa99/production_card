@@ -1,0 +1,89 @@
+.title2 {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    margin-top: 1.5rem;
+  }
+  .title2 h1,
+  .title2 h4 {
+    color: aliceblue;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  .line {
+    width: 40%;
+    height: 2px;
+    background-color: rgb(255, 255, 255);
+    position: relative;
+  }
+  .line::after {
+    content: "";
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid #f84018;
+    border-radius: 50%;
+    position: absolute;
+    right: -20px;
+    top: -8px;
+  }
+  
+/* select date input style */
+
+.inputHolder {
+    position: fixed;
+    right: 10px;
+    top: 5rem;
+    z-index: 1;
+    display: flex;
+    gap: 16px;
+  }
+  
+  .inputD {
+    width: 25rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #0502006c;
+    border-radius: 16px;
+  }
+  .inputD input {
+    height: 2rem;
+    width: 10rem;
+    border-radius: 6px;
+    font-family: inherit;
+    border: 1px solid transparent;
+    color: #fff;
+    background-color: transparent;
+    font-weight: bold;
+    width: 10rem;
+    text-align: center;
+    padding: 5px;
+  }
+  .inputD input:focus,
+  .inputD input:hover {
+    outline: none;
+    /* border-color: #f84018; */
+    border-color: transparent;
+    /* cursor: pointer; */
+  }
+  .inputD h3 {
+    text-align: left;
+    text-transform: uppercase;
+    color: #f84018;
+    margin: 0;
+  }
+  .inputD input[type="date"]::-webkit-calendar-picker-indicator {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-left: 5px;
+    cursor: pointer;
+    background-color: #f84018;
+    padding: 5px;
+  }
+  .inputD input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    transform: scale(1.2);
+    background-color: #fd7d61;
+  }
+  
