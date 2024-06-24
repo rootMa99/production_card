@@ -11,6 +11,7 @@ const Moderator = (p) => {
         <Route exact path="/home" element={<h1>homes</h1>} />
         <Route exact path="/abstloo" element={<AbsTloOutput />} />
         <Route exact path="/mh" element={<MutHistory type="admin" />} />
+        <Route exact path="/pcv" element={<MutHistory type="admin" />} />
         <Route path="*" element={<Navigate replace to="/home" />} />
       </Routes>
     </Suspense>
