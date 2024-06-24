@@ -47,15 +47,22 @@ const ProductionCradsValidation = (p) => {
         <div className={c.line}></div>
         <h4 style={{ fontSize: "25px" }}>Production cards</h4>
       </div>
-      <div className={c.card}>
-        <div className={c.content}>
-          <p className={c.heading}>Card</p>
-          <p className={c.para}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi
-            laboriosam at voluptas minus culpa deserunt delectus sapiente
-            inventore pariatur
-          </p>
-        </div>
+      <div className={c.cardsContainer}>
+        {data.length === 0 ? (
+          <h2>no card was found</h2>
+        ) : (
+          data.map((m) => (
+            <div className={c.card} key={m._id}>
+              <div className={c.content}>
+                <p className={c.heading}>{m.crew}</p>
+                <p className={c.para}>
+                  {`${m.family} / ${m.project}`}
+                </p>
+               
+              </div>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );
