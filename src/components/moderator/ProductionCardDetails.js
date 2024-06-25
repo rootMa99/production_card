@@ -23,8 +23,8 @@ const ProductionCardDetails = (p) => {
           <span className={c.imp}>{p.data.coordinator}</span>
         </div>
       </div>
+      <h3 className={c.pointingListd}>pointing list:</h3>
       <div className={c.pointingList}>
-        <h3>pointing list:</h3>
         <table className={c.table}>
           <thead>
             <tr>
@@ -48,24 +48,43 @@ const ProductionCardDetails = (p) => {
           <tbody>
             {p.data.employees.map((m) => (
               <tr>
-                <th>{m.matricule}</th>
-                <th>{m.poste}</th>
-                <th>{m.pointing}</th>
-                <th>add. pointing</th>
-                <th>{m.ot}</th>
-                <th>{m.cr}</th>
-                <th>m.ctp</th>
-                <th>{m.ctn.toFixed(2)}</th>
-                <th>{m.details}</th>
-                <th>{m.motif}</th>
-                <th>{m.cte}</th>
-                <th>{m.retard}</th>
-                <th>{m.t}</th>
-                <th>{m.status}</th>
-                <th>{m.paidHour.toFixed(2)}</th>
+                <td style={{color:"#FFA211", fontWeight:"900", fontSize:"17px"}}>{m.matricule}</td>
+                <td>{m.poste}</td>
+                <td style={{color:"#006B63", fontWeight:"900"}}>{m.pointing}</td>
+                <td>add. pointing</td>
+                <td>{m.ot}</td>
+                <td>{m.cr}</td>
+                <td>m.ctp</td>
+                <td>{m.ctn.toFixed(2)}</td>
+                <td>{m.details}</td>
+                <td>{m.motif}</td>
+                <td>{m.cte}</td>
+                <td>{m.retard}</td>
+                <td>{m.t}</td>
+                <td>{m.status}</td>
+                <td style={{color:"#FFA211", fontWeight:"900", fontSize:"17px"}}>{m.paidHour.toFixed(2)}</td>
               </tr>
             ))}
           </tbody>
+          <tfoot>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tfoot>
         </table>
       </div>
       <img className={c.imglg} src={lg} alt="logo" />
