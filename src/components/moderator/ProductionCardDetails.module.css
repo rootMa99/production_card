@@ -19,6 +19,35 @@
 .head {
   width: fit-content;
   margin: auto;
-  color: white;
+  color: #e5e1da;
   text-transform: uppercase;
+  margin-top: 16px;
+}
+.head h2,
+.head h3 {
+  margin: 0;
+}
+.head h3 {
+  margin-top: 16px;
+}
+.crewDetails {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.details {
+  color: #e5e1da;
+  width: 30%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  text-transform: uppercase;
+}
+.imp{
+    font-weight: 900;
+    border-bottom: 2px solid;
 }
