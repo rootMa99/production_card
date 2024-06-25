@@ -61,12 +61,13 @@
 }
 .bodyC {
   width: 100%;
-  max-height: 80%;
+  max-height: 75%;
   overflow: auto;
+  margin-top:16px ;
 }
 .pointingList {
   margin-top: 16px;
-  max-height: 40rem;
+  max-height: 35rem;
   overflow: auto;
   width: 90%;
   margin: auto;
@@ -168,7 +169,6 @@
 }
 .table tbody tr ul li {
   margin: 0;
-  text-align: left;
 }
 .close {
   color: #ffffff;
