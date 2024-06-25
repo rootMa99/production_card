@@ -220,7 +220,7 @@ const ProductionCradsValidation = (p) => {
   };
   return (
     <div className={c.container}>
-      {pd !== null && <ProductionCardDetails data={pd} close={closeda}/>}
+      {pd !== null && <ProductionCardDetails data={pd} close={closeda} />}
       <div className={c.inputHolder}>
         <div className={c.inputD}>
           <h3>select date:</h3>

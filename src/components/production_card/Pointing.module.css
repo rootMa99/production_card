@@ -58,7 +58,6 @@
   }
 }
 
-
 .pointingEmpl {
   background-color: #c9c9c9;
   width: 100%;
@@ -70,7 +69,6 @@
   flex-direction: column;
   gap: 10px;
 }
-
 
 .poinHoldWraper {
   width: 100%;
@@ -135,7 +133,7 @@
   text-wrap: wrap;
 }
 
-.tlc{
+.tlc {
   /* color: #006B63; */
   margin: 0;
   text-transform: uppercase;
