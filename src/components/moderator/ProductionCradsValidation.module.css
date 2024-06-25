@@ -204,7 +204,8 @@
 }
 
 .list {
-  width: 40%;
+  min-width: 45%;
+  min-height: 8rem;
   display: flex;
   gap: 16px;
   padding-inline: 16px;
@@ -254,7 +255,10 @@
 }
 .list .contina {
   color: #fff;
+  width: 30%;
 }
+
+  
 /* filter select */
 
 .filterArrea {

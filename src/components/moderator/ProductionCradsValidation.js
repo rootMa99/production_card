@@ -104,7 +104,7 @@ const ProductionCradsValidation = (p) => {
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
   const { isLoged } = useSelector((s) => s.login);
   const [data, setData] = useState([]);
-  const [list, setList] = useState(true);
+  const [list, setList] = useState(false);
   const [filData, setFilData] = useState({
     family: [],
     tl: [],
@@ -413,6 +413,26 @@ const ProductionCradsValidation = (p) => {
                       }`}
                     </span>
                   </div>
+                  <p
+                  className={c.para}
+                  style={
+                    m.isValid
+                      ? {
+                          margin: "auto",
+                          fontWeight: "900",
+                          textTransform: "uppercase",
+                          color: "#006B63",
+                        }
+                      : {
+                          margin: "auto",
+                          fontWeight: "900",
+                          textTransform: "uppercase",
+                          color: "#f3090b",
+                        }
+                  }
+                >
+                  {m.isValid ? "validate" : "not validate"}
+                </p>
               </div>
             )
           )
