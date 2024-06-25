@@ -4,6 +4,9 @@ const ProductionCardDetails = (p) => {
     console.log(p.data)
   return (
     <div className={c.container}>
+    {
+        !p.data.isValid && <p className={c.caution}>Caution: This card has not yet been validated.</p>
+    }
     <span className={c.close} onClick={e=>p.close()}>close</span>
       <div className={c.head}>
         <h2>{p.data.crew}</h2>
@@ -44,6 +47,7 @@ const ProductionCardDetails = (p) => {
                 <th>retard</th>
                 <th>T</th>
                 <th>status</th>
+                <th width="15%">mut. to <br/> tl/crew/hr</th>
                 <th>paid Hour</th>
               </tr>
             </thead>
@@ -77,6 +81,11 @@ const ProductionCardDetails = (p) => {
                   <td>{m.retard.toFixed(2)}</td>
                   <td>{m.t.toFixed(2)}</td>
                   <td>{m.status}</td>
+                  <td>{
+                    m.toMany.length===0? "NAP" : <ul>
+                    {m.toMany.map(m =><li style={{textAlign:"center"}}>{`${m.teamleader} / ${m.crew} / ${m.paidHour.toFixed(2)}`}</li>)}
+                    </ul>
+                  }</td>
                   <td
                     style={{
                       color: "#FFA211",
@@ -91,6 +100,7 @@ const ProductionCardDetails = (p) => {
             </tbody>
             <tfoot>
               <tr>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
