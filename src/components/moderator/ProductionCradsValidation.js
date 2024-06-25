@@ -218,7 +218,7 @@ const ProductionCradsValidation = (p) => {
   return (
     <div className={c.container}>
         {
-            pd!==null && <ProductionCardDetails />
+            pd!==null && <ProductionCardDetails data={pd}/>
         }
       <div className={c.inputHolder}>
         <div className={c.inputD}>
@@ -397,7 +397,7 @@ const ProductionCradsValidation = (p) => {
                 </div>
               </div>
             ) : (
-              <div className={c.list} key={m._id}>
+              <div className={c.list} key={m._id} onClick={e=>setPd(m)}>
                 <div className={c.crewData}>
                   <p className={c.heading}>{m.crew}</p>
                   <p className={c.para}>{`${m.family} / ${m.project}`}</p>
