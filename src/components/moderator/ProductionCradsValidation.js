@@ -392,11 +392,12 @@ const ProductionCradsValidation = (p) => {
                 </div>
               </div>
             ) : (
-              <div className={c.card} key={m._id}>
-                <div className={c.content}>
+              <div className={c.list} key={m._id}>
+                <div className={c.crewData}>
                   <p className={c.heading}>{m.crew}</p>
                   <p className={c.para}>{`${m.family} / ${m.project}`}</p>
-                  <div className={c.contina}>
+                </div>
+                <div className={c.contina}>
                     <span>teamleader:</span>
                     <span style={{ fontWeight: "bold" }}>{m.teamleader}</span>
                   </div>
@@ -412,27 +413,6 @@ const ProductionCradsValidation = (p) => {
                       }`}
                     </span>
                   </div>
-                  <p
-                    className={c.para}
-                    style={
-                      m.isValid
-                        ? {
-                            margin: "auto",
-                            fontWeight: "900",
-                            textTransform: "uppercase",
-                            color: "#006B63",
-                          }
-                        : {
-                            margin: "auto",
-                            fontWeight: "900",
-                            textTransform: "uppercase",
-                            color: "#f3090b",
-                          }
-                    }
-                  >
-                    {m.isValid ? "validate" : "not validate"}
-                  </p>
-                </div>
               </div>
             )
           )
