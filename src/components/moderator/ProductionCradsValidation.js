@@ -333,7 +333,7 @@ const ProductionCradsValidation = (p) => {
       )}
       {fd.length > 0 && (
         <div className={c.imgContainer} onClick={(e) => setList((p) => !p)}>
-          <img src={list ? ls : col} alt="list" />
+          <img src={!list ? ls : col} alt="list" />
         </div>
       )}
       <div className={c.cardsContainer}>
