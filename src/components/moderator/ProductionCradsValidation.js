@@ -3,7 +3,7 @@ import c from "./ProductionCradsValidation.module.css";
 import { useSelector } from "react-redux";
 import api from "../../service/api";
 import nof from "../../assets/nocards.svg";
-import ls from "../../assets/icons8-list-100.png"
+import ls from "../../assets/icons8-list-100.png";
 import col from "../../assets/icons8-collage-64.png";
 import Select from "react-select";
 import DropdownIndicator from "..//UI/DropdownIndicator";
@@ -104,7 +104,7 @@ const ProductionCradsValidation = (p) => {
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
   const { isLoged } = useSelector((s) => s.login);
   const [data, setData] = useState([]);
-  const [list, setList]=useState(true)
+  const [list, setList] = useState(true);
   const [filData, setFilData] = useState({
     family: [],
     tl: [],
@@ -231,107 +231,111 @@ const ProductionCradsValidation = (p) => {
         <div className={c.line}></div>
         <h4 style={{ fontSize: "25px" }}>Production cards</h4>
       </div>
-      {fd.length > 0 &&<div className={c.filterArrea}>
-        <div className={c.poinHold}>
-          <span>Family</span>
-          <Select
-            components={{ DropdownIndicator }}
-            options={dataList(data, "family").map((m) => ({
-              label: m,
-              value: m,
-            }))}
-            id="multiSelect"
-            inputId="shiftleader1"
-            styles={customStyles}
-            placeholder="select Family"
-            onChange={(e) => handleSelectChange(e, "family")}
-            isMulti
-          />
+      {fd.length > 0 && (
+        <div className={c.filterArrea}>
+          <div className={c.poinHold}>
+            <span>Family</span>
+            <Select
+              components={{ DropdownIndicator }}
+              options={dataList(data, "family").map((m) => ({
+                label: m,
+                value: m,
+              }))}
+              id="multiSelect"
+              inputId="shiftleader1"
+              styles={customStyles}
+              placeholder="select Family"
+              onChange={(e) => handleSelectChange(e, "family")}
+              isMulti
+            />
+          </div>
+          <div className={c.poinHold}>
+            <span>teamleader</span>
+            <Select
+              components={{ DropdownIndicator }}
+              options={dataList(data, "teamleader").map((m) => ({
+                label: m,
+                value: m,
+              }))}
+              id="multiSelect"
+              inputId="shiftleader1"
+              styles={customStyles}
+              placeholder="select teamleader"
+              onChange={(e) => handleSelectChange(e, "tl")}
+              isMulti
+            />
+          </div>
+          <div className={c.poinHold}>
+            <span>shiftleader</span>
+            <Select
+              components={{ DropdownIndicator }}
+              options={dataList(data, "shiftleader").map((m) => ({
+                label: m,
+                value: m,
+              }))}
+              id="multiSelect"
+              inputId="shiftleader1"
+              styles={customStyles}
+              placeholder="select shiftleader"
+              onChange={(e) => handleSelectChange(e, "sl")}
+              isMulti
+            />
+          </div>
+          <div className={c.poinHold}>
+            <span>coordinator</span>
+            <Select
+              components={{ DropdownIndicator }}
+              options={dataList(data, "coordinator").map((m) => ({
+                label: m,
+                value: m,
+              }))}
+              id="multiSelect"
+              inputId="shiftleader1"
+              styles={customStyles}
+              placeholder="select coordinator"
+              onChange={(e) => handleSelectChange(e, "coord")}
+              isMulti
+            />
+          </div>
+          <div className={c.poinHold}>
+            <span>crew</span>
+            <Select
+              components={{ DropdownIndicator }}
+              options={dataList(data, "crew").map((m) => ({
+                label: m,
+                value: m,
+              }))}
+              id="multiSelect"
+              inputId="shiftleader1"
+              styles={customStyles}
+              placeholder="select crew"
+              onChange={(e) => handleSelectChange(e, "crew")}
+              isMulti
+            />
+          </div>
+          <div className={c.poinHold}>
+            <span>project</span>
+            <Select
+              components={{ DropdownIndicator }}
+              options={dataList(data, "project").map((m) => ({
+                label: m,
+                value: m,
+              }))}
+              id="multiSelect"
+              inputId="shiftleader1"
+              styles={customStyles}
+              placeholder="select project"
+              onChange={(e) => handleSelectChange(e, "project")}
+              isMulti
+            />
+          </div>
         </div>
-        <div className={c.poinHold}>
-          <span>teamleader</span>
-          <Select
-            components={{ DropdownIndicator }}
-            options={dataList(data, "teamleader").map((m) => ({
-              label: m,
-              value: m,
-            }))}
-            id="multiSelect"
-            inputId="shiftleader1"
-            styles={customStyles}
-            placeholder="select teamleader"
-            onChange={(e) => handleSelectChange(e, "tl")}
-            isMulti
-          />
+      )}
+      {fd.length > 0 && (
+        <div className={c.imgContainer} onClick={(e) => setList((p) => !p)}>
+          <img src={list ? ls : col} alt="list" />
         </div>
-        <div className={c.poinHold}>
-          <span>shiftleader</span>
-          <Select
-            components={{ DropdownIndicator }}
-            options={dataList(data, "shiftleader").map((m) => ({
-              label: m,
-              value: m,
-            }))}
-            id="multiSelect"
-            inputId="shiftleader1"
-            styles={customStyles}
-            placeholder="select shiftleader"
-            onChange={(e) => handleSelectChange(e, "sl")}
-            isMulti
-          />
-        </div>
-        <div className={c.poinHold}>
-          <span>coordinator</span>
-          <Select
-            components={{ DropdownIndicator }}
-            options={dataList(data, "coordinator").map((m) => ({
-              label: m,
-              value: m,
-            }))}
-            id="multiSelect"
-            inputId="shiftleader1"
-            styles={customStyles}
-            placeholder="select coordinator"
-            onChange={(e) => handleSelectChange(e, "coord")}
-            isMulti
-          />
-        </div>
-        <div className={c.poinHold}>
-          <span>crew</span>
-          <Select
-            components={{ DropdownIndicator }}
-            options={dataList(data, "crew").map((m) => ({
-              label: m,
-              value: m,
-            }))}
-            id="multiSelect"
-            inputId="shiftleader1"
-            styles={customStyles}
-            placeholder="select crew"
-            onChange={(e) => handleSelectChange(e, "crew")}
-            isMulti
-          />
-        </div>
-        <div className={c.poinHold}>
-          <span>project</span>
-          <Select
-            components={{ DropdownIndicator }}
-            options={dataList(data, "project").map((m) => ({
-              label: m,
-              value: m,
-            }))}
-            id="multiSelect"
-            inputId="shiftleader1"
-            styles={customStyles}
-            placeholder="select project"
-            onChange={(e) => handleSelectChange(e, "project")}
-            isMulti
-          />
-        </div>
-      </div>}
-      {fd.length > 0 &&<div className={c.imgContainer}>
-      <img src={ls} alt="list" />
-      </div>}
+      )}
       <div className={c.cardsContainer}>
         {fd.length === 0 ? (
           <div>
@@ -343,48 +347,95 @@ const ProductionCradsValidation = (p) => {
             <h4 className={c.noCrewS}>NO production card HAS BEEN FOUND!</h4>
           </div>
         ) : (
-          fd.map((m) => (
-            <div className={c.card} key={m._id}>
-              <div className={c.content}>
-                <p className={c.heading}>{m.crew}</p>
-                <p className={c.para}>{`${m.family} / ${m.project}`}</p>
-                <div className={c.contina}>
-                  <span>teamleader:</span>
-                  <span style={{ fontWeight: "bold" }}>{m.teamleader}</span>
+          fd.map((m) =>
+            !list ? (
+              <div className={c.card} key={m._id}>
+                <div className={c.content}>
+                  <p className={c.heading}>{m.crew}</p>
+                  <p className={c.para}>{`${m.family} / ${m.project}`}</p>
+                  <div className={c.contina}>
+                    <span>teamleader:</span>
+                    <span style={{ fontWeight: "bold" }}>{m.teamleader}</span>
+                  </div>
+                  <div className={c.contina}>
+                    <span>shift:</span>
+                    <span style={{ fontWeight: "bold" }}>{m.shift}</span>
+                  </div>
+                  <div className={c.contina}>
+                    <span>head count:</span>
+                    <span style={{ fontWeight: "bold" }}>
+                      {`${getEmpl(m.employees).toFixed(1)}/${
+                        m.employees.length
+                      }`}
+                    </span>
+                  </div>
+                  <p
+                    className={c.para}
+                    style={
+                      m.isValid
+                        ? {
+                            margin: "auto",
+                            fontWeight: "900",
+                            textTransform: "uppercase",
+                            color: "#006B63",
+                          }
+                        : {
+                            margin: "auto",
+                            fontWeight: "900",
+                            textTransform: "uppercase",
+                            color: "#f3090b",
+                          }
+                    }
+                  >
+                    {m.isValid ? "validate" : "not validate"}
+                  </p>
                 </div>
-                <div className={c.contina}>
-                  <span>shift:</span>
-                  <span style={{ fontWeight: "bold" }}>{m.shift}</span>
-                </div>
-                <div className={c.contina}>
-                  <span>head count:</span>
-                  <span style={{ fontWeight: "bold" }}>
-                    {`${getEmpl(m.employees).toFixed(1)}/${m.employees.length}`}
-                  </span>
-                </div>
-                <p
-                  className={c.para}
-                  style={
-                    m.isValid
-                      ? {
-                          margin: "auto",
-                          fontWeight: "900",
-                          textTransform: "uppercase",
-                          color: "#006B63",
-                        }
-                      : {
-                          margin: "auto",
-                          fontWeight: "900",
-                          textTransform: "uppercase",
-                          color: "#f3090b",
-                        }
-                  }
-                >
-                  {m.isValid ? "validate" : "not validate"}
-                </p>
               </div>
-            </div>
-          ))
+            ) : (
+              <div className={c.card} key={m._id}>
+                <div className={c.content}>
+                  <p className={c.heading}>{m.crew}</p>
+                  <p className={c.para}>{`${m.family} / ${m.project}`}</p>
+                  <div className={c.contina}>
+                    <span>teamleader:</span>
+                    <span style={{ fontWeight: "bold" }}>{m.teamleader}</span>
+                  </div>
+                  <div className={c.contina}>
+                    <span>shift:</span>
+                    <span style={{ fontWeight: "bold" }}>{m.shift}</span>
+                  </div>
+                  <div className={c.contina}>
+                    <span>head count:</span>
+                    <span style={{ fontWeight: "bold" }}>
+                      {`${getEmpl(m.employees).toFixed(1)}/${
+                        m.employees.length
+                      }`}
+                    </span>
+                  </div>
+                  <p
+                    className={c.para}
+                    style={
+                      m.isValid
+                        ? {
+                            margin: "auto",
+                            fontWeight: "900",
+                            textTransform: "uppercase",
+                            color: "#006B63",
+                          }
+                        : {
+                            margin: "auto",
+                            fontWeight: "900",
+                            textTransform: "uppercase",
+                            color: "#f3090b",
+                          }
+                    }
+                  >
+                    {m.isValid ? "validate" : "not validate"}
+                  </p>
+                </div>
+              </div>
+            )
+          )
         )}
       </div>
     </div>
