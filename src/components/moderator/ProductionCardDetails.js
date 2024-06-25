@@ -169,26 +169,32 @@ const ProductionCardDetails = (p) => {
                   >
                     {m.family}
                   </td>
-                  <td style={{
-                    color: "#FFA211",
-                    fontWeight: "900",
-                    fontSize: "17px",
-                  }}>{m.reference}</td>
+                  <td
+                    style={{
+                      color: "#FFA211",
+                      fontWeight: "900",
+                      fontSize: "17px",
+                    }}
+                  >
+                    {m.reference}
+                  </td>
                   <td style={{ color: "#3BC6EB", fontWeight: "900" }}>
                     {m.exig}
                   </td>
                   <td style={{ color: "#00AC9E", fontWeight: "900" }}>
                     {m.prod}
                   </td>
-                 
-                  <td style={{ color: "#4E7C88", fontWeight: "900" }}>{m.ce}</td>
-                  <td style={{ color: "#006B63", fontWeight: "900" }}>{m.emb}</td>
+
+                  <td style={{ color: "#4E7C88", fontWeight: "900" }}>
+                    {m.ce}
+                  </td>
+                  <td style={{ color: "#006B63", fontWeight: "900" }}>
+                    {m.emb}
+                  </td>
                   <td>{m.exigency.toFixed(2)}</td>
                   <td>{m.cuting}</td>
                   <td>{m.leadPrep}</td>
-                  <td>
-                    {m.finalAssembly}
-                  </td>
+                  <td>{m.finalAssembly}</td>
                   <td
                     style={{
                       color: "#FFA211",
