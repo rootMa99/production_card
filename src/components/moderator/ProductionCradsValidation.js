@@ -106,7 +106,7 @@ const ProductionCradsValidation = (p) => {
   const { isLoged } = useSelector((s) => s.login);
   const [data, setData] = useState([]);
   const [list, setList] = useState(false);
-  const [pd, setPd]=useState(null)
+  const [pd, setPd] = useState(null);
   const [filData, setFilData] = useState({
     family: [],
     tl: [],
@@ -215,11 +215,12 @@ const ProductionCradsValidation = (p) => {
         })
       : fd;
   //end filter part
+  const closeda = (e) => {
+    setPd(null);
+  };
   return (
     <div className={c.container}>
-        {
-            pd!==null && <ProductionCardDetails data={pd}/>
-        }
+      {pd !== null && <ProductionCardDetails data={pd} close={closeda}/>}
       <div className={c.inputHolder}>
         <div className={c.inputD}>
           <h3>select date:</h3>
@@ -354,7 +355,7 @@ const ProductionCradsValidation = (p) => {
         ) : (
           fd.map((m) =>
             !list ? (
-              <div className={c.card} key={m._id} onClick={e=>setPd(m)}>
+              <div className={c.card} key={m._id} onClick={(e) => setPd(m)}>
                 <div className={c.content}>
                   <p className={c.heading}>{m.crew}</p>
                   <p className={c.para}>{`${m.family} / ${m.project}`}</p>
@@ -397,28 +398,26 @@ const ProductionCradsValidation = (p) => {
                 </div>
               </div>
             ) : (
-              <div className={c.list} key={m._id} onClick={e=>setPd(m)}>
+              <div className={c.list} key={m._id} onClick={(e) => setPd(m)}>
                 <div className={c.crewData}>
                   <p className={c.heading}>{m.crew}</p>
                   <p className={c.para}>{`${m.family} / ${m.project}`}</p>
                 </div>
                 <div className={c.contina}>
-                    <span>teamleader:</span>
-                    <span style={{ fontWeight: "bold" }}>{m.teamleader}</span>
-                  </div>
-                  <div className={c.contina}>
-                    <span>shift:</span>
-                    <span style={{ fontWeight: "bold" }}>{m.shift}</span>
-                  </div>
-                  <div className={c.contina}>
-                    <span>head count:</span>
-                    <span style={{ fontWeight: "bold" }}>
-                      {`${getEmpl(m.employees).toFixed(1)}/${
-                        m.employees.length
-                      }`}
-                    </span>
-                  </div>
-                  <p
+                  <span>teamleader:</span>
+                  <span style={{ fontWeight: "bold" }}>{m.teamleader}</span>
+                </div>
+                <div className={c.contina}>
+                  <span>shift:</span>
+                  <span style={{ fontWeight: "bold" }}>{m.shift}</span>
+                </div>
+                <div className={c.contina}>
+                  <span>head count:</span>
+                  <span style={{ fontWeight: "bold" }}>
+                    {`${getEmpl(m.employees).toFixed(1)}/${m.employees.length}`}
+                  </span>
+                </div>
+                <p
                   className={c.para}
                   style={
                     m.isValid
