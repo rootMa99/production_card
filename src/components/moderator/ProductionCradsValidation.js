@@ -7,6 +7,7 @@ import ls from "../../assets/icons8-list-100.png";
 import col from "../../assets/icons8-collage-64.png";
 import Select from "react-select";
 import DropdownIndicator from "..//UI/DropdownIndicator";
+import ProductionCardDetails from "./ProductionCardDetails";
 const customStyles = {
   control: (provided, state) => ({
     ...provided,
@@ -105,6 +106,7 @@ const ProductionCradsValidation = (p) => {
   const { isLoged } = useSelector((s) => s.login);
   const [data, setData] = useState([]);
   const [list, setList] = useState(false);
+  const [pd, setPd]=useState(null)
   const [filData, setFilData] = useState({
     family: [],
     tl: [],
@@ -215,6 +217,9 @@ const ProductionCradsValidation = (p) => {
   //end filter part
   return (
     <div className={c.container}>
+        {
+            pd!==null && <ProductionCardDetails />
+        }
       <div className={c.inputHolder}>
         <div className={c.inputD}>
           <h3>select date:</h3>
@@ -349,7 +354,7 @@ const ProductionCradsValidation = (p) => {
         ) : (
           fd.map((m) =>
             !list ? (
-              <div className={c.card} key={m._id}>
+              <div className={c.card} key={m._id} onClick={e=>setPd(m)}>
                 <div className={c.content}>
                   <p className={c.heading}>{m.crew}</p>
                   <p className={c.para}>{`${m.family} / ${m.project}`}</p>
