@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import api from "../../service/api";
 import nof from "../../assets/nocards.svg";
 import ls from "../../assets/icons8-list-100.png"
+import col from "../../assets/icons8-collage-64.png";
 import Select from "react-select";
 import DropdownIndicator from "..//UI/DropdownIndicator";
 const customStyles = {
@@ -103,6 +104,7 @@ const ProductionCradsValidation = (p) => {
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
   const { isLoged } = useSelector((s) => s.login);
   const [data, setData] = useState([]);
+  const [list, setList]=useState(true)
   const [filData, setFilData] = useState({
     family: [],
     tl: [],
@@ -229,7 +231,7 @@ const ProductionCradsValidation = (p) => {
         <div className={c.line}></div>
         <h4 style={{ fontSize: "25px" }}>Production cards</h4>
       </div>
-      <div className={c.filterArrea}>
+      {fd.length > 0 &&<div className={c.filterArrea}>
         <div className={c.poinHold}>
           <span>Family</span>
           <Select
@@ -326,10 +328,10 @@ const ProductionCradsValidation = (p) => {
             isMulti
           />
         </div>
-      </div>
-      <div className={c.imgContainer}>
+      </div>}
+      {fd.length > 0 &&<div className={c.imgContainer}>
       <img src={ls} alt="list" />
-      </div>
+      </div>}
       <div className={c.cardsContainer}>
         {fd.length === 0 ? (
           <div>

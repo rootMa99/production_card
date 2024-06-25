@@ -237,5 +237,5 @@
     cursor: pointer;
 }
 .imgContainer img:hover{
-    
+    transform: scale(1.2);
 }
