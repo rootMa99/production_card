@@ -225,44 +225,38 @@ const ProductionCradsValidation = (p) => {
     setPd(null);
   };
 
-  const rejectCard = async (i) => {
+  const rejectCard = async (i, t) => {
     try {
-        const body = {
-        };
-        console.log(body);
-        const response = await fetch(`${api}/production-card/validation`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${isLoged.token}`,
-          },
-          body: JSON.stringify(body),
-        });
-        if (!response.ok) {
-          throw new Error(response.status);
-        }
-        const da = await response.json();
-        console.log("pfo:", da);
-
-        return true;
-      } catch (e) {
-        console.error(e);
-        return false;
+      const body = {
+        cardId:"",
+        isValid:"",
+      };
+      console.log(body);
+      const response = await fetch(`${api}/production-card/validation`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${isLoged.token}`,
+        },
+        body: JSON.stringify(body),
+      });
+      if (!response.ok) {
+        throw new Error(response.status);
       }
-  };
-  const validCard = (i) => {
-    console.log(i);
+      const da = await response.json();
+      console.log("pfo:", da);
+
+      return true;
+    } catch (e) {
+      console.error(e);
+      return false;
+    }
   };
 
   return (
     <div className={c.container}>
       {pd !== null && (
-        <ProductionCardDetails
-          data={pd}
-          close={closeda}
-          reject={rejectCard}
-          valid={validCard}
-        />
+        <ProductionCardDetails data={pd} close={closeda} reject={rejectCard} />
       )}
       <div className={c.inputHolder}>
         <div className={c.inputD}>

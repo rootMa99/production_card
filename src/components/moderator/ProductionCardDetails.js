@@ -46,14 +46,8 @@ const ProductionCardDetails = (p) => {
   console.log(p.data, getDataBypointing(p.data.employees));
 
   const rejectOrValid = (e, t) => {
-    if (t === "r") {
-      p.reject(p.data._id);
-      return;
-    }
-    if (t === "v") {
-      p.valid(p.data._id);
-      return;
-    }
+    p.reject(p.data._id, t);
+    return;
   };
 
   return (
