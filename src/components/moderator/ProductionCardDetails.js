@@ -293,6 +293,13 @@ const ProductionCardDetails = (p) => {
             </tfoot>
           </table>
         </div>
+        <button className={c.buttonr}>Reject</button>
+        <span style={{
+            color: "#FFA211",
+            fontWeight: "900",
+            fontSize: "17px",
+          }}>OR</span>
+        <button className={c.button}>validate</button>
       </div>
       <img className={c.imglg} src={lg} alt="logo" />
     </div>
