@@ -51,8 +51,8 @@ const ProductionCardDetails = (p) => {
           <span className={c.imp}>{p.data.shift}</span>
         </div>
         <div className={c.details}>
-          <span>coordinator:</span>{" "}
-          <span className={c.imp}>{p.data.coordinator}</span>
+          <span>total paid hours:</span>{" "}
+          <span className={c.imp}>{getEmpl(p.data.employees).toFixed(1)*7.67}</span>
         </div>
       </div>
       <div className={c.bodyC}>
