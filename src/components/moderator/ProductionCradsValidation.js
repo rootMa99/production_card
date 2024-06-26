@@ -225,8 +225,30 @@ const ProductionCradsValidation = (p) => {
     setPd(null);
   };
 
-  const rejectCard = (i) => {
-    console.log(i);
+  const rejectCard = async (i) => {
+    try {
+        const body = {
+        };
+        console.log(body);
+        const response = await fetch(`${api}/production-card/validation`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${isLoged.token}`,
+          },
+          body: JSON.stringify(body),
+        });
+        if (!response.ok) {
+          throw new Error(response.status);
+        }
+        const da = await response.json();
+        console.log("pfo:", da);
+
+        return true;
+      } catch (e) {
+        console.error(e);
+        return false;
+      }
   };
   const validCard = (i) => {
     console.log(i);

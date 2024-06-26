@@ -45,16 +45,16 @@ const getDataBypointing = (d) => {
 const ProductionCardDetails = (p) => {
   console.log(p.data, getDataBypointing(p.data.employees));
 
-  const rejectOrValid=(e, t)=>{
-    if(t==="r"){
-
-        return
+  const rejectOrValid = (e, t) => {
+    if (t === "r") {
+      p.reject(p.data._id);
+      return;
     }
-    if(t==="v"){
-
-        return
+    if (t === "v") {
+      p.valid(p.data._id);
+      return;
     }
-  }
+  };
 
   return (
     <div className={c.container}>
@@ -305,13 +305,21 @@ const ProductionCardDetails = (p) => {
             </tfoot>
           </table>
         </div>
-        <button className={c.buttonr} onClick={e=>rejectOrValid(e, "r")}>Reject</button>
-        <span style={{
+        <button className={c.buttonr} onClick={(e) => rejectOrValid(e, "r")}>
+          Reject
+        </button>
+        <span
+          style={{
             color: "#FFA211",
             fontWeight: "900",
             fontSize: "17px",
-          }}>OR</span>
-        <button className={c.button} onClick={e=>rejectOrValid(e, "v")}>validate</button>
+          }}
+        >
+          OR
+        </span>
+        <button className={c.button} onClick={(e) => rejectOrValid(e, "v")}>
+          validate
+        </button>
       </div>
       <img className={c.imglg} src={lg} alt="logo" />
     </div>
