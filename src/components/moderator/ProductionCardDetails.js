@@ -92,7 +92,9 @@ const ProductionCardDetails = (p) => {
       <div className={c.bodyC}>
         <div className={c.charth}>
           <Chart
-            data={getDataBypointing(p.data.employees)}
+            data={getDataBypointing(p.data.employees).sort((a, b) => {
+              return b.nb - a.nb;
+            })}
             title="employees by pointing"
           />
         </div>
