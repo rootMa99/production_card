@@ -228,8 +228,8 @@ const ProductionCradsValidation = (p) => {
   const rejectCard = async (i, t) => {
     try {
       const body = {
-        cardId:"",
-        isValid:"",
+        cardId: i,
+        isValid: t === "v" ? true : false,
       };
       console.log(body);
       const response = await fetch(`${api}/production-card/validation`, {
@@ -245,7 +245,8 @@ const ProductionCradsValidation = (p) => {
       }
       const da = await response.json();
       console.log("pfo:", da);
-
+      callbackmu();
+      setPd(null);
       return true;
     } catch (e) {
       console.error(e);
