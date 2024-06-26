@@ -1,5 +1,12 @@
 import c from "./ProductionCardDetails.module.css";
 import lg from "../../assets/aptiv-logo.svg";
+
+const getEmpl = (d) => {
+  let r = 0;
+  d.map((m) => (r += m.paidHour));
+
+  return r / 7.67;
+};
 const ProductionCardDetails = (p) => {
   console.log(p.data);
   return (
@@ -26,6 +33,22 @@ const ProductionCardDetails = (p) => {
         <div className={c.details}>
           <span>shiftleader:</span>{" "}
           <span className={c.imp}>{p.data.shiftleader}</span>
+        </div>
+        <div className={c.details}>
+          <span>coordinator:</span>{" "}
+          <span className={c.imp}>{p.data.coordinator}</span>
+        </div>
+      </div>
+      <div className={c.crewDetails}>
+        <div className={c.details}>
+          <span>headcount:</span>{" "}
+          <span className={c.imp}>{`${getEmpl(p.data.employees).toFixed(1)} / ${
+            p.data.employees.length
+          }`}</span>
+        </div>
+        <div className={c.details}>
+          <span>shift:</span>{" "}
+          <span className={c.imp}>{p.data.shift}</span>
         </div>
         <div className={c.details}>
           <span>coordinator:</span>{" "}
@@ -95,7 +118,9 @@ const ProductionCardDetails = (p) => {
                   <td>{m.status.trim() === "" ? "--" : m.status}</td>
                   <td>
                     {m.pointing === "mutation" ? (
-                      `${m.to.teamleader} / ${m.to.crew} / ${m.to.isDefinitely?"def":"prov"}`
+                      `${m.to.teamleader} / ${m.to.crew} / ${
+                        m.to.isDefinitely ? "def" : "prov"
+                      }`
                     ) : m.toMany.length === 0 ? (
                       "--"
                     ) : (
