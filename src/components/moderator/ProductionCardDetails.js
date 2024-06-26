@@ -221,9 +221,9 @@ const ProductionCardDetails = (p) => {
               <tr>
                 <th>family</th>
                 <th>reference</th>
+                <th>ce</th>
                 <th>exig</th>
                 <th>prod</th>
-                <th>ce</th>
                 <th>emb</th>
                 <th>exigency</th>
                 <th>cuting</th>
@@ -253,6 +253,9 @@ const ProductionCardDetails = (p) => {
                   >
                     {m.reference}
                   </td>
+                  <td style={{ color: "#4E7C88", fontWeight: "900" }}>
+                    {m.ce}
+                  </td>
                   <td style={{ color: "#3BC6EB", fontWeight: "900" }}>
                     {m.exig}
                   </td>
@@ -260,9 +263,6 @@ const ProductionCardDetails = (p) => {
                     {m.prod}
                   </td>
 
-                  <td style={{ color: "#4E7C88", fontWeight: "900" }}>
-                    {m.ce}
-                  </td>
                   <td style={{ color: "#006B63", fontWeight: "900" }}>
                     {m.emb}
                   </td>
