@@ -94,7 +94,9 @@ const ProductionCardDetails = (p) => {
                   <td>{m.t.toFixed(2)}</td>
                   <td>{m.status.trim() === "" ? "--" : m.status}</td>
                   <td>
-                    {m.toMany.length === 0 ? (
+                    {m.pointing === "mutation" ? (
+                      `${m.to.teamleader} / ${m.to.crew} / ${m.to.isDefinitely?"def":"prov"}`
+                    ) : m.toMany.length === 0 ? (
                       "--"
                     ) : (
                       <ul>
