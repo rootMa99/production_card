@@ -1,9 +1,10 @@
 import c from "./ProductionCardDetails.module.css";
 import lg from "../../assets/aptiv-logo.svg";
 import { isFriday } from "../hooks/daterelated";
+import Chart from "./Chart";
 
 const getEmpl = (d) => {
-    let r = 0;
+  let r = 0;
   d.forEach((e) => {
     if (isFriday(new Date().toISOString().split("T")[0])) {
       r += e.paidHour === undefined ? 0 / 7.58 : e.paidHour / 7.58;
@@ -13,14 +14,36 @@ const getEmpl = (d) => {
   });
   return r;
 };
-const getph=d=>{
-    let r = 0;
+const getph = (d) => {
+  let r = 0;
   d.map((m) => (r += m.paidHour));
 
   return r;
-}
+};
+const getDataBypointing = (d) => {
+  const rd = [];
+  d.forEach((e) => {
+    if (rd.length === 0) {
+      rd.push({
+        name: e.pointing,
+        nb: 1,
+      });
+    } else {
+      const i = rd.findIndex((f) => f.name === e.pointing);
+      if (i !== -1) {
+        rd[i].nb += 1;
+      } else {
+        rd.push({
+          name: e.pointing,
+          nb: 1,
+        });
+      }
+    }
+  });
+  return rd;
+};
 const ProductionCardDetails = (p) => {
-  console.log(p.data);
+  console.log(p.data, getDataBypointing(p.data.employees));
   return (
     <div className={c.container}>
       {!p.data.isValid && (
@@ -39,35 +62,40 @@ const ProductionCardDetails = (p) => {
       </div>
       <div className={c.crewDetails}>
         <div className={c.details}>
-          <span>teamleader:</span>{" "}
+          <span>teamleader:</span>
           <span className={c.imp}>{p.data.teamleader}</span>
         </div>
         <div className={c.details}>
-          <span>shiftleader:</span>{" "}
+          <span>shiftleader:</span>
           <span className={c.imp}>{p.data.shiftleader}</span>
         </div>
         <div className={c.details}>
-          <span>coordinator:</span>{" "}
+          <span>coordinator:</span>
           <span className={c.imp}>{p.data.coordinator}</span>
         </div>
       </div>
       <div className={c.crewDetails}>
         <div className={c.details}>
-          <span>headcount:</span>{" "}
+          <span>headcount:</span>
           <span className={c.imp}>{`${getEmpl(p.data.employees).toFixed(2)} / ${
             p.data.employees.length
           }`}</span>
         </div>
         <div className={c.details}>
-          <span>shift:</span>{" "}
-          <span className={c.imp}>{p.data.shift}</span>
+          <span>shift:</span> <span className={c.imp}>{p.data.shift}</span>
         </div>
         <div className={c.details}>
-          <span>total paid hours:</span>{" "}
+          <span>total paid hours:</span>
           <span className={c.imp}>{getph(p.data.employees).toFixed(2)}</span>
         </div>
       </div>
       <div className={c.bodyC}>
+        <div className={c.charth}>
+          <Chart
+            data={getDataBypointing(p.data.employees)}
+            title="employees by pointing"
+          />
+        </div>
         <h3 className={c.pointingListt}>pointing list:</h3>
         <div className={c.pointingList}>
           <table className={c.table}>
