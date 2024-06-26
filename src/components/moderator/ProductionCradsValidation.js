@@ -83,7 +83,7 @@ const customStyles = {
 };
 
 const getEmpl = (d) => {
-    let r = 0;
+  let r = 0;
   d.forEach((e) => {
     if (isFriday(new Date().toISOString().split("T")[0])) {
       r += e.paidHour === undefined ? 0 / 7.58 : e.paidHour / 7.58;
@@ -224,9 +224,24 @@ const ProductionCradsValidation = (p) => {
   const closeda = (e) => {
     setPd(null);
   };
+
+  const rejectCard = (i) => {
+    console.log(i);
+  };
+  const validCard = (i) => {
+    console.log(i);
+  };
+
   return (
     <div className={c.container}>
-      {pd !== null && <ProductionCardDetails data={pd} close={closeda} />}
+      {pd !== null && (
+        <ProductionCardDetails
+          data={pd}
+          close={closeda}
+          reject={rejectCard}
+          valid={validCard}
+        />
+      )}
       <div className={c.inputHolder}>
         <div className={c.inputD}>
           <h3>select date:</h3>
