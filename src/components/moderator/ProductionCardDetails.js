@@ -1,12 +1,24 @@
 import c from "./ProductionCardDetails.module.css";
 import lg from "../../assets/aptiv-logo.svg";
+import { isFriday } from "../hooks/daterelated";
 
 const getEmpl = (d) => {
-  let r = 0;
+    let r = 0;
+  d.forEach((e) => {
+    if (isFriday(new Date().toISOString().split("T")[0])) {
+      r += e.paidHour === undefined ? 0 / 7.58 : e.paidHour / 7.58;
+    } else {
+      r += e.paidHour === undefined ? 0 / 7.67 : e.paidHour / 7.67;
+    }
+  });
+  return r;
+};
+const getph=d=>{
+    let r = 0;
   d.map((m) => (r += m.paidHour));
 
-  return r / 7.67;
-};
+  return r;
+}
 const ProductionCardDetails = (p) => {
   console.log(p.data);
   return (
@@ -42,7 +54,7 @@ const ProductionCardDetails = (p) => {
       <div className={c.crewDetails}>
         <div className={c.details}>
           <span>headcount:</span>{" "}
-          <span className={c.imp}>{`${getEmpl(p.data.employees).toFixed(1)} / ${
+          <span className={c.imp}>{`${getEmpl(p.data.employees).toFixed(2)} / ${
             p.data.employees.length
           }`}</span>
         </div>
@@ -52,7 +64,7 @@ const ProductionCardDetails = (p) => {
         </div>
         <div className={c.details}>
           <span>total paid hours:</span>{" "}
-          <span className={c.imp}>{getEmpl(p.data.employees).toFixed(1)*7.67}</span>
+          <span className={c.imp}>{getph(p.data.employees).toFixed(2)}</span>
         </div>
       </div>
       <div className={c.bodyC}>

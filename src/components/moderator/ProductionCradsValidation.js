@@ -8,6 +8,7 @@ import col from "../../assets/icons8-collage-64.png";
 import Select from "react-select";
 import DropdownIndicator from "..//UI/DropdownIndicator";
 import ProductionCardDetails from "./ProductionCardDetails";
+import { isFriday } from "../hooks/daterelated";
 const customStyles = {
   control: (provided, state) => ({
     ...provided,
@@ -82,10 +83,15 @@ const customStyles = {
 };
 
 const getEmpl = (d) => {
-  let r = 0;
-  d.map((m) => (r += m.paidHour));
-
-  return r / 7.67;
+    let r = 0;
+  d.forEach((e) => {
+    if (isFriday(new Date().toISOString().split("T")[0])) {
+      r += e.paidHour === undefined ? 0 / 7.58 : e.paidHour / 7.58;
+    } else {
+      r += e.paidHour === undefined ? 0 / 7.67 : e.paidHour / 7.67;
+    }
+  });
+  return r;
 };
 const dataList = (d, t) => {
   const rd = [];
@@ -370,7 +376,7 @@ const ProductionCradsValidation = (p) => {
                   <div className={c.contina}>
                     <span>head count:</span>
                     <span style={{ fontWeight: "bold" }}>
-                      {`${getEmpl(m.employees).toFixed(1)}/${
+                      {`${getEmpl(m.employees).toFixed(2)}/${
                         m.employees.length
                       }`}
                     </span>
