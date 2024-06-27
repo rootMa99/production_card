@@ -120,7 +120,7 @@ const ProductionCradsValidation = (p) => {
     coord: [],
     crew: [],
     project: [],
-    valid:[]
+    valid: [],
   });
   //http req part
   const callbackmu = useCallback(async () => {
@@ -225,10 +225,10 @@ const ProductionCradsValidation = (p) => {
         })
       : fd;
   fd =
-    filData.coord.length > 0
+    filData.valid.length > 0
       ? fd.filter((obj) => {
-          return filData.coord.some(
-            (filterObj) => filterObj.value === obj.coordinator
+          return filData.valid.some(
+            (filterObj) => filterObj.value === obj.isValid
           );
         })
       : fd;
@@ -389,13 +389,16 @@ const ProductionCradsValidation = (p) => {
             <span>valid/not</span>
             <Select
               components={{ DropdownIndicator }}
-              options={[{
-                label: "valid",
-                value: true,
-              }, {
-                label: "not valid",
-                value: false,
-              }]}
+              options={[
+                {
+                  label: "valid",
+                  value: true,
+                },
+                {
+                  label: "not valid",
+                  value: false,
+                },
+              ]}
               id="multiSelect"
               inputId="shiftleader1"
               styles={customStyles}
