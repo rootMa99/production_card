@@ -244,58 +244,7 @@ const ModifyPointing = (p) => {
               }}
             />
           </div>
-          <div className={c.poinHold}>
-            <span>motif</span>
-            <Select
-              components={{ DropdownIndicator }}
-              options={[
-                { label: "backup", value: "backup" },
-                { label: "fe", value: "fe" },
-                { label: "inapt", value: "inapt" },
-                { label: "planning", value: "planning" },
-                { label: "rm", value: "rm" },
-                { label: "others", value: "others" },
-              ]}
-              id="multiSelect"
-              inputId="shiftleader1"
-              styles={customStyles}
-              placeholder="select motif"
-              onChange={(e) => setpoin((p) => ({ ...p, motif: e.value }))}
-              value={{
-                label: saePoin.motif,
-                value: saePoin.motif,
-              }}
-            />
-          </div>
-          <div className={c.poinHold}>
-            <span>details</span>
-            <CreatableSelect
-              isClearable
-              components={{ DropdownIndicator }}
-              options={[
-                { label: "exit", value: "exit" },
-                { label: "backup", value: "backup" },
-                { label: "fe", value: "fe" },
-                { label: "night", value: "night" },
-                { label: "illness", value: "illness" },
-                { label: "cs", value: "cs" },
-              ]}
-              id="multiSelect"
-              inputId="shiftleader1"
-              styles={customStyles}
-              onChange={(e) =>
-                setpoin((p) => ({
-                  ...p,
-                  details: e === null ? "" : e.value,
-                }))
-              }
-              value={{
-                label: saePoin.details,
-                value: saePoin.details,
-              }}
-              placeholder="select details or enter"
-            />
-          </div>
+
           <div className={c.poinHold}>
             <span>Pointing exc</span>
             <Select
@@ -325,21 +274,79 @@ const ModifyPointing = (p) => {
               }
             />
           </div>
-
-          <div className={c.poinHold}>
-            <span>cr duration</span>
-            <input
-              type="number"
-              placeholder="cr duration"
-              onChange={(e) =>
-                setpoin((p) => ({
-                  ...p,
-                  crDuration: +e.target.value / 60,
-                }))
-              }
-              value={saePoin.crDuration * 60}
-            />
-          </div>
+          {(saePoin.pointingOptions.includes("ctn") ||
+            saePoin.pointing === "ctp") && (
+            <React.Fragment>
+              <div className={c.poinHold}>
+                <span>motif</span>
+                <Select
+                  components={{ DropdownIndicator }}
+                  options={[
+                    { label: "backup", value: "backup" },
+                    { label: "fe", value: "fe" },
+                    { label: "inapt", value: "inapt" },
+                    { label: "planning", value: "planning" },
+                    { label: "rm", value: "rm" },
+                    { label: "others", value: "others" },
+                  ]}
+                  id="multiSelect"
+                  inputId="shiftleader1"
+                  styles={customStyles}
+                  placeholder="select motif"
+                  onChange={(e) => setpoin((p) => ({ ...p, motif: e.value }))}
+                  value={{
+                    label: saePoin.motif,
+                    value: saePoin.motif,
+                  }}
+                />
+              </div>
+              <div className={c.poinHold}>
+                <span>details</span>
+                <CreatableSelect
+                  isClearable
+                  components={{ DropdownIndicator }}
+                  options={[
+                    { label: "exit", value: "exit" },
+                    { label: "backup", value: "backup" },
+                    { label: "fe", value: "fe" },
+                    { label: "night", value: "night" },
+                    { label: "illness", value: "illness" },
+                    { label: "cs", value: "cs" },
+                  ]}
+                  id="multiSelect"
+                  inputId="shiftleader1"
+                  styles={customStyles}
+                  onChange={(e) =>
+                    setpoin((p) => ({
+                      ...p,
+                      details: e === null ? "" : e.value,
+                    }))
+                  }
+                  value={{
+                    label: saePoin.details,
+                    value: saePoin.details,
+                  }}
+                  placeholder="select details or enter"
+                />
+              </div>
+            </React.Fragment>
+          )}
+          {saePoin.pointingOptions.includes("cr") && (
+            <div className={c.poinHold}>
+              <span>cr duration</span>
+              <input
+                type="number"
+                placeholder="cr duration"
+                onChange={(e) =>
+                  setpoin((p) => ({
+                    ...p,
+                    crDuration: +e.target.value / 60,
+                  }))
+                }
+                value={saePoin.crDuration * 60}
+              />
+            </div>
+          )}
           <div className={c.poinHold}>
             <span>ctn duration</span>
             <input
