@@ -18,7 +18,9 @@ const ModifyPointing = (p) => {
           </div>
           <div className={c.empData}>
             <span className={c.label}>poste:</span>
-            <span className={c.detail}>{p.data.poste}</span>
+            <span className={c.detail}>
+              {p.data.poste.trim() === "" ? "--" : p.data.poste}
+            </span>
           </div>
           <div className={c.empData}>
             <span className={c.label}>paid hour:</span>

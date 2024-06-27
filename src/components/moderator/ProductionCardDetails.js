@@ -311,6 +311,8 @@ const ProductionCardDetails = (p) => {
               </tfoot>
             </table>
           </div>
+        </div>
+        <div>
           <button className={c.buttonr} onClick={(e) => rejectOrValid(e, "r")}>
             Reject
           </button>
