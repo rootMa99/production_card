@@ -81,32 +81,41 @@
   font-weight: 900;
   border-bottom: none;
 }
+
+.pointingData {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  gap: 20px 0;
+  flex-wrap: wrap;
+  align-items: center;
+}
 .poinHold {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .poinHold span {
-    color: #f84018;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: medium;
-  }
-  
-  .poinHold input {
-    text-align: center;
-    color: rgb(255, 255, 255);
-    border-radius: 4px;
-    padding: 4px 0;
-    width: 15rem;
-    font-size: medium;
-    outline: none;
-    border: 1px solid #f84018;
-    background-color: transparent;
-    height: 1.3rem;
-    text-transform: uppercase;
-    text-wrap: wrap;
-  }
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.poinHold span {
+  color: #f84018;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: medium;
+}
+
+.poinHold input {
+  text-align: center;
+  color: rgb(255, 255, 255);
+  border-radius: 4px;
+  padding: 4px 0;
+  width: 15rem;
+  font-size: medium;
+  outline: none;
+  border: 1px solid #f84018;
+  background-color: transparent;
+  height: 1.3rem;
+  text-transform: uppercase;
+  text-wrap: wrap;
+}
