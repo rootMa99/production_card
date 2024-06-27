@@ -287,7 +287,7 @@ const ProductionCradsValidation = (p) => {
         <div className={c.line}></div>
         <h4 style={{ fontSize: "25px" }}>Production cards</h4>
       </div>
-      {fd.length > 0 && (
+      {data.length > 0 && (
         <div className={c.filterArrea}>
           <div className={c.poinHold}>
             <span>Family</span>
