@@ -294,3 +294,17 @@
 .imgContainer img:hover {
   transform: scale(1.2);
 }
+
+.poinHold {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.poinHold span {
+  color: #cccccc;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 16px;
+}

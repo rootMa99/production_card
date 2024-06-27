@@ -120,6 +120,7 @@ const ProductionCradsValidation = (p) => {
     coord: [],
     crew: [],
     project: [],
+    valid:[]
   });
   //http req part
   const callbackmu = useCallback(async () => {
@@ -168,6 +169,9 @@ const ProductionCradsValidation = (p) => {
       case "coord":
         setFilData((p) => ({ ...p, coord: e }));
         break;
+      case "valid":
+        setFilData((p) => ({ ...p, valid: e }));
+        break;
       default:
     }
   };
@@ -209,6 +213,14 @@ const ProductionCradsValidation = (p) => {
       ? fd.filter((obj) => {
           return filData.sl.some(
             (filterObj) => filterObj.value === obj.shiftleader
+          );
+        })
+      : fd;
+  fd =
+    filData.coord.length > 0
+      ? fd.filter((obj) => {
+          return filData.coord.some(
+            (filterObj) => filterObj.value === obj.coordinator
           );
         })
       : fd;
@@ -370,6 +382,25 @@ const ProductionCradsValidation = (p) => {
               styles={customStyles}
               placeholder="select project"
               onChange={(e) => handleSelectChange(e, "project")}
+              isMulti
+            />
+          </div>
+          <div className={c.poinHold}>
+            <span>valid/not</span>
+            <Select
+              components={{ DropdownIndicator }}
+              options={[{
+                label: "valid",
+                value: true,
+              }, {
+                label: "not valid",
+                value: false,
+              }]}
+              id="multiSelect"
+              inputId="shiftleader1"
+              styles={customStyles}
+              placeholder="select status"
+              onChange={(e) => handleSelectChange(e, "valid")}
               isMulti
             />
           </div>
