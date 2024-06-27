@@ -54,3 +54,12 @@
   right: -20px;
   top: -8px;
 }
+
+
+.empData .label{
+    color: #f33716;
+    text-transform: uppercase;
+    font-size: medium;
+    border-bottom: 2px solid;
+    font-weight: 500;
+}

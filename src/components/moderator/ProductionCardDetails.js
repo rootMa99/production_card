@@ -53,9 +53,12 @@ const ProductionCardDetails = (p) => {
     return;
   };
 
+  const close = (e) => {
+    setRowTM(null);
+  };
   return (
     <React.Fragment>
-      {rowTM !== null && <ModifyPointing data={rowTM} />}
+      {rowTM !== null && <ModifyPointing data={rowTM} close={close} />}
       <div className={c.container}>
         {!p.data.isValid && (
           <p className={c.caution}>
