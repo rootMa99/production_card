@@ -58,7 +58,7 @@ const ProductionCardDetails = (p) => {
   const close = (e) => {
     setRowTM(null);
   };
-  const postSingleEmpl = async (d, m, ph, id) => {
+  const postSingleEmpl = async (d, m, ph) => {
     try {
       const body = {
         matricule: m,
@@ -77,14 +77,17 @@ const ProductionCardDetails = (p) => {
         details: d.details,
       };
       console.log(body);
-      const response = await fetch(`${api}/production-card/pointing-for-one/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${isLoged.token}`,
-        },
-        body: JSON.stringify(body),
-      });
+      const response = await fetch(
+        `${api}/production-card/pointing-for-one/${p.data._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${isLoged.token}`,
+          },
+          body: JSON.stringify(body),
+        }
+      );
       if (!response.ok) {
         throw new Error(response.status);
       }
@@ -99,7 +102,13 @@ const ProductionCardDetails = (p) => {
   };
   return (
     <React.Fragment>
-      {rowTM !== null && <ModifyPointing data={rowTM} close={close} singleEmpl={postSingleEmpl} />}
+      {rowTM !== null && (
+        <ModifyPointing
+          data={rowTM}
+          close={close}
+          singleEmpl={postSingleEmpl}
+        />
+      )}
       <div className={c.container}>
         {!p.data.isValid && (
           <p className={c.caution}>
@@ -202,7 +211,7 @@ const ProductionCardDetails = (p) => {
                         "--"
                       ) : (
                         <ul>
-                          {m.pointingOptions.map((m,i) => (
+                          {m.pointingOptions.map((m, i) => (
                             <li key={i}>{m}</li>
                           ))}
                         </ul>
@@ -226,10 +235,13 @@ const ProductionCardDetails = (p) => {
                         "--"
                       ) : (
                         <ul>
-                          {m.toMany.map((m,i) => (
-                            <li style={{ textAlign: "center" }} key={`${i}_idsdef`}>{`${
-                              m.teamleader
-                            } / ${m.crew} / ${m.paidHour.toFixed(2)}`}</li>
+                          {m.toMany.map((m, i) => (
+                            <li
+                              style={{ textAlign: "center" }}
+                              key={`${i}_idsdef`}
+                            >{`${m.teamleader} / ${
+                              m.crew
+                            } / ${m.paidHour.toFixed(2)}`}</li>
                           ))}
                         </ul>
                       )}
