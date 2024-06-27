@@ -91,10 +91,10 @@ const ProductionCardDetails = (p) => {
       const da = await response.json();
       console.log("pfo:", da);
       // callback();
-      return true;
+      // return true;
     } catch (e) {
       console.error(e);
-      return false;
+      // return false;
     }
   };
   return (
