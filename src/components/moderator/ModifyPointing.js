@@ -82,7 +82,7 @@ const ModifyPointing = (p) => {
   //   const { isLoged } = useSelector((s) => s.login);
   const o = p.data;
   const [saePoin, setpoin] = useState({
-    paidHour:o.paidHour,
+    paidHour: o.paidHour,
     status: o.status === undefined ? "" : o.status,
     pointing: o.pointing === undefined ? "" : o.pointing,
     pointingOptions: o.pointingOptions === undefined ? [] : o.pointingOptions,
@@ -176,7 +176,7 @@ const ModifyPointing = (p) => {
       }));
     }
   }, [saePoin.pointingOptions, saePoin.pointing]);
-  const submitSingleData = async (smt) => {
+  const submitSingleData = async () => {
     let paidhour;
     switch (saePoin.pointing) {
       case "shift":
@@ -244,11 +244,11 @@ const ModifyPointing = (p) => {
       default:
     }
 
-    const f = await p.singleEmpl(saePoin, smt, paidhour, o._id);
+    const f = await p.singleEmpl(saePoin, o.matricule, paidhour, o._id);
     // if (f) {
     //   toogle();
     // }
-    console.log(saePoin, smt, paidhour, f);
+    console.log(saePoin, o.matricule, paidhour, f);
   };
   console.log(p.data, saePoin);
   return (
@@ -491,7 +491,9 @@ const ModifyPointing = (p) => {
           )}
         </div>
         <div className={c.btnh}>
-          <button className={c.button}>submit</button>
+          <button className={c.button} onClick={submitSingleData}>
+            submit
+          </button>
         </div>
       </div>
     </React.Fragment>

@@ -77,7 +77,7 @@ const ProductionCardDetails = (p) => {
         details: d.details,
       };
       console.log(body);
-      const response = await fetch(`${api}/pointing-for-one/${id}`, {
+      const response = await fetch(`${api}/production-card/pointing-for-one/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -99,7 +99,7 @@ const ProductionCardDetails = (p) => {
   };
   return (
     <React.Fragment>
-      {rowTM !== null && <ModifyPointing data={rowTM} close={close} />}
+      {rowTM !== null && <ModifyPointing data={rowTM} close={close} singleEmpl={postSingleEmpl} />}
       <div className={c.container}>
         {!p.data.isValid && (
           <p className={c.caution}>
