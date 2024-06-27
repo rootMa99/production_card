@@ -245,35 +245,37 @@ const ModifyPointing = (p) => {
             />
           </div>
 
-          <div className={c.poinHold}>
-            <span>Pointing exc</span>
-            <Select
-              components={{ DropdownIndicator }}
-              options={[
-                { label: "ot", value: "ot" },
-                { label: "ctn", value: "ctn" },
-                { label: "cr", value: "cr" },
-                { label: "t", value: "t" },
-                { label: "retard", value: "retard" },
-                { label: "mutation", value: "mutation" },
-              ]}
-              id="multiSelect"
-              inputId="shiftleader1"
-              styles={customStyles}
-              placeholder="select exc"
-              isMulti
-              value={saePoin.pointingOptions.map((m) => ({
-                label: m,
-                value: m,
-              }))}
-              onChange={(e) =>
-                setpoin((p) => ({
-                  ...p,
-                  pointingOptions: e.map((m) => m.value),
-                }))
-              }
-            />
-          </div>
+          {(saePoin.pointing === "shift" || saePoin.pointing === "admin") && (
+            <div className={c.poinHold}>
+              <span>Pointing exc</span>
+              <Select
+                components={{ DropdownIndicator }}
+                options={[
+                  { label: "ot", value: "ot" },
+                  { label: "ctn", value: "ctn" },
+                  { label: "cr", value: "cr" },
+                  { label: "t", value: "t" },
+                  { label: "retard", value: "retard" },
+                  { label: "mutation", value: "mutation" },
+                ]}
+                id="multiSelect"
+                inputId="shiftleader1"
+                styles={customStyles}
+                placeholder="select exc"
+                isMulti
+                value={saePoin.pointingOptions.map((m) => ({
+                  label: m,
+                  value: m,
+                }))}
+                onChange={(e) =>
+                  setpoin((p) => ({
+                    ...p,
+                    pointingOptions: e.map((m) => m.value),
+                  }))
+                }
+              />
+            </div>
+          )}
           {(saePoin.pointingOptions.includes("ctn") ||
             saePoin.pointing === "ctp") && (
             <React.Fragment>
@@ -347,62 +349,71 @@ const ModifyPointing = (p) => {
               />
             </div>
           )}
-          <div className={c.poinHold}>
-            <span>ctn duration</span>
-            <input
-              type="number"
-              placeholder="ctn duration"
-              onChange={(e) =>
-                setpoin((p) => ({
-                  ...p,
-                  ctnDuration: +e.target.value / 60,
-                }))
-              }
-              value={saePoin.ctnDuration * 60}
-            />
-          </div>
-          <div className={c.poinHold}>
-            <span>overtime duration</span>
-            <input
-              type="number"
-              placeholder="ot duration"
-              onChange={(e) =>
-                setpoin((p) => ({
-                  ...p,
-                  otDuration: +e.target.value / 60,
-                }))
-              }
-              value={saePoin.otDuration * 60}
-            />
-          </div>
-          <div className={c.poinHold}>
-            <span>t duration</span>
-            <input
-              type="number"
-              placeholder="t duration"
-              onChange={(e) =>
-                setpoin((p) => ({
-                  ...p,
-                  tDuration: +e.target.value / 60,
-                }))
-              }
-              value={saePoin.tDuration * 60}
-            />
-          </div>
-          <div className={c.poinHold}>
-            <span>retard duration</span>
-            <input
-              type="number"
-              placeholder="retard duration"
-              onChange={(e) =>
-                setpoin((p) => ({
-                  ...p,
-                  retardDuration: +e.target.value / 60,
-                }))
-              }
-              value={saePoin.retardDuration * 60}
-            />
-          </div>
+          {saePoin.pointingOptions.includes("ctn") && (
+            <div className={c.poinHold}>
+              <span>ctn duration</span>
+              <input
+                type="number"
+                placeholder="ctn duration"
+                onChange={(e) =>
+                  setpoin((p) => ({
+                    ...p,
+                    ctnDuration: +e.target.value / 60,
+                  }))
+                }
+                value={saePoin.ctnDuration * 60}
+              />
+            </div>
+          )}
+          {(saePoin.pointingOptions.includes("ot") ||
+            saePoin.pointing === "ot") && (
+            <div className={c.poinHold}>
+              <span>overtime duration</span>
+              <input
+                type="number"
+                placeholder="ot duration"
+                onChange={(e) =>
+                  setpoin((p) => ({
+                    ...p,
+                    otDuration: +e.target.value / 60,
+                  }))
+                }
+                value={saePoin.otDuration * 60}
+              />
+            </div>
+          )}
+          {saePoin.pointingOptions.includes("t") && (
+            <div className={c.poinHold}>
+              <span>t duration</span>
+              <input
+                type="number"
+                placeholder="t duration"
+                onChange={(e) =>
+                  setpoin((p) => ({
+                    ...p,
+                    tDuration: +e.target.value / 60,
+                  }))
+                }
+                value={saePoin.tDuration * 60}
+              />
+            </div>
+          )}
+          {saePoin.pointingOptions.includes("retard") && (
+            <div className={c.poinHold}>
+              <span>retard duration</span>
+              <input
+                type="number"
+                placeholder="retard duration"
+                onChange={(e) =>
+                  setpoin((p) => ({
+                    ...p,
+                    retardDuration: +e.target.value / 60,
+                  }))
+                }
+                value={saePoin.retardDuration * 60}
+              />
+            </div>
+          )}
         </div>
         <div className={c.btnh}>
           <button className={c.button}>submit</button>
