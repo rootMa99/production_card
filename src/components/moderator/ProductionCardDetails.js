@@ -130,7 +130,11 @@ const ProductionCardDetails = (p) => {
             </thead>
             <tbody>
               {p.data.employees.map((m) => (
-                <tr key={m._id} className={c.hovertr}>
+                <tr
+                  key={m._id}
+                  className={c.hovertr}
+                  onClick={(e) => console.log("tr clicked", m)}
+                >
                   <td
                     style={{
                       color: "#FFA211",
