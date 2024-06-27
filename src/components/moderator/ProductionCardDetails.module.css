@@ -112,6 +112,7 @@
 }
 .table thead {
   position: sticky;
+  z-index: 1111;
   top: 0;
 }
 .table tfoot {
@@ -424,47 +425,60 @@
   padding-bottom: 3rem;
 }
 
+.button,
+.buttonr {
+  color: white;
+  text-decoration: none;
+  font-size: 25px;
+  border: none;
+  background: none;
+  font-weight: 600;
+  font-family: "roboto", sans-serif;
+  margin-top: 16px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+.buttonr {
+  font-size: 18px;
+  font-weight: 400;
+}
+.buttonr::before,
+.button::before {
+  margin-left: auto;
+}
+.buttonr:hover {
+  color: #f33716;
+}
+.button:hover {
+  color: #006b63;
+}
+.button::after,
+.button::before,
+.buttonr::after,
+.buttonr::before {
+  content: "";
+  width: 0%;
+  height: 2px;
+  background: #f44336;
+  display: block;
+  transition: 0.5s;
+}
+.button::after,
+.button::before {
+  background: #006b63;
+}
 
-.button,.buttonr {
-    color: white;
-    text-decoration: none;
-    font-size: 25px;
-    border: none;
-    background: none;
-    font-weight: 600;
-    font-family: 'roboto', sans-serif;
-    margin-top: 16px;
-    cursor: pointer;
-    text-transform: uppercase;
-  }
-  .buttonr{
-    font-size: 18px;
-    font-weight: 400;
-  }
-  .buttonr::before,
-  .button::before {
-    margin-left: auto;
-  }
-  .buttonr:hover{
-    color: #f33716;
-  }
-  .button:hover{
-    color: #006B63;
-  }
-  .button::after, .button::before,
-  .buttonr::after, .buttonr::before {
-    content: '';
-    width: 0%;
-    height: 2px;
-    background: #f44336;
-    display: block;
-    transition: 0.5s;
-  }
-  .button::after, .button::before {
-    background: #006B63;
-  }
-  
-  .button:hover::after, .button:hover::before,
-  .buttonr:hover::after, .buttonr:hover::before {
-    width: 100%;
-  }
+.button:hover::after,
+.button:hover::before,
+.buttonr:hover::after,
+.buttonr:hover::before {
+  width: 100%;
+}
+
+.hovertr:hover {
+  background: #50727B !important;
+  transform: scaleY(1.2);
+  box-shadow: rgba(59, 59, 59, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(43, 42, 42, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(37, 37, 37, 0.09) 0px -3px 5px;
+}

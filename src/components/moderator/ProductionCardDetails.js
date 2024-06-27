@@ -130,7 +130,7 @@ const ProductionCardDetails = (p) => {
             </thead>
             <tbody>
               {p.data.employees.map((m) => (
-                <tr key={m._id}>
+                <tr key={m._id} className={c.hovertr}>
                   <td
                     style={{
                       color: "#FFA211",
