@@ -119,3 +119,42 @@
   text-transform: uppercase;
   text-wrap: wrap;
 }
+.btnh {
+  margin-left: auto;
+  width: fit-content;
+  margin-right: 20px;
+}
+.button {
+  color: white;
+  text-decoration: none;
+  font-size: 25px;
+  border: none;
+  background: none;
+  font-weight: 600;
+  font-family: "roboto", sans-serif;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.button::before {
+  margin-left: auto;
+}
+
+.button:hover {
+  color: #006b63;
+}
+.button::after,
+.button::before {
+  content: "";
+  width: 0%;
+  height: 4px;
+  background: #f44336;
+  display: block;
+  transition: 0.5s;
+}
+
+
+.button:hover::after,
+.button:hover::before {
+  width: 100%;
+}

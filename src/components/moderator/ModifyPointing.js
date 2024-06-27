@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import c from "./ModifyPointing.module.css";
 import Select from "react-select";
 import DropdownIndicator from "..//UI/DropdownIndicator";
@@ -78,7 +78,7 @@ const customStyles = {
   }),
 };
 const ModifyPointing = (p) => {
-//   const { isLoged } = useSelector((s) => s.login);
+  //   const { isLoged } = useSelector((s) => s.login);
   const o = p.data;
   const [saePoin, setpoin] = useState({
     status: o.status === undefined ? "" : o.status,
@@ -92,45 +92,88 @@ const ModifyPointing = (p) => {
     // ttl: o.to === undefined ? "" : o.to.teamleader,
     // tCrew: o.to === undefined ? "" : o.to.crew,
     // mutType: o.to === undefined ? "" : o.to.isDefinitely,
+    to: o.to,
+    toMany: p.toMany,
     motif: o.motif === undefined ? "" : o.motif,
     details: o.details === undefined ? "" : o.details,
   });
-//   const [dataEp, setDataEp] = useState([]);
-//   const [tom, setTom] = useState([
-//     {
-//       id: Math.random(),
-//       teamleader: "",
-//       crew: "",
-//       paidHour: 0,
-//     },
-//   ]);
-//   const callback = useCallback(async () => {
-//     try {
-//       const response = await fetch(`${api}/employee/crews-by-tl/`, {
-//         method: "GET",
-//         headers: {
-//           "Content-Type": "application/json",
-//           Authorization: `Bearer ${isLoged.token}`,
-//         },
-//       });
-//       if (!response.ok) {
-//         throw new Error(response.status);
-//       }
-//       const d = await response.json();
-//       console.log("tl&crew:", d);
-//       setDataEp(d);
-//     } catch (e) {
-//       console.error(e);
-//     }
-//   }, [isLoged.token]);
-//   useEffect(() => {
-//     callback();
-//   }, [callback]);
-//   const changetlm = (i, v) => {
-//     const ind = tom.findIndex((f) => f.id === i);
-//     console.log(ind);
-//     return ind;
-//   };
+  //   const [dataEp, setDataEp] = useState([]);
+  //   const [tom, setTom] = useState([
+  //     {
+  //       id: Math.random(),
+  //       teamleader: "",
+  //       crew: "",
+  //       paidHour: 0,
+  //     },
+  //   ]);
+  //   const callback = useCallback(async () => {
+  //     try {
+  //       const response = await fetch(`${api}/employee/crews-by-tl/`, {
+  //         method: "GET",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: `Bearer ${isLoged.token}`,
+  //         },
+  //       });
+  //       if (!response.ok) {
+  //         throw new Error(response.status);
+  //       }
+  //       const d = await response.json();
+  //       console.log("tl&crew:", d);
+  //       setDataEp(d);
+  //     } catch (e) {
+  //       console.error(e);
+  //     }
+  //   }, [isLoged.token]);
+  //   useEffect(() => {
+  //     callback();
+  //   }, [callback]);
+  //   const changetlm = (i, v) => {
+  //     const ind = tom.findIndex((f) => f.id === i);
+  //     console.log(ind);
+  //     return ind;
+  //   };
+  useEffect(() => {
+    if (!saePoin.pointingOptions.includes("ctn")) {
+      setpoin((p) => ({
+        ...p,
+        ctnDuration: 0,
+      }));
+    }
+    if (!saePoin.pointingOptions.includes("ot")) {
+      setpoin((p) => ({
+        ...p,
+        otDuration: 0,
+      }));
+    }
+    if (!saePoin.pointingOptions.includes("t")) {
+      setpoin((p) => ({
+        ...p,
+        tDuration: 0,
+      }));
+    }
+    if (!saePoin.pointingOptions.includes("retard")) {
+      setpoin((p) => ({
+        ...p,
+        retardDuration: 0,
+      }));
+    }
+    if (!saePoin.pointingOptions.includes("cr")) {
+      setpoin((p) => ({
+        ...p,
+        crDuration: 0,
+      }));
+    }
+    if (!saePoin.pointingOptions.includes("mutation")) {
+    }
+    if (saePoin.pointing !== "mutation") {
+      setpoin((p) => ({
+        ...p,
+        ttl: "",
+        tCrew: "",
+      }));
+    }
+  }, [saePoin.pointingOptions, saePoin.pointing]);
 
   console.log(p.data, saePoin);
   return (
@@ -354,14 +397,15 @@ const ModifyPointing = (p) => {
             />
           </div>
         </div>
+        <div className={c.btnh}>
+          <button className={c.button}>submit</button>
+        </div>
       </div>
     </React.Fragment>
   );
 };
 
 export default ModifyPointing;
-
-
 
 // {saePoin.pointing === "mutation" && (
 //     <React.Fragment>
