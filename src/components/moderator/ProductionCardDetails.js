@@ -4,7 +4,8 @@ import { isFriday } from "../hooks/daterelated";
 import Chart from "./Chart";
 import React, { useState } from "react";
 import ModifyPointing from "./ModifyPointing";
-
+import api from "../../service/api";
+import { useSelector } from "react-redux";
 const getEmpl = (d) => {
   let r = 0;
   d.forEach((e) => {
@@ -46,6 +47,7 @@ const getDataBypointing = (d) => {
 };
 const ProductionCardDetails = (p) => {
   const [rowTM, setRowTM] = useState(null);
+  const { isLoged } = useSelector((s) => s.login);
   console.log(p.data, getDataBypointing(p.data.employees));
 
   const rejectOrValid = (e, t) => {
@@ -55,6 +57,45 @@ const ProductionCardDetails = (p) => {
 
   const close = (e) => {
     setRowTM(null);
+  };
+  const postSingleEmpl = async (d, m, ph, id) => {
+    try {
+      const body = {
+        matricule: m,
+        paidHour: ph,
+        pointing: d.pointing,
+        pointingOptions: d.pointingOptions,
+        ctn: d.ctnDuration,
+        cte: 0,
+        ctf: 0,
+        ot: d.otDuration,
+        t: d.tDuration,
+        cr: d.crDuration,
+        retard: d.retardDuration,
+        status: d.status,
+        motif: d.motif,
+        details: d.details,
+      };
+      console.log(body);
+      const response = await fetch(`${api}/pointing-for-one/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${isLoged.token}`,
+        },
+        body: JSON.stringify(body),
+      });
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      const da = await response.json();
+      console.log("pfo:", da);
+      // callback();
+      return true;
+    } catch (e) {
+      console.error(e);
+      return false;
+    }
   };
   return (
     <React.Fragment>
@@ -161,8 +202,8 @@ const ProductionCardDetails = (p) => {
                         "--"
                       ) : (
                         <ul>
-                          {m.pointingOptions.map((m) => (
-                            <li>{m}</li>
+                          {m.pointingOptions.map((m,i) => (
+                            <li key={i}>{m}</li>
                           ))}
                         </ul>
                       )}
@@ -185,8 +226,8 @@ const ProductionCardDetails = (p) => {
                         "--"
                       ) : (
                         <ul>
-                          {m.toMany.map((m) => (
-                            <li style={{ textAlign: "center" }}>{`${
+                          {m.toMany.map((m,i) => (
+                            <li style={{ textAlign: "center" }} key={`${i}_idsdef`}>{`${
                               m.teamleader
                             } / ${m.crew} / ${m.paidHour.toFixed(2)}`}</li>
                           ))}

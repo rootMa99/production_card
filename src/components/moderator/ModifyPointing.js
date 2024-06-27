@@ -3,6 +3,7 @@ import c from "./ModifyPointing.module.css";
 import Select from "react-select";
 import DropdownIndicator from "..//UI/DropdownIndicator";
 import CreatableSelect from "react-select/creatable";
+import { isFriday, isSaturday } from "../hooks/daterelated";
 // import api from "../../service/api";
 // import { useSelector } from "react-redux";
 const customStyles = {
@@ -81,6 +82,7 @@ const ModifyPointing = (p) => {
   //   const { isLoged } = useSelector((s) => s.login);
   const o = p.data;
   const [saePoin, setpoin] = useState({
+    paidHour:o.paidHour,
     status: o.status === undefined ? "" : o.status,
     pointing: o.pointing === undefined ? "" : o.pointing,
     pointingOptions: o.pointingOptions === undefined ? [] : o.pointingOptions,
@@ -174,7 +176,80 @@ const ModifyPointing = (p) => {
       }));
     }
   }, [saePoin.pointingOptions, saePoin.pointing]);
+  const submitSingleData = async (smt) => {
+    let paidhour;
+    switch (saePoin.pointing) {
+      case "shift":
+        if (isFriday(p.today)) {
+          paidhour =
+            7.58 -
+            saePoin.tDuration -
+            saePoin.retardDuration -
+            saePoin.ctnDuration -
+            saePoin.crDuration +
+            saePoin.otDuration;
+        } else {
+          paidhour =
+            7.67 -
+            saePoin.tDuration -
+            saePoin.retardDuration -
+            saePoin.ctnDuration -
+            saePoin.crDuration +
+            saePoin.otDuration;
+        }
+        break;
+      case "admin":
+        if (isSaturday(p.today)) {
+          paidhour =
+            4 -
+            saePoin.tDuration -
+            saePoin.retardDuration -
+            saePoin.ctnDuration -
+            saePoin.crDuration +
+            saePoin.otDuration;
+        } else {
+          paidhour =
+            8.17 -
+            saePoin.tDuration -
+            saePoin.retardDuration -
+            saePoin.ctnDuration -
+            saePoin.crDuration +
+            saePoin.otDuration;
+        }
+        break;
+      case "ot":
+        paidhour =
+          0 -
+          saePoin.tDuration -
+          saePoin.retardDuration -
+          saePoin.ctnDuration -
+          saePoin.crDuration +
+          saePoin.otDuration;
+        break;
+      case "ab":
+      case "ap":
+      case "ma":
+      case "tl":
+      case "ctp":
+      case "cr":
+      case "t":
+      case "mutation":
+      case "mt":
+      case "di":
+      case "dn":
+      case "te":
+      case "at":
+        paidhour = 0;
+        break;
+      default:
+    }
 
+    const f = await p.singleEmpl(saePoin, smt, paidhour, o._id);
+    // if (f) {
+    //   toogle();
+    // }
+    console.log(saePoin, smt, paidhour, f);
+  };
   console.log(p.data, saePoin);
   return (
     <React.Fragment>
@@ -197,7 +272,7 @@ const ModifyPointing = (p) => {
           </div>
           <div className={c.empData}>
             <span className={c.label}>paid hour:</span>
-            <span className={c.detail}>{p.data.paidHour.toFixed(2)}</span>
+            <span className={c.detail}>{saePoin.paidHour.toFixed(2)}</span>
           </div>
         </div>
         <div className={c.pointingData}>
