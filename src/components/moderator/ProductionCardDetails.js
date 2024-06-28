@@ -93,6 +93,7 @@ const ProductionCardDetails = (p) => {
       }
       const da = await response.json();
       console.log("pfo:", da);
+      p.callbackmu()
       // callback();
       // return true;
     } catch (e) {

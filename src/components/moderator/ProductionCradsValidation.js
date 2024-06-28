@@ -269,7 +269,7 @@ const ProductionCradsValidation = (p) => {
   return (
     <div className={c.container}>
       {pd !== null && (
-        <ProductionCardDetails data={pd} close={closeda} reject={rejectCard} />
+        <ProductionCardDetails data={pd} close={closeda} reject={rejectCard} callbackmu={callbackmu}/>
       )}
       <div className={c.inputHolder}>
         <div className={c.inputD}>
