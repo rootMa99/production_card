@@ -48,10 +48,10 @@ const getDataBypointing = (d) => {
 const ProductionCardDetails = (p) => {
   const [rowTM, setRowTM] = useState(null);
   const { isLoged } = useSelector((s) => s.login);
-  console.log(p.data, getDataBypointing(p.data.employees));
+  const [data, setData] = useState(p.data);
 
   const rejectOrValid = (e, t) => {
-    p.reject(p.data._id, t);
+    p.reject(data._id, t);
     return;
   };
 
@@ -78,7 +78,7 @@ const ProductionCardDetails = (p) => {
       };
       console.log(body);
       const response = await fetch(
-        `${api}/production-card/pointing-for-one/${p.data._id}`,
+        `${api}/production-card/pointing-for-one/${data._id}`,
         {
           method: "PUT",
           headers: {
@@ -93,7 +93,9 @@ const ProductionCardDetails = (p) => {
       }
       const da = await response.json();
       console.log("pfo:", da);
-      p.callbackmu()
+      setData(da);
+      setRowTM(null)
+      p.callbackmu();
       // callback();
       // return true;
     } catch (e) {
@@ -111,7 +113,7 @@ const ProductionCardDetails = (p) => {
         />
       )}
       <div className={c.container}>
-        {!p.data.isValid && (
+        {!data.isValid && (
           <p className={c.caution}>
             Caution: This card has not yet been validated.
           </p>
@@ -120,44 +122,44 @@ const ProductionCardDetails = (p) => {
           close
         </span>
         <div className={c.head}>
-          <h2>{p.data.crew}</h2>
+          <h2>{data.crew}</h2>
           <h3>
-            {p.data.family} / {p.data.project}
+            {data.family} / {data.project}
           </h3>
         </div>
         <div className={c.crewDetails}>
           <div className={c.details}>
             <span>teamleader:</span>
-            <span className={c.imp}>{p.data.teamleader}</span>
+            <span className={c.imp}>{data.teamleader}</span>
           </div>
           <div className={c.details}>
             <span>shiftleader:</span>
-            <span className={c.imp}>{p.data.shiftleader}</span>
+            <span className={c.imp}>{data.shiftleader}</span>
           </div>
           <div className={c.details}>
             <span>coordinator:</span>
-            <span className={c.imp}>{p.data.coordinator}</span>
+            <span className={c.imp}>{data.coordinator}</span>
           </div>
         </div>
         <div className={c.crewDetails}>
           <div className={c.details}>
             <span>headcount:</span>
-            <span className={c.imp}>{`${getEmpl(p.data.employees).toFixed(
-              2
-            )} / ${p.data.employees.length}`}</span>
+            <span className={c.imp}>{`${getEmpl(data.employees).toFixed(2)} / ${
+              data.employees.length
+            }`}</span>
           </div>
           <div className={c.details}>
-            <span>shift:</span> <span className={c.imp}>{p.data.shift}</span>
+            <span>shift:</span> <span className={c.imp}>{data.shift}</span>
           </div>
           <div className={c.details}>
             <span>total paid hours:</span>
-            <span className={c.imp}>{getph(p.data.employees).toFixed(2)}</span>
+            <span className={c.imp}>{getph(data.employees).toFixed(2)}</span>
           </div>
         </div>
         <div className={c.bodyC}>
           <div className={c.charth}>
             <Chart
-              data={getDataBypointing(p.data.employees).sort((a, b) => {
+              data={getDataBypointing(data.employees).sort((a, b) => {
                 return b.nb - a.nb;
               })}
               title="employees by pointing"
@@ -188,7 +190,7 @@ const ProductionCardDetails = (p) => {
                 </tr>
               </thead>
               <tbody>
-                {p.data.employees.map((m) => (
+                {data.employees.map((m) => (
                   <tr
                     key={m._id}
                     className={c.hovertr}
@@ -299,7 +301,7 @@ const ProductionCardDetails = (p) => {
                 </tr>
               </thead>
               <tbody>
-                {p.data.output.map((m) => (
+                {data.output.map((m) => (
                   <tr key={m._id}>
                     <td
                       style={{
